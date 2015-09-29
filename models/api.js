@@ -26,6 +26,31 @@ module.exports.getStats = function (callback){
 		}
 		else
 			json = null;
+		callback(json);
+	});
+};
+
+module.exports.getTopLic = function (callback){
+
+	request("http://"+host+'/stats/top/licitacion', function (error, response, body) {
+		if (!error && (response.statusCode == 200 || response.statusCode == 201)) {
+			json = JSON.parse(body);		
+		}
+		else
+			json = null;
+		console.log(json);
+		callback(json);
+	});
+};
+
+module.exports.getTopPro = function (callback){
+
+	request("http://"+host+'/stats/top/proveedor', function (error, response, body) {
+		if (!error && (response.statusCode == 200 || response.statusCode == 201)) {
+			json = JSON.parse(body);		
+		}
+		else
+			json = null;
 		console.log(json);
 		callback(json);
 	});

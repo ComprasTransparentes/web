@@ -10,14 +10,60 @@ var router = express.Router();
 router.get('/', function(req, res) {
 
 	var json;
+	var lic;
+	var pro;
+	var cat;
 		api.getStats(function(json){
 			json = json;
 			console.log(json);
-			if(json!=null)
-				res.render('application.ejs', { content: 'index',
-			  									data: json,
-	  											special: 'true',
-	  											superspecial: 'false' });
+			if(json!=null){
+
+				api.getTopLic(function(lic){
+					lic = lic;
+					console.log(lic);
+					if(lic!=null){
+
+						api.getTopPro(function(pro){
+							pro = pro;
+							console.log(pro);
+							if(pro!=null){
+
+								res.render('application.ejs', { content: 'index',
+							  									data: json,
+					  											special: 'true',
+					  											superspecial: 'false',
+					  											lic: lic,
+					  											pro: pro });
+
+								
+							}
+						
+							else{
+								var num = Math.floor((Math.random() * 10) + 1);
+								if(num==3 || num==7){
+										res.render('404.ejs');
+									}
+									else
+								  		res.render('404real.ejs');
+								  }
+						});
+
+						
+					}
+				
+					else{
+						var num = Math.floor((Math.random() * 10) + 1);
+						if(num==3 || num==7){
+								res.render('404.ejs');
+							}
+							else
+						  		res.render('404real.ejs');
+						  }
+				});
+
+
+			}
+	
 			else{
 				var num = Math.floor((Math.random() * 10) + 1);
 				if(num==3 || num==7){
