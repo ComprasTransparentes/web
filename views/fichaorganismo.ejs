@@ -98,20 +98,7 @@
 
 					<div class="row" id="licmascuantiosas">
 						<div class="col-sm-6">
-							<table class="table postulant-list clickable-table">
-								<thead>
-									<td>Título</td>
-									<td>Monto</td>
-								</thead>
-								<tbody>
-									<% 	var tt = 10;
-									console.log(data.extra.top_licitaciones.empty);
-									console.log("gatito");
-									if(data.extra.top_licitaciones.length < tt){
-										tt = data.extra.top_licitaciones.length;
-									}
-
-									if(JSON.stringify(data.extra.top_licitaciones) === '{}'){ %>
+						<%if(data.extra.top_licitaciones.length == 0){  %>
 
 									<div class="empty-mala">
 										<p class="lead">estoy vacío</p>
@@ -119,7 +106,20 @@
 
 									<% }
 
-									else {
+									else {%>
+							<table class="table postulant-list clickable-table">
+								<thead>
+									<td>Título</td>
+									<td>Monto</td>
+								</thead>
+								<tbody>
+									<% 	var tt = 10;
+									console.log("gatito");
+									if(data.extra.top_licitaciones.length < tt){
+										tt = data.extra.top_licitaciones.length;
+									}
+
+									
 
 									for(var d=0; d<tt; d++){
 										if(d==0){ %>
@@ -134,9 +134,9 @@
 										<td><span class="clp"><%-data.extra.top_licitaciones[d].monto%></span></td>
 
 									</tr>
-									<%}%>															
 								</tbody>
 							</table>
+									<%}%>															
 						</div>
 
 
@@ -145,7 +145,7 @@
 							<div class="panel panel-inverted panel-drkblue">
 								
 								<% 
-								if(JSON.stringify(data.extra.top_licitaciones) === '{}'){ %>
+								if(data.extra.top_licitaciones.length == 0){ %>
 
 								<div class="empty-mala">
 									<p class="lead">estoy vacío 2</p>
@@ -222,6 +222,17 @@
 					<div class="row" id="provmasbeneficiados">
 						<!-- Lista de proveedores -->
 						<div class="col-sm-6">
+							<% 
+								if(data.extra.top_proveedores.length == 0){ %>
+
+								<div class="empty-mala">
+									<p class="lead">estoy vacío 2</p>
+								</div>
+
+									<% }
+
+								else { %>
+
 							<table class="table postulant-list clickable-table">
 								<thead>
 									<td>Nombre</td>
@@ -249,12 +260,24 @@
 																									
 								</tbody>
 							</table>
+							<%}%>
 						</div>
 
 						<!-- Show de proveedor seleccionado -->
 						<div class="col-sm-6">
 							
 							<div class="panel panel-inverted panel-drkblue">
+								<% 
+								if(data.extra.top_proveedores.length == 0){ %>
+
+								<div class="empty-mala">
+									<p class="lead">estoy vacío 2</p>
+								</div>
+
+									<% }
+
+								else { %>
+
 								<div class="panel-heading">
 									<span class="info-tag">Nombre Proveedor</span>
 							
@@ -301,6 +324,7 @@
 								</div>
 
 							</div>
+							<%}%>
 						</div>
 					</div>
 				</div>
