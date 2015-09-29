@@ -123,7 +123,7 @@ html,body {
 		>.container {
 		    padding-bottom: 465px;
 
-		    @media #{$min} {
+		    @media #{$sm} {
 				padding-bottom: 645px;		    	
 		    }
 		}
