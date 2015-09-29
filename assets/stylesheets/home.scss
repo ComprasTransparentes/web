@@ -122,6 +122,10 @@ html,body {
 
 		>.container {
 		    padding-bottom: 465px;
+
+		    @media #{$min} {
+				padding-bottom: 645px;		    	
+		    }
 		}
 	}
 }
@@ -2290,6 +2294,15 @@ input[type=number] {
 				margin-right: 15px;
 			}
 
+			&:last-child {
+				@include flexbox();
+				
+				p {
+					margin: auto;
+					padding-bottom: 20px;
+				}
+			}
+
 		}
 
 		+ .panel-grey {
@@ -2682,7 +2695,8 @@ input[type=number] {
 
 	#chart {
 		padding: 30px 0;
-		border: 1px solid #ddd;
+		border: 1px solid #eee;
+		background-color: #f5f5f5;
 		border-radius: 4px;
 	}
 }
