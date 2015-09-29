@@ -71,19 +71,19 @@
 						<div class="panel-body">
 							<div class="row">
 								<div class="col-md-6 col-sm-6">
-									<span class="value clp">40.000.000</span>
+									<span class="numformat value clp">40000000</span>
 									<p>gasto por órdenes de compra</p>
 								</div>
 								<div class="col-md-6 col-sm-6">
-									<span class="value clp">6.666.666</span>
+									<span class="numformat value clp">6666666</span>
 									<p>gasto promedio mensual</p>
 								</div>
 								<div class="col-md-6 col-sm-6">
-									<span class="value">78</span>
+									<span class="numformat value">78</span>
 									<p>proveedores beneficiados</p>
 								</div>
 								<div class="col-md-6 col-sm-6">
-									<span class="value">215</span>
+									<span class="numformat value">215</span>
 									<p>órdenes de compra emitidas</p>
 								</div>
 							</div>
@@ -105,9 +105,22 @@
 								</thead>
 								<tbody>
 									<% 	var tt = 10;
+									console.log(data.extra.top_licitaciones.empty);
+									console.log("gatito");
 									if(data.extra.top_licitaciones.length < tt){
-										tt = dta.extra.top_licitaciones.length;
+										tt = data.extra.top_licitaciones.length;
 									}
+
+									if(JSON.stringify(data.extra.top_licitaciones) === '{}'){ %>
+
+									<div class="empty-mala">
+										<p class="lead">estoy vacío</p>
+									</div>
+
+									<% }
+
+									else {
+
 									for(var d=0; d<tt; d++){
 										if(d==0){ %>
 
@@ -130,6 +143,18 @@
 						<div class="col-sm-6">
 							
 							<div class="panel panel-inverted panel-drkblue">
+								
+								<% 
+								if(JSON.stringify(data.extra.top_licitaciones) === '{}'){ %>
+
+								<div class="empty-mala">
+									<p class="lead">estoy vacío 2</p>
+								</div>
+
+									<% }
+
+								else { %>
+
 								<div class="panel-heading">
 									<span class="info-tag">Título licitación</span>
 
@@ -179,7 +204,12 @@
 									</p>
 								</div>
 
+								<% } %>
 							</div>
+
+
+
+
 						</div>
 					</div>
 				</div>
@@ -200,7 +230,7 @@
 								<tbody>
 								<% 	var tt = 10;
 									if(data.extra.top_proveedores.length < tt){
-										tt = dta.extra.top_proveedores.length;
+										tt = data.extra.top_proveedores.length;
 									}
 									for(var d=0; d<tt; d++){
 										if(d==0){ %>
@@ -215,7 +245,7 @@
 										<td><span class="clp"><%-data.extra.top_proveedores[d].monto%></span></td>
 
 									</tr>
-									<%}%>
+									<%}}%>
 																									
 								</tbody>
 							</table>
