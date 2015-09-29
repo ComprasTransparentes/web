@@ -3,10 +3,6 @@
 $(window).load(function() {
 	// Animate loader off screen
 	$(".se-pre-con").fadeOut("slow");;
-	
-	function formatNumbers(num) {
-		return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-	}
 });
 
 
@@ -24,8 +20,31 @@ function checkOverflow(el)
 };
 
 $(document).ready(function() {
+
+
+	function formatNumber (num) {
+	    var formated = num.text().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1.");
+	    num.text(formated);
+	}
+
+	function formatAllNumbers() {
+	    
+	    var allNumbers = $('.value');
+
+	    for(var i = (timestampArray.length - 1); i >= 0; i--)
+	    {
+	        timestampArray[i].innerHTML = getTimeAgo(timestampArray[i].innerHTML);
+	        timestampArray[i].className = "timeAgoComplete";
+	    }
+	}
+
+
+
+
+
+
   
-  // Select2
+  	// Select2
 
   	$(".standard").select2();
 
@@ -82,7 +101,7 @@ $(document).ready(function() {
 
     // Start Carousel
     $('.carousel').carousel({
-  		interval: 10000
+  		interval: false
 	});
 
 	// $('.selector2-container').on( 'click', function(){
