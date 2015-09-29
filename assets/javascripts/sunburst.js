@@ -4,6 +4,7 @@ var height = 480;
 var radius = Math.min(width, height) / 2;
 var progress = 0;
 var formatPercent = d3.format(".0%");
+var total = 0;
 
 // Breadcrumb dimensions: width, height, spacing, width of tip/tail.
 var b = {
@@ -22,7 +23,7 @@ var colors = {
 
 
 // Total size of all segments; we set this later, after loading the data.
-var totalSize = 0; 
+
 
 var vis = d3.select("#chart").append("svg:svg")
     .attr("width", width)
@@ -122,7 +123,7 @@ function createVisualization(json, region, year) {
   d3.select("#container").on("mouseleave", mouseleave);
 
   // Get total size of the tree = value of root node from partition.
-  totalSize = path.node().__data__.value;
+
  };
 
 // Fade all but the current sequence, and show it in the breadcrumb trail.
@@ -130,7 +131,7 @@ function mouseover(d) {
 
   console.log(d);
 
-  var percentage = (100 * d.value / totalSize).toPrecision(3);
+  var percentage = (100 * d.value / (total)).toPrecision(3);
   var percentageString = percentage + "%";
   if (percentage < 0.1) {
     percentageString = "< 0.1%";
@@ -319,6 +320,7 @@ function buildHierarchy(csv) {
     var size = +csv[i][1];
     var region = csv[i][2];
     var year = csv[i][3];
+    total =  total + size;
     if (isNaN(size)) { // e.g. if this is a header row
       continue;
     }
