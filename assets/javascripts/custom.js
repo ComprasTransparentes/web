@@ -21,22 +21,11 @@ function checkOverflow(el)
 
 $(document).ready(function() {
 
+	$('.numformat').each( function() {
 
-	function formatNumber (num) {
-	    var formated = num.text().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1.");
-	    num.text(formated);
-	}
+		$(this).text($(this).text().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1."));
 
-	function formatAllNumbers() {
-	    
-	    var allNumbers = $('.value');
-
-	    for(var i = (timestampArray.length - 1); i >= 0; i--)
-	    {
-	        timestampArray[i].innerHTML = getTimeAgo(timestampArray[i].innerHTML);
-	        timestampArray[i].className = "timeAgoComplete";
-	    }
-	}
+	});
 
 
 
