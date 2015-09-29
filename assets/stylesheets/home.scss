@@ -1088,7 +1088,7 @@ body {
 
 }
 
-.welcome, .stats {
+.stats {
 
 	position: relative;
 
@@ -1142,6 +1142,11 @@ body {
 
 	&.panel.panel-default {
 		border: none;
+
+		>.panel-heading {
+			border: none;
+			background-color: transparent;
+		}
 	}
 
 	.medal-container {
@@ -1220,7 +1225,7 @@ body {
 
 	> div.panel-body {
 		margin-bottom: 0 !important;
-		padding: 30px 15px;
+		padding: 15px;
 	}
 
 	.pagination {
@@ -2275,18 +2280,17 @@ input[type=number] {
 
 	.adj-detail {
 
-		overflow: hidden;
+		@include flexbox();
 
 		> div {
 			&:first-child {
-				width: 60px;
-				float:left;
+				margin-right: 15px;
 			}
 
-			&:last-child {
-				padding-top: 10px;
-				padding-left: 70px;
-			}
+		}
+
+		+ .panel-grey {
+			background-color: #eee;
 		}
 	}
 }
