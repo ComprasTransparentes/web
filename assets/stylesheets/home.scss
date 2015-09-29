@@ -122,6 +122,10 @@ html,body {
 
 		>.container {
 		    padding-bottom: 465px;
+
+		    @media #{$sm} {
+				padding-bottom: 645px;		    	
+		    }
 		}
 	}
 }
@@ -133,6 +137,7 @@ html,body {
     margin-top: 15px;
     margin-left: -15px;
     padding: 15px;
+    padding-left: 30px;
     padding-top: 0px;
     border-bottom: 2px solid rgba(0, 0, 0, 0.2);
     color: #666;	
@@ -1088,7 +1093,7 @@ body {
 
 }
 
-.welcome, .stats {
+.stats {
 
 	position: relative;
 
@@ -1142,6 +1147,13 @@ body {
 
 	&.panel.panel-default {
 		border: none;
+
+		>.panel-heading {
+			border: none;
+			background-color: transparent;
+			padding-bottom: 0;
+			margin-bottom: 0;
+		}
 	}
 
 	.medal-container {
@@ -1220,7 +1232,7 @@ body {
 
 	> div.panel-body {
 		margin-bottom: 0 !important;
-		padding: 30px 15px;
+		padding: 15px;
 	}
 
 	.pagination {
@@ -2275,18 +2287,26 @@ input[type=number] {
 
 	.adj-detail {
 
-		overflow: hidden;
+		@include flexbox();
 
 		> div {
 			&:first-child {
-				width: 60px;
-				float:left;
+				margin-right: 15px;
 			}
 
 			&:last-child {
-				padding-top: 10px;
-				padding-left: 70px;
+				@include flexbox();
+				
+				p {
+					margin: auto;
+					padding-bottom: 20px;
+				}
 			}
+
+		}
+
+		+ .panel-grey {
+			background-color: #eee;
 		}
 	}
 }
@@ -2655,4 +2675,28 @@ input[type=number] {
 	}
 
 
+}
+
+.stats {
+	svg {
+		display: block;
+		margin: 30px auto;
+	}
+
+	#explanation {
+	    position: absolute;
+	    text-align: center;
+	    color: #666;
+	    top: 250px;
+	    width: 240px;
+	    left: 50%;
+	    margin-left: -120px;
+	}
+
+	#chart {
+		padding: 30px 0;
+		border: 1px solid #eee;
+		background-color: #f5f5f5;
+		border-radius: 4px;
+	}
 }

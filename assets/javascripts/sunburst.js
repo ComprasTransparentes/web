@@ -1,5 +1,5 @@
 // Dimensions of sunburst.
-var width = $(".grafico").width();
+var width = 480;
 var height = 480;
 var radius = Math.min(width, height) / 2;
 var progress = 0;
@@ -112,9 +112,9 @@ function createVisualization(json, region, year) {
       .attr("fill-rule", "evenodd")
       .style("fill", function(d) {
         if(d.parent.name=="root")
-          return "rgba(255,0,0,0.5)"
+          return "#2c3e50"
         else
-          return "#343434"
+          return "#34495e"
        })
       .style("opacity", 1)
       .on("mouseover", mouseover);

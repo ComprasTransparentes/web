@@ -6,29 +6,11 @@
 	</div>
 
 	<div class="panel panel-default stats">
+		<div class="panel-heading">
+			<h1 class="super-title">Estadísticas</h1>
+		</div>
 		<div class="panel-body">
 			<div class="row">
-				<div class="col-md-6">
-					<h3>Estadísticas</h3>
-				</div>
-
-				<div class="col-md-6">
-				  <div class="btn-group pull-right pull-resp" data-toggle="buttons">
-					  <label class="btn btn-primary active">
-					    <input type="radio" name="options" id="option1" autocomplete="off" checked> Último semestre
-					  </label>
-					  <label class="btn btn-default">
-					    <input type="radio" name="options" id="option2" autocomplete="off"> Último año
-					  </label>
-					  <label class="btn btn-default">
-					    <input type="radio" name="options" id="option3" autocomplete="off"> Últimos dos años
-					  </label>
-					  <label class="btn btn-default">
-					    <input type="radio" name="options" id="option3" autocomplete="off"><i class="fa fa-calendar"></i>
-					  </label>
-					</div>
-				</div>
-
 				<div class="col-md-12">
 					<p class="small-lead">Información de licitaciones y estadísticas del período [período]</p>
 				</div>
@@ -66,19 +48,14 @@
 
 	<!-- Gráfico 1 -->
 	<div class="panel panel-default stats">
+		<div class="panel-heading">
+			<h1 class="super-title">Distribución de gasto entre ministerios</h1>
+		</div>
 		<div class="panel-body">
-			<div class="row">
-				<div class="col-md-6">
-					<h3>Gráfico 1</h3>
-				</div>
-
-				
-			
-			</div>
 
 			<div class="grafico">
 				<div id="chart">
-					<div id="explanation" style="visibility: hidden;" class="flex-wrapper">
+					<div id="explanation" style="visibility: hidden;">
 				        <p>  
 				          <span id="percentage"></span><br/>
 				          Porcentaje de gasto por entidades
@@ -121,12 +98,13 @@
 									<option>Región 3</option>
 									<option>Región 4</option>
 								</select>
-								<select class="selector flat standard">
-									<option>Todos los ministerios</option>
-									<option>Ministerio 1</option>
-									<option>Ministerio 2</option>
-									<option>Ministerio 3</option>
-									<option>Ministerio 4</option>
+								<select class="selector flat no-search">
+									<option>Histórico</option>
+									<option>1er semestre 2015</option>
+									<option>2do semestre 2014</option>
+									<option>1er semestre 2014</option>
+									<option>2do semestre 2013</option>
+									<option>1er semestre 2013</option>
 								</select>
 								<button class="btn btn-default btn-compras-transparentes pull-right">Filtrar</button>
 							</form>
@@ -149,7 +127,7 @@
 									</div>
 									<div class="row">
 										<div class="col-md-12 text-right text-resp med">
-											<a href="#">Ir a ficha de proveedor <i class="fa fa-arrow-circle-right"></i></a>
+											<a href="#">Ver detalle <i class="fa fa-arrow-circle-right"></i></a>
 										</div>
 									</div>
 								</div>
@@ -202,12 +180,13 @@
 									<option>Región 3</option>
 									<option>Región 4</option>
 								</select>
-								<select class="selector flat standard">
-									<option>Todos los ministerios</option>
-									<option>Ministerio 1</option>
-									<option>Ministerio 2</option>
-									<option>Ministerio 3</option>
-									<option>Ministerio 4</option>
+								<select class="selector flat no-search">
+									<option>Histórico</option>
+									<option>1er semestre 2015</option>
+									<option>2do semestre 2014</option>
+									<option>1er semestre 2014</option>
+									<option>2do semestre 2013</option>
+									<option>1er semestre 2013</option>
 								</select>
 								<button class="btn btn-default btn-compras-transparentes pull-right">Filtrar</button>
 							</form>
@@ -218,19 +197,19 @@
 								<div class="info-container">
 									<div class="row">
 										<div class="col-md-8">
-											<span class="info-tag">Proveedor</span>
-											<h3 class="ranking-title"><i class="fa fa-angle-double-right"></i>Comercializadora Ilhabella Eirl</h3>
-											<span>RUT: 76.242.192-5</span>
+											<span class="info-tag">Licitación</span>
+											<h3 class="ranking-title"><i class="fa fa-angle-double-right"></i>Compra de alimentos para mascotas</h3>
+											<span>Código: 2583-6-L113</span>
 										</div>
 										<div class="col-md-4 ammount-container text-right text-resp">
 											<span class="info-tag">Monto en pesos</span>
 											<h3 class="ranking-title clp">127.000.000</h3>
-											<span>total facturado</span>
+											<span>total transado</span>
 										</div>
 									</div>
 									<div class="row">
 										<div class="col-md-12 text-right text-resp med">
-											<a href="#">Ir a ficha de proveedor <i class="fa fa-arrow-circle-right"></i></a>
+											<a href="#">Ver detalle <i class="fa fa-arrow-circle-right"></i></a>
 										</div>
 									</div>
 								</div>
@@ -273,22 +252,16 @@
 			    <!-- Categorías en las que se gasta más -->
 			    <div class="item">
 			    	<div class="panel-body">
-						<h4 class="ranking-name">Proveedores más beneficiados</h4>
+						<h4 class="ranking-name">Categorías en las que más se gasta</h4>
 						<div class="ranking-filter">
 							<form>
-								<select class="selector flat standard">
-									<option>Todas las regiones</option>
-									<option>Región 1</option>
-									<option>Región 2</option>
-									<option>Región 3</option>
-									<option>Región 4</option>
-								</select>
-								<select class="selector flat standard">
-									<option>Todos los ministerios</option>
-									<option>Ministerio 1</option>
-									<option>Ministerio 2</option>
-									<option>Ministerio 3</option>
-									<option>Ministerio 4</option>
+								<select class="selector flat no-search">
+									<option>Histórico</option>
+									<option>1er semestre 2015</option>
+									<option>2do semestre 2014</option>
+									<option>1er semestre 2014</option>
+									<option>2do semestre 2013</option>
+									<option>1er semestre 2013</option>
 								</select>
 								<button class="btn btn-default btn-compras-transparentes pull-right">Filtrar</button>
 							</form>
@@ -299,19 +272,18 @@
 								<div class="info-container">
 									<div class="row">
 										<div class="col-md-8">
-											<span class="info-tag">Proveedor</span>
-											<h3 class="ranking-title"><i class="fa fa-angle-double-right"></i>Comercializadora Ilhabella Eirl</h3>
-											<span>RUT: 76.242.192-5</span>
+											<span class="info-tag">Categoría</span>
+											<h3 class="ranking-title"><i class="fa fa-angle-double-right"></i>Tubos de escape/ Servicios mecánicos de tecnlogía/ Prótesis para animales</h3>
 										</div>
 										<div class="col-md-4 ammount-container text-right text-resp">
 											<span class="info-tag">Monto en pesos</span>
 											<h3 class="ranking-title clp">127.000.000</h3>
-											<span>total facturado</span>
+											<span>total transado</span>
 										</div>
 									</div>
 									<div class="row">
 										<div class="col-md-12 text-right text-resp med">
-											<a href="#">Ir a ficha de proveedor <i class="fa fa-arrow-circle-right"></i></a>
+											<a href="#">Ver detalle <i class="fa fa-arrow-circle-right"></i></a>
 										</div>
 									</div>
 								</div>
