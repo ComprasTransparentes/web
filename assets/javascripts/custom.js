@@ -3,7 +3,12 @@
 $(window).load(function() {
 	// Animate loader off screen
 	$(".se-pre-con").fadeOut("slow");;
+	
+	function formatNumbers(num) {
+		return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+	}
 });
+
 
 function checkOverflow(el)
 {
