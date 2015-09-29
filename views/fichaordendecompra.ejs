@@ -1,0 +1,156 @@
+<div class="row">
+	
+	<div class="col-md-4 pull-right pull-resp">
+		<div class="panel panel-color fich">
+
+			<div class="panel-heading no-margin">
+				<h5>Organismo Licitador</h5>	
+			</div>
+
+			<div class="panel-body no-margin">
+				<div>	
+					<span class="info-tag">Información Organismo</span>
+					<div>
+						<h5><%- data.comprador.nombre_unidad %></h5>
+						<ul class="list-unstyled">
+							<li>Código: <%- data.comprador.codigo_unidad %></li>
+						</ul>
+					</div>
+				</div>
+
+				<div>	
+					<span class="info-tag">Información Unidad</span>
+					<div>
+						<h5><%- data.comprador.nombre_comprador %></h5>
+						<ul class="list-unstyled">
+							<li>Código: <%- data.comprador.code %></li>
+							<li>RUT: <%- data.comprador.rut_usuario %></li>
+							<li><%- data.comprador.direccion_unidad %>, <%- data.comprador.comuna_unidad %>, <%- data.comprador.region_unidad %></li>
+						</ul>
+					</div>
+				</div>	
+
+				<div>
+					<span class="info-tag">Responsable Pago</span>
+					<ul class="list-unstyled">
+						<li><i class="fa fa-user"></i><%- data.nombre_responsable_pago %></li>
+						<li><i class="fa fa-envelope"></i><%- data.email_responsable_pago %></li>
+					</ul>
+				</div>
+
+				<div>
+					<span class="info-tag">Responsable Contrato</span>
+					<ul class="list-unstyled">
+						<li><i class="fa fa-user"></i><%- data.nombre_responsable_contrato %></li>
+						<li><i class="fa fa-envelope"></i><%- data.email_responsable_contrato %></li>
+						<li><i class="fa fa-phone"></i><%- data.fono_responsable_contrato %></li>
+					</ul>
+				</div>
+			</div>
+
+			<div class="panel-footer no-margin">
+				<p>
+					<small><a href=<%-"/file?type=organismo&code="+data.comprador.id %>>Ir a ficha de organismo <i class="fa fa-arrow-circle-right"></i></a></small>
+				</p>
+			</div>
+
+		</div>
+
+		<div class="panel panel-color fich">
+
+			<div class="panel-heading no-margin">
+				<h5>Fechas Importantes</h5>
+			</div>
+
+			<div class="panel-body">
+				<ul class="list-unstyled">
+				<li class="margin-bottom">
+					<span>Apertura: 20-01-2014</span>
+				</li>
+				<li class="margin-bottom">
+					<span>Publicación: 20-01-2014</span>
+				</li>
+				<li class="margin-bottom">
+					<span>Cierre: 27-01-2014</span>
+				</li>
+				<li class="margin-bottom">
+					<span>Adjudicación: 02-02-2014</span>
+				</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	<div class="col-md-8">
+		<section class="panel panel-default fich licitacion">
+
+			<div class="panel-body">
+				
+				<span class="info-tag">Título licitación</span>
+
+				<div>
+					<h4 class="collapsable-text"><a class="long-text" href="#"><%- data.name %></a><button class="btn more-text">...</button></h4>
+					<span>Código: <%- data.code %></span>
+					<p class="lic-des"><%- data.descripcion %></p>
+				</div>
+
+				<span class="info-tag">Adjudicación </span>
+				
+				<div class="padding-bottom panel panel-inverted">
+
+					<div class="row">
+						<%
+							var y = data.items.length;
+							var x = 0;
+							var total = 0;
+							for(var e=0;e<data.items.length;e++){
+								if(data.items[e].adjudicacion != null){
+									x++;
+									total = total + data.items[e].adjudicacion.monto_unitario*data.items[e].adjudicacion.cantidad;
+								}
+							}
+						%>
+						<div class="col-sm-4 col-xs-6">
+							<span class="value"><span><%- x %></span><span><%- y %></span></span>
+							<p>items adjudicados</p>
+						</div>
+						<div class="col-sm-4 col-xs-6 text-center text-resp">
+							<span class="value">27</span>
+							<p>oferentes</p>
+						</div>
+						<div class="col-sm-4 col-xs-6 text-right text-resp">
+							<span class="value clp"><%- total %></span>
+							<p>monto total</p>
+						</div>
+					</div>
+
+					<br>
+
+					<div class="flex-wrapper">
+							<div class="info-box ltblue-box">
+								<span class="info-tag">tipo de convocatoria</span>
+								<p>Convocatoria Abierta</p>
+							</div>
+							<div class="info-box ltblue-box">	
+								<span class="info-tag">tipo de adjudicación</span>
+								<p>Adjudicación múltiple sin emisión de OC</p>
+							</div>
+					</div>
+
+
+				</div>
+
+				<div>
+					<ul class="list-unstyled adj-list">
+						
+							<% include itemdetalle %>
+						
+					</ul>
+				</div>
+
+			</div>
+
+		</section>
+	</div>
+
+</div>	

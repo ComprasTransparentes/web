@@ -1,0 +1,188 @@
+<section class="container no-margin" id="comparator">
+
+	<div class="panel panel-transparent panel-searchbar-home">
+		<div class="compras-transparentes comparador-transparente"></div>
+		<div class="comparator">
+			<div class="comparator-settings">
+				<div class="comparator-list">
+					<div class="comparator-item selector-group">
+						<div class="correlative min-parent">
+							<select class="selector flat full-width standard min-selector" data-placeholder="Selecciona un ministerio" id="add_min1" name="add_min1">
+								<option></option>
+								<option value="min1">Ministerio 1</option>
+								<option value="min2">Ministerio 2</option>
+								<option value="min3">Ministerio 3</option>
+								<option value="min4">Ministerio 4</option>
+								<option value="min5">Ministerio 5</option>
+								<option value="min6">Ministerio 6</option>
+								<option value="min7">Ministerio 7</option>
+							</select>
+						</div>
+						<div class="correlative">
+							<select class="selector flat full-width standard" data-placeholder="Una categoría de comparación" id="add_item" name="add_item">
+								<option></option>
+								<option value="item 1">Item 1</option>
+								<option value="item 2">Item 2</option>
+								<option value="item 3">Item 3</option>
+								<option value="item 4">Item 4</option>
+								<option value="item 5">Item 5</option>
+								<option value="item 6">Item 6</option>
+								<option value="item 7">Item 7</option>
+							</select>
+						</div>
+						<div class="correlative min-parent">
+							<select class="selector flat full-width standard min-selector" data-placeholder="Y con quién compararás" id="add_min2" name="add_min2">
+								<option></option>
+								<option value="min1">Ministerio 1</option>
+								<option value="min2">Ministerio 2</option>
+								<option value="min3">Ministerio 3</option>
+								<option value="min4">Ministerio 4</option>
+								<option value="min5">Ministerio 5</option>
+								<option value="min6">Ministerio 6</option>
+								<option value="min7">Ministerio 7</option>
+							</select>
+						</div>
+						<div class="correlative">
+							<!-- <btn class="btn btn-default btn-compras-transparentes"type="submit" name="submit" value="Submit" id="submit_compare">Comparar</btn> -->
+							 <button class="btn btn-default btn-compras-transparentes" id="submit_compare">Comparar</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="comparator-results hidden">
+				<div class="comparator-settings">
+					<div class="comparator-list ltblue-back">
+						<div class="comparator-item">
+							<div class="correlative flex-reverse">
+							 	<i class="fa fa-angle-double-right"></i>
+								<h6 class="text-right no-border">
+									<p id="ministerio_option_1"></p>
+								</h6>
+							</div>
+							<div class="correlative">
+								<i class="fa fa-angle-double-left"></i>
+								<h6 class="no-border">
+									<p id="ministerio_option_2"></p>
+								</h6>
+							</div>
+						</div>
+					</div>
+					<div class="comparator-list ltblue-box">
+						<div class="comparator-item">
+							<div class="correlative">
+								<h6 class="no-border item-option">
+									<p>Categoría de comparación</p>
+									<p id="item_option"></p>
+								</h6>
+							</div>
+						</div>
+					</div>
+				</div>	
+				<ul class="list-unstyled comparator-list">
+					<li class="comparator-item grey5">
+						<div class="correlative flex-reverse">
+							<h6 class="text-right winning">
+								<p>36%</p>
+								<p>de gatitos salvados en el congo</p>
+							</h6>
+						</div>
+						<div class="criteria" >
+							<div class="rounded-thing">
+								<i class="fa fa-hand-spock-o"></i>
+							</div>
+							<span>Índice del malilla</span>
+						</div>
+						<div class="correlative">
+							<h6>
+								<p>48%</p>
+								<p>de pipi en kilos de arena gastados por el gatito</p>
+							</h6>
+						</div>
+					</li>
+					<li class="comparator-item grey4">
+						<div class="correlative flex-reverse">
+							<h6 class="text-right winning">
+								<p>36%</p>
+								<p>lucheto predilecto</p>
+							</h6>
+						</div>
+						<div class="criteria" >
+							<div class="rounded-thing">
+								<i class="fa fa-file-o"></i>
+							</div>
+							<span>Hola como estás</span>
+						</div>
+						<div class="correlative">
+							<h6>
+								<p>48%</p>
+								<p>de whiskas en la basura</p>
+							</h6>
+						</div>
+					</li>
+					<li class="comparator-item grey3">
+						<div class="correlative flex-reverse">
+							<h6 class="text-right">
+								<p>36%</p>
+								<p>de chet mandinga</p>
+							</h6>
+						</div>
+						<div class="criteria" >
+							<div class="rounded-thing">
+								<i class="fa fa-mars"></i>
+							</div>
+							<span>Promedio de gatitos</span>
+						</div>
+						<div class="correlative">
+							<h6 class="winning">
+								<p>48%</p>
+								<p>Gatitos al ataque</p>
+							</h6>
+						</div>
+					</li>
+					<li class="comparator-item grey2">
+						<div class="correlative flex-reverse">
+							<h6 class="text-right">
+								<p>36%</p>
+								<p>de gatitos salvados en el congo</p>
+							</h6>
+						</div>
+						<div class="criteria" >
+							<div class="rounded-thing">
+								<i class="fa fa-venus"></i>
+							</div>
+							<span>elGatito</span>
+						</div>
+						<div class="correlative">
+							<h6 class="winning">
+								<p>48%</p>
+								<p>de pipi en kilos de arena gastados por el gatito</p>
+							</h6>
+						</div>
+					</li>
+					<li class="comparator-item grey1">
+						<div class="correlative flex-reverse">
+							<h6 class="text-right winning">
+								<p>36%</p>
+								<p>de gatitos salvados en el congo</p>
+							</h6>
+						</div>
+						<div class="criteria" >
+							<div class="rounded-thing">
+								<i class="fa fa-diamond"></i>
+							</div>
+							<span>Índice del malilla</span>
+						</div>
+						<div class="correlative">
+							<h6>
+								<p>48%</p>
+								<p>de pipi en kilos de arena gastados por el gatito</p>
+							</h6>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<p class="text-center explanation">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.</p>
+	</div>
+
+</section>

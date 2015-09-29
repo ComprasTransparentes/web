@@ -1,0 +1,36 @@
+.embed-container { margin: auto; margin-top: 50px; max-width: 780px; }
+  .panel-default {
+    background-color: #3D84A8;
+    border-color: rgba(21, 92, 128, 0.3);
+    color: white;
+  }
+
+  .panel-default a {color: #46CDCF;}
+  .panel-default a:hover {color: #30466D;}
+  .clp:before {content: '\0024';}
+
+  .panel-default .panel-footer {
+    background-color: rgba(21, 92, 128, 0.25);
+    border-top-color: rgba(21, 92, 128, 0.3);
+  }
+
+  .panel-default .panel-footer img {
+    width: 180px;
+  }
+
+  .title {
+    font-weight: 300;
+    font-size: 18px;
+    margin: 10px 0 5px;
+  }
+
+  p {
+    font-size: 13px;
+    margin-bottom: 5px;
+    font-weight: 300;
+    color: rgba(255,255,255,.75);
+  }
+
+  p strong {
+    color: rgba(255,255,255,.9);
+  }

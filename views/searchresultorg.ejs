@@ -1,0 +1,8 @@
+<% for(var w=0; w<data.compradores.length; w++) { %>
+<div class="search-result-item">
+	<h4 class="collapsable-text"><a href=<%-"/file?type=organismo&code="+data.compradores[w].id%> class="long-text"><%-data.compradores[w].nombre_comprador%></a></h4>
+	<p class="org-name inline"><%-data.compradores[w].nombre_unidad%></p>
+	<p class="org-name inline"><%-data.compradores[w].rut_unidad%></p>
+	<p class="lic-des"><%-data.compradores[w].direccion_unidad%>, <%-data.compradores[w].comuna_unidad%>, <%-data.compradores[w].region_unidad%></p>
+</div>
+<% }%>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>test</title>
+
+  </head>
+  <body>
+
+
+
+  <script type="text/javascript" charset="utf-8" src="javascripts/dug.js"></script>
+  <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="stylesheets/embed.css"/>
+  <script id="dugjs-template" type="text/x-dug-template">
+
+  <div class="embed-container">
+    <span>Licitación </span>
+    <div class="fluid-container">
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <h3 class="title">{{nombre}}</h3>
+            <p><strong>Apertura:</strong> 02-03-2015</p>
+            <p><strong>Estado:</strong> Licitación cerrada</p>
+          </div>
+          <div class="panel-footer">
+            <a href="http://hacklab.errdd.com:3000/">
+              <img src="http://hacklab.errdd.com:3000/images/comprastransparentes-logo.png">
+            </a>
+            <a class="pull-right" href="">ir a ficha <span class="glyphicon glyphicon-caret-down"></span> </a>
+          </div>
+        </div>
+    </div>
+  </div>
+  </script>
+   <script>
+    dug({
+      endpoint: 'http://hacklab.errdd.com:8000/licitacion/2421-4-LP15/',
+      beforeRender: function( data ){
+        
+      },
+      template: '#dugjs-template'
+    });
+  </script>
+
+
+
+
+  </body>
+</html>
+
+
+
+

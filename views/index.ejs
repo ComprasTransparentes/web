@@ -1,0 +1,367 @@
+<section class="container no-margin">
+
+	<div class="panel panel-transparent panel-searchbar-home">
+		<% include basicsearchbar %>
+		<p class="text-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.</p>
+	</div>
+
+	<div class="panel panel-default stats">
+		<div class="panel-body">
+			<div class="row">
+				<div class="col-md-6">
+					<h3>Estadísticas</h3>
+				</div>
+
+				<div class="col-md-6">
+				  <div class="btn-group pull-right pull-resp" data-toggle="buttons">
+					  <label class="btn btn-primary active">
+					    <input type="radio" name="options" id="option1" autocomplete="off" checked> Último semestre
+					  </label>
+					  <label class="btn btn-default">
+					    <input type="radio" name="options" id="option2" autocomplete="off"> Último año
+					  </label>
+					  <label class="btn btn-default">
+					    <input type="radio" name="options" id="option3" autocomplete="off"> Últimos dos años
+					  </label>
+					  <label class="btn btn-default">
+					    <input type="radio" name="options" id="option3" autocomplete="off"><i class="fa fa-calendar"></i>
+					  </label>
+					</div>
+				</div>
+
+				<div class="col-md-12">
+					<p class="small-lead">Información de licitaciones y estadísticas del período [período]</p>
+				</div>
+			</div>
+
+			<span class="info-tag"></span>
+
+			<div class="panel panel-inverted no-margin">
+				<div class="panel-body">
+					
+					<div class="flex-wrapper">
+						<div class="info-box2">
+							<span class="value clp"><%-data.monto_transado%></span>
+							<p>Transado en licitaciones</p>
+						</div>
+						<div class="info-box2 text-right text-resp">
+							<span class="value"><%-data.n_licitaciones%></span>
+							<p>licitaciones adjudicadas</p>
+						</div>
+						<div class="info-box2">
+							<span class="value"><%-data.n_organismo%></span>
+							<p>Organismo licitando</p>
+						</div>
+						<div class="info-box2 text-right text-resp">
+							<span class="value"><%-data.n_proveedores%></span>
+							<p>Proveedores participando</p>
+						</div>
+					</div>
+
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+	<!-- Gráfico 1 -->
+	<div class="panel panel-default stats">
+		<div class="panel-body">
+			<div class="row">
+				<div class="col-md-6">
+					<h3>Gráfico 1</h3>
+				</div>
+
+				
+			
+			</div>
+
+			<div class="grafico">
+				<div id="chart">
+					<div id="explanation" style="visibility: hidden;">
+			          <span id="percentage"></span><br/>
+			          of visits begin with this sequence of pages
+			          <span id="name_cat"></span>
+			        </div>
+				</div>
+
+
+			</div>
+		</div>
+	</div>
+	<!-- Gráfico 1 -->
+
+	<!-- Slider de rankings -->
+	<div class="panel panel-default stats">
+		<div class="panel-body ltblue-back no-padding">
+
+			<div id="carousel-rankings" class="carousel  slide" data-ride="carousel">
+			  <!-- Indicators -->
+			  <ol class="carousel-indicators">
+			    <li data-target="#carousel-rankings" data-slide-to="0" class="active"></li>
+			    <li data-target="#carousel-rankings" data-slide-to="1"></li>
+			    <li data-target="#carousel-rankings" data-slide-to="2"></li>
+			  </ol>
+
+			  <!-- Wrapper for slides -->
+			  <div class="carousel-inner" role="listbox">
+			    <!-- Ranking 1 -->
+			    <!-- Proveedores más beneficiados -->
+			    <div class="item active">
+			      	<div class="panel-body">
+						<h4 class="ranking-name">Proveedores más beneficiados</h4>
+						<div class="ranking-filter">
+							<form>
+								<select class="selector flat standard">
+									<option>Todas las regiones</option>
+									<option>Región 1</option>
+									<option>Región 2</option>
+									<option>Región 3</option>
+									<option>Región 4</option>
+								</select>
+								<select class="selector flat standard">
+									<option>Todos los ministerios</option>
+									<option>Ministerio 1</option>
+									<option>Ministerio 2</option>
+									<option>Ministerio 3</option>
+									<option>Ministerio 4</option>
+								</select>
+								<button class="btn btn-default btn-compras-transparentes pull-right">Filtrar</button>
+							</form>
+						</div>
+						<div class="highlighted-vendor">
+							<div class="flex-wrapper no-wrap no-margin">
+								<div class="medal-container"><span>1</span></div>
+								<div class="info-container">
+									<div class="row">
+										<div class="col-md-8">
+											<span class="info-tag">Proveedor</span>
+											<h3 class="ranking-title"><i class="fa fa-angle-double-right"></i>Comercializadora Ilhabella Eirl</h3>
+											<span>RUT: 76.242.192-5</span>
+										</div>
+										<div class="col-md-4 ammount-container text-right text-resp">
+											<span class="info-tag">Monto en pesos</span>
+											<h3 class="ranking-title clp">127.000.000</h3>
+											<span>total facturado</span>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-12 text-right text-resp med">
+											<a href="#">Ir a ficha de proveedor <i class="fa fa-arrow-circle-right"></i></a>
+										</div>
+									</div>
+								</div>
+							</div>
+							<br>
+							<table class="table ranking-list clickable-table">
+								<tbody>
+									<tr class="active">
+										<td><span class="index-sign">1</span></td>
+										<td>Comercializadora Ilhabella Eirl</td>
+										<td><span class="clp">780.000.000</span></td>
+
+									</tr>
+									<tr>
+										<td><span class="index-sign">2</span></td>
+										<td>Comercializadora Ilhabella Eirl</td>
+										<td><span class="clp">630.000.000</span></td>
+									</tr>
+									<tr>
+										<td><span class="index-sign">3</span></td>
+										<td>Comercializadora Ilhabella Eirl</td>
+										<td><span class="clp">179.000.000</span></td>
+									</tr>
+									<tr>
+										<td><span class="index-sign">4</span></td>
+										<td>Comercializadora Ilhabella Eirl</td>
+										<td><span class="clp">45.000.000</span></td>
+									</tr>
+									<tr>
+										<td><span class="index-sign">5</span></td>
+										<td>Comercializadora Ilhabella Eirl</td>
+										<td><span class="clp">8.000.000</span></td>
+									</tr>																				
+								</tbody>
+							</table>
+						</div>
+					</div>
+			    </div>
+			    <!-- Ranking 2 -->
+			    <!-- Licitaciones más cuantiosas -->
+			    <div class="item">
+			    	<div class="panel-body">
+						<h4 class="ranking-name">Licitaciones más cuantiosas</h4>
+						<div class="ranking-filter">
+							<form>
+								<select class="selector flat standard">
+									<option>Todas las regiones</option>
+									<option>Región 1</option>
+									<option>Región 2</option>
+									<option>Región 3</option>
+									<option>Región 4</option>
+								</select>
+								<select class="selector flat standard">
+									<option>Todos los ministerios</option>
+									<option>Ministerio 1</option>
+									<option>Ministerio 2</option>
+									<option>Ministerio 3</option>
+									<option>Ministerio 4</option>
+								</select>
+								<button class="btn btn-default btn-compras-transparentes pull-right">Filtrar</button>
+							</form>
+						</div>
+						<div class="highlighted-vendor">
+							<div class="flex-wrapper no-wrap no-margin">
+								<div class="medal-container"><span>1</span></div>
+								<div class="info-container">
+									<div class="row">
+										<div class="col-md-8">
+											<span class="info-tag">Proveedor</span>
+											<h3 class="ranking-title"><i class="fa fa-angle-double-right"></i>Comercializadora Ilhabella Eirl</h3>
+											<span>RUT: 76.242.192-5</span>
+										</div>
+										<div class="col-md-4 ammount-container text-right text-resp">
+											<span class="info-tag">Monto en pesos</span>
+											<h3 class="ranking-title clp">127.000.000</h3>
+											<span>total facturado</span>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-12 text-right text-resp med">
+											<a href="#">Ir a ficha de proveedor <i class="fa fa-arrow-circle-right"></i></a>
+										</div>
+									</div>
+								</div>
+							</div>
+							<br>
+							<table class="table ranking-list clickable-table">
+								<tbody>
+									<tr class="active">
+										<td><span class="index-sign">1</span></td>
+										<td>Comercializadora Ilhabella Eirl</td>
+										<td><span class="clp">780.000.000</span></td>
+
+									</tr>
+									<tr>
+										<td><span class="index-sign">2</span></td>
+										<td>Comercializadora Ilhabella Eirl</td>
+										<td><span class="clp">630.000.000</span></td>
+									</tr>
+									<tr>
+										<td><span class="index-sign">3</span></td>
+										<td>Comercializadora Ilhabella Eirl</td>
+										<td><span class="clp">179.000.000</span></td>
+									</tr>
+									<tr>
+										<td><span class="index-sign">4</span></td>
+										<td>Comercializadora Ilhabella Eirl</td>
+										<td><span class="clp">45.000.000</span></td>
+									</tr>
+									<tr>
+										<td><span class="index-sign">5</span></td>
+										<td>Comercializadora Ilhabella Eirl</td>
+										<td><span class="clp">8.000.000</span></td>
+									</tr>																				
+								</tbody>
+							</table>
+						</div>
+					</div>
+			    </div>
+			    <!-- Ranking 3 -->
+			    <!-- Categorías en las que se gasta más -->
+			    <div class="item">
+			    	<div class="panel-body">
+						<h4 class="ranking-name">Proveedores más beneficiados</h4>
+						<div class="ranking-filter">
+							<form>
+								<select class="selector flat standard">
+									<option>Todas las regiones</option>
+									<option>Región 1</option>
+									<option>Región 2</option>
+									<option>Región 3</option>
+									<option>Región 4</option>
+								</select>
+								<select class="selector flat standard">
+									<option>Todos los ministerios</option>
+									<option>Ministerio 1</option>
+									<option>Ministerio 2</option>
+									<option>Ministerio 3</option>
+									<option>Ministerio 4</option>
+								</select>
+								<button class="btn btn-default btn-compras-transparentes pull-right">Filtrar</button>
+							</form>
+						</div>
+						<div class="highlighted-vendor">
+							<div class="flex-wrapper no-wrap no-margin">
+								<div class="medal-container"><span>1</span></div>
+								<div class="info-container">
+									<div class="row">
+										<div class="col-md-8">
+											<span class="info-tag">Proveedor</span>
+											<h3 class="ranking-title"><i class="fa fa-angle-double-right"></i>Comercializadora Ilhabella Eirl</h3>
+											<span>RUT: 76.242.192-5</span>
+										</div>
+										<div class="col-md-4 ammount-container text-right text-resp">
+											<span class="info-tag">Monto en pesos</span>
+											<h3 class="ranking-title clp">127.000.000</h3>
+											<span>total facturado</span>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-12 text-right text-resp med">
+											<a href="#">Ir a ficha de proveedor <i class="fa fa-arrow-circle-right"></i></a>
+										</div>
+									</div>
+								</div>
+							</div>
+							<br>
+							<table class="table ranking-list clickable-table">
+								<tbody>
+									<tr class="active">
+										<td><span class="index-sign">1</span></td>
+										<td>Comercializadora Ilhabella Eirl</td>
+										<td><span class="clp">780.000.000</span></td>
+
+									</tr>
+									<tr>
+										<td><span class="index-sign">2</span></td>
+										<td>Comercializadora Ilhabella Eirl</td>
+										<td><span class="clp">630.000.000</span></td>
+									</tr>
+									<tr>
+										<td><span class="index-sign">3</span></td>
+										<td>Comercializadora Ilhabella Eirl</td>
+										<td><span class="clp">179.000.000</span></td>
+									</tr>
+									<tr>
+										<td><span class="index-sign">4</span></td>
+										<td>Comercializadora Ilhabella Eirl</td>
+										<td><span class="clp">45.000.000</span></td>
+									</tr>
+									<tr>
+										<td><span class="index-sign">5</span></td>
+										<td>Comercializadora Ilhabella Eirl</td>
+										<td><span class="clp">8.000.000</span></td>
+									</tr>																				
+								</tbody>
+							</table>
+						</div>
+					</div>
+			    </div>
+			  </div>
+
+			  <!-- Controls -->
+			  <a class="left carousel-control" href="#carousel-rankings" role="button" data-slide="prev">
+			    <span class="fa fa-angle-left" aria-hidden="true"></span>
+			    <span class="sr-only">Anterior</span>
+			  </a>
+			  <a class="right carousel-control" href="#carousel-rankings" role="button" data-slide="next">
+			    <span class="fa fa-angle-right" aria-hidden="true"></span>
+			    <span class="sr-only">Siguiente</span>
+			  </a>
+			</div>
+		</div>
+	</div>
+	<!--Fin slider de rankings -->
+
+</section>

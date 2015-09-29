@@ -1,0 +1,15 @@
+<% for(var w=0; w<data.licitaciones.length; w++) { %>
+	<div class="search-result-item">
+		<h4 class="collapsable-text"><a class="long-text" href=<%-"/file?type=licitacion&code="+data.licitaciones[w].codigo%>><%-data.licitaciones[w].nombre%></a><button class="btn more-text">...</button></h4>
+		<p class="org-name"><%-data.licitaciones[w].comprador.nombre_comprador%><a href=<%-"/file?type=organismo&code="+data.licitaciones[w].comprador.id%>><i class="fa fa-arrow-circle-right"></i></a></p>
+		<p class="lic-des"><%-data.licitaciones[w].descripcion%></p>
+		<div class="row">
+			<div class="col-xs-6">
+				<p><span>Licitación adjudicada <i class="fa fa-check"></i></span></p>
+			</div>
+			<div class="col-xs-6 text-right">
+				<p><span><i class="fa fa-calendar"></i> Apertura: 20-01-2014</span></p>
+			</div>
+		</div>
+	</div>
+<% }%>

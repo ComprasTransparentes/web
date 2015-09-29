@@ -1,0 +1,110 @@
+<% for(var k=0; k<data.items.length; k++) { %>
+<li class="itemdetalle">
+	<div class="row">
+		<div class="col-xs-6"><span class="info-tag">item <%- k+1 %></span></div>
+		<%if(data.items[k].adjudicacion == null){%>
+			<div class="col-xs-6 text-right"><span class="info-tag">no adjudicada</span></div>
+		<%} else{%>
+			<div class="col-xs-6 text-right"><span class="info-tag">adjudicada</span></div>
+		<% }%>
+	</div>
+
+	<div class="adj-detail">
+		<div>
+			<span class="value"><%- data.items[k].cantidad %></span>
+			<p><%-data.items[k].unidad%></p>
+		</div>
+		<div>
+			<p><%- data.items[k].descripcion %></p>
+		</div>
+	</div>
+
+	<div class="panel panel-grey">
+
+	<%if(data.items[k].adjudicacion == null ){%>
+
+ 	<div class="empty-placeholder">
+			<h4 class="text-center" style="font-weight: 300; opacity: .5;">
+				El item no fue adjudicado
+			</h4>
+		</div> 
+
+	<%} else{%>
+
+		<div class="panel-body">			
+			<span class="info-tag">Vendedor</span>
+			<h4 class="collapsable-text"><%- data.items[k].adjudicacion.proveedor.nombre %></h4>
+			<p class="org-name">RUT: <%- data.items[k].adjudicacion.proveedor.rut %></p>
+
+			<div class="flex-wrapper grey-bck">
+				<div class="info-box">
+					<span class="value small"><%- data.items[k].adjudicacion.cantidad %></span>
+					<p>cantidad adjudicada</p>
+				</div>
+				<div class="info-box text-center text-resp">
+					<span class="value small"><%- data.items[k].adjudicacion.monto_unitario %></span>
+					<p>precio unitario</p>
+				</div>
+				<div class="info-box text-right text-resp">
+				<% var tot = data.items[k].adjudicacion.cantidad*data.items[k].adjudicacion.monto_unitario; %>
+					<span class="value small clp"><%- tot %></span>
+					<p>monto total</p>
+				</div>
+			</div>
+		</div>
+
+
+
+		<table class="table postulant-list bo">
+			<thead>
+				<td class="no-radius">Proveedor</td>
+				<td>Precio Unitario</td>
+				<td>Cantidad Adjudicada</td>
+				<td class="no-radius">Total</td>
+			</thead>
+			<tbody>
+				<tr>
+					<td>Comercializadora McKenzie</td>
+					<td><span class="clp">1205</span></td>
+					<td>0</td>
+					<td>0</td>
+				</tr>
+				<tr>
+					<td>Comercializadora McKenzie</td>
+					<td><span class="clp">1205</span></td>
+					<td>0</td>
+					<td>0</td>
+				</tr>
+				<tr>
+					<td>Comercializadora McKenzie</td>
+					<td><span class="clp">1205</span></td>
+					<td>0</td>
+					<td>0</td>
+				</tr>
+				<tr>
+					<td>Comercializadora McKenzie</td>
+					<td><span class="clp">1205</span></td>
+					<td>0</td>
+					<td>0</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<div class="panel-footer transparent no-padding">
+			<div class="btn text-center bo-btn">Ver resto de postulantes <i class="fa fa-angle-down"></i></div>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-12">
+			<span class="label-tag pull-right">TOTAL NETO: <em class="clp"><%- tot %></em></span>
+		</div>
+
+	</div>
+
+		<% }%>
+
+
+
+</li>
+<% } %>

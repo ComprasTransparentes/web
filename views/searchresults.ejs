@@ -1,0 +1,101 @@
+<section class="container">
+
+	<div class="panel panel-default search-panel">
+		<div class="panel-body">
+			<% include searchbar %>
+		</div>
+	</div>
+
+	<div class="row">
+
+<!-- 		<div class="col-md-4 pull-right pull-resp">
+			<div class="panel panel-color">
+				<div class="panel-heading">
+					<h5>Filtros utilizados</h5>
+				</div>
+				<ul class="list-unstyled filter-list">
+
+					<li >
+						<span>Búsqueda</span>
+						<span><%- element %></span>
+						<p class="no-margin">
+							<em style="font-weight: 300; font-size:13px;">Se encontraron <%- data.licitaciones.length+data.compradores.length+data.proveedores.length %> coincidencias</em>
+						</p>
+					</li>
+					
+					<% for(var i=0; i<6; i++) { %>
+					
+						<% include filteritem %>
+					<% } %>
+		
+
+				</ul>
+				<div class="panel-footer">
+					<button class="btn btn-primary pull-right">Refiltrar</button>
+				</div>
+			</div>
+		</div> -->
+
+		<div class="col-md-12">
+			<div class="panel panel-default results-panel">
+				<div class="panel-body">
+					<h3>
+						Resultados de Búsqueda
+					</h3>
+					<ul class="list-unstyled search-result-description">
+
+						<li >
+							<span>Búsqueda</span>
+							<span><%- element %></span>
+							<span class="no-margin">
+								<em>Se encontraron <%- data.licitaciones.length+data.compradores.length+data.proveedores.length %> coincidencias</em>
+							</span>
+						</li>
+			
+
+					</ul>
+
+				  <!-- Result pills -->
+				  <ul class="nav nav-pills search-tabs" role="tablist">
+				  	<div class="pills-border"></div>
+				    <li role="presentation" class="active"><a href="#tipo1" aria-controls="tipo2" role="tab" data-toggle="tab">Licitaciones <small><%- data.licitaciones.length %></small></a></li>
+				    <li role="presentation"><a href="#tipo3" aria-controls="tipo3" role="tab" data-toggle="tab">Organismos <small><%- data.compradores.length %></small></a></li>
+				    <li role="presentation"><a href="#tipo4" aria-controls="tipo4" role="tab" data-toggle="tab">Proveedores <small><%- data.proveedores.length %></small></a></li>
+				  </ul>
+
+				  <!-- Tab panes -->
+				  <div class="tab-content search-results-panel">
+				    
+				    <!-- Licitaciones lista -->
+				    <div role="tabpanel" class="tab-pane active" id="tipo1">
+
+								<% include searchresultlicitacion %>
+
+				    </div>
+
+				    <!-- Organismos lista -->
+				    <div role="tabpanel" class="tab-pane" id="tipo3">
+
+								<% include searchresultorg %>
+
+				    </div>
+
+				    <div role="tabpanel" class="tab-pane" id="tipo4">
+
+								<% include searchresultpro %>
+	
+				    </div>
+
+				  </div>
+
+				  <!-- Pagination -->
+					<nav class="pull-right">
+					  <% include pagination %>
+					</nav>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+</section>

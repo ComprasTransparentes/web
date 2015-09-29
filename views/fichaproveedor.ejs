@@ -1,0 +1,405 @@
+<script type='text/javascript'>
+  var data =<%-JSON.stringify(data)%>
+</script>
+
+<div class="container">
+	<div class="row">
+			
+		<div class="col-md-12">
+			<div class="panel panel-default fich">
+
+				<div class="panel-body">
+					<h3>Ficha de Proveedor</h3>
+
+					<br>
+
+					<div class="row">
+						<div class="col-sm-6">
+
+							<span class="info-tag">Proveedor</span>
+
+							<div>
+								<h4 class="collapsable-text"><%-data.nombre%></h4>
+								<span>Código: <%-data.id%></span>
+							</div>
+
+							<span class="info-tag">RUT</span>
+							<div>
+								<h4 class="collapsable-text"><%-data.rut%></h4>
+
+							</div>
+						</div>
+
+					
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+		<div class="col-md-12">
+			<div class="panel panel-default stats">
+				<div class="panel-body">
+					<!-- filtro temporal -->
+					<div class="row">
+						<div class="col-md-6">
+							<h3>Estadísticas</h3>
+						</div>
+
+						<div class="col-md-6">
+						  <div class="btn-group pull-right pull-resp" data-toggle="buttons">
+							  <label class="btn btn-primary active">
+							    <input type="radio" name="options" id="option1" autocomplete="off" checked> Último semestre
+							  </label>
+							  <label class="btn btn-default">
+							    <input type="radio" name="options" id="option2" autocomplete="off"> Último año
+							  </label>
+							  <label class="btn btn-default">
+							    <input type="radio" name="options" id="option3" autocomplete="off"> Últimos dos años
+							  </label>
+							  <label class="btn btn-default">
+							    <input type="radio" name="options" id="option3" autocomplete="off"><i class="fa fa-calendar"></i>
+							  </label>
+							</div>
+						</div>
+					</div>
+
+					<!-- Estadística Sumario -->
+					<span class="info-tag">Sumario</span>
+					<div class="panel panel-inverted">
+						<div class="panel-body">
+							<div class="row">
+								<div class="col-md-6 col-sm-6">
+									<span class="value clp">40.000.000</span>
+									<p>gasto por órdenes de compra</p>
+								</div>
+								<div class="col-md-6 col-sm-6">
+									<span class="value clp">6.666.666</span>
+									<p>gasto promedio mensual</p>
+								</div>
+								<div class="col-md-6 col-sm-6">
+									<span class="value">78</span>
+									<p>proveedores beneficiados</p>
+								</div>
+								<div class="col-md-6 col-sm-6">
+									<span class="value">215</span>
+									<p>órdenes de compra emitidas</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- Licitaciones más cuantiosas -->
+				<div class="panel-body">
+					<h4>Licitaciones más cuantiosas</h4>
+					<p>Lista de licitaciones más cuantiosas en el período de [período]</p>
+
+					<div class="row" id="licmascuantiosas">
+						<div class="col-sm-6">
+							<table class="table postulant-list clickable-table">
+								<thead>
+									<td>Título</td>
+									<td>Monto</td>
+								</thead>
+								<tbody>
+									<% 	var tt = 10;
+									if(data.extra.top_licitaciones.length < tt){
+										tt = dta.extra.top_licitaciones.length;
+									}
+									for(var d=0; d<tt; d++){
+										if(d==0){ %>
+
+									<tr class="active licitacion" id=<%-d%> onclick="magia(this);" >
+
+									<% }else{ %>
+										<tr class="licitacion" id=<%-d%> onclick="magia(this);" >
+										<%}%>
+
+										<td><%-data.extra.top_licitaciones[d].nombre%></td>
+										<td><span class="clp"><%-data.extra.top_licitaciones[d].monto%></span></td>
+
+									</tr>
+									<%}%>															
+								</tbody>
+							</table>
+						</div>
+
+
+						<div class="col-sm-6">
+							
+							<div class="panel panel-inverted panel-drkblue">
+								<div class="panel-heading">
+									<span class="info-tag">Título licitación</span>
+
+									<div>
+										<h4 class="collapsable-text" id="nombre_lic"><i class="fa fa-angle-double-right"></i><%-data.extra.top_licitaciones[0].nombre%></h4>
+										<span>Código: <span id="code_lic"><%-data.extra.top_licitaciones[0].codigo%></span></span>
+									</div>
+								</div>
+								<div class="panel-body">
+									
+
+									<div class="row">
+										<div class="col-md-6">
+											<span class="value">12</span>
+											<p>Órdenes de compra emitidas</p>
+										</div>
+										<div class="col-md-6">
+											<span class="value">27</span>
+											<p>Proveedores beneficiados</p>
+										</div>
+										<div class="col-md-6">
+											<span class="value clp" id="monto_lic"><%-data.extra.top_licitaciones[0].monto%></span>
+											<p>monto total</p>
+										</div>
+									</div>
+									
+									<br>
+
+									<div class="flex-wrapper">
+											<div class="info-box blue-box">
+												<span class="info-tag">tipo de convocatoria</span>
+												<p>Convocatoria Abierta</p>
+											</div>
+											<div class="info-box blue-box">	
+												<span class="info-tag">tipo de adjudicación</span>
+												<p>Adjudicación múltiple sin emisión de OC</p>
+											</div>
+									</div>
+								</div>
+
+								<div class="panel-footer transparent no-border">
+									<p class="pull-left">
+										<small><a id="link_lic" href=<%-"/file?type=licitacion&code="+data.extra.top_licitaciones[0].codigo %>>Ir a ficha de licitación <i class="fa fa-arrow-circle-right"></i></a></small>
+									</p>
+									<p class="pull-right">
+										<small><a href="#">Comparar <i class="fa fa-files-o"></i></a></small>
+									</p>
+								</div>
+
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- Proveedores más beneficiados -->
+				<div class="panel-body">
+					<h4>Proveedores más beneficiados</h4>
+					<p>Lista de proveedores más beneficiados en el período de [período] </p>
+					
+					<div class="row" id="provmasbeneficiados">
+						<!-- Lista de proveedores -->
+						<div class="col-sm-6">
+							<table class="table postulant-list clickable-table">
+								<thead>
+									<td>Nombre</td>
+									<td>Total facturado</td>
+								</thead>
+								<tbody>
+									<tr class="active">
+										<td>Comercializadora Ilhabella Eirl</td>
+										<td><span class="clp">45.000.000</span></td>
+
+									</tr>
+									<tr>
+										<td>Comercializadora Ilhabella Eirl</td>
+										<td><span class="clp">45.000.000</span></td>
+									</tr>
+									<tr>
+										<td>Comercializadora Ilhabella Eirl</td>
+										<td><span class="clp">45.000.000</span></td>
+									</tr>
+									<tr>
+										<td>Comercializadora Ilhabella Eirl</td>
+										<td><span class="clp">45.000.000</span></td>
+									</tr>
+									<tr>
+										<td>Comercializadora Ilhabella Eirl</td>
+										<td><span class="clp">45.000.000</span></td>
+									</tr>
+									<tr>
+										<td>Comercializadora Ilhabella Eirl</td>
+										<td><span class="clp">45.000.000</span></td>
+									</tr>
+									<tr>
+										<td>Comercializadora Ilhabella Eirl</td>
+										<td><span class="clp">45.000.000</span></td>
+									</tr>
+									<tr>
+										<td>Comercializadora Ilhabella Eirl</td>
+										<td><span class="clp">45.000.000</span></td>
+									</tr>
+									<tr>
+										<td>Comercializadora Ilhabella Eirl</td>
+										<td><span class="clp">45.000.000</span></td>
+									</tr>
+									<tr>
+										<td>Comercializadora Ilhabella Eirl</td>
+										<td><span class="clp">45.000.000</span></td>
+									</tr>																					
+								</tbody>
+							</table>
+						</div>
+
+						<!-- Show de proveedor seleccionado -->
+						<div class="col-sm-6">
+							
+							<div class="panel panel-inverted panel-drkblue">
+								<div class="panel-heading">
+									<span class="info-tag">Nombre Proveedor</span>
+							
+									<div>
+										<h4 class="collapsable-text"><i class="fa fa-angle-double-right"></i>Comercializadora Ilhabella Eirl</h4>
+										<span>Sucursal: 717107</span>
+										<span class="slash">RUT: 76.242.192-5</span>
+										<p><small>Av. Paul Harris 14164, Las Condes, Región Metropolitana</small></p>
+									</div>
+								</div>
+
+								<div class="panel-body">							
+
+									<div class="row">
+										<div class="col-md-6">
+											<span class="value clp">500.000.000</span>
+											<p>Facturado en ventas</p>
+										</div>
+										<div class="col-md-6">
+											<span class="value">27</span>
+											<p>Órdenes de compra adjudicadas</p>
+										</div>
+										<div class="col-md-6">
+											<span class="value clp">18.500.000</span>
+											<p>por orden promedio</p>
+										</div>
+										<div class="col-md-6">
+											<span class="value">4</span>
+											<p>organismos compradores</p>
+										</div>
+									</div>
+									
+									<br>
+
+								</div>
+
+								<div class="panel-footer transparent no-border">
+									<p class="pull-left">
+										<small><a href="#">Ir a ficha de proveedor <i class="fa fa-arrow-circle-right"></i></a></small>
+									</p>
+									<p class="pull-right">
+										<small><a href="#">Comparar <i class="fa fa-files-o"></i></a></small>
+									</p>
+								</div>
+
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="panel-body">
+					<h4>Todas las licitaciones</h4>
+					<p>Lista de todos los llamados a licitación realizados en el período de [período]</p>
+
+					<div class="row">
+						<div class="col-sm-12">
+							<table class="table postulant-list">
+								<thead>
+									<td>Nombre</td>
+									<td>Código</td>
+									<td>Fecha de Apertura</td>
+									<td>Estado</td>
+									<td></td>
+								</thead>
+								<tbody>
+									<tr>
+										<td>Insumos médicos y medicamentos</td>
+										<td>1509-5-L114</td>
+										<td>20-01-2014</td>
+										<td>Adjudicada</td>
+										<td><a href="#">Ver ficha <i class="fa fa-arrow-circle-right"></i></a></td>
+									</tr>
+									<tr>
+										<td>Insumos médicos y medicamentos</td>
+										<td>1509-5-L114</td>
+										<td>20-01-2014</td>
+										<td>Adjudicada</td>
+										<td><a href="#">Ver ficha <i class="fa fa-arrow-circle-right"></i></a></td>
+									</tr>
+									<tr>
+										<td>Insumos médicos y medicamentos</td>
+										<td>1509-5-L114</td>
+										<td>20-01-2014</td>
+										<td>Adjudicada</td>
+										<td><a href="#">Ver ficha <i class="fa fa-arrow-circle-right"></i></a></td>
+									</tr>
+									<tr>
+										<td>Insumos médicos y medicamentos</td>
+										<td>1509-5-L114</td>
+										<td>20-01-2014</td>
+										<td>Adjudicada</td>
+										<td><a href="#">Ver ficha <i class="fa fa-arrow-circle-right"></i></a></td>
+									</tr>
+									<tr>
+										<td>Insumos médicos y medicamentos</td>
+										<td>1509-5-L114</td>
+										<td>20-01-2014</td>
+										<td>Adjudicada</td>
+										<td><a href="#">Ver ficha <i class="fa fa-arrow-circle-right"></i></a></td>
+									</tr>
+									<tr>
+										<td>Insumos médicos y medicamentos</td>
+										<td>1509-5-L114</td>
+										<td>20-01-2014</td>
+										<td>Adjudicada</td>
+										<td><a href="#">Ver ficha <i class="fa fa-arrow-circle-right"></i></a></td>
+									</tr>
+									<tr>
+										<td>Insumos médicos y medicamentos</td>
+										<td>1509-5-L114</td>
+										<td>20-01-2014</td>
+										<td>Adjudicada</td>
+										<td><a href="#">Ver ficha <i class="fa fa-arrow-circle-right"></i></a></td>
+									</tr>
+									<tr>
+										<td>Insumos médicos y medicamentos</td>
+										<td>1509-5-L114</td>
+										<td>20-01-2014</td>
+										<td>Adjudicada</td>
+										<td><a href="#">Ver ficha <i class="fa fa-arrow-circle-right"></i></a></td>
+									</tr>
+									<tr>
+										<td>Insumos médicos y medicamentos</td>
+										<td>1509-5-L114</td>
+										<td>20-01-2014</td>
+										<td>Adjudicada</td>
+										<td><a href="#">Ver ficha <i class="fa fa-arrow-circle-right"></i></a></td>
+									</tr>
+									<tr>
+										<td>Insumos médicos y medicamentos</td>
+										<td>1509-5-L114</td>
+										<td>20-01-2014</td>
+										<td>Adjudicada</td>
+										<td><a href="#">Ver ficha <i class="fa fa-arrow-circle-right"></i></a></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<div class="col-sm-12">
+							<div class="pull-left">
+								<p class="pagination-text">
+								Viendo <span>10</span> de <span>25</span> resultados
+								</p>
+							</div>
+							<div class="pull-right">
+								<% include pagination %>
+							</div>	
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+
+	</div>	
+</div>
