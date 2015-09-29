@@ -7,10 +7,10 @@
 @import url(http://fonts.googleapis.com/css?family=Roboto:400,100,300,300italic,400italic,500,500italic,700,700italic,900,900italic);
 
 $sm: "(max-width: 768px)";
+
 $minsm: "(min-width: 768px)";
 
 $md: "(max-width: 991px)";
-
 
 $blue: "#30466D";
 
@@ -111,6 +111,32 @@ $purp: "#788EDB";
 /* ========================= */
 /* ======== GENERAL ======== */
 /* ========================= */
+
+html,body {
+	height: 100%;
+
+	#site-wrapper {
+		min-height: 100%;
+		position: relative;
+		overflow: hidden;
+
+		>.container {
+		    padding-bottom: 465px;
+		}
+	}
+}
+
+.super-title {
+    display: inline-block;
+    font-size: 28px;
+    font-weight: 300;
+    margin-top: 15px;
+    margin-left: -15px;
+    padding: 15px;
+    padding-top: 0px;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.2);
+    color: #666;	
+}
 
 .col {
 	padding-left: 10px !important;
@@ -662,7 +688,6 @@ body {
 	font-weight: 400;
 	background-image: url('../images/pattern.png');
 	background-repeat: repeat;
-    padding-bottom: 465px;
     position: relative;
 
 
@@ -677,12 +702,14 @@ body {
 	&.dark-body {
 		background-color: #{$blue};
 
-		>.container {
-			margin-top: 66px;
+		#site-wrapper {
+			>.container {
+				margin-top: 66px;
 
-			&.no-margin {
-				margin: auto !important;
-				margin-top: 0 !important;
+				&.no-margin {
+					margin: auto !important;
+					margin-top: 0 !important;
+				}
 			}
 		}
 	}

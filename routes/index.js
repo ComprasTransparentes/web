@@ -122,6 +122,18 @@ router.get('/comparador', function(req, res) {
  									superspecial: 'true'});	
 });
 
+router.get('/api', function(req, res) {
+ 	res.render('application.ejs', { content: 'api',
+ 									special: 'false',
+ 									superspecial: 'false'});	
+});
+
+router.get('/aboutus', function(req, res) {
+ 	res.render('application.ejs', { content: 'aboutus',
+ 									special: 'false',
+ 									superspecial: 'false'});	
+});
+
 router.get('/lucheto2', function(req, res) {
  	res.render('application.ejs', { content: 'fichaorganismo',
   									special: 'false',
