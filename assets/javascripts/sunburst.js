@@ -12,7 +12,7 @@ var b = {
 
 // Mapping of step names to colors.
 var colors = {
-  "Ministerio de Educación": "#5687d1",
+  "wissepi": "#5687d1",
   "product": "#7b615c",
   "search": "#de783b",
   "account": "#6ab975",
@@ -140,7 +140,7 @@ function mouseover(d) {
       .text(percentageString);
 
   d3.select("#explanation")
-      .style("visibility", "");
+      .style("visibility", "visible");
   
   d3.select('#name_cat')
       .text(d.name);
