@@ -9,35 +9,30 @@
 			<div class="panel panel-color fich">
 
 				<div class="panel-heading no-margin">
-					<h5>Organismo Licitador</h5>	
+					<h5>Información de Organismo</h5>	
 				</div>
 
+				<div class="panel-body no-margin">
+					<div>
+						<span class="info-tag">Organismo</span>
+						<div>
+							<h5><%-data.nombre_comprador%></h5>
+							<ul class="list-unstyled">
+								<li>Código: <%-data.codigo_comprador%></li>
+							</ul>
+						</div>							
+					</div>
 
-
-				<div class="panel-body">
-					<h3>Ficha de Organismo</h3>
-
-					<br>
-
-					<div class="row">
-						<div class="col-sm-6">
-
-							<span class="info-tag">Organismo</span>
-
-							<div>
-								<h4 class="collapsable-text"><%-data.nombre_comprador%></h4>
-								<span>Código: <%-data.codigo_comprador%></span>
-							</div>
-
-							<span class="info-tag">Unidad</span>
-							<div>
-								<h4 class="collapsable-text"><%-data.nombre_unidad%></h4>
-								<span>Unidad: <%-data.codigo_unidad%></span><span class="slash">RUT:<%-data.rut_unidad%></span>
-								<p><small><%-data.direccion_unidad%>, <%-data.comuna_unidad%>, <%-data.region_unidad%></small></p>
-							</div>
+					<div>
+						<span class="info-tag">Información Unidad</span>
+						<div>
+							<h5><%-data.nombre_unidad%></h5>
+							<ul class="list-unstyled">
+								<li>Unidad: <%-data.codigo_unidad%></li>
+								<li>RUT: <%-data.rut_unidad%></li>
+								<li><%-data.direccion_unidad%>, <%-data.comuna_unidad%>, <%-data.region_unidad%></li>
+							</ul>
 						</div>
-
-					
 					</div>
 				</div>
 
@@ -46,120 +41,105 @@
 
 		<div class="col-md-8">
 			<div class="panel panel-default stats">
+				
+				<!--==============-->
+				<!-- Estadísticas -->
+				<!--==============-->				
+
 				<div class="panel-body">
-					<!-- filtro temporal -->
-					<div class="row">
-						<div class="col-md-6">
-							<h3>Estadísticas</h3>
-						</div>
+					
+					<h4>Estadísticas</h4>
+					<p>Información de licitaciones y estadísticas recopilada desde Enero de 2013</p>
 
-						<div class="col-md-6">
-						  <div class="btn-group pull-right pull-resp" data-toggle="buttons">
-							  <label class="btn btn-primary active">
-							    <input type="radio" name="options" id="option1" autocomplete="off" checked> Último semestre
-							  </label>
-							  <label class="btn btn-default">
-							    <input type="radio" name="options" id="option2" autocomplete="off"> Último año
-							  </label>
-							  <label class="btn btn-default">
-							    <input type="radio" name="options" id="option3" autocomplete="off"> Últimos dos años
-							  </label>
-							  <label class="btn btn-default">
-							    <input type="radio" name="options" id="option3" autocomplete="off"><i class="fa fa-calendar"></i>
-							  </label>
-							</div>
-						</div>
-					</div>
-
-					<!-- Estadística Sumario -->
-					<span class="info-tag">Sumario</span>
 					<div class="panel panel-inverted">
 						<div class="panel-body">
 							<div class="row">
 								<div class="col-md-6 col-sm-6">
 									<span class="numformat value clp">40000000</span>
-									<p>gasto por órdenes de compra</p>
-								</div>
-								<div class="col-md-6 col-sm-6">
-									<span class="numformat value clp">6666666</span>
-									<p>gasto promedio mensual</p>
+									<p>gasto total en productos comprados</p>
 								</div>
 								<div class="col-md-6 col-sm-6">
 									<span class="numformat value">78</span>
 									<p>proveedores beneficiados</p>
-								</div>
-								<div class="col-md-6 col-sm-6 hidden">
-									<span class="numformat value">215</span>
-									<p>órdenes de compra emitidas</p>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 
+
+				<!--=============================-->
 				<!-- Licitaciones más cuantiosas -->
+				<!--=============================-->
+
+				<!-- Carga si los datos vienen vacíos -->
+				<%if(data.extra.top_licitaciones.length == 0){  %>
+
+					<div class="panel-body">
+
+						<div class="empty-mala">
+							<p class="lead">estoy vacío</p>
+						</div>
+
+					</div>
+					
+				<% }
+				
+				else {%>
+				
+				<!-- Carga si viene correcto -->
 				<div class="panel-body">
 					<h4>Licitaciones más cuantiosas</h4>
-					<p>Lista de licitaciones más cuantiosas en el período de [período]</p>
+					<p>Lista de licitaciones más cuantiosas desde Enero de 2013</p>
 
 					<div class="row" id="licmascuantiosas">
 						<div class="col-sm-6">
-						<%if(data.extra.top_licitaciones.length == 0){  %>
-
-									<div class="empty-mala">
-										<p class="lead">estoy vacío</p>
-									</div>
-
-									<% }
-
-									else {%>
 							<table class="table postulant-list clickable-table">
 								<thead>
-									<td>Título</td>
-									<td>Monto</td>
+									<tr>
+										<td>Título</td>
+										<td>Monto</td>
+									</tr>
 								</thead>
 								<tbody>
-									<% 	var tt = 10;
-									console.log("gatito");
+									<% 	
+
+									var tt = 10;
+									
 									if(data.extra.top_licitaciones.length < tt){
 										tt = data.extra.top_licitaciones.length;
 									}
 
-									
-
 									for(var d=0; d<tt; d++){
-										if(d==0){ %>
+										
+										if(d==0){ 
 
-									<tr class="active licitacion" id=<%-d%> onclick="magia(this);" >
+									%>
 
-									<% }else{ %>
+										<tr class="active licitacion" id=<%-d%> onclick="magia(this);" >
+											<td><%-data.extra.top_licitaciones[d].nombre%></td>
+											<td><span class="clp"><%-data.extra.top_licitaciones[d].monto%></span></td>
+										</tr>
+
+									<% } 
+									else { %>
+											
 										<tr class="licitacion" id=<%-d%> onclick="magia(this);" >
-										<%}%>
+											<td><%-data.extra.top_licitaciones[d].nombre%></td>
+											<td><span class="clp"><%-data.extra.top_licitaciones[d].monto%></span></td>
+										</tr>
+									<%}%><!-- Cierre else -->
+									
+									<%}%><!-- Cierre for -->
 
-										<td><%-data.extra.top_licitaciones[d].nombre%></td>
-										<td><span class="clp"><%-data.extra.top_licitaciones[d].monto%></span></td>
-
-									</tr>
 								</tbody>
-							</table>
-									<%}%>															
+							</table>															
 						</div>
 
 
 						<div class="col-sm-6">
 							
 							<div class="panel panel-inverted panel-drkblue">
-								
-								<% 
-								if(data.extra.top_licitaciones.length == 0){ %>
-
-								<div class="empty-mala">
-									<p class="lead">estoy vacío 2</p>
-								</div>
-
-									<% }
-
-								else { %>
 
 								<div class="panel-heading">
 									<span class="info-tag">Título licitación</span>
@@ -202,127 +182,130 @@
 								</div>
 
 								<div class="panel-footer transparent no-border">
-										<small><a id="link_lic" href=<%-"/file?type=licitacion&code="+data.extra.top_licitaciones[0].codigo %>>Ir a ficha de licitación <i class="fa fa-arrow-circle-right"></i></a></small>
+									<small><a id="link_lic" href=<%-"/file?type=licitacion&code="+data.extra.top_licitaciones[0].codigo %>>Ir a ficha de licitación <i class="fa fa-arrow-circle-right"></i></a></small>
 								</div>
 
-								<% } %>
 							</div>
-
-
-
-
 						</div>
 					</div>
 				</div>
+				<% } %>
 
+				<!--==============================-->
 				<!-- Proveedores más beneficiados -->
-				<div class="panel-body">
-					<h4>Proveedores más beneficiados</h4>
-					<p>Lista de proveedores más beneficiados en el período de [período] </p>
+				<!--==============================-->
+
+				<% if(data.extra.top_proveedores.length == 0){ %>
 					
-					<div class="row" id="provmasbeneficiados">
-						<!-- Lista de proveedores -->
-						<div class="col-sm-6">
-							<% 
-								if(data.extra.top_proveedores.length == 0){ %>
+					<div class="panel-body">
+						<div class="empty-mala">
+							<p class="lead">estoy vacío 2</p>
+						</div>
+					</div>
 
-								<div class="empty-mala">
-									<p class="lead">estoy vacío 2</p>
-								</div>
+				<% }
 
-									<% }
+				else { %>
+					
+					<div class="panel-body">
+						<h4>Proveedores más beneficiados</h4>
+						<p>Lista de los proveedores más beneficiados desde Enero de 2013</p>
 
-								else { %>
-
-							<table class="table postulant-list clickable-table">
-								<thead>
-									<td>Nombre</td>
-									<td>Total facturado</td>
-								</thead>
+						<div class="row" id="provmasbeneficiados">
+							<!-- Lista de proveedores -->
+							<div class="col-md-6">
+								<table class="table postulant-list clickable-table">
+									<thead>
+										<td>Nombre</td>
+										<td>Total facturado</td>
+									</thead>
 								<tbody>
-								<% 	var tt = 10;
+
+									<% 	
+
+									var tt = 10;
+									
 									if(data.extra.top_proveedores.length < tt){
 										tt = data.extra.top_proveedores.length;
 									}
+
 									for(var d=0; d<tt; d++){
-										if(d==0){ %>
+									
+										if(d==0){ 
 
-									<tr class="active proveedor" id=<%-d%> onclick="magia2(this);" >
+									%>
 
-									<% }else{ %>
+										<tr class="active proveedor" id=<%-d%> onclick="magia2(this);" >
+											<td><%-data.extra.top_proveedores[d].nombre%></td>
+											<td><span class="clp"><%-data.extra.top_proveedores[d].monto%></span></td>
+										</tr>
+
+									<% }
+									else{ %>
 										<tr class="proveedor" id=<%-d%> onclick="magia2(this);" >
-										<%}%>
-
-										<td><%-data.extra.top_proveedores[d].nombre%></td>
-										<td><span class="clp"><%-data.extra.top_proveedores[d].monto%></span></td>
-
-									</tr>
-									<%}}%>
+											<td><%-data.extra.top_proveedores[d].nombre%></td>
+											<td><span class="clp"><%-data.extra.top_proveedores[d].monto%></span></td>
+										</tr>
+									<%}%><!-- Cierre else -->
+									
+									<%}%><!-- Cierre for -->
 																									
 								</tbody>
 							</table>
-							<%}%>
-						</div>
-
-						<!-- Show de proveedor seleccionado -->
-						<div class="col-sm-6">
-							
-							<div class="panel panel-inverted panel-drkblue">
-								<% 
-								if(data.extra.top_proveedores.length == 0){ %>
-
-								<div class="empty-mala">
-									<p class="lead">estoy vacío 2</p>
-								</div>
-
-									<% }
-
-								else { %>
-
-								<div class="panel-heading">
-									<span class="info-tag">Nombre Proveedor</span>
-							
-									<div>
-										<h4 class="collapsable-text" id="nombre_pro"><i class="fa fa-angle-double-right"></i><%-data.extra.top_proveedores[0].nombre%></h4>
-										<span>Sucursal: <span id="code_pro"><%-data.extra.top_proveedores[0].id%></span></span>
-										<span class="slash">RUT: <span id="rut_pro"><%-data.extra.top_proveedores[0].rut%></span></span>
-									</div>
-								</div>
-
-								<div class="panel-body">							
-
-									<div class="row">
-										<div class="col-md-6">
-											<span class="numformat value clp" id="monto_pro"><%-data.extra.top_proveedores[0].monto%></span>
-											<p class="checkmillion">Facturado en ventas</p>
-										</div>
-										<div class="col-md-6 hidden">
-											<span class="numformat value">27</span>
-											<p>Órdenes de compra adjudicadas</p>
-										</div>
-										<div class="col-md-6">
-											<span class="numformat value clp">18500000</span>
-											<p>por orden promedio</p>
-										</div>
-										<div class="col-md-6">
-											<span class="numformat value">4</span>
-											<p>organismos compradores</p>
-										</div>
-									</div>
-									
-									<br>
-
-								</div>
-
-								<div class="panel-footer transparent no-border">
-										<small><a id="link_pro" href=<%-"/file?type=proveedor&code="+data.extra.top_licitaciones[0].id %>>Ir a ficha de proveedor <i class="fa fa-arrow-circle-right"></i></a></small>
-								</div>
-
 							</div>
-							<%}%>
+
+							<!-- Show de proveedor seleccionado -->
+							<div class="col-md-6">
+								<div class="panel panel-inverted panel-drkblue">
+									<div class="panel-heading">
+										<span class="info-tag">Nombre Proveedor</span>
+								
+										<div>
+											<h4 class="collapsable-text" id="nombre_pro"><i class="fa fa-angle-double-right"></i><%-data.extra.top_proveedores[0].nombre%></h4>
+											<span>Sucursal: <span id="code_pro"><%-data.extra.top_proveedores[0].id%></span></span>
+											<span class="slash">RUT: <span id="rut_pro"><%-data.extra.top_proveedores[0].rut%></span></span>
+										</div>
+									</div>
+
+									<div class="panel-body">							
+
+										<div class="row">
+											<div class="col-md-6">
+												<span class="numformat value clp" id="monto_pro"><%-data.extra.top_proveedores[0].monto%></span>
+												<p class="checkmillion">Facturado en ventas</p>
+											</div>
+											<div class="col-md-6 hidden">
+												<span class="numformat value">27</span>
+												<p>Órdenes de compra adjudicadas</p>
+											</div>
+											<div class="col-md-6">
+												<span class="numformat value clp">18500000</span>
+												<p>por orden promedio</p>
+											</div>
+											<div class="col-md-6">
+												<span class="numformat value">4</span>
+												<p>organismos compradores</p>
+											</div>
+										</div>
+										
+										<br>
+
+									</div>
+
+									<div class="panel-footer transparent no-border">
+											<small><a id="link_pro" href=<%-"/file?type=proveedor&code="+data.extra.top_licitaciones[0].id %>>Ir a ficha de proveedor <i class="fa fa-arrow-circle-right"></i></a></small>
+									</div>
+
+								</div>
+							</div>
 						</div>
-					</div>
-				</div>
+					</div>	
+
+				<%}%>
+
+				<!--========================-->
+				<!-- Todas las licitaciones -->
+				<!--========================-->
 
 				<div class="panel-body">
 					<h4>Todas las licitaciones</h4>
@@ -427,7 +410,5 @@
 
 			</div>
 		</div>
-
-
 	</div>	
 </div>
