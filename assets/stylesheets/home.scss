@@ -234,7 +234,7 @@ html,body {
 
 header, footer {
 	margin: auto;
-	z-index: 20;
+	z-index: 200;
 	width: 100%;
 	letter-spacing: .1px;
 	font-size: 13px;
@@ -554,7 +554,7 @@ footer {
 
 @media (min-width: 1200px) {
 	.container {
-		width: 970px !important;
+		width: 1070px !important;
 	}
 }
 
