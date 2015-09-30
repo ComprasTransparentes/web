@@ -561,12 +561,12 @@ footer {
 	}
 }
 
-@media (min-width: 1200px) {
+/*@media (min-width: 1200px) {
 	.container {
 		width: 1070px !important;
 	}
 }
-
+*/
 .transparent {
 	background-color: transparent !important;
 }
@@ -1270,10 +1270,27 @@ body {
 			border-bottom: none;
 		}
 
-		>h4 + p {
-			margin-bottom: 15px;
-			opacity: .8;
-			font-weight: 300;
+		> .legend {
+
+			h4 {
+				margin-right: 90px;
+				margin-top: 10px;
+				margin-bottom: 10px;
+
+				+ p {
+					margin-bottom: 15px;
+					opacity: .8;
+					font-weight: 400;	
+				} 
+			}
+
+			+ .daslaf {
+				padding: 15px;
+				border-radius: 5px;
+				margin: 15px 0 0 !important;
+				background-color: #eee;
+
+			}
 		}
 	}
 
@@ -2047,21 +2064,21 @@ input[type=number] {
 /* ======================== */
 
 .licitacion-status {
-    position: absolute;
-    background-image: url("../images/banner.png");
-    background-position-x: right;
-    color: white;
-    padding: 10px;
-    right: -22px;
-    top: 18px;
-    z-index: 100;
-    background-repeat: no-repeat;
-    background-size: initial;
-    background-position-y: -35px;
-    width: 245px;
-    height: 55px;
-    text-align: right;
-    padding-right: 65px;
+		position: absolute;
+		background-image: url("../images/banner-01.png");
+		background-position-x: right;
+		color: white;
+		padding: 11px;
+		right: -9px;
+		top: 25px;
+		z-index: 0;
+		background-repeat: no-repeat;
+		background-size: initial;
+		background-position-y: 0px;
+		width: 245px;
+		height: 55px;
+		text-align: right;
+		padding-right: 45px;
 	}
 
 .fich, .stats {
@@ -2182,7 +2199,9 @@ input[type=number] {
 	}
 
 	.panel-inverted {
+		position: relative;
 		background-color: #{$ltblue};
+
 		&.panel-drkblue {
 			background-color: #{$blue};
 		}
@@ -2259,6 +2278,24 @@ input[type=number] {
 	}
 	
 }
+
+.fich {
+	&.panel-color {
+		.info-tag {
+			margin-bottom: 5px;
+
+			+ div {
+				margin-bottom: 25px; 
+
+				h5 {
+					margin-top: 0;
+				}
+			}
+
+		}
+	}
+}
+
 .itemdetalle {
 
 	&:nth-child(odd){
@@ -2301,6 +2338,7 @@ input[type=number] {
 		> div {
 			&:first-child {
 				margin-right: 15px;
+				text-align: center;
 			}
 
 			&:last-child {
@@ -2712,5 +2750,66 @@ input[type=number] {
 		border: 1px solid #eee;
 		background-color: #f5f5f5;
 		border-radius: 4px;
+	}
+}
+
+.embed-stuff {
+	position: absolute;
+	top: 15px;
+	right: 15px;
+
+	.btn {
+		color: #{$turq};
+		border: 1px solid #{$turq};
+		background-color: white;
+		overflow: hidden;
+
+		i {
+			margin-right: 5px;
+		}
+
+		span {
+			margin-right: -117px;
+		}
+
+		&:hover, &:focus, &:active, &:visited {
+			color: white;
+	    	background-color: #{$turq};
+
+	    	-webkit-transition: all .125s;
+			-moz-transition: all .125s;
+			-o-transition: all .125s;
+			transition: all .125s;
+
+			span {
+				margin-right: 0;
+				-webkit-transition: margin-right .25s ease-out;
+				-moz-transition: margin-right .25s ease-out;
+				-o-transition: margin-right .25s ease-out;
+				transition: margin-right .25s ease-out;
+
+			}
+
+
+    	}
+	}
+}
+
+.modal {
+
+	.modal-title {
+		margin: 0;
+	}
+
+	.close {
+		margin-top: 3px;
+
+		span {
+			font-size: 18px;
+		}
+	}
+
+	.small-lead {
+		margin-bottom: 15px;
 	}
 }

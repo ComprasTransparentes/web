@@ -38,16 +38,16 @@
 
 			<div class="flex-wrapper grey-bck">
 				<div class="info-box">
-					<span class="value small"><%- data.items[k].adjudicacion.cantidad %></span>
+					<span class="numformat value small"><%- data.items[k].adjudicacion.cantidad %></span>
 					<p>cantidad adjudicada</p>
 				</div>
 				<div class="info-box text-center text-resp">
-					<span class="value small"><%- data.items[k].adjudicacion.monto_unitario %></span>
+					<span class="numformat value small"><%- data.items[k].adjudicacion.monto_unitario %></span>
 					<p>precio unitario</p>
 				</div>
 				<div class="info-box text-right text-resp">
 				<% var tot = data.items[k].adjudicacion.cantidad*data.items[k].adjudicacion.monto_unitario; %>
-					<span class="value small clp"><%- tot %></span>
+					<span class="numformat value small clp"><%- tot %></span>
 					<p>monto total</p>
 				</div>
 			</div>

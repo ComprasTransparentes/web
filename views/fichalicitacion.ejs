@@ -34,22 +34,22 @@
 				<div>
 					<span class="info-tag">Responsable Pago</span>
 					<ul class="list-unstyled">
-						<li><i class="fa fa-user"></i><%- data.nombre_responsable_pago %></li>
-						<li><i class="fa fa-envelope"></i><%- data.email_responsable_pago %></li>
+						<li><i class="fa fa-user"></i><%- data.nombre_responsable_pago || "-" %></li>
+						<li><i class="fa fa-envelope"></i><%- data.email_responsable_pago || "-" %></li>
 					</ul>
 				</div>
 
 				<div>
 					<span class="info-tag">Responsable Contrato</span>
 					<ul class="list-unstyled">
-						<li><i class="fa fa-user"></i><%- data.nombre_responsable_contrato %></li>
-						<li><i class="fa fa-envelope"></i><%- data.email_responsable_contrato %></li>
-						<li><i class="fa fa-phone"></i><%- data.telefono_responsable_contrato %></li>
+						<li><i class="fa fa-user"></i><%- data.nombre_responsable_contrato || "-" %></li>
+						<li><i class="fa fa-envelope"></i><%- data.email_responsable_contrato || "-" %></li>
+						<li><i class="fa fa-phone"></i><%- data.telefono_responsable_contrato || "-" %></li>
 					</ul>
 				</div>
 			</div>
 
-			<div class="panel-footer no-margin">
+			<div class="panel-footer no-margin transparent no-border">
 				<p>
 					<small><a href=<%-"/file?type=organismo&code="+data.comprador.id %>>Ir a ficha de organismo <i class="fa fa-arrow-circle-right"></i></a></small>
 				</p>
@@ -83,19 +83,21 @@
 	</div>
 
 	<div class="col-md-8">
-		<!-- Licitación status --> 
-		<span class="licitacion-status">Adjudicada</span>
+
 
 		<section class="panel panel-default fich licitacion">
 
+			<% include embedeitor %>
+
 			<div class="panel-body">
-
-			<h3>Ficha de Licitación</h3>
-
-				<br>
 				
-				<span class="info-tag">Título licitación</span>
+				<div class="legend">
+					<h4>Información de licitación</h4>
+					<br>
+				</div>
 
+				<span class="info-tag">Título </span>
+				
 				<div>
 					<h4 class="collapsable-text"><%- data.nombre %></h4>
 					<span>Código: <%- data.codigo %></span>
@@ -105,10 +107,13 @@
 				<span class="info-tag">Adjudicación </span>
 				
 				<div class="panel panel-inverted">
+
+					<!-- Licitación status --> 
+					<span class="licitacion-status">Adjudicada</span>
 					
 					<div class="panel-body">
 						<div class="row">
-							<div class="col-sm-4 col-xs-6">
+							<div class="col-sm-4">
 								<%
 									var y = data.items.length;
 									var x = 0;
@@ -120,31 +125,16 @@
 										}
 									}
 								%>
-								<span class="value"><span><%- x %></span><span><%- y %></span></span>
+								<span class="numformat value"><span><%- x %></span><span><%- y %></span></span>
 								<p>items adjudicados</p>
 							</div>
-							<div class="col-sm-4 col-xs-6 text-center text-resp">
-								<span class="value">27</span>
-								<p>oferentes</p>
-							</div>
-							<div class="col-sm-4 col-xs-6 text-right text-resp">
-								<span class="value clp"><%- total %></span>
+
+							<div class="col-sm-4 text-center text-resp">
+								<span class="numformat value clp"><%- total %></span>
 								<p>monto total</p>
 							</div>
 						</div>
 						
-						<br>
-
-						<div class="flex-wrapper">
-								<div class="info-box ltblue-box">
-									<span class="info-tag">tipo de convocatoria</span>
-									<p>Convocatoria Abierta</p>
-								</div>
-								<div class="info-box ltblue-box">	
-									<span class="info-tag">tipo de adjudicación</span>
-									<p>Adjudicación múltiple sin emisión de OC</p>
-								</div>
-						</div>
 					</div>
 
 				</div>
