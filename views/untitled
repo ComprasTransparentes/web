@@ -1,0 +1,292 @@
+<script type='text/javascript'>
+  var data =<%-JSON.stringify(data)%>
+</script>
+
+<div class="container">
+	<div class="row">
+			
+		<div class="col-md-4 pull-right pull-resp">
+			<div class="panel panel-color fich">
+
+				<div class="panel-heading no-margin">
+					<h5>Organismo Licitador</h5>	
+				</div>
+
+				<div class="panel-body">
+					<h3>Ficha de Organismo</h3>
+
+
+					<div class="row">
+						<div class="col-sm-6">
+
+							<span class="info-tag">Organismo</span>
+
+							<div>
+								<h4 class="collapsable-text"><%-data.nombre_comprador%></h4>
+								<span>Código: <%-data.codigo_comprador%></span>
+							</div>
+
+							<span class="info-tag">Unidad</span>
+							<div>
+								<h4 class="collapsable-text"><%-data.nombre_unidad%></h4>
+								<span>Unidad: <%-data.codigo_unidad%></span><span class="slash">RUT:<%-data.rut_unidad%></span>
+								<p><small><%-data.direccion_unidad%>, <%-data.comuna_unidad%>, <%-data.region_unidad%></small></p>
+							</div>
+						</div>
+
+					
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+		<div class="col-md-8">
+			<div class="panel panel-default stats">
+				<div class="panel-body">
+					
+					<h4>Estadísticas</h4>
+					<p>Información de licitaciones y estadísticas recopilada desde Enero de 2013</p>
+
+					<div class="panel panel-inverted">
+						<div class="panel-body">
+							<div class="row">
+								<div class="col-md-6 col-sm-6">
+									<span class="numformat value clp">40000000</span>
+									<p>gasto por órdenes de compra</p>
+								</div>
+								<div class="col-md-6 col-sm-6">
+									<span class="numformat value clp">6666666</span>
+									<p>gasto promedio mensual</p>
+								</div>
+								<div class="col-md-6 col-sm-6">
+									<span class="numformat value">78</span>
+									<p>proveedores beneficiados</p>
+								</div>
+								<div class="col-md-6 col-sm-6 hidden">
+									<span class="numformat value">215</span>
+									<p>órdenes de compra emitidas</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+
+				<!--=============================-->
+				<!-- Proveedores más beneficiados -->
+				<% 
+					if(data.extra.top_proveedores.length == 0){ %>
+					<div class="panel-body">
+						<div class="empty-mala">
+							<p class="lead">estoy vacío 2</p>
+						</div>
+					</div>
+
+						<% }
+
+				else { %>
+				<div class="panel-body">
+					<h4>Proveedores más beneficiados</h4>
+					<p>Lista de proveedores más beneficiados en el período de [período] </p>
+					
+					<div class="row" id="provmasbeneficiados">
+						<!-- Lista de proveedores -->
+						<div class="col-sm-6">
+
+							<table class="table postulant-list clickable-table">
+								<thead>
+									<td>Nombre</td>
+									<td>Total facturado</td>
+								</thead>
+								<tbody>
+								<% 	var tt = 10;
+									if(data.extra.top_proveedores.length < tt){
+										tt = data.extra.top_proveedores.length;
+									}
+									for(var d=0; d<tt; d++){
+										if(d==0){ %>
+
+									<tr class="active proveedor" id=<%-d%> onclick="magia2(this);" >
+
+									<% }else{ %>
+										<tr class="proveedor" id=<%-d%> onclick="magia2(this);" >
+										<%}%>
+
+										<td><%-data.extra.top_proveedores[d].nombre%></td>
+										<td><span class="clp"><%-data.extra.top_proveedores[d].monto%></span></td>
+
+									</tr>
+									<%}}%>
+																									
+								</tbody>
+							</table>
+							<%}%>
+						</div>
+
+						<!-- Show de proveedor seleccionado -->
+						<div class="col-sm-6">
+							
+							<div class="panel panel-inverted panel-drkblue">
+								<% 
+								if(data.extra.top_proveedores.length == 0){ %>
+
+								<div class="empty-mala">
+									<p class="lead">estoy vacío 2</p>
+								</div>
+
+									<% }
+
+								else { %>
+
+								<div class="panel-heading">
+									<span class="info-tag">Nombre Proveedor</span>
+							
+									<div>
+										<h4 class="collapsable-text" id="nombre_pro"><i class="fa fa-angle-double-right"></i><%-data.extra.top_proveedores[0].nombre%></h4>
+										<span>Sucursal: <span id="code_pro"><%-data.extra.top_proveedores[0].id%></span></span>
+										<span class="slash">RUT: <span id="rut_pro"><%-data.extra.top_proveedores[0].rut%></span></span>
+									</div>
+								</div>
+
+								<div class="panel-body">							
+
+									<div class="row">
+										<div class="col-md-6">
+											<span class="numformat value clp" id="monto_pro"><%-data.extra.top_proveedores[0].monto%></span>
+											<p class="checkmillion">Facturado en ventas</p>
+										</div>
+										<div class="col-md-6 hidden">
+											<span class="numformat value">27</span>
+											<p>Órdenes de compra adjudicadas</p>
+										</div>
+										<div class="col-md-6">
+											<span class="numformat value clp">18500000</span>
+											<p>por orden promedio</p>
+										</div>
+										<div class="col-md-6">
+											<span class="numformat value">4</span>
+											<p>organismos compradores</p>
+										</div>
+									</div>
+									
+									<br>
+
+								</div>
+
+								<div class="panel-footer transparent no-border">
+										<small><a id="link_pro" href=<%-"/file?type=proveedor&code="+data.extra.top_licitaciones[0].id %>>Ir a ficha de proveedor <i class="fa fa-arrow-circle-right"></i></a></small>
+								</div>
+
+							</div>
+							<%}%>
+						</div>
+					</div>
+				</div>
+
+				<!-- Todas las licitaciones -->
+				<div class="panel-body">
+					<h4>Todas las licitaciones</h4>
+					<p>Lista de todos los llamados a licitación realizados en el período de [período]</p>
+
+					<div class="row">
+						<div class="col-sm-12">
+							<table class="table postulant-list">
+								<thead>
+									<td>Nombre</td>
+									<td>Código</td>
+									<td>Fecha de Apertura</td>
+									<td>Estado</td>
+									<td></td>
+								</thead>
+								<tbody>
+									<tr>
+										<td>Insumos médicos y medicamentos</td>
+										<td>1509-5-L114</td>
+										<td>20-01-2014</td>
+										<td>Adjudicada</td>
+										<td><a href="#">Ver ficha <i class="fa fa-arrow-circle-right"></i></a></td>
+									</tr>
+									<tr>
+										<td>Insumos médicos y medicamentos</td>
+										<td>1509-5-L114</td>
+										<td>20-01-2014</td>
+										<td>Adjudicada</td>
+										<td><a href="#">Ver ficha <i class="fa fa-arrow-circle-right"></i></a></td>
+									</tr>
+									<tr>
+										<td>Insumos médicos y medicamentos</td>
+										<td>1509-5-L114</td>
+										<td>20-01-2014</td>
+										<td>Adjudicada</td>
+										<td><a href="#">Ver ficha <i class="fa fa-arrow-circle-right"></i></a></td>
+									</tr>
+									<tr>
+										<td>Insumos médicos y medicamentos</td>
+										<td>1509-5-L114</td>
+										<td>20-01-2014</td>
+										<td>Adjudicada</td>
+										<td><a href="#">Ver ficha <i class="fa fa-arrow-circle-right"></i></a></td>
+									</tr>
+									<tr>
+										<td>Insumos médicos y medicamentos</td>
+										<td>1509-5-L114</td>
+										<td>20-01-2014</td>
+										<td>Adjudicada</td>
+										<td><a href="#">Ver ficha <i class="fa fa-arrow-circle-right"></i></a></td>
+									</tr>
+									<tr>
+										<td>Insumos médicos y medicamentos</td>
+										<td>1509-5-L114</td>
+										<td>20-01-2014</td>
+										<td>Adjudicada</td>
+										<td><a href="#">Ver ficha <i class="fa fa-arrow-circle-right"></i></a></td>
+									</tr>
+									<tr>
+										<td>Insumos médicos y medicamentos</td>
+										<td>1509-5-L114</td>
+										<td>20-01-2014</td>
+										<td>Adjudicada</td>
+										<td><a href="#">Ver ficha <i class="fa fa-arrow-circle-right"></i></a></td>
+									</tr>
+									<tr>
+										<td>Insumos médicos y medicamentos</td>
+										<td>1509-5-L114</td>
+										<td>20-01-2014</td>
+										<td>Adjudicada</td>
+										<td><a href="#">Ver ficha <i class="fa fa-arrow-circle-right"></i></a></td>
+									</tr>
+									<tr>
+										<td>Insumos médicos y medicamentos</td>
+										<td>1509-5-L114</td>
+										<td>20-01-2014</td>
+										<td>Adjudicada</td>
+										<td><a href="#">Ver ficha <i class="fa fa-arrow-circle-right"></i></a></td>
+									</tr>
+									<tr>
+										<td>Insumos médicos y medicamentos</td>
+										<td>1509-5-L114</td>
+										<td>20-01-2014</td>
+										<td>Adjudicada</td>
+										<td><a href="#">Ver ficha <i class="fa fa-arrow-circle-right"></i></a></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<div class="col-sm-12">
+							<div class="pull-left">
+								<p class="pagination-text">
+								Viendo <span>10</span> de <span>25</span> resultados
+								</p>
+							</div>
+							<div class="pull-right">
+								<% include pagination %>
+							</div>	
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>	
+</div>
