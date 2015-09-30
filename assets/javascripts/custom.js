@@ -182,6 +182,40 @@ $(document).ready(function() {
 
 	}
 
+	function magia3(el) {
+
+		var index = parseInt(el.id)+1;
+
+		$('#rank_pro').text(index);
+		$('#name_pro').text(pro.top_proveedores[el.id].nombre);
+		$('#rut_pro').text("RUT: "+pro.top_proveedores[el.id].rut);
+		$('#cash_pro').text(pro.top_proveedores[el.id].monto);
+		$('#link_pro').attr("href","/file?type=proveedor&code="+pro.top_proveedores[el.id].id);
+
+	}
+
+	function magia4(el) {
+
+		var index = parseInt(el.id)+1;
+
+		$('#rank_lic').text(index);
+		$('#name_lic').text(lic.top_licitaciones[el.id].nombre);
+		$('#code_lic').text("CÓDIGO: "+lic.top_licitaciones[el.id].codigo);
+		$('#cash_lic').text(lic.top_licitaciones[el.id].monto);
+		$('#link_lic').attr("href","/file?type=licitacion&code="+lic.top_licitaciones[el.id].codigo);
+
+	}
+
+	function magia5(el) {
+
+		var index = parseInt(el.id)+1;
+
+		$('#rank_cat').text(index);
+		$('#name_cate').text(cat.top_categorias[el.id].categoria);
+		$('#cash_cat').text(cat.top_categorias[el.id].monto);
+
+	}
+
 
 
 

@@ -28,12 +28,35 @@ router.get('/', function(req, res) {
 							console.log(pro);
 							if(pro!=null){
 
-								res.render('application.ejs', { content: 'index',
-							  									data: json,
-					  											special: 'true',
-					  											superspecial: 'false',
-					  											lic: lic,
-					  											pro: pro });
+								api.getTopCat(function(cat){
+									cat = cat;
+									console.log(cat);
+									if(cat!=null){
+
+										res.render('application.ejs', { content: 'index',
+									  									data: json,
+							  											special: 'true',
+							  											superspecial: 'false',
+							  											lic: lic,
+							  											pro: pro,
+							  											cat: cat });
+
+										
+
+										
+									}
+								
+									else{
+										var num = Math.floor((Math.random() * 10) + 1);
+										if(num==3 || num==7){
+												res.render('404.ejs');
+											}
+											else
+										  		res.render('404real.ejs');
+										  }
+								});
+
+								
 
 								
 							}
@@ -75,6 +98,8 @@ router.get('/', function(req, res) {
 		});
 
 });
+
+
 
 router.get('/search', function(req, res) {
 	//var type = 'licitacion';
