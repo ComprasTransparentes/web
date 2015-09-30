@@ -41,6 +41,8 @@
 
 		<div class="col-md-8">
 			<div class="panel panel-default stats">
+
+				<% include embedeitor %>
 				
 				<!--==============-->
 				<!-- Estadísticas -->
@@ -48,9 +50,10 @@
 
 				<div class="panel-body">
 					
-					<h4>Estadísticas</h4>
-					<p>Información de licitaciones y estadísticas recopilada desde Enero de 2013</p>
-
+					<div class="legend">
+						<h4>Estadísticas</h4>
+						<p>Información de licitaciones y estadísticas recopilada desde Enero de 2013</p>
+					</div>
 					<div class="panel panel-inverted">
 						<div class="panel-body">
 							<div class="row">
@@ -77,8 +80,14 @@
 
 					<div class="panel-body">
 
-						<div class="empty-mala">
-							<p class="lead">estoy vacío</p>
+						<div class="legend">
+							<h4>Licitaciones más cuantiosas</h4>
+						</div>
+
+						<div class="flex-wrapper daslaf">
+							<ul class="list-unstyled filter-list transparent no-filters">
+								<li class="text-center no-filters"><i class="fa fa-frown-o"></i> ¡Oops! No hay información asociada</li>
+							</ul>
 						</div>
 
 					</div>
@@ -89,11 +98,12 @@
 				
 				<!-- Carga si viene correcto -->
 				<div class="panel-body">
-					<h4>Licitaciones más cuantiosas</h4>
-					<p>Lista de licitaciones más cuantiosas desde Enero de 2013</p>
-
+					<div class="legend">
+						<h4>Licitaciones más cuantiosas</h4>
+						<p>Lista de licitaciones más cuantiosas desde Enero de 2013</p>
+					</div>
 					<div class="row" id="licmascuantiosas">
-						<div class="col-sm-6">
+						<div class="col-md-6">
 							<table class="table postulant-list clickable-table">
 								<thead>
 									<tr>
@@ -118,7 +128,7 @@
 
 										<tr class="active licitacion" id=<%-d%> onclick="magia(this);" >
 											<td><%-data.extra.top_licitaciones[d].nombre%></td>
-											<td><span class="clp"><%-data.extra.top_licitaciones[d].monto%></span></td>
+											<td><span class="numformat clp"><%-data.extra.top_licitaciones[d].monto%></span></td>
 										</tr>
 
 									<% } 
@@ -126,7 +136,7 @@
 											
 										<tr class="licitacion" id=<%-d%> onclick="magia(this);" >
 											<td><%-data.extra.top_licitaciones[d].nombre%></td>
-											<td><span class="clp"><%-data.extra.top_licitaciones[d].monto%></span></td>
+											<td><span class="numformat clp"><%-data.extra.top_licitaciones[d].monto%></span></td>
 										</tr>
 									<%}%><!-- Cierre else -->
 									
@@ -137,7 +147,7 @@
 						</div>
 
 
-						<div class="col-sm-6">
+						<div class="col-md-6">
 							
 							<div class="panel panel-inverted panel-drkblue">
 
@@ -198,9 +208,17 @@
 				<% if(data.extra.top_proveedores.length == 0){ %>
 					
 					<div class="panel-body">
-						<div class="empty-mala">
-							<p class="lead">estoy vacío 2</p>
+
+						<div class="legend">
+							<h4>Proveedores más beneficiados</h4>
 						</div>
+
+						<div class="flex-wrapper daslaf">
+							<ul class="list-unstyled filter-list transparent no-filters">
+								<li class="text-center no-filters"><i class="fa fa-frown-o"></i> ¡Oops! No hay información asociada</li>
+							</ul>
+						</div>
+
 					</div>
 
 				<% }
@@ -208,8 +226,10 @@
 				else { %>
 					
 					<div class="panel-body">
-						<h4>Proveedores más beneficiados</h4>
-						<p>Lista de los proveedores más beneficiados desde Enero de 2013</p>
+						<div class="legend">
+							<h4>Proveedores más beneficiados</h4>
+							<p>Lista de los proveedores más beneficiados desde Enero de 2013</p>
+						</div>
 
 						<div class="row" id="provmasbeneficiados">
 							<!-- Lista de proveedores -->
@@ -237,14 +257,14 @@
 
 										<tr class="active proveedor" id=<%-d%> onclick="magia2(this);" >
 											<td><%-data.extra.top_proveedores[d].nombre%></td>
-											<td><span class="clp"><%-data.extra.top_proveedores[d].monto%></span></td>
+											<td><span class="numformat clp"><%-data.extra.top_proveedores[d].monto%></span></td>
 										</tr>
 
 									<% }
 									else{ %>
 										<tr class="proveedor" id=<%-d%> onclick="magia2(this);" >
 											<td><%-data.extra.top_proveedores[d].nombre%></td>
-											<td><span class="clp"><%-data.extra.top_proveedores[d].monto%></span></td>
+											<td><span class="numformat clp"><%-data.extra.top_proveedores[d].monto%></span></td>
 										</tr>
 									<%}%><!-- Cierre else -->
 									
@@ -270,19 +290,15 @@
 									<div class="panel-body">							
 
 										<div class="row">
-											<div class="col-md-6">
+											<div class="col-md-12">
 												<span class="numformat value clp" id="monto_pro"><%-data.extra.top_proveedores[0].monto%></span>
 												<p class="checkmillion">Facturado en ventas</p>
 											</div>
-											<div class="col-md-6 hidden">
-												<span class="numformat value">27</span>
-												<p>Órdenes de compra adjudicadas</p>
-											</div>
-											<div class="col-md-6">
+											<div class="col-md-12">
 												<span class="numformat value clp">18500000</span>
 												<p>por orden promedio</p>
 											</div>
-											<div class="col-md-6">
+											<div class="col-md-12">
 												<span class="numformat value">4</span>
 												<p>organismos compradores</p>
 											</div>
@@ -308,86 +324,77 @@
 				<!--========================-->
 
 				<div class="panel-body">
-					<h4>Todas las licitaciones</h4>
-					<p>Lista de todos los llamados a licitación realizados en el período de [período]</p>
+					<div class="legend">
+						<h4>Todas las licitaciones</h4>
+						<p>Lista de todos los llamados a licitación realizados en el período de [período]</p>
+					</div>
 
 					<div class="row">
 						<div class="col-sm-12">
 							<table class="table postulant-list">
 								<thead>
 									<td>Nombre</td>
-									<td>Código</td>
-									<td>Fecha de Apertura</td>
+									<td>Fecha de Creación</td>
 									<td>Estado</td>
 									<td></td>
 								</thead>
 								<tbody>
 									<tr>
 										<td>Insumos médicos y medicamentos</td>
-										<td>1509-5-L114</td>
 										<td>20-01-2014</td>
 										<td>Adjudicada</td>
 										<td><a href="#">Ver ficha <i class="fa fa-arrow-circle-right"></i></a></td>
 									</tr>
 									<tr>
 										<td>Insumos médicos y medicamentos</td>
-										<td>1509-5-L114</td>
 										<td>20-01-2014</td>
 										<td>Adjudicada</td>
 										<td><a href="#">Ver ficha <i class="fa fa-arrow-circle-right"></i></a></td>
 									</tr>
 									<tr>
 										<td>Insumos médicos y medicamentos</td>
-										<td>1509-5-L114</td>
 										<td>20-01-2014</td>
 										<td>Adjudicada</td>
 										<td><a href="#">Ver ficha <i class="fa fa-arrow-circle-right"></i></a></td>
 									</tr>
 									<tr>
 										<td>Insumos médicos y medicamentos</td>
-										<td>1509-5-L114</td>
 										<td>20-01-2014</td>
 										<td>Adjudicada</td>
 										<td><a href="#">Ver ficha <i class="fa fa-arrow-circle-right"></i></a></td>
 									</tr>
 									<tr>
 										<td>Insumos médicos y medicamentos</td>
-										<td>1509-5-L114</td>
 										<td>20-01-2014</td>
 										<td>Adjudicada</td>
 										<td><a href="#">Ver ficha <i class="fa fa-arrow-circle-right"></i></a></td>
 									</tr>
 									<tr>
 										<td>Insumos médicos y medicamentos</td>
-										<td>1509-5-L114</td>
 										<td>20-01-2014</td>
 										<td>Adjudicada</td>
 										<td><a href="#">Ver ficha <i class="fa fa-arrow-circle-right"></i></a></td>
 									</tr>
 									<tr>
 										<td>Insumos médicos y medicamentos</td>
-										<td>1509-5-L114</td>
 										<td>20-01-2014</td>
 										<td>Adjudicada</td>
 										<td><a href="#">Ver ficha <i class="fa fa-arrow-circle-right"></i></a></td>
 									</tr>
 									<tr>
 										<td>Insumos médicos y medicamentos</td>
-										<td>1509-5-L114</td>
 										<td>20-01-2014</td>
 										<td>Adjudicada</td>
 										<td><a href="#">Ver ficha <i class="fa fa-arrow-circle-right"></i></a></td>
 									</tr>
 									<tr>
 										<td>Insumos médicos y medicamentos</td>
-										<td>1509-5-L114</td>
 										<td>20-01-2014</td>
 										<td>Adjudicada</td>
 										<td><a href="#">Ver ficha <i class="fa fa-arrow-circle-right"></i></a></td>
 									</tr>
 									<tr>
 										<td>Insumos médicos y medicamentos</td>
-										<td>1509-5-L114</td>
 										<td>20-01-2014</td>
 										<td>Adjudicada</td>
 										<td><a href="#">Ver ficha <i class="fa fa-arrow-circle-right"></i></a></td>
