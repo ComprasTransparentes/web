@@ -26,7 +26,43 @@ module.exports.getStats = function (callback){
 		}
 		else
 			json = null;
-		console.log(json);
+		callback(json);
+	});
+};
+
+module.exports.getTopLic = function (callback){
+	console.log("perro muerto");
+
+	request("http://"+host+'/stats/top/licitaciones', function (error, response, body) {
+		if (!error && (response.statusCode == 200 || response.statusCode == 201)) {
+			json = JSON.parse(body);		
+		}
+		else
+			json = null;
+		callback(json);
+	});
+};
+
+module.exports.getTopPro = function (callback){
+
+	request("http://"+host+'/stats/top/proveedores', function (error, response, body) {
+		if (!error && (response.statusCode == 200 || response.statusCode == 201)) {
+			json = JSON.parse(body);		
+		}
+		else
+			json = null;
+		callback(json);
+	});
+};
+
+module.exports.getTopCat = function (callback){
+
+	request("http://"+host+'/stats/top/categorias', function (error, response, body) {
+		if (!error && (response.statusCode == 200 || response.statusCode == 201)) {
+			json = JSON.parse(body);		
+		}
+		else
+			json = null;
 		callback(json);
 	});
 };

@@ -1,3 +1,8 @@
+<script type='text/javascript'>
+  var pro =<%-JSON.stringify(pro)%>
+  var cat =<%-JSON.stringify(cat)%>
+  var lic =<%-JSON.stringify(lic)%>  
+</script>
 <section class="container no-margin">
 
 	<div class="panel panel-transparent panel-searchbar-home">
@@ -49,7 +54,7 @@
 	<!-- Gráfico 1 -->
 	<div class="panel panel-default stats">
 		<div class="panel-heading">
-			<h1 class="super-title">Distribución de gasto entre ministerios</h1>
+			<h1 class="super-title">del dinero ha sido licitado por</h1>
 		</div>
 		<div class="panel-body">
 
@@ -111,23 +116,23 @@
 						</div>
 						<div class="highlighted-vendor">
 							<div class="flex-wrapper no-wrap no-margin">
-								<div class="medal-container"><span>1</span></div>
+								<div class="medal-container"><span id="rank_pro">1</span></div>
 								<div class="info-container">
 									<div class="row">
 										<div class="col-md-8">
 											<span class="info-tag">Proveedor</span>
-											<h3 class="ranking-title"><i class="fa fa-angle-double-right"></i>Comercializadora Ilhabella Eirl</h3>
-											<span>RUT: 76.242.192-5</span>
+											<h3 class="ranking-title" id="name_pro"><i class="fa fa-angle-double-right"></i><%-pro.top_proveedores[0].nombre%></h3>
+											<span>RUT: <%-pro.top_proveedores[0].rut%></span>
 										</div>
 										<div class="col-md-4 ammount-container text-right text-resp">
 											<span class="info-tag">Monto en pesos</span>
-											<h3 class="numformat ranking-title clp">127000000</h3>
+											<h3 class="numformat ranking-title clp" id="cash_pro"><%-pro.top_proveedores[0].monto%></h3>
 											<span>total facturado</span>
 										</div>
 									</div>
 									<div class="row">
 										<div class="col-md-12 text-right text-resp med">
-											<a href="#">Ver detalle <i class="fa fa-arrow-circle-right"></i></a>
+											<a href=<%-"/file?type=proveedor&code="+pro.top_proveedores[0].id%> id="link_pro">Ver detalle <i class="fa fa-arrow-circle-right" ></i></a>
 										</div>
 									</div>
 								</div>
@@ -135,32 +140,20 @@
 							<br>
 							<table class="table ranking-list clickable-table">
 								<tbody>
-									<tr class="active">
-										<td><span class="index-sign">1</span></td>
-										<td>Comercializadora Ilhabella Eirl</td>
-										<td><span class="numformat clp">780000000</span></td>
+									<%for(var y=0; y< pro.top_proveedores.length;y++){ 
+										if(y==0){%>
+
+									<tr class="active" id=<%-y%> onclick="magia3(this);">
+									<%}else{%>
+									<tr id=<%-y%> onclick="magia3(this);">
+									<%}%>
+										<td><span class="index-sign"><%- y+1 %></span></td>
+										<td><%-pro.top_proveedores[y].nombre%></td>
+										<td><span class="numformat clp"><%-pro.top_proveedores[y].monto%></span></td>
 
 									</tr>
-									<tr>
-										<td><span class="index-sign">2</span></td>
-										<td>Comercializadora Ilhabella Eirl</td>
-										<td><span class="numformat clp">630000000</span></td>
-									</tr>
-									<tr>
-										<td><span class="index-sign">3</span></td>
-										<td>Comercializadora Ilhabella Eirl</td>
-										<td><span class="numformat clp">179000000</span></td>
-									</tr>
-									<tr>
-										<td><span class="index-sign">4</span></td>
-										<td>Comercializadora Ilhabella Eirl</td>
-										<td><span class="numformat clp">45000000</span></td>
-									</tr>
-									<tr>
-										<td><span class="index-sign">5</span></td>
-										<td>Comercializadora Ilhabella Eirl</td>
-										<td><span class="numformat clp">8000000</span></td>
-									</tr>																				
+									<%}%>
+																									
 								</tbody>
 							</table>
 						</div>
@@ -193,23 +186,23 @@
 						</div>
 						<div class="highlighted-vendor">
 							<div class="flex-wrapper no-wrap no-margin">
-								<div class="medal-container"><span>1</span></div>
+								<div class="medal-container"><span id="rank_lic">1</span></div>
 								<div class="info-container">
 									<div class="row">
 										<div class="col-md-8">
 											<span class="info-tag">Licitación</span>
-											<h3 class="ranking-title"><i class="fa fa-angle-double-right"></i>Compra de alimentos para mascotas</h3>
-											<span>Código: 2583-6-L113</span>
+											<h3 class="ranking-title" id="name_lic"><i class="fa fa-angle-double-right"></i><%-lic.top_licitaciones[0].nombre%></h3>
+											<span id="code_lic">Código: <%-lic.top_licitaciones[0].codigo%></span>
 										</div>
 										<div class="col-md-4 ammount-container text-right text-resp">
 											<span class="info-tag">Monto en pesos</span>
-											<h3 class="numformat ranking-title clp">127000000</h3>
+											<h3 class="numformat ranking-title clp" id="cash_lic"><%-lic.top_licitaciones[0].monto%></h3>
 											<span>total transado</span>
 										</div>
 									</div>
 									<div class="row">
 										<div class="col-md-12 text-right text-resp med">
-											<a href="#">Ver detalle <i class="fa fa-arrow-circle-right"></i></a>
+											<a href=<%-"/file?type=licitacion&code="+lic.top_licitaciones[0].codigo%> id="link_lic">Ver detalle <i class="fa fa-arrow-circle-right"></i></a>
 										</div>
 									</div>
 								</div>
@@ -217,32 +210,19 @@
 							<br>
 							<table class="table ranking-list clickable-table">
 								<tbody>
-									<tr class="active">
-										<td><span class="index-sign">1</span></td>
-										<td>Comercializadora Ilhabella Eirl</td>
-										<td><span class="numformat clp">780000000</span></td>
+									<%for(var y=0; y< lic.top_licitaciones.length;y++){ 
+										if(y==0){%>
+
+									<tr class="active" id=<%-y%> onclick="magia4(this);">
+									<%}else{%>
+									<tr id=<%-y%> onclick="magia4(this);">
+									<%}%>
+										<td><span class="index-sign"><%- y+1 %></span></td>
+										<td><%- lic.top_licitaciones[y].nombre%></td>
+										<td><span class="numformat clp"><%- lic.top_licitaciones[y].monto%></span></td>
 
 									</tr>
-									<tr>
-										<td><span class="index-sign">2</span></td>
-										<td>Comercializadora Ilhabella Eirl</td>
-										<td><span class="numformat clp">630000000</span></td>
-									</tr>
-									<tr>
-										<td><span class="index-sign">3</span></td>
-										<td>Comercializadora Ilhabella Eirl</td>
-										<td><span class="numformat clp">179000000</span></td>
-									</tr>
-									<tr>
-										<td><span class="index-sign">4</span></td>
-										<td>Comercializadora Ilhabella Eirl</td>
-										<td><span class="numformat clp">45000000</span></td>
-									</tr>
-									<tr>
-										<td><span class="index-sign">5</span></td>
-										<td>Comercializadora Ilhabella Eirl</td>
-										<td><span class="numformat clp">8000000</span></td>
-									</tr>																				
+									<%}%>																			
 								</tbody>
 							</table>
 						</div>
@@ -268,16 +248,16 @@
 						</div>
 						<div class="highlighted-vendor">
 							<div class="flex-wrapper no-wrap no-margin">
-								<div class="medal-container"><span>1</span></div>
+								<div class="medal-container"><span id="rank_cat">1</span></div>
 								<div class="info-container">
 									<div class="row">
 										<div class="col-md-8">
 											<span class="info-tag">Categoría</span>
-											<h3 class="ranking-title"><i class="fa fa-angle-double-right"></i>Tubos de escape/ Servicios mecánicos de tecnlogía/ Prótesis para animales</h3>
+											<h3 class="ranking-title" id="name_cate"><i class="fa fa-angle-double-right"></i><%-cat.top_categorias[0].categoria%></h3>
 										</div>
 										<div class="col-md-4 ammount-container text-right text-resp">
 											<span class="info-tag">Monto en pesos</span>
-											<h3 class="numformat ranking-title clp">127000000</h3>
+											<h3 class="numformat ranking-title clp" id="cash_cat"><%-cat.top_categorias[0].monto%></h3>
 											<span>total transado</span>
 										</div>
 									</div>
@@ -291,32 +271,21 @@
 							<br>
 							<table class="table ranking-list clickable-table">
 								<tbody>
-									<tr class="active">
-										<td><span class="index-sign">1</span></td>
-										<td>Comercializadora Ilhabella Eirl</td>
-										<td><span class="numformat clp">780000000</span></td>
+
+									<%for(var y=0; y< cat.top_categorias.length;y++){ 
+										if(y==0){%>
+
+									<tr class="active" id=<%-y%> onclick="magia5(this);">
+									<%}else{%>
+									<tr id=<%-y%> onclick="magia5(this);">
+									<%}%>
+										<td><span class="index-sign"><%- y+1 %></span></td>
+										<td><%- cat.top_categorias[y].categoria%></td>
+										<td><span class="numformat clp"><%- cat.top_categorias[y].monto%></span></td>
 
 									</tr>
-									<tr>
-										<td><span class="index-sign">2</span></td>
-										<td>Comercializadora Ilhabella Eirl</td>
-										<td><span class="numformat clp">630000000</span></td>
-									</tr>
-									<tr>
-										<td><span class="index-sign">3</span></td>
-										<td>Comercializadora Ilhabella Eirl</td>
-										<td><span class="numformat clp">179000000</span></td>
-									</tr>
-									<tr>
-										<td><span class="index-sign">4</span></td>
-										<td>Comercializadora Ilhabella Eirl</td>
-										<td><span class="numformat clp">45000000</span></td>
-									</tr>
-									<tr>
-										<td><span class="index-sign">5</span></td>
-										<td>Comercializadora Ilhabella Eirl</td>
-										<td><span class="numformat clp">8000000</span></td>
-									</tr>																				
+									<%}%>
+																													
 								</tbody>
 							</table>
 						</div>
