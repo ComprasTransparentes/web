@@ -104,6 +104,43 @@ module.exports.getApiGeneral = function (name, callback){
 	});
 };
 
+module.exports.getApiLic = function (name, pag, callback){
+
+	request("http://"+host+'/licitacion/?q='+name+'&pagina='+pag, function (error, response, body) {
+		if (!error && (response.statusCode == 200 || response.statusCode == 201)) {
+			json = JSON.parse(body);		
+		}
+		else
+			json = null;
+		callback(json);
+	});
+};
+
+module.exports.getApiOrg = function (name, pag, callback){
+
+	request("http://"+host+'/organismo/?q='+name+'&pagina='+pag, function (error, response, body) {
+		if (!error && (response.statusCode == 200 || response.statusCode == 201)) {
+			json = JSON.parse(body);		
+		}
+		else
+			json = null;
+		callback(json);
+	});
+};
+
+module.exports.getApiPro = function (name, pag, callback){
+
+	request("http://"+host+'/proveedor/?q='+name+'&pagina='+pag, function (error, response, body) {
+		if (!error && (response.statusCode == 200 || response.statusCode == 201)) {
+			json = JSON.parse(body);		
+		}
+		else
+			json = null;
+		callback(json);
+	});
+};
+
+
 module.exports.getApiSimple= function (type, element , callback){
 
 	request("http://"+host+'/'+type+'?q='+element, function (error, response, body) {

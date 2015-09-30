@@ -1,8 +1,8 @@
-<% for(var w=0; w<data.licitaciones.length; w++) { %>
+<% for(var w=0; w<lic.licitaciones.length; w++) { %>
 	<div class="search-result-item">
-		<h4 class="collapsable-text"><a class="long-text" href=<%-"/file?type=licitacion&code="+data.licitaciones[w].codigo%>><%-data.licitaciones[w].nombre%></a><button class="btn more-text">...</button></h4>
-		<p class="org-name"><%-data.licitaciones[w].comprador.nombre_comprador%><a href=<%-"/file?type=organismo&code="+data.licitaciones[w].comprador.id%>><i class="fa fa-arrow-circle-right"></i></a></p>
-		<p class="lic-des"><%-data.licitaciones[w].descripcion%></p>
+		<h4 class="collapsable-text"><a class="long-text" href=<%-"/file?type=licitacion&code="+lic.licitaciones[w].codigo%>><%-lic.licitaciones[w].nombre%></a><button class="btn more-text">...</button></h4>
+		<p class="org-name"><%-lic.licitaciones[w].organismo.nombre%><a href=<%-"/file?type=organismo&code="+lic.licitaciones[w].organismo.id%>><i class="fa fa-arrow-circle-right"></i></a></p>
+		<p class="lic-des"><%-lic.licitaciones[w].descripcion%></p>
 		<div class="row">
 			<div class="col-xs-6">
 				<p><span>Licitación adjudicada <i class="fa fa-check"></i></span></p>

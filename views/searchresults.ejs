@@ -1,3 +1,9 @@
+<script type='text/javascript'>
+  var n_lic =<%-JSON.stringify(lic.n_licitaciones)%>;
+  var n_pro =<%-JSON.stringify(pro.n_proveedores)%>;
+  var n_org =<%-JSON.stringify(org.n_organismos)%>;
+</script>
+
 <section class="container">
 
 	<div class="panel panel-default search-panel">
@@ -19,7 +25,7 @@
 						<span>Búsqueda</span>
 						<span><%- element %></span>
 						<p class="no-margin">
-							<em style="font-weight: 300; font-size:13px;">Se encontraron <%- data.licitaciones.length+data.compradores.length+data.proveedores.length %> coincidencias</em>
+							<em style="font-weight: 300; font-size:13px;">Se encontraron <%- lic.licitaciones.length+org.organismos.length+pro.proveedores.length %> coincidencias</em>
 						</p>
 					</li>
 					
@@ -48,7 +54,7 @@
 							<span>Búsqueda</span>
 							<span><%- element %></span>
 							<span class="no-margin">
-								<em>Se encontraron <%- data.licitaciones.length+data.compradores.length+data.proveedores.length %> coincidencias</em>
+								<em>Se encontraron <%- lic.n_licitaciones+org.n_organismos+pro.n_proveedores %> coincidencias</em>
 							</span>
 						</li>
 			
@@ -58,9 +64,9 @@
 				  <!-- Result pills -->
 				  <ul class="nav nav-pills search-tabs" role="tablist">
 				  	<div class="pills-border"></div>
-				    <li role="presentation" class="active"><a href="#tipo1" aria-controls="tipo2" role="tab" data-toggle="tab">Licitaciones <small><%- data.licitaciones.length %></small></a></li>
-				    <li role="presentation"><a href="#tipo3" aria-controls="tipo3" role="tab" data-toggle="tab">Organismos <small><%- data.compradores.length %></small></a></li>
-				    <li role="presentation"><a href="#tipo4" aria-controls="tipo4" role="tab" data-toggle="tab">Proveedores <small><%- data.proveedores.length %></small></a></li>
+				    <li role="presentation" class="active"><a href="#tipo1" aria-controls="tipo2" role="tab" data-toggle="tab">Licitaciones <small><%- lic.n_licitaciones %></small></a></li>
+				    <li role="presentation"><a href="#tipo3" aria-controls="tipo3" role="tab" data-toggle="tab">Organismos <small><%- org.n_organismos %></small></a></li>
+				    <li role="presentation"><a href="#tipo4" aria-controls="tipo4" role="tab" data-toggle="tab">Proveedores <small><%- pro.n_proveedores %></small></a></li>
 				  </ul>
 
 				  <!-- Tab panes -->
@@ -71,6 +77,8 @@
 
 								<% include searchresultlicitacion %>
 
+						<div id="pag1"></div>
+
 				    </div>
 
 				    <!-- Organismos lista -->
@@ -78,20 +86,25 @@
 
 								<% include searchresultorg %>
 
+						<div id="pag3"></div>
+
 				    </div>
 
 				    <div role="tabpanel" class="tab-pane" id="tipo4">
 
 								<% include searchresultpro %>
+
+						<div id="pag4"></div>
 	
 				    </div>
 
 				  </div>
 
-				  <!-- Pagination -->
+				  <!-- Pagination 
 					<nav class="pull-right">
 					  <% include pagination %>
 					</nav>
+					-->
 				</div>
 			</div>
 		</div>

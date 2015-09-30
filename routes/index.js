@@ -124,16 +124,61 @@ router.get('/search', function(req, res) {
 	}
 	else{
 		//var element = 'agujeros';
-		var json;
-		api.getApiGeneral(element,function(json){
-			json = json;
-			console.log(json);
-			if(json!=null)
-				res.render('application.ejs', { content: 'searchresults',
-												element: element,
-			  									data: json,
-	  											special: 'false',
-	  											superspecial: 'false' });
+		var lic;
+		var pro;
+		var org;
+		api.getApiLic(element,1,function(lic){
+			lic = lic;
+			console.log(lic);
+			if(lic!=null){
+
+				api.getApiPro(element,1,function(pro){
+					pro = pro;
+					console.log(pro);
+					if(pro!=null){
+
+						api.getApiOrg(element,1,function(org){
+							org = org;
+							console.log(org);
+							if(org!=null){
+
+								res.render('application.ejs', { content: 'searchresults',
+																element: element,
+							  									lic: lic,
+							  									pro: pro,
+							  									org: org,
+					  											special: 'false',
+					  											superspecial: 'false' });
+
+
+							}
+								
+							else{
+								var num = Math.floor((Math.random() * 10) + 1);
+								if(num==3 || num==7){
+										res.render('404.ejs');
+									}
+									else
+								  		res.render('404real.ejs');
+								  }
+						});
+
+
+					}
+						
+					else{
+						var num = Math.floor((Math.random() * 10) + 1);
+						if(num==3 || num==7){
+								res.render('404.ejs');
+							}
+							else
+						  		res.render('404real.ejs');
+						  }
+				});
+
+
+			}
+				
 			else{
 				var num = Math.floor((Math.random() * 10) + 1);
 				if(num==3 || num==7){
@@ -145,6 +190,9 @@ router.get('/search', function(req, res) {
 		});
 	}
 });
+
+
+
 
 router.get('/file', function(req, res) {
 	var type = req.query.type;
