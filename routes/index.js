@@ -211,7 +211,7 @@ router.get('/file', function(req, res) {
 	else if(type=='proveedor'){
 		cont = 'fichaproveedor';
 	}
-	api.getApiCode(type,code,function(json){
+	api.getApiCode(type,code,1,function(json){
 		json = json;
 		if(json!=null)
 			res.render('application.ejs', { content: cont,

@@ -5,17 +5,30 @@ var port = '8000';
 var host = ip+':'+port;
 
 
-module.exports.getApiCode = function (type, code, callback){
+module.exports.getApiCode = function (type, code, pag, callback){
 
-	request("http://"+host+'/'+type+'/'+code, function (error, response, body) {
-		if (!error && (response.statusCode == 200 || response.statusCode == 201)) {
-			json = JSON.parse(body);		
-		}
-		else
-			json = null;
-		console.log(json);
-		callback(json);
-	});
+	if(type=="licitacion"){
+		request("http://"+host+'/'+type+'/'+code+'/?p_items='+pag, function (error, response, body) {
+			if (!error && (response.statusCode == 200 || response.statusCode == 201)) {
+				json = JSON.parse(body);		
+			}
+			else
+				json = null;
+			console.log(json);
+			callback(json);
+		});
+	}else{
+
+		request("http://"+host+'/'+type+'/'+code, function (error, response, body) {
+			if (!error && (response.statusCode == 200 || response.statusCode == 201)) {
+				json = JSON.parse(body);		
+			}
+			else
+				json = null;
+			console.log(json);
+			callback(json);
+		});
+	}
 };
 
 module.exports.getStats = function (callback){

@@ -69,4 +69,5 @@ var options4 = {
             }
         }
 
-$('#pag4').bootstrapPaginator(options4);
+
+

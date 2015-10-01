@@ -1,3 +1,8 @@
+<script type='text/javascript'>
+  var n_item =<%-JSON.stringify(data.n_items)%>;
+  var ele =<%-JSON.stringify(code)%>;
+</script>
+
 <div class="row">
 	
 	<div class="col-md-4 pull-right pull-resp">
@@ -61,21 +66,35 @@
 
 			<div class="panel-heading no-margin">
 				<h5>Fechas Importantes</h5>
+ 
+			<% 	var cierre;
+				var apertura;
+				var creacion;
+				var adjudicacion;
+				var temp = new Date(data.fecha_cierre);
+				cierre = temp.getDate()+'-'+temp.getMonth()+'-'+temp.getFullYear();
+				var temp2 = new Date(data.fecha_creacion);
+				creacion = temp2.getDate()+'-'+temp2.getMonth()+'-'+temp2.getFullYear();
+				var temp3 = new Date(data.fecha_adjudicacion);
+				adjudicacion = temp3.getDate()+'-'+temp3.getMonth()+'-'+temp3.getFullYear();
+				var temp4 = new Date(data.fecha_acto_apertura_economica);
+				apertura = temp4.getDate()+'-'+temp4.getMonth()+'-'+temp4.getFullYear();
+				%>
 			</div>
 
 			<div class="panel-body">
 				<ul class="list-unstyled">
 				<li class="margin-bottom">
-					<span>Apertura: 20-01-2014</span>
+					<span>Apertura: <%-apertura%></span>
 				</li>
 				<li class="margin-bottom">
-					<span>Creación: 20-01-2014</span>
+					<span>Creación: <%-creacion%></span>
 				</li>
 				<li class="margin-bottom">
-					<span>Cierre: 27-01-2014</span>
+					<span>Cierre: <%-cierre%></span>
 				</li>
 				<li class="margin-bottom">
-					<span>Adjudicación: 02-02-2014</span>
+					<span>Adjudicación: <%-adjudicacion%></span>
 				</li>
 				</ul>
 			</div>
@@ -104,18 +123,39 @@
 					<p class="lic-des"><%- data.descripcion %></p>
 				</div>
 
+				<% var estado;
+					if(data.estados[0].estado==5){
+						estado = "Publicada";
+					}
+					if(data.estados[0].estado==6){
+						estado = "Cerrada";
+					}
+					if(data.estados[0].estado==7){
+						estado = "Desierta";
+					}
+					if(data.estados[0].estado==18){
+						estado = "Revocada";
+					}
+					if(data.estados[0].estado==19){
+						estado = "Suspendida";
+					}
+					if(data.estados[0].estado==8){
+						estado = "Adjudicada";
+					}
+				%>
+
 				<span class="info-tag">Adjudicación </span>
 				
 				<div class="panel panel-inverted">
 
 					<!-- Licitación status --> 
-					<span class="licitacion-status">Adjudicada</span>
+					<span class="licitacion-status"><%-estado%></span>
 					
 					<div class="panel-body">
 						<div class="row">
 							<div class="col-sm-4">
 								<%
-									var y = data.items.length;
+									var y = data.n_items;
 									var x = 0;
 									var total = 0;
 									for(var e=0;e<data.items.length;e++){
@@ -125,7 +165,7 @@
 										}
 									}
 								%>
-								<span class="numformat value"><span><%- x %></span><span><%- y %></span></span>
+								<span class="numformat value"><span><%- x %></span>/<span><%- y %></span></span>
 								<p>items adjudicados</p>
 							</div>
 
@@ -140,16 +180,22 @@
 				</div>
 
 				<div>
-					<ul class="list-unstyled adj-list">
+					<ul class="list-unstyled adj-list" id="itemsdetalle">
 		
 							<% include itemdetalle %>
 					
 					</ul>
+
+					<div id="itempag"></div>
+				
 				</div>
 
 			</div>
+
+
 
 		</section>
 	</div>
 
 </div>	
+			<script type="text/javascript" charset="utf-8" src="javascripts/paginator-item.js"></script>
