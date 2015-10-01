@@ -42,6 +42,7 @@ $purp: "#788EDB";
 /* ======== MIXIN ======== */
 /* ======================= */
 
+
 @mixin flexbox() {
   display: -webkit-box;
   display: -moz-box;
@@ -118,6 +119,10 @@ $purp: "#788EDB";
 /* ========================= */
 /* ======== GENERAL ======== */
 /* ========================= */
+
+em {
+	font-style: normal !important;
+}
 
 html,body {
 	height: 100%;
@@ -2841,6 +2846,12 @@ input[type=number] {
 
 	.small-lead {
 		margin-bottom: 15px;
+	}
+
+	pre {
+		max-height: 54px;
+		word-wrap: normal;
+
 	}
 }
 
