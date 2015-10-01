@@ -1,8 +1,8 @@
 <% for(var w=0; w<pro.proveedores.length; w++) { %>
-<div class="search-result-item">
-	<h4 class="collapsable-text"><a href=<%-"/file?type=proveedor&code="+pro.proveedores[w].id%>  class="long-text"><%- pro.proveedores[w].nombre%></a></h4>
+<div class="search-result-item" code=<%-w%> type="pro" visibility="visible">
+	<h4 class="collapsable-text"><a namelinkpro=<%-w%> href=<%-"/file?type=proveedor&code="+pro.proveedores[w].id%>  class="long-text"><%- pro.proveedores[w].nombre%></a></h4>
 	<!--<p class="org-name inline">AGA S.A. HEALTCARE CONCEPCION</p>-->
-	<p class="org-name inline"><%- pro.proveedores[w].rut%></p>
+	<p class="org-name inline" rutpro=<%-w%>><%- pro.proveedores[w].rut%></p>
 	<!--<p class="lic-des">PDTE ERRAZURIZ 2631, 4to PISO PROVIDENCIA, Providencia, Región Metropolitana</p>-->
 </div>
 <% }%>
