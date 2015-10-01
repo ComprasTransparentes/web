@@ -1,8 +1,21 @@
-<% for(var w=0; w<org.organismos.length; w++) { %>
+<%
+if(org.organismos.length == 0) { 
+%>
+
+	<% include noresults %>
+
+
+<%	
+
+} else {
+
+%> 
+	<h1>Acá irían los filtros</h1>
+<%
+
+ for(var w=0; w<org.organismos.length; w++) { %>
 <div class="search-result-item" code=<%-w%> type="org" visibility="visible">
 	<h4 class="collapsable-text"><a namelinkorg=<%-w%> href=<%-"/file?type=organismo&code="+org.organismos[w].id%> class="long-text"><%-org.organismos[w].nombre%></a></h4>
 	<p class="org-name inline" namecat=<%-w%>><%-org.organismos[w].categoria%></p>
-	<!--<p class="org-name inline"><%-org.organismos[w].rut%></p>-->
-	<!-- <p class="lic-des"><%-org.organismos[w].direccion_unidad%>, <%-org.organismos[w].comuna_unidad%>, <%-org.organismos[w].region_unidad%></p> -->
 </div>
-<% }%>
+<% }}%>

@@ -9,39 +9,29 @@
 
 	<div class="panel panel-default search-panel">
 		<div class="panel-body">
-			<% include searchbar %>
+			<form action="search" method="get">	
+				<div class="input-group compras-avanzadas">
+			      	<input type="text" class="form-control" placeholder="Buscar en comprastransparentes.cl" name="q" value=<%- element %>>
+			      	<span class="input-group-btn">
+		        		<button class="btn btn-default btn-compras-transparentes" type="submit">Buscar</button>
+			      	</span>
+			    </div>
+			</form>
+
 		</div>
 	</div>
 
 	<div class="row">
 
-<!-- 		<div class="col-md-4 pull-right pull-resp">
-			<div class="panel panel-color">
-				<div class="panel-heading">
-					<h5>Filtros utilizados</h5>
-				</div>
-				<ul class="list-unstyled filter-list">
+		<%
+			if(elGatito==true) {
+				%>
 
-					<li >
-						<span>Búsqueda</span>
-						<span><%- element %></span>
-						<p class="no-margin">
-							<em style="font-weight: 300; font-size:13px;">Se encontraron <%- lic.licitaciones.length+org.organismos.length+pro.proveedores.length %> coincidencias</em>
-						</p>
-					</li>
-					
-					<% for(var i=0; i<6; i++) { %>
-					
-						<% include filteritem %>
-					<% } %>
-		
+				<h1>El gatito es de verdad</h1>
 
-				</ul>
-				<div class="panel-footer">
-					<button class="btn btn-primary pull-right">Refiltrar</button>
-				</div>
-			</div>
-		</div> -->
+				<%
+			}
+		else { %>
 
 		<div class="col-md-12">
 			<div class="panel panel-default results-panel">
@@ -52,7 +42,7 @@
 					<ul class="list-unstyled search-result-description">
 
 						<li >
-							<span>Búsqueda</span>
+							<span>Mostrando resultados de</span>
 							<span><%- element %></span>
 							<span class="no-margin">
 								<em>Se encontraron <%- lic.n_licitaciones+org.n_organismos+pro.n_proveedores %> coincidencias</em>
@@ -76,24 +66,22 @@
 				    <!-- Licitaciones lista -->
 				    <div role="tabpanel" class="tab-pane active" id="tipo1">
 
-								<% include searchresultlicitacion %>
-							<div id="pag1"></div>
+						<% include searchresultlicitacion %>
+						<div id="pag1"></div>
 
 				    </div>
 
 				    <!-- Organismos lista -->
 				    <div role="tabpanel" class="tab-pane" id="tipo3">
 
-								<% include searchresultorg %>
-
+						<% include searchresultorg %>
 						<div id="pag3"></div>
 
 				    </div>
 
 				    <div role="tabpanel" class="tab-pane" id="tipo4">
 
-								<% include searchresultpro %>
-
+						<% include searchresultpro %>
 						<div id="pag4"></div>
 	
 				    </div>
@@ -108,6 +96,8 @@
 				</div>
 			</div>
 		</div>
+
+		<% } %>
 
 	</div>
 
