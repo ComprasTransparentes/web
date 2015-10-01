@@ -1,3 +1,53 @@
+<%
+	function replaceAll(find, replace, str) {
+  		return str.replace(new RegExp(find, 'g'), replace);
+	}
+
+	var api = "http://hacklab.errdd.com:8000";
+	var website = "http://hacklab.errdd.com:3000";
+
+	var text='<script type="text/javascript" charset="utf-8" src="'+website+'/javascripts/dug.js"></script><link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"><link rel="stylesheet" type="text/css" href="'+website+'/stylesheets/embed.css"/><script id="dugjs-template" type="text/x-dug-template"><div class="embed-container">';
+	text = text+'<div class="embed-container" id="comprastransparentes"><div class="fluid-container"><div class="panel panel-default"><div class="panel-body">'
+
+	
+	if(type=="licitacion"){
+		text = text+'<h3 class="title">{{nombre}}</h3>';
+		text = text+'<p><strong>Fecha de Publicación:</strong> 02-03-2015</p>';
+		text = text+'<p><strong>Estado:</strong> Licitación cerrada</p>';
+		text = text+'<p><strong>Apertura:</strong> 02-03-2015</p>';
+	}
+	if(type=="organismo"){
+		text = text+'<h3 class="title">{{nombre_comprador}}</h3>';
+		text = text+'<p><strong>Rut:</strong> {{rut_unidad}}</p>';
+
+	} 
+	if(type=="proveedor"){
+		text = text+'<h3 class="title">{{nombre}}</h3>';
+		text = text+'<p><strong>Rut:</strong> {{rut}}</p>';
+	}	
+
+	text = text+'</div><div class="panel-footer"><a href="'+website+'/"><img src="'+website+'/images/comprastransparentes-logo.png"></a>';
+
+	text = text+'<a class="pull-right" href="'+website+'/file?type='+type+'&code='+code+'">Ver detalle <span class="glyphicon glyphicon-caret-down"></span> </a>';
+	
+	text = text+'</div></div></div></div></script><script>';
+
+	text = text+'dug({endpoint: "'+api+'/';
+	text = text+type+"/"+code;
+	text = text+'/",beforeRender: function( data ){},template: "#dugjs-template"});</script>';
+
+	text = replaceAll("<", "&lt;", text);
+	text = replaceAll(">", "&gt;",text);
+	text = replaceAll("á", "&aacute;",text);
+	text = replaceAll("é", "&eacute;",text);
+	text = replaceAll("í", "&iacute;",text);
+	text = replaceAll("ó", "&oacute;",text);
+	text = replaceAll("ú", "&uacute;",text);
+
+	console.log(text);
+	
+%>
+
 <div class="embed-stuff">
 	<button type="button" class="btn " data-toggle="modal" data-target="#myModal">
 	  <i class="fa fa-share-square-o"></i> <span>Embeber contenido</span>
@@ -13,7 +63,7 @@
 	  </div>
 	  <div class="modal-body">
 	  	<p class="small-lead">Agrega la siguiente línea de código en tu sitio</p>
-			<pre>Aquí va el código</pre>
+			<pre><%-text%></pre>
 	  </div>
 	  <div class="modal-footer">
 			<button type="button" class="btn btn-compras-transparentes" data-dismiss="modal">Cerrar</button>

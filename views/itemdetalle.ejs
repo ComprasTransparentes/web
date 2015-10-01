@@ -33,7 +33,7 @@
 
 		<div class="panel-body">			
 			<span class="info-tag">Vendedor</span>
-			<h4 class="collapsable-text"><%- data.items[k].adjudicacion.proveedor.nombre %></h4>
+			<h4 class="collapsable-text"><a href=<%-"/file?type=proveedor&code="+data.items[k].adjudicacion.proveedor.id%>><%- data.items[k].adjudicacion.proveedor.nombre %></a></h4>
 			<p class="org-name">RUT: <%- data.items[k].adjudicacion.proveedor.rut %></p>
 
 			<div class="flex-wrapper grey-bck">

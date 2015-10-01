@@ -217,7 +217,9 @@ router.get('/file', function(req, res) {
 			res.render('application.ejs', { content: cont,
 	  									data: json,
 	  									special: 'false',
-	  									superspecial: 'false' });
+	  									superspecial: 'false',
+	  									code: code,
+	  									type: type });
 		else{
 			var num = Math.floor((Math.random() * 10) + 1);
 			if(num==3 || num==7){
