@@ -104,6 +104,10 @@ router.get('/', function(req, res) {
 router.get('/search', function(req, res) {
 	//var type = 'licitacion';
 	var element = req.query.q;
+	var token = false;
+	if (element == undefined) {
+		token = true;
+	}
 
 	if(element == "wissepi"){
 		var num = Math.floor((Math.random() * 10) + 1);
@@ -148,7 +152,8 @@ router.get('/search', function(req, res) {
 							  									pro: pro,
 							  									org: org,
 					  											special: 'false',
-					  											superspecial: 'false' });
+					  											superspecial: 'false',
+					  											elGatito: token });
 
 
 							}

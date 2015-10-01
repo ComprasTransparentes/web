@@ -87,6 +87,13 @@ $purp: "#788EDB";
 
   .no-filters {
   	margin: auto;
+
+  	.no-results {
+		text-transform: none;
+		font-style: normal;
+		padding: 45px 0 30px;
+		font-size: 16px;
+  	}
   }
 
 }
@@ -1423,9 +1430,7 @@ body {
 
 .compras-transparentes {
 	background-image: url("../images/comprastransparentes-logo.png");
-	padding-top: 140px;
-	padding-left: 60px;
-	padding-right: 60px;
+	padding: 140px 60px 20px;
 	margin-top: 160px;
 	margin-bottom: 15px;
 	background-repeat: no-repeat;
@@ -1434,6 +1439,8 @@ body {
 
 	&.comparador-transparente {
 		background-image: url("../images/comparadortransparente.png");
+		padding-bottom: 0;
+		padding-top: 120px;
 	}
 
 	@media #{$md} {
@@ -1888,7 +1895,6 @@ input[type=number] {
 
 .nav {
 	&.search-tabs {
-		margin-bottom: 5px;
 		position: relative;
 
 		.pills-border {
@@ -1959,10 +1965,6 @@ input[type=number] {
 	}
 }
 
-.search-results-panel {
-	padding-left: 15px;
-}
-
 .search-result-description {
 
 	margin-bottom: 30px;
@@ -2001,6 +2003,16 @@ input[type=number] {
 
 	h4 {
 		margin-bottom: 0px;
+ 
+ 	 	+ a {
+			
+			&:hover {
+				p {
+					text-decoration: none;
+					color: #{$blue};
+				}
+			}
+		}
 	}
 
 	p  {
@@ -2019,20 +2031,23 @@ input[type=number] {
 
 		&.org-name {
 
+			.fa {
+				margin-left: 5px;
+			}
+
 			+ .org-name {
 				margin-left: 5px;
 				&:before {
 					content: "/\00a0";
 					padding-right:3px; 
 				}
+
 			}
 
 			font-weight: 500;
 			color: #666;
 
 			a {
-				margin-left: 5px;
-				color: inherit;
 
 				&:hover {
 					text-decoration: none;
@@ -2343,6 +2358,10 @@ input[type=number] {
 
 			&:last-child {
 				@include flexbox();
+
+				h4 {
+					font-size: 18px;
+				}
 				
 				p {
 					margin: auto;
@@ -2362,6 +2381,27 @@ input[type=number] {
 /* ========================== */
 /* ======== CAROUSEL ======== */
 /* ========================== */
+
+.results-filter {
+	background-color: #eee;
+	border-radius: 4px;
+	margin-top: 15px;
+	padding: 15px;
+	padding-bottom: 10px;
+	overflow: hidden;
+
+	.selector {
+		margin-right: 15px;
+		min-width: 180px;
+		float: left;
+		margin-bottom: 5px;
+	}
+
+	.btn {
+		min-width: 80px;
+		font-size: 13px;
+	}
+}
 
 #carousel-rankings {
 
@@ -2522,6 +2562,10 @@ input[type=number] {
 		border-radius: 15px;
 		overflow: hidden;
 		border: 3px solid #{$ltblue};
+
+		+ p {
+			margin-top: 60px;
+		}
 	}
 
 	.comparator-item {
@@ -2798,4 +2842,57 @@ input[type=number] {
 	.small-lead {
 		margin-bottom: 15px;
 	}
+}
+
+.pagination {
+
+	float: right;
+
+	ul {
+		list-style: none;
+
+		li {
+			display: inline-block;
+			border: 1px solid #{$ltblue};
+			border-right: none;
+
+			&:first-child {
+				border-top-left-radius: 4px;
+				border-bottom-left-radius: 4px;
+			}
+
+			&:last-child {
+				border-top-right-radius: 4px;
+				border-bottom-right-radius: 4px;
+				border-right: 1px solid #{$ltblue};
+			}
+
+			&.active {
+				background-color: #{$ltblue};
+				
+				a {
+					color: #{$turq};
+				}
+			}
+
+			a {
+				height: 37px;
+				width: 37px;
+				padding: 9px 0;
+				display: block;
+				cursor: pointer;
+				text-align: center;
+
+				&:hover {
+					text-decoration: none;
+				}
+			}
+		}
+	}
+}
+
+.filter-box {
+	background-color: #eee;
+	padding: 15px;
+	overflow: hidden;
 }
