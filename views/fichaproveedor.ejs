@@ -5,64 +5,45 @@
 <div class="container">
 	<div class="row">
 			
-		<div class="col-md-12">
-			<div class="panel panel-default fich">
+		<div class="col-md-4 pull-right pull-resp">
+			<div class="panel panel-color fich">
 
-				<div class="panel-body">
-					<h3>Ficha de Proveedor</h3>
-
-					<br>
-
-					<div class="row">
-						<div class="col-sm-6">
-
-							<span class="info-tag">Proveedor</span>
-
-							<div>
-								<h4 class="collapsable-text"><%-data.nombre%></h4>
-								<span>Código: <%-data.id%></span>
-							</div>
-
-							<span class="info-tag">RUT</span>
-							<div>
-								<h4 class="collapsable-text"><%-data.rut%></h4>
-
-							</div>
-						</div>
-
-					
-					</div>
+				<div class="panel-heading no-margin">
+					<h5>Información de Proveedor</h5>
 				</div>
 
+				<div class="panel-body no-margin">
+					<div>
+						<span class="info-tag">Proveedor</span>
+						<div>
+							<h5><%-data.nombre%></h5>
+							<ul class="list-unstyled">
+								<li>Código: <%-data.id%></li>
+								<li>RUT: <%-data.rut%></li>
+							</ul>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 
-		<div class="col-md-12">
+		<div class="col-md-8">
 			<div class="panel panel-default stats">
-				<div class="panel-body">
-					<!-- filtro temporal -->
-					<div class="row">
-						<div class="col-md-6">
-							<h3>Estadísticas</h3>
-						</div>
+			
+				<% include embedeitor %>
+				
+				<!--==============-->
+				<!-- Estadísticas -->
+				<!--==============-->
 
-						<div class="col-md-6">
-						  <div class="btn-group pull-right pull-resp" data-toggle="buttons">
-							  <label class="btn btn-primary active">
-							    <input type="radio" name="options" id="option1" autocomplete="off" checked> Último semestre
-							  </label>
-							  <label class="btn btn-default">
-							    <input type="radio" name="options" id="option2" autocomplete="off"> Último año
-							  </label>
-							  <label class="btn btn-default">
-							    <input type="radio" name="options" id="option3" autocomplete="off"> Últimos dos años
-							  </label>
-							  <label class="btn btn-default">
-							    <input type="radio" name="options" id="option3" autocomplete="off"><i class="fa fa-calendar"></i>
-							  </label>
-							</div>
-						</div>
+				<div class="panel-body">
+					
+
+					<div class="legend">
+						<h4>Estadísticas</h4>
+						<p>Información de licitaciones y estadísticas recopilada desde Enero de 2013</p>
 					</div>
+
 
 					<!-- Estadística Sumario -->
 					<span class="info-tag">Sumario</span>
@@ -70,65 +51,102 @@
 						<div class="panel-body">
 							<div class="row">
 								<div class="col-md-6 col-sm-6">
-									<span class="value clp">40.000.000</span>
-									<p>gasto por órdenes de compra</p>
+									<span class="numformat value clp">40000000</span>
+									<p>Monto total adjudicado</p>
 								</div>
 								<div class="col-md-6 col-sm-6">
-									<span class="value clp">6.666.666</span>
-									<p>gasto promedio mensual</p>
+									<span class="numformat value">1000</span>
+									<p>cantidad de licitaciones ganadas</p>
 								</div>
 								<div class="col-md-6 col-sm-6">
-									<span class="value">78</span>
-									<p>proveedores beneficiados</p>
-								</div>
-								<div class="col-md-6 col-sm-6">
-									<span class="value">215</span>
-									<p>órdenes de compra emitidas</p>
+									<span class="numformat value">1020</span>
+									<p>cantidad de licitaciones postuladas</p>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 
+				<!--=============================-->
 				<!-- Licitaciones más cuantiosas -->
+				<!--=============================-->
+
+				<!-- Carga si los datos vienen vacíos -->
+				<%if(data.extra.top_licitaciones.length == 0){  %>
+
+					<div class="panel-body">
+
+						<div class="legend">
+							<h4>Licitaciones más cuantiosas</h4>
+						</div>
+
+						<div class="flex-wrapper daslaf">
+							<ul class="list-unstyled filter-list transparent no-filters">
+								<li class="text-center no-filters"><i class="fa fa-frown-o"></i> ¡Oops! No hay información asociada</li>
+							</ul>
+						</div>
+
+					</div>
+					
+				<% }
+				
+				else {%>
+
+				<!-- Carga si viene correcto -->
 				<div class="panel-body">
-					<h4>Licitaciones más cuantiosas</h4>
-					<p>Lista de licitaciones más cuantiosas en el período de [período]</p>
+					<div class="legend">
+						<h4>Licitaciones más cuantiosas</h4>
+						<p>Licitaciones en las que el proveedor se ha visto más beneficiado desde Enero de 2013</p>
+					</div>
 
 					<div class="row" id="licmascuantiosas">
-						<div class="col-sm-6">
+						<div class="col-md-6">
 							<table class="table postulant-list clickable-table">
 								<thead>
-									<td>Título</td>
-									<td>Monto</td>
+									<tr>
+										<td>Título</td>
+										<td>Monto</td>
+									</tr>
 								</thead>
 								<tbody>
-									<% 	var tt = 10;
+									<% 
+
+									var tt = 10;
+								
 									if(data.extra.top_licitaciones.length < tt){
 										tt = data.extra.top_licitaciones.length;
 									}
+
 									for(var d=0; d<tt; d++){
-										if(d==0){ %>
+									
+										if(d==0){ 
 
-									<tr class="active licitacion" id=<%-d%> onclick="magia(this);" >
+									%>
 
-									<% }else{ %>
+										<tr class="active licitacion" id=<%-d%> onclick="magia(this);" >
+											<td><%-data.extra.top_licitaciones[d].nombre%></td>
+											<td><span class="numformat clp"><%-data.extra.top_licitaciones[d].monto%></span></td>
+										</tr>
+
+									<% }
+									else{ %>
+
 										<tr class="licitacion" id=<%-d%> onclick="magia(this);" >
-										<%}%>
-
-										<td><%-data.extra.top_licitaciones[d].nombre%></td>
-										<td><span class="clp"><%-data.extra.top_licitaciones[d].monto%></span></td>
-
-									</tr>
-									<%}%>															
+											<td><%-data.extra.top_licitaciones[d].nombre%></td>
+											<td><span class="numformat clp"><%-data.extra.top_licitaciones[d].monto%></span></td>
+										</tr>
+									<%}%><!-- Cierre else -->
+									
+									<%}%><!-- Cierre for -->															
 								</tbody>
 							</table>
 						</div>
 
 
-						<div class="col-sm-6">
+						<div class="col-md-6">
 							
 							<div class="panel panel-inverted panel-drkblue">
+								
 								<div class="panel-heading">
 									<span class="info-tag">Título licitación</span>
 
@@ -141,41 +159,24 @@
 									
 
 									<div class="row">
-										<div class="col-md-6">
-											<span class="value">12</span>
-											<p>Órdenes de compra emitidas</p>
-										</div>
-										<div class="col-md-6">
-											<span class="value">27</span>
+										<div class="col-md-12">
+											<span class="numformat value">27</span>
 											<p>Proveedores beneficiados</p>
 										</div>
-										<div class="col-md-6">
-											<span class="value clp" id="monto_lic"><%-data.extra.top_licitaciones[0].monto%></span>
-											<p>monto total</p>
+										<div class="col-md-12">
+											<span class="numformat value clp" id="monto_lic"><%-data.extra.top_licitaciones[0].monto%></span>
+											<p>monto total de licitación</p>
+										</div>
+										<div class="col-md-12">
+											<span class="numformat value clp" id="monto_lic_prov">100000</span>
+											<p>monto adjudicado por este proveedor</p>
 										</div>
 									</div>
 									
-									<br>
-
-									<div class="flex-wrapper">
-											<div class="info-box blue-box">
-												<span class="info-tag">tipo de convocatoria</span>
-												<p>Convocatoria Abierta</p>
-											</div>
-											<div class="info-box blue-box">	
-												<span class="info-tag">tipo de adjudicación</span>
-												<p>Adjudicación múltiple sin emisión de OC</p>
-											</div>
-									</div>
 								</div>
 
 								<div class="panel-footer transparent no-border">
-									<p class="pull-left">
-										<small><a id="link_lic" href=<%-"/file?type=licitacion&code="+data.extra.top_licitaciones[0].codigo %>>Ir a ficha de licitación <i class="fa fa-arrow-circle-right"></i></a></small>
-									</p>
-									<p class="pull-right">
-										<small><a href="#">Comparar <i class="fa fa-files-o"></i></a></small>
-									</p>
+									<small><a id="link_lic" href=<%-"/file?type=licitacion&code="+data.extra.top_licitaciones[0].codigo %>>Ir a ficha de licitación <i class="fa fa-arrow-circle-right"></i></a></small>
 								</div>
 
 							</div>
@@ -183,14 +184,20 @@
 					</div>
 				</div>
 
-				<!-- Proveedores más beneficiados -->
+				<% } %>
+
+
+				<!-- Compradores Top -->
 				<div class="panel-body">
-					<h4>Proveedores más beneficiados</h4>
-					<p>Lista de proveedores más beneficiados en el período de [período] </p>
 					
+					<div class="legend">
+						<h4>Compradores top</h4>
+						<p>Lista de organismos públicos que más compran a este proveedor desde Enero de 2013 </p>
+					</div>
+
 					<div class="row" id="provmasbeneficiados">
 						<!-- Lista de proveedores -->
-						<div class="col-sm-6">
+						<div class="col-md-6">
 							<table class="table postulant-list clickable-table">
 								<thead>
 									<td>Nombre</td>
@@ -198,83 +205,79 @@
 								</thead>
 								<tbody>
 									<tr class="active">
-										<td>Comercializadora Ilhabella Eirl</td>
+										<td>Hospital de Til-Til</td>
 										<td><span class="clp">45.000.000</span></td>
 
 									</tr>
 									<tr>
-										<td>Comercializadora Ilhabella Eirl</td>
+										<td>Hospital de Til-Til</td>
 										<td><span class="clp">45.000.000</span></td>
 									</tr>
 									<tr>
-										<td>Comercializadora Ilhabella Eirl</td>
+										<td>Hospital de Til-Til</td>
 										<td><span class="clp">45.000.000</span></td>
 									</tr>
 									<tr>
-										<td>Comercializadora Ilhabella Eirl</td>
+										<td>Hospital de Til-Til</td>
 										<td><span class="clp">45.000.000</span></td>
 									</tr>
 									<tr>
-										<td>Comercializadora Ilhabella Eirl</td>
+										<td>Hospital de Til-Til</td>
 										<td><span class="clp">45.000.000</span></td>
 									</tr>
 									<tr>
-										<td>Comercializadora Ilhabella Eirl</td>
+										<td>Hospital de Til-Til</td>
 										<td><span class="clp">45.000.000</span></td>
 									</tr>
 									<tr>
-										<td>Comercializadora Ilhabella Eirl</td>
+										<td>Hospital de Til-Til</td>
 										<td><span class="clp">45.000.000</span></td>
 									</tr>
 									<tr>
-										<td>Comercializadora Ilhabella Eirl</td>
+										<td>Hospital de Til-Til</td>
 										<td><span class="clp">45.000.000</span></td>
 									</tr>
 									<tr>
-										<td>Comercializadora Ilhabella Eirl</td>
+										<td>Hospital de Til-Til</td>
 										<td><span class="clp">45.000.000</span></td>
 									</tr>
 									<tr>
-										<td>Comercializadora Ilhabella Eirl</td>
+										<td>Hospital de Til-Til</td>
 										<td><span class="clp">45.000.000</span></td>
 									</tr>																					
 								</tbody>
 							</table>
 						</div>
 
-						<!-- Show de proveedor seleccionado -->
-						<div class="col-sm-6">
+						<!-- Show de organismo seleccionado -->
+						<div class="col-md-6">
 							
 							<div class="panel panel-inverted panel-drkblue">
 								<div class="panel-heading">
-									<span class="info-tag">Nombre Proveedor</span>
+									<span class="info-tag">Nombre Organismo</span>
 							
 									<div>
-										<h4 class="collapsable-text"><i class="fa fa-angle-double-right"></i>Comercializadora Ilhabella Eirl</h4>
-										<span>Sucursal: 717107</span>
+										<h4 class="collapsable-text"><i class="fa fa-angle-double-right"></i>Hospital de Til-Til</h4>
+										<span>Unidad: Hospital de Til-Til</span>
 										<span class="slash">RUT: 76.242.192-5</span>
-										<p><small>Av. Paul Harris 14164, Las Condes, Región Metropolitana</small></p>
+										<p><small>Av. Los Acacios 14164, Til-Til, Región Metropolitana</small></p>
 									</div>
 								</div>
 
 								<div class="panel-body">							
 
 									<div class="row">
-										<div class="col-md-6">
-											<span class="value clp">500.000.000</span>
-											<p>Facturado en ventas</p>
+										<div class="col-md-12">
+											<span class="numformat value clp">500000000</span>
+											<p>Gasto total productos comprados</p>
 										</div>
-										<div class="col-md-6">
-											<span class="value">27</span>
-											<p>Órdenes de compra adjudicadas</p>
+										<div class="col-md-12">
+											<span class="numformat value clp">1250000</span>
+											<p>Monto trasado con este proveedor</p>
 										</div>
-										<div class="col-md-6">
-											<span class="value clp">18.500.000</span>
-											<p>por orden promedio</p>
-										</div>
-										<div class="col-md-6">
-											<span class="value">4</span>
-											<p>organismos compradores</p>
+										<div class="col-md-12">
+											<span class="value">2,5%</span>
+											<p>Porcentaje de total gastado por organismo con este proveedor</p>
 										</div>
 									</div>
 									
@@ -283,12 +286,7 @@
 								</div>
 
 								<div class="panel-footer transparent no-border">
-									<p class="pull-left">
-										<small><a href="#">Ir a ficha de proveedor <i class="fa fa-arrow-circle-right"></i></a></small>
-									</p>
-									<p class="pull-right">
-										<small><a href="#">Comparar <i class="fa fa-files-o"></i></a></small>
-									</p>
+									<small><a href="#">Ir a ficha de organismo <i class="fa fa-arrow-circle-right"></i></a></small>
 								</div>
 
 							</div>
@@ -297,8 +295,10 @@
 				</div>
 
 				<div class="panel-body">
-					<h4>Todas las licitaciones</h4>
-					<p>Lista de todos los llamados a licitación realizados en el período de [período]</p>
+					<div class="legend">
+						<h4>Todas las licitaciones</h4>
+						<p>Lista de todas las licitaciones que ha ganado este proveedor desde Enero de 2013</p>
+					</div>
 
 					<div class="row">
 						<div class="col-sm-12">
@@ -384,6 +384,7 @@
 								</tbody>
 							</table>
 						</div>
+						<br>
 						<div class="col-sm-12">
 							<div class="pull-left">
 								<p class="pagination-text">

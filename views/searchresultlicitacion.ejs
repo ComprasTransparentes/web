@@ -3,13 +3,5 @@
 		<h4 class="collapsable-text"><a class="long-text" namelinklic=<%-w%> href=<%-"/file?type=licitacion&code="+lic.licitaciones[w].codigo%>><%-lic.licitaciones[w].nombre%></a><button class="btn more-text">...</button></h4>
 		<a linkorglic=<%-w%> href=<%-"/file?type=organismo&code="+lic.licitaciones[w].organismo.id%>><p class="org-name" nameorglic=<%-w%>><%-lic.licitaciones[w].organismo.nombre%><i class="fa fa-arrow-circle-right"></i></p></a>
 		<p class="lic-des" deslic=<%-w%> ><%-lic.licitaciones[w].descripcion%></p>
-		<div class="row">
-			<div class="col-xs-6">
-				<p><span>Licitación adjudicada <i class="fa fa-check"></i></span></p>
-			</div>
-			<div class="col-xs-6 text-right">
-				<p><span><i class="fa fa-calendar"></i> Apertura: 20-01-2014</span></p>
-			</div>
-		</div>
 	</div>
 <% }%>
