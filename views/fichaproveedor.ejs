@@ -51,11 +51,11 @@
 						<div class="panel-body">
 							<div class="row">
 								<div class="col-md-6 col-sm-6">
-									<span class="numformat value clp">40000000</span>
+									<span class="numformat value clp"><%-data.extra.monto_adjudicado%></span>
 									<p>Monto total adjudicado</p>
 								</div>
 								<div class="col-md-6 col-sm-6">
-									<span class="numformat value">1000</span>
+									<span class="numformat value"><%-data.extra.n_licitaciones%></span>
 									<p>cantidad de licitaciones ganadas</p>
 								</div>
 							</div>
@@ -121,7 +121,7 @@
 
 										<tr class="active licitacion" id=<%-d%> onclick="magia(this);" >
 											<td><%-data.extra.top_licitaciones[d].nombre%></td>
-											<td><span class="numformat clp"><%-data.extra.top_licitaciones[d].monto%></span></td>
+											<td><span class="numformat clp"><%-data.extra.top_licitaciones[d].monto_total%></span></td>
 										</tr>
 
 									<% }
@@ -129,7 +129,7 @@
 
 										<tr class="licitacion" id=<%-d%> onclick="magia(this);" >
 											<td><%-data.extra.top_licitaciones[d].nombre%></td>
-											<td><span class="numformat clp"><%-data.extra.top_licitaciones[d].monto%></span></td>
+											<td><span class="numformat clp"><%-data.extra.top_licitaciones[d].monto_total%></span></td>
 										</tr>
 									<%}%><!-- Cierre else -->
 									
@@ -156,11 +156,11 @@
 
 									<div class="row">
 										<div class="col-md-12">
-											<span class="numformat value clp" id="monto_lic"><%-data.extra.top_licitaciones[0].monto%></span>
+											<span class="numformat value clp" id="monto_lic"><%-data.extra.top_licitaciones[0].monto_total%></span>
 											<p>monto total de licitación</p>
 										</div>
 										<div class="col-md-12">
-											<span class="numformat value clp" id="monto_lic_prov">100000</span>
+											<span class="numformat value clp" id="monto_lic_prov"><%-data.extra.top_licitaciones[0].monto_adjudicado%></span>
 											<p>monto adjudicado por este proveedor</p>
 										</div>
 									</div>
