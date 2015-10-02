@@ -63,9 +63,10 @@
 	  </div>
 	  <div class="modal-body">
 	  	<p class="small-lead">Agrega la siguiente línea de código en tu sitio</p>
-			<pre><%-text%></pre>
+			<pre id="emb"><%-text%></pre>
 	  </div>
 	  <div class="modal-footer">
+			<button type="button" class="btn btn-compras-transparentes" data-dismiss="modal" onclick="copyToClipboard('emb')">Copiar</button>
 			<button type="button" class="btn btn-compras-transparentes" data-dismiss="modal">Cerrar</button>
 	  </div>
 	</div>
