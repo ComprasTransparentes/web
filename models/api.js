@@ -1,6 +1,6 @@
 
 var request = require('request');
-var ip = 'hacklab.errdd.com';
+var ip = '127.0.0.1';
 var port = '8000';
 var host = ip+':'+port;
 
