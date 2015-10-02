@@ -66,9 +66,30 @@
 			<pre id="emb"><%-text%></pre>
 	  </div>
 	  <div class="modal-footer">
-			<button type="button" class="btn btn-compras-transparentes" data-dismiss="modal" onclick="copyToClipboard('emb')">Copiar</button>
+			<button type="button" class="btn btn-compras-transparentes" class="clip_button">Copiar</button>
 			<button type="button" class="btn btn-compras-transparentes" data-dismiss="modal">Cerrar</button>
 	  </div>
 	</div>
   </div>
 </div>
+
+<script type="text/javascript">
+      var client = new ZeroClipboard( $('.clip_button') );
+
+      client.on( 'ready', function(event) {
+        // console.log( 'movie is loaded' );
+
+        client.on( 'copy', function(event) {
+          event.clipboardData.setData('text/plain', document.getElementById('emb').innerHTML);
+        } );
+
+        client.on( 'aftercopy', function(event) {
+          console.log('Copied text to clipboard: ' + document.getElementById('emb').innerHTML);
+        } );
+      } );
+
+      client.on( 'error', function(event) {
+        // console.log( 'ZeroClipboard error of type "' + event.name + '": ' + event.message );
+        ZeroClipboard.destroy();
+      } );
+    </script>

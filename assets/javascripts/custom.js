@@ -221,19 +221,6 @@ $(document).ready(function() {
 
 	}
 
-	function copyToClipboard(elementId) {
-
-	  var aux = document.createElement("input");
-	  aux.setAttribute("value", document.getElementById(elementId).innerHTML);
-	  document.body.appendChild(aux);
-	  aux.select();
-	  document.execCommand("Copy");
-	  document.body.removeChild(aux);
-
-	}
-
-
-
 
 
 
