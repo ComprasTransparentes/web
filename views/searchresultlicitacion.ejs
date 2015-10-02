@@ -10,31 +10,39 @@ if(lic.licitaciones.length == 0) {
 } else {
 
 %> 
-	<div class="results-filter">
+<!-- 	<div class="results-filter">
 
-		<div class="row"></div>
-
-		<select class="selector standard flat">
-			<option selected="">Todos los productos</option>
-			<option>Producto 1</option>
-			<option>Producto 2</option>
-		</select>
-
-		<select class="selector standard flat">
-			<option selected="">Todos los ministerios</option>
-			<option>Ministerio 1</option>
-			<option>Ministerio 2</option>
-		</select>
-
-		<select class="selector standard flat">
-			<option selected="">Todos los Estados</option>
-			<option>Estado 1</option>
-			<option>Estado 2</option>
-		</select>
-
-
-		
-	</div>
+		<div class="flex-wrapper">
+			<div>	
+				<div>
+					<div class="col col-xs-6 col-sm-4 col-md-3">
+					<select class="selector standard flat full-width">
+						<option selected="">Todos los productos</option>
+						<option>Producto 1</option>
+						<option>Producto 2</option>
+					</select>
+					</div>	
+					<div class="col col-xs-6 col-sm-4 col-md-3">
+						<select class="selector standard flat full-width">
+							<option selected="">Todos los Estados</option>
+							<option>Estado 1</option>
+							<option>Estado 2</option>
+						</select>
+					</div>
+					<div class="col col-xs-6 col-sm-4 col-md-3">
+						<div class="input-group">
+						  <span class="input-group-addon"><i class="fa fa-usd"></i></span>
+						  <input type="text" class="form-control" placeholder="Desde">
+						  <input type="text" class="form-control" placeholder="Hasta">
+						</div>
+					</div>
+				</div>
+			</div>
+			<div>
+				<button class="btn btn-compras-transparentes">Filtrar</button>
+			</div>
+		</div>		
+	</div> -->
 <%
 
 for(var w=0; w<lic.licitaciones.length; w++) { %>
