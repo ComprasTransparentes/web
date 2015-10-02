@@ -23,7 +23,7 @@
 						</div>							
 					</div>
 
-					<div>
+					<!-- <div>
 						<span class="info-tag">Información Unidad</span>
 						<div>
 							<h5><%-data.nombre_unidad%></h5>
@@ -33,7 +33,7 @@
 								<li><%-data.direccion_unidad%>, <%-data.comuna_unidad%>, <%-data.region_unidad%></li>
 							</ul>
 						</div>
-					</div>
+					</div> -->
 				</div>
 
 			</div>
@@ -58,25 +58,25 @@
 						<div class="panel-body">
 							<div class="row">
 								<div class="col-md-6 col-sm-6">
-									<span class="numformat value clp">40000000</span>
+									<span class="numformat value clp"><%-data.extra.monto_adjudicado%></span>
 									<p>gasto total en productos comprados</p>
 								</div>
 								<div class="col-md-6 col-sm-6">
-									<span class="numformat value">1000</span>
+									<span class="numformat value"><%-data.extra.n_licitaciones%></span>
 									<p>cantidad de licitaciones publicadas</p>
 								</div>
 								<div class="col-md-6 col-sm-6">
-									<span class="numformat value">1000</span>
+									<span class="numformat value"><%-data.extra.n_licitaciones_adjudicadas%></span>
 									<p>cantidad de licitaciones adjudicadas</p>
 								</div>
 								<div class="col-md-6 col-sm-6">
-									<span class="numformat value clp">40000</span>
+									<span class="numformat value clp"><%- Math.floor(data.extra.monto_adjudicado/data.extra.n_licitaciones_adjudicadas) %></span>
 									<p>monto promedio de gasto por licitación</p>
 								</div>
-								<div class="col-md-6 col-sm-6">
+								<!-- <div class="col-md-6 col-sm-6">
 									<span class="numformat value">78</span>
 									<p>proveedores beneficiados</p>
-								</div>
+								</div> -->
 							</div>
 						</div>
 					</div>
@@ -176,8 +176,8 @@
 
 									<div class="row">
 										<div class="col-md-12">
-											<span class="numformat value">27</span>
-											<p>Proveedores beneficiados</p>
+											<!-- <span class="numformat value">27</span>
+											<p>Proveedores beneficiados</p> -->
 										</div>
 										<div class="col-md-12">
 											<span class="numformat value clp" id="monto_lic"><%-data.extra.top_licitaciones[0].monto%></span>
@@ -290,14 +290,14 @@
 												<span class="numformat value clp" id="monto_pro"><%-data.extra.top_proveedores[0].monto%></span>
 												<p class="checkmillion">Facturado en ventas</p>
 											</div>
-											<div class="col-md-12">
+											<!-- <div class="col-md-12">
 												<span class="numformat value clp">18500000</span>
 												<p>por orden promedio</p>
 											</div>
 											<div class="col-md-12">
 												<span class="numformat value">4</span>
 												<p>organismos compradores</p>
-											</div>
+											</div> -->
 										</div>
 										
 										<br>
