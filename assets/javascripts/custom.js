@@ -171,7 +171,8 @@ $(document).ready(function() {
 
 		$('#code_lic').text(data.extra.top_licitaciones[el.id].codigo);
 		$('#nombre_lic').text(data.extra.top_licitaciones[el.id].nombre);
-		$('#monto_lic').text(data.extra.top_licitaciones[el.id].monto);
+		$('#monto_lic').text(data.extra.top_licitaciones[el.id].monto_total);
+		$('#monto_lic_pro').text(data.extra.top_licitaciones[el.id].monto_adjudicado);
 		$('#link_lic').attr("href","/file?type=licitacion&code="+data.extra.top_licitaciones[el.id].codigo);
 
 
