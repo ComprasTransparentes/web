@@ -1,5 +1,7 @@
 <script type='text/javascript'>
   var data =<%-JSON.stringify(data)%>
+  var n_item =<%-JSON.stringify(data.extra.n_licitaciones)%>;
+  var ele =<%-JSON.stringify(code)%>;
 </script>
 
 <div class="container">
@@ -305,7 +307,7 @@
 									</div>
 
 									<div class="panel-footer transparent no-border">
-											<small><a id="link_pro" href=<%-"/file?type=proveedor&code="+data.extra.top_licitaciones[0].id %>>Ir a ficha de proveedor <i class="fa fa-arrow-circle-right"></i></a></small>
+											<small><a id="link_pro" href=<%-"/file?type=proveedor&code="+data.extra.top_proveedores[0].id %>>Ir a ficha de proveedor <i class="fa fa-arrow-circle-right"></i></a></small>
 									</div>
 
 								</div>
@@ -334,84 +336,70 @@
 									<td>Estado</td>
 									<td></td>
 								</thead>
-								<tbody>
-									<tr>
-										<td>Insumos médicos y medicamentos</td>
-										<td>20-01-2014</td>
-										<td>Adjudicada</td>
-										<td><a href="#">Ver ficha <i class="fa fa-arrow-circle-right"></i></a></td>
+								<tbody id="liclist">
+
+									<%for(var t= 0;t<data.extra.licitaciones.length; t++){%>
+									<tr id="lici" code=<%-t%>>
+										<td nombrelic=<%-t%>><%-data.extra.licitaciones[t].nombre%></td>
+										<% 	var creacion;
+											var temp2 = new Date(data.extra.licitaciones[t].fecha_creacion);
+											creacion = temp2.getDate()+'-'+temp2.getMonth()+'-'+temp2.getFullYear();
+											%>
+										<td datelic=<%-t%>><%-creacion%></td>
+										<% var estado;
+											if(data.extra.licitaciones[t].estado==5){
+												estado = "Publicada";
+											}
+											else if(data.extra.licitaciones[t].estado==6){
+												estado = "Cerrada";
+											}
+											else if(data.extra.licitaciones[t].estado==7){
+												estado = "Desierta";
+											}
+											else if(data.extra.licitaciones[t].estado==18){
+												estado = "Revocada";
+											}
+											else if(data.extra.licitaciones[t].estado==19){
+												estado = "Suspendida";
+											}
+											else if(data.extra.licitaciones[t].estado==8){
+												estado = "Adjudicada";
+											}
+											else{
+												estado = "Sin Estado"
+											}
+										%>
+
+										<td estadolic=<%-t%>><%-estado%></td>
+										<td id="linklic"><a linklic=<%-t%> href=<%-"/file?type=licitacion&code="+data.extra.licitaciones[t].codigo%>>Ver ficha <i class="fa fa-arrow-circle-right"></i></a></td>
 									</tr>
-									<tr>
-										<td>Insumos médicos y medicamentos</td>
-										<td>20-01-2014</td>
-										<td>Adjudicada</td>
-										<td><a href="#">Ver ficha <i class="fa fa-arrow-circle-right"></i></a></td>
-									</tr>
-									<tr>
-										<td>Insumos médicos y medicamentos</td>
-										<td>20-01-2014</td>
-										<td>Adjudicada</td>
-										<td><a href="#">Ver ficha <i class="fa fa-arrow-circle-right"></i></a></td>
-									</tr>
-									<tr>
-										<td>Insumos médicos y medicamentos</td>
-										<td>20-01-2014</td>
-										<td>Adjudicada</td>
-										<td><a href="#">Ver ficha <i class="fa fa-arrow-circle-right"></i></a></td>
-									</tr>
-									<tr>
-										<td>Insumos médicos y medicamentos</td>
-										<td>20-01-2014</td>
-										<td>Adjudicada</td>
-										<td><a href="#">Ver ficha <i class="fa fa-arrow-circle-right"></i></a></td>
-									</tr>
-									<tr>
-										<td>Insumos médicos y medicamentos</td>
-										<td>20-01-2014</td>
-										<td>Adjudicada</td>
-										<td><a href="#">Ver ficha <i class="fa fa-arrow-circle-right"></i></a></td>
-									</tr>
-									<tr>
-										<td>Insumos médicos y medicamentos</td>
-										<td>20-01-2014</td>
-										<td>Adjudicada</td>
-										<td><a href="#">Ver ficha <i class="fa fa-arrow-circle-right"></i></a></td>
-									</tr>
-									<tr>
-										<td>Insumos médicos y medicamentos</td>
-										<td>20-01-2014</td>
-										<td>Adjudicada</td>
-										<td><a href="#">Ver ficha <i class="fa fa-arrow-circle-right"></i></a></td>
-									</tr>
-									<tr>
-										<td>Insumos médicos y medicamentos</td>
-										<td>20-01-2014</td>
-										<td>Adjudicada</td>
-										<td><a href="#">Ver ficha <i class="fa fa-arrow-circle-right"></i></a></td>
-									</tr>
-									<tr>
-										<td>Insumos médicos y medicamentos</td>
-										<td>20-01-2014</td>
-										<td>Adjudicada</td>
-										<td><a href="#">Ver ficha <i class="fa fa-arrow-circle-right"></i></a></td>
-									</tr>
+									<%}%>
+									
 								</tbody>
 							</table>
 						</div>
 						<div class="col-sm-12">
 							<div class="pull-left">
 								<p class="pagination-text">
-								Viendo <span>10</span> de <span>25</span> resultados
+								<%var jj=10;
+									if (jj>data.extra.n_licitaciones)
+										jj=data.extra.n_licitaciones;%>
+								Viendo <span id="gat"><%-jj%></span> de <span><%-data.extra.n_licitaciones%></span> resultados
 								</p>
 							</div>
-							<div class="pull-right">
+							<!--<div class="pull-right">
 								<% include pagination %>
-							</div>	
+							</div>-->	
 						</div>
 					</div>
+					<div id="licpag"></div>
+
+
 				</div>
 
 			</div>
 		</div>
 	</div>	
 </div>
+
+<script type="text/javascript" charset="utf-8" src="javascripts/paginator-lic.js"></script>

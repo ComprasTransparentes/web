@@ -1,5 +1,7 @@
 <script type='text/javascript'>
   var data =<%-JSON.stringify(data)%>
+  var n_item =<%-JSON.stringify(data.extra.n_licitaciones)%>;
+  var ele =<%-JSON.stringify(code)%>;
 </script>
 
 <div class="container">
@@ -298,81 +300,25 @@
 								<thead>
 									<td>Nombre</td>
 									<td>Código</td>
-									<td>Fecha de Apertura</td>
+									<td>Monto Adjudicado</td>
 									<td>Monto Total</td>
 									<td></td>
 								</thead>
-								<tbody>
-									<tr>
-										<td>Insumos médicos y medicamentos</td>
-										<td>1509-5-L114</td>
-										<td>20-01-2014</td>
-										<td class="numformat clp">10000000</td>
-										<td><a href="#">Ver <i class="fa fa-arrow-circle-right"></i></a></td>
+								<tbody id="liclist">
+
+									<%for(var t= 0;t<data.extra.licitaciones.length; t++){%>
+									<tr id="lici" code=<%-t%>>
+										<td nombrelic=<%-t%>><%-data.extra.licitaciones[t].nombre%></td>
+										<td codelic=<%-t%>><%-data.extra.licitaciones[t].codigo%></td>
+
+										<td montoadjlic=<%-t%>><%-data.extra.licitaciones[t].monto_adjudicado%></td>
+
+								
+										<td montolic=<%-t%>><%-data.extra.licitaciones[t].monto_total%></td>
+										<td id="linklic"><a linklic=<%-t%> href=<%-"/file?type=licitacion&code="+data.extra.licitaciones[t].codigo%>>Ver ficha <i class="fa fa-arrow-circle-right"></i></a></td>
 									</tr>
-									<tr>
-										<td>Insumos médicos y medicamentos</td>
-										<td>1509-5-L114</td>
-										<td>20-01-2014</td>
-										<td class="numformat clp">10000000</td>
-										<td><a href="#">Ver <i class="fa fa-arrow-circle-right"></i></a></td>
-									</tr>
-									<tr>
-										<td>Insumos médicos y medicamentos</td>
-										<td>1509-5-L114</td>
-										<td>20-01-2014</td>
-										<td class="numformat clp">10000000</td>
-										<td><a href="#">Ver <i class="fa fa-arrow-circle-right"></i></a></td>
-									</tr>
-									<tr>
-										<td>Insumos médicos y medicamentos</td>
-										<td>1509-5-L114</td>
-										<td>20-01-2014</td>
-										<td class="numformat clp">10000000</td>
-										<td><a href="#">Ver <i class="fa fa-arrow-circle-right"></i></a></td>
-									</tr>
-									<tr>
-										<td>Insumos médicos y medicamentos</td>
-										<td>1509-5-L114</td>
-										<td>20-01-2014</td>
-										<td class="numformat clp">10000000</td>
-										<td><a href="#">Ver <i class="fa fa-arrow-circle-right"></i></a></td>
-									</tr>
-									<tr>
-										<td>Insumos médicos y medicamentos</td>
-										<td>1509-5-L114</td>
-										<td>20-01-2014</td>
-										<td class="numformat clp">10000000</td>
-										<td><a href="#">Ver <i class="fa fa-arrow-circle-right"></i></a></td>
-									</tr>
-									<tr>
-										<td>Insumos médicos y medicamentos</td>
-										<td>1509-5-L114</td>
-										<td>20-01-2014</td>
-										<td class="numformat clp">10000000</td>
-										<td><a href="#">Ver <i class="fa fa-arrow-circle-right"></i></a></td>
-									</tr>
-									<tr>
-										<td>Insumos médicos y medicamentos</td>
-										<td>1509-5-L114</td>
-										<td>20-01-2014</td>
-										<td class="numformat clp">10000000</td>
-										<td><a href="#">Ver <i class="fa fa-arrow-circle-right"></i></a></td>
-									</tr>
-									<tr>
-										<td>Insumos médicos y medicamentos</td>
-										<td>1509-5-L114</td>
-										<td>20-01-2014</td>
-										<td class="numformat clp">10000000</td>
-										<td><a href="#">Ver <i class="fa fa-arrow-circle-right"></i></a></td>
-									</tr>
-									<tr>
-										<td>Insumos médicos y medicamentos</td>
-										<td>1509-5-L114</td>
-										<td>20-01-2014</td>
-										<td class="numformat clp">10000000</td>
-										<td><a href="#">Ver <i class="fa fa-arrow-circle-right"></i></a></td>
-									</tr>
+									<%}%>
+									
 								</tbody>
 							</table>
 						</div>
@@ -380,14 +326,18 @@
 						<div class="col-sm-12">
 							<div class="pull-left">
 								<p class="pagination-text">
-								Viendo <span>10</span> de <span>25</span> resultados
+								<%var jj=10;
+									if (jj>data.extra.n_licitaciones)
+										jj=data.extra.n_licitaciones;%>
+								Viendo <span id="gat"><%-jj%></span> de <span><%-data.extra.n_licitaciones%></span> resultados
 								</p>
 							</div>
-							<div class="pull-right">
+							<!--<div class="pull-right">
 								<% include pagination %>
-							</div>	
+							</div>-->	
 						</div>
 					</div>
+					<div id="licpropag"></div>
 				</div>
 
 			</div>
@@ -396,3 +346,5 @@
 
 	</div>	
 </div>
+
+<script type="text/javascript" charset="utf-8" src="javascripts/paginator-lic.js"></script>
