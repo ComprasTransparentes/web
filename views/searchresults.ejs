@@ -7,99 +7,104 @@
 
 <section class="container">
 
-	<div class="panel panel-default search-panel">
+
+
+	<%
+		if(elGatito==true) {
+		%>
+	<div class="compras-transparentes buscador-transparente">
+		<form action="search" method="get">	
+			<div class="input-group">
+		      	<input type="text" class="form-control" placeholder="Buscar en comprastransparentes.cl" name="q" value=<%- element %>>
+		      	<span class="input-group-btn">
+	        		<button class="btn btn-default btn-compras-transparentes" type="submit">Buscar</button>
+		      	</span>
+		    </div>
+		</form>
+	</div>
+
+	<p class="text-center search-desc">Realiza una búsqueda para comenzar. Filtra los resultados para cada categoría, así podrás optimizar y personalizar tu búsqueda. El gatito es una bestia del señor.</p>
+		<%
+		}
+	else { %>
+	
+	<div class="compras-transparentes buscador-transparente"></div>
+	
+	<div class="panel panel-default results-panel">
 		<div class="panel-body">
+
 			<form action="search" method="get">	
-				<div class="input-group compras-avanzadas">
-			      	<input type="text" class="form-control" placeholder="Buscar en comprastransparentes.cl" name="q" value=<%- element %>>
+				<div class="input-group">
+			      	<input type="text" class="form-control searchbar-asdf" placeholder="Buscar en comprastransparentes.cl" name="q" value=<%- element %>>
 			      	<span class="input-group-btn">
-		        		<button class="btn btn-default btn-compras-transparentes" type="submit">Buscar</button>
+		        		<button class="btn btn-default btn-compras-transparentes searchbar-btn" type="submit">Buscar</button>
 			      	</span>
 			    </div>
 			</form>
 
-		</div>
-	</div>
 
-	<div class="row">
+			<h3>
+				Resultados de Búsqueda
+			</h3>
+			<ul class="list-unstyled search-result-description">
 
-		<%
-			if(elGatito==true) {
-				%>
-
-			<!-- 	<h1>El gatito es de verdad</h1> -->
-
-				<%
-			}
-		else { %>
-
-		<div class="col-md-12">
-			<div class="panel panel-default results-panel">
-				<div class="panel-body">
-					<h3>
-						Resultados de Búsqueda
-					</h3>
-					<ul class="list-unstyled search-result-description">
-
-						<li >
-							<span>Mostrando resultados de</span>
-							<span><%- element %></span>
-							<span class="no-margin">
-								<em>Se encontraron <%- lic.n_licitaciones+org.n_organismos+pro.n_proveedores %> coincidencias</em>
-							</span>
-						</li>
-			
-
-					</ul>
-
-				  <!-- Result pills -->
-				  <ul class="nav nav-pills search-tabs" role="tablist">
-				  	<div class="pills-border"></div>
-				    <li role="presentation" class="active"><a href="#tipo1" aria-controls="tipo2" role="tab" data-toggle="tab">Licitaciones <small><%- lic.n_licitaciones %></small></a></li>
-				    <li role="presentation"><a href="#tipo3" aria-controls="tipo3" role="tab" data-toggle="tab">Organismos <small><%- org.n_organismos %></small></a></li>
-				    <li role="presentation"><a href="#tipo4" aria-controls="tipo4" role="tab" data-toggle="tab">Proveedores <small><%- pro.n_proveedores %></small></a></li>
-				  </ul>
-
-				  <!-- Tab panes -->
-				  <div class="tab-content search-results-panel">
-				    
-				    <!-- Licitaciones lista -->
-				    <div role="tabpanel" class="tab-pane active" id="tipo1">
-
-						<% include searchresultlicitacion %>
-						<div id="pag1"></div>
-
-				    </div>
-
-				    <!-- Organismos lista -->
-				    <div role="tabpanel" class="tab-pane" id="tipo3">
-
-						<% include searchresultorg %>
-						<div id="pag3"></div>
-
-				    </div>
-
-				    <div role="tabpanel" class="tab-pane" id="tipo4">
-
-						<% include searchresultpro %>
-						<div id="pag4"></div>
+				<li >
+					<span>Mostrando resultados de</span>
+					<span><%- element %></span>
+					<span class="no-margin">
+						<em>Se encontraron <%- lic.n_licitaciones+org.n_organismos+pro.n_proveedores %> coincidencias</em>
+					</span>
+				</li>
 	
-				    </div>
 
-				  </div>
+			</ul>
 
-				  <!-- Pagination 
-					<nav class="pull-right">
-					  <% include pagination %>
-					</nav>
-					-->
-				</div>
-			</div>
+		  <!-- Result pills -->
+		  <ul class="nav nav-pills search-tabs" role="tablist">
+		  	<div class="pills-border"></div>
+		    <li role="presentation" class="active"><a href="#tipo1" aria-controls="tipo2" role="tab" data-toggle="tab">Licitaciones <small><%- lic.n_licitaciones %></small></a></li>
+		    <li role="presentation"><a href="#tipo3" aria-controls="tipo3" role="tab" data-toggle="tab">Organismos <small><%- org.n_organismos %></small></a></li>
+		    <li role="presentation"><a href="#tipo4" aria-controls="tipo4" role="tab" data-toggle="tab">Proveedores <small><%- pro.n_proveedores %></small></a></li>
+		  </ul>
+
+		  <!-- Tab panes -->
+		  <div class="tab-content search-results-panel">
+		    
+		    <!-- Licitaciones lista -->
+		    <div role="tabpanel" class="tab-pane active" id="tipo1">
+
+				<% include searchresultlicitacion %>
+				<div id="pag1"></div>
+
+		    </div>
+
+		    <!-- Organismos lista -->
+		    <div role="tabpanel" class="tab-pane" id="tipo3">
+
+				<% include searchresultorg %>
+				<div id="pag3"></div>
+
+		    </div>
+
+		    <div role="tabpanel" class="tab-pane" id="tipo4">
+
+				<% include searchresultpro %>
+				<div id="pag4"></div>
+
+		    </div>
+
+		  </div>
+
+		  <!-- Pagination 
+			<nav class="pull-right">
+			  <% include pagination %>
+			</nav>
+			-->
 		</div>
-
-		<% } %>
-
 	</div>
+
+	<% } %>
+
 
 <script type="text/javascript" charset="utf-8" src="javascripts/paginator-foot.js"></script>
 

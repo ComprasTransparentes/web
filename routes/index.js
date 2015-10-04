@@ -151,8 +151,8 @@ router.get('/search', function(req, res) {
 							  									lic: lic,
 							  									pro: pro,
 							  									org: org,
-					  											special: 'false',
-					  											superspecial: 'false',
+					  											special: 'true',
+					  											superspecial: 'true',
 					  											elGatito: token });
 
 

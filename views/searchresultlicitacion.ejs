@@ -10,39 +10,147 @@ if(lic.licitaciones.length == 0) {
 } else {
 
 %> 
-<!-- 	<div class="results-filter">
+	<div class="results-filter">
 
-		<div class="flex-wrapper">
-			<div>	
-				<div>
-					<div class="col col-xs-6 col-sm-4 col-md-3">
-					<select class="selector standard flat full-width">
-						<option selected="">Todos los productos</option>
-						<option>Producto 1</option>
-						<option>Producto 2</option>
-					</select>
-					</div>	
-					<div class="col col-xs-6 col-sm-4 col-md-3">
-						<select class="selector standard flat full-width">
-							<option selected="">Todos los Estados</option>
-							<option>Estado 1</option>
-							<option>Estado 2</option>
-						</select>
-					</div>
-					<div class="col col-xs-6 col-sm-4 col-md-3">
-						<div class="input-group">
-						  <span class="input-group-addon"><i class="fa fa-usd"></i></span>
-						  <input type="text" class="form-control" placeholder="Desde">
-						  <input type="text" class="form-control" placeholder="Hasta">
-						</div>
-					</div>
+		<h5>Filtrar resultados</h5>	
+		<div class="row narrow">
+			<div class="col col-xs-12 col-sm-6 col-md-3">
+			<select class="selector standard flat full-width">
+				<option selected="">Todos los productos</option>
+				<option>Producto 1</option>
+				<option>Producto 2</option>
+			</select>
+			</div>	
+			<div class="col col-xs-12 col-sm-6 col-md-3">
+				<select class="selector standard flat full-width">
+					<option selected="">Todos los Estados</option>
+					<option>Estado 1</option>
+					<option>Estado 2</option>
+				</select>
+			</div>
+			<div class="col col-xs-12 col-sm-12 col-md-6">
+				<div class="input-group monto">
+				  <span class="input-group-addon small"><i class="fa fa-usd"></i></span>
+				  <input type="text" class="a form-control" placeholder="Desde">
+				  <input type="text" class="form-control" placeholder="Hasta">
 				</div>
 			</div>
-			<div>
-				<button class="btn btn-compras-transparentes">Filtrar</button>
+		</div>
+		<div class="row narrow">
+			<div class="col col-sm-6 col-md-3">
+				<select class="selector dateselector no-search flat full-width">
+					<option value="fechastodas">Todas las Fechas</option>
+					<option value="creacion">Fecha de Creación</option>
+					<option value="apertura">Fecha de Apertura</option>
+					<option value="cierre">Fecha de Cierre</option>
+					<option value="adjudicacion">Fecha de Adjudicación</option>
+				</select>
 			</div>
-		</div>		
-	</div> -->
+		</div>
+		<div class="datetarget row narrow">
+			<div class="invisible col col-sm-6" id="fechacreacion">
+				<p>Fecha de creación</p>
+				<div class="datepicker-group">
+					<div class="form-group">
+		                <div class='input-group date' id='picker1'>
+		                    <span class="input-group-addon">
+		                        <span class="glyphicon glyphicon-calendar"></span>
+		                    </span>
+		                    <input type='text' class="form-control" />
+		                </div>
+		            </div>
+					<div class="form-group elmedio">
+						<p>entre</p>
+					</div>
+					<div class="form-group">
+		                <div class='input-group date' id='picker2'>
+		                    <input type='text' class="form-control" />
+		                    <span class="input-group-addon">
+		                        <span class="glyphicon glyphicon-calendar"></span>
+		                    </span>
+		                </div>
+		            </div>
+		        </div>
+			</div>
+		    <div class="invisible col col-sm-6" id="fechaapertura">
+				<p>Fecha de apertura</p>
+				<div class="datepicker-group">
+					<div class="form-group">
+		                <div class='input-group date' id='picker3'>
+		                    <span class="input-group-addon">
+		                        <span class="glyphicon glyphicon-calendar"></span>
+		                    </span>
+		                    <input type='text' class="form-control" />
+		                </div>
+		            </div>
+					<div class="form-group elmedio">
+						<p>entre</p>
+					</div>
+					<div class="form-group">
+		                <div class='input-group date' id='picker4'>
+		                    <input type='text' class="form-control" />
+		                    <span class="input-group-addon">
+		                        <span class="glyphicon glyphicon-calendar"></span>
+		                    </span>
+		                </div>
+		            </div>
+		        </div>
+			</div>
+		    <div class="invisible col col-sm-6" id="fechacierre">
+				<p>Fecha de cierre</p>
+				<div class="datepicker-group">
+					<div class="form-group">
+		                <div class='input-group date' id='picker5'>
+		                    <span class="input-group-addon">
+		                        <span class="glyphicon glyphicon-calendar"></span>
+		                    </span>
+		                    <input type='text' class="form-control" />
+		                </div>
+		            </div>
+					<div class="form-group elmedio">
+						<p>entre</p>
+					</div>
+					<div class="form-group">
+		                <div class='input-group date' id='picker6'>
+		                    <input type='text' class="form-control" />
+		                    <span class="input-group-addon">
+		                        <span class="glyphicon glyphicon-calendar"></span>
+		                    </span>
+		                </div>
+		            </div>
+		        </div>
+			</div>
+		    <div class="invisible col col-sm-6" id="fechaadjudicacion">
+				<p>Fecha de adjudicación</p>
+				<div class="datepicker-group">
+					<div class="form-group">
+		                <div class='input-group date' id='picker7'>
+		                    <span class="input-group-addon">
+		                        <span class="glyphicon glyphicon-calendar"></span>
+		                    </span>
+		                    <input type='text' class="form-control" />
+		                </div>
+		            </div>
+					<div class="form-group elmedio">
+						<p>entre</p>
+					</div>
+					<div class="form-group">
+		                <div class='input-group date' id='picker8'>
+		                    <input type='text' class="form-control" />
+		                    <span class="input-group-addon">
+		                        <span class="glyphicon glyphicon-calendar"></span>
+		                    </span>
+		                </div>
+		            </div>
+		        </div>
+			</div>
+		</div>
+		<div class="row narrow">
+			<div class="col col-md-12">
+				<button class="btn btn-compras-transparentes pull-right">Filtrar</button>
+			</div>	
+		</div>
+	</div>
 <%
 
 for(var w=0; w<lic.licitaciones.length; w++) { %>

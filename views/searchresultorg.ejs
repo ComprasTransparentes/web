@@ -10,7 +10,34 @@ if(org.organismos.length == 0) {
 } else {
 
 %> 
-<!-- 	<h1>Acá irían los filtros</h1> -->
+	<div class="results-filter">
+
+		<h5>Filtrar resultados</h5>	
+		<div class="row narrow">
+			<div class="col col-xs-12 col-sm-4">
+			<select class="selector standard flat full-width">
+				<option selected="">Todos os</option>
+				<option>Producto 1</option>
+				<option>Producto 2</option>
+			</select>
+			</div>	
+			<div class="col col-xs-12 col-sm-4">
+				<select class="selector standard flat full-width">
+					<option selected="">Todos los Estados</option>
+					<option>Estado 1</option>
+					<option>Estado 2</option>
+				</select>
+			</div>
+			<div class="col col-xs-12 col-sm-4">
+				<input type="text" class="form-control" placeholder="alala" />
+			</div>
+		</div>
+		<div class="row narrow">
+			<div class="col col-md-12">
+				<button class="btn btn-compras-transparentes pull-right">Filtrar</button>
+			</div>	
+		</div>
+	</div>
 <%
 
  for(var w=0; w<org.organismos.length; w++) { %>

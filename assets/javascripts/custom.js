@@ -21,6 +21,21 @@ function checkOverflow(el)
 
 $(document).ready(function() {
 
+	var notime = { 
+		format: 'DD/MM/YYYY',
+		minDate: '01/01/2013',
+		maxDate: moment()
+	};
+
+	$('#picker1').datetimepicker(notime);
+	$('#picker2').datetimepicker(notime);
+	$('#picker3').datetimepicker(notime);
+	$('#picker4').datetimepicker(notime);
+	$('#picker5').datetimepicker(notime);
+	$('#picker6').datetimepicker(notime);
+	$('#picker7').datetimepicker(notime);
+	$('#picker8').datetimepicker(notime);
+
 	$('.numformat').each( function() {
 
 		if(parseInt($(this).text()) > 10000000) {
@@ -162,6 +177,27 @@ $(document).ready(function() {
         		.attr('disabled', true)
         		.siblings().removeAttr('disabled');;
 	})
+
+	
+
+	$('.dateselector').on('change', function() {
+
+		var option = $($('.dateselector option:selected')).val();
+		var fecha = "#fecha";
+
+		if( option == "fechastodas") {
+			$("#fechacreacion").addClass('invisible');
+			$("#fechaapertura").addClass('invisible');
+			$("#fechacierre").addClass('invisible');
+			$("#fechaadjudicacion").addClass('invisible');
+			console.log("Malilla");
+		}
+
+		$( fecha + option).toggleClass('invisible');
+
+	});
+
+
 
 });
 
