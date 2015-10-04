@@ -121,7 +121,7 @@ $(document).ready(function() {
 	var check2 = false;
 	var check3 = false;
 
-	$('#add_min1').on('change', function(){
+	function chuika(){
 		check1 = true;
 		if ( check1 && check2 && check3){
 			$('#submit_compare').attr('disabled', false);					
@@ -130,7 +130,10 @@ $(document).ready(function() {
 		else {
 			$('#submit_compare').attr('disabled', true);	
 		}
-	});
+	}
+
+
+	$('#add_min1').on('change', chuika());
 
 	$('#add_item').on('change', function(){
 		check2 = true;

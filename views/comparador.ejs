@@ -3,43 +3,77 @@
 	<div class="panel panel-transparent panel-searchbar-home">
 		<div class="compras-transparentes comparador-transparente"></div>
 		<div class="comparator">
+		<form action="comparador" method="get">	
 			<div class="comparator-settings">
 				<div class="comparator-list">
 					<div class="comparator-item selector-group">
 						<div class="correlative min-parent">
-							<select class="selector flat full-width standard min-selector" data-placeholder="Selecciona un ministerio" id="add_min1" name="add_min1">
+							<select class="selector flat full-width standard min-selector" data-placeholder="Selecciona un organismo" id="add_min1" name="add_min1">
+								<%if(data1=='null'){%>
 								<option></option>
-								<option value="min1">Ministerio 1</option>
-								<option value="min2">Ministerio 2</option>
-								<option value="min3">Ministerio 3</option>
-								<option value="min4">Ministerio 4</option>
-								<option value="min5">Ministerio 5</option>
-								<option value="min6">Ministerio 6</option>
-								<option value="min7">Ministerio 7</option>
+								<% for(var r=0;r<min.ministerios.length;r++){%>
+									<option value=<%-min.ministerios[r].code%>><%-min.ministerios[r].name%></option>
+								<%}%>
+								<%}else{%>
+								<script type="text/javascript">
+									check3=true;
+								</script>
+								<option value=<%-data1.ministerio%>><%-data1.ministerio_nombre%></option>
+								<% for(var r=0;r<min.ministerios.length;r++){
+									if(data1.ministerio!=min.ministerios[r].code){%>
+										<option value=<%-min.ministerios[r].code%>><%-min.ministerios[r].name%></option>
+									<%}
+								}%>
+									
+								<%}%>
+								
 							</select>
 						</div>
 						<div class="correlative">
 							<select class="selector flat full-width standard" data-placeholder="Una categoría de comparación" id="add_item" name="add_item">
+								<%if(data1=='null'){%>
 								<option></option>
-								<option value="item 1">Item 1</option>
-								<option value="item 2">Item 2</option>
-								<option value="item 3">Item 3</option>
-								<option value="item 4">Item 4</option>
-								<option value="item 5">Item 5</option>
-								<option value="item 6">Item 6</option>
-								<option value="item 7">Item 7</option>
+								<% for(var r=0;r<min.item.length;r++){%>
+									<option value=<%-min.item[r].code%>><%-min.item[r].name%></option>
+								<%}%>
+								<%}else{%>
+								<script type="text/javascript">
+									check1=true;
+								</script>
+								<option value=<%-data1.categoria%>><%-data1.categoria_nombre%></option>
+								<% for(var r=0;r<min.item.length;r++){
+									if(data1.categoria!=min.item[r].code){%>
+										<option value=<%-min.item[r].code%>><%-min.item[r].name%></option>
+									<%}
+								}%>
+									
+								<%}%>
 							</select>
 						</div>
 						<div class="correlative min-parent">
 							<select class="selector flat full-width standard min-selector" data-placeholder="Y con quién compararás" id="add_min2" name="add_min2">
+								<%if(data2=='null'){%>
 								<option></option>
-								<option value="min1">Ministerio 1</option>
-								<option value="min2">Ministerio 2</option>
-								<option value="min3">Ministerio 3</option>
-								<option value="min4">Ministerio 4</option>
-								<option value="min5">Ministerio 5</option>
-								<option value="min6">Ministerio 6</option>
-								<option value="min7">Ministerio 7</option>
+								<% for(var r=0;r<min.ministerios.length;r++){%>
+									<option value=<%-min.ministerios[r].code%>><%-min.ministerios[r].name%></option>
+								<%}%>
+								<%}else{%>
+								<script type="text/javascript">
+									check2=true;
+								</script>
+								<option value=<%-data2.ministerio%>><%-data2.ministerio_nombre%></option>
+								<% for(var r=0;r<min.ministerios.length;r++){
+									if(data2.ministerio!=min.ministerios[r].code){%>
+										<option value=<%-min.ministerios[r].code%>><%-min.ministerios[r].name%></option>
+									<%}
+								}
+
+								%>
+								<script type="text/javascript">
+									$('#submit_compare').attr('disabled', false);
+								</script>
+									
+								<%}%>
 							</select>
 						</div>
 						<div class="correlative">
@@ -49,20 +83,24 @@
 					</div>
 				</div>
 			</div>
-			<div class="comparator-results hidden">
+		</form>
+		<% if(data1!='null'&&data2!='null'){%>
+			<div class="comparator-results">
 				<div class="comparator-settings">
 					<div class="comparator-list ltblue-back">
 						<div class="comparator-item">
+						
 							<div class="correlative flex-reverse">
 							 	<i class="fa fa-angle-double-right"></i>
 								<h6 class="text-right no-border">
-									<p id="ministerio_option_1"></p>
+									<p id="ministerio_option_1"><%-data1.ministerio_nombre%></p>
 								</h6>
 							</div>
 							<div class="correlative">
+			
 								<i class="fa fa-angle-double-left"></i>
 								<h6 class="no-border">
-									<p id="ministerio_option_2"></p>
+									<p id="ministerio_option_2"><%-data2.ministerio_nombre%></p>
 								</h6>
 							</div>
 						</div>
@@ -71,7 +109,7 @@
 						<div class="comparator-item">
 							<div class="correlative">
 								<h6 class="no-border item-option">
-									<p>Categoría de comparación</p>
+									<p><%-data2.categoria_nombre%></p>
 									<p id="item_option"></p>
 								</h6>
 							</div>
@@ -81,106 +119,119 @@
 				<ul class="list-unstyled comparator-list">
 					<li class="comparator-item grey5">
 						<div class="correlative flex-reverse">
+						<% if(data1.monto_total>data2.monto_total){%>
 							<h6 class="text-right winning">
-								<p>36%</p>
-								<p>de gatitos salvados en el congo</p>
+							<%}else{%>
+							<h6 class="text-right">
+							<%}%>
+								<p><%-data1.monto_total%></p>
+								<p>total de dinero otorgado en licitaciones</p>
 							</h6>
 						</div>
 						<div class="criteria" >
 							<div class="rounded-thing">
 								<i class="fa fa-hand-spock-o"></i>
 							</div>
-							<span>Índice del malilla</span>
+							<span>Dinero Total</span>
 						</div>
 						<div class="correlative">
+						<% if(data2.monto_total>data1.monto_total){%>
+							<h6 class="winning">
+							<%}else{%>
 							<h6>
-								<p>48%</p>
-								<p>de pipi en kilos de arena gastados por el gatito</p>
+							<%}%>
+								<p><%-data2.monto_total%></p>
+								<p>total de dinero otorgado en licitaciones</p>
 							</h6>
 						</div>
 					</li>
 					<li class="comparator-item grey4">
 						<div class="correlative flex-reverse">
+							<% if(data1.monto_promedio>data2.monto_promedio){%>
 							<h6 class="text-right winning">
-								<p>36%</p>
-								<p>lucheto predilecto</p>
+							<%}else{%>
+							<h6 class="text-right">
+							<%}%>
+								<p><%-data1.monto_promedio%></p>
+								<p>valor promedio por licitacion</p>
 							</h6>
 						</div>
 						<div class="criteria" >
 							<div class="rounded-thing">
 								<i class="fa fa-file-o"></i>
 							</div>
-							<span>Hola como estás</span>
+							<span>Valor Promedio</span>
 						</div>
 						<div class="correlative">
+							<% if(data2.monto_promedio>data1.monto_promedio){%>
+							<h6 class="winning">
+							<%}else{%>
 							<h6>
-								<p>48%</p>
-								<p>de whiskas en la basura</p>
+							<%}%>
+								<p><%-data2.monto_promedio%></p>
+								<p>valor promedio por licitacion</p>
 							</h6>
 						</div>
 					</li>
 					<li class="comparator-item grey3">
 						<div class="correlative flex-reverse">
+							<% if(data1.n_licitaciones_adjudicadas>data2.n_licitaciones_adjudicadas){%>
+							<h6 class="text-right winning">
+							<%}else{%>
 							<h6 class="text-right">
-								<p>36%</p>
-								<p>de chet mandinga</p>
+							<%}%>
+								<p><%-data1.n_licitaciones_adjudicadas%></p>
+								<p>licitaciones adjudicadas</p>
 							</h6>
 						</div>
 						<div class="criteria" >
 							<div class="rounded-thing">
 								<i class="fa fa-mars"></i>
 							</div>
-							<span>Promedio de gatitos</span>
+							<span>Licitaciones</span>
 						</div>
 						<div class="correlative">
+							<% if(data2.n_licitaciones_adjudicadas>data1.n_licitaciones_adjudicadas){%>
 							<h6 class="winning">
-								<p>48%</p>
-								<p>Gatitos al ataque</p>
+							<%}else{%>
+							<h6>
+							<%}%>
+								<p><%-data2.n_licitaciones_adjudicadas%></p>
+								<p>licitaciones adjudicadas</p>
 							</h6>
 						</div>
 					</li>
 					<li class="comparator-item grey2">
 						<div class="correlative flex-reverse">
+							<% if(data1.n_proveedores>data2.n_proveedores){%>
+							<h6 class="text-right winning">
+							<%}else{%>
 							<h6 class="text-right">
-								<p>36%</p>
-								<p>de gatitos salvados en el congo</p>
+							<%}%>
+								<p><%-data1.n_proveedores%></p>
+								<p>proveedores favorecidos</p>
 							</h6>
 						</div>
 						<div class="criteria" >
 							<div class="rounded-thing">
 								<i class="fa fa-venus"></i>
 							</div>
-							<span>elGatito</span>
+							<span>Proveedores</span>
 						</div>
 						<div class="correlative">
+							<% if(data2.n_proveedores>data1.n_proveedores){%>
 							<h6 class="winning">
-								<p>48%</p>
-								<p>de pipi en kilos de arena gastados por el gatito</p>
-							</h6>
-						</div>
-					</li>
-					<li class="comparator-item grey1">
-						<div class="correlative flex-reverse">
-							<h6 class="text-right winning">
-								<p>36%</p>
-								<p>de gatitos salvados en el congo</p>
-							</h6>
-						</div>
-						<div class="criteria" >
-							<div class="rounded-thing">
-								<i class="fa fa-diamond"></i>
-							</div>
-							<span>Índice del malilla</span>
-						</div>
-						<div class="correlative">
+							<%}else{%>
 							<h6>
-								<p>48%</p>
-								<p>de pipi en kilos de arena gastados por el gatito</p>
+							<%}%>
+								<p><%-data2.n_proveedores%></p>
+								<p>proveedores favorecidos</p>
 							</h6>
 						</div>
 					</li>
 				</ul>
 			</div>
+		<%}%>
 		</div>
 		<p class="text-center explanation"></p>
 	</div>

@@ -3,6 +3,7 @@ var request = require('request');
 var ip = 'hacklab.errdd.com';//'192.168.1.86';//'127.0.0.1';
 var port = '8000';
 var host = ip+':'+port;
+var fs = require('fs');
 
 
 module.exports.getApiCode = function (type, code, pag, callback){
@@ -157,6 +158,28 @@ module.exports.getApiPro = function (name, pag, callback){
 module.exports.getApiSimple= function (type, element , callback){
 
 	request("http://"+host+'/'+type+'?q='+element, function (error, response, body) {
+		if (!error && (response.statusCode == 200 || response.statusCode == 201)) {
+			json = JSON.parse(body);		
+		}
+		else
+			json = null;
+		callback(json);
+	});
+};
+
+module.exports.getMins= function (callback){
+
+	fs.readFile('assets/comparador.json', 'utf8', function (err, data) {
+		
+		if (err) throw err;
+  		var obj = JSON.parse(data);
+  		callback(obj);
+	});
+};
+
+module.exports.getMinStats= function (min, cat , callback){
+
+	request("http://"+host+'/ministerio/'+min+'/categoria/'+cat+'/stats', function (error, response, body) {
 		if (!error && (response.statusCode == 200 || response.statusCode == 201)) {
 			json = JSON.parse(body);		
 		}

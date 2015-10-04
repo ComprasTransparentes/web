@@ -243,9 +243,45 @@ router.get('/lucheto', function(req, res) {
 });
 
 router.get('/comparador', function(req, res) {
- 	res.render('application.ejs', { content: 'comparador',
- 									special: 'true',
- 									superspecial: 'true'});	
+	var min;
+	var json1;
+	var json2;
+	var m1 = req.query.add_min1;
+	var m2 = req.query.add_min2;
+	console.log(m1);
+	var item = req.query.add_item;
+	api.getMins(function(min) {
+		min = min;
+		//console.log(min);
+		if(m1!=undefined&&m2!=undefined&&item!=undefined){
+
+			api.getMinStats(m1,item,function(json1){
+				json1 = json1;
+				console.log(json1);
+				api.getMinStats(m2,item,function(json2){
+					json2 = json2;
+					console.log(json2);
+					res.render('application.ejs', { content: 'comparador',
+				 									special: 'true',
+				 									superspecial: 'true',
+				 									min: min,
+				 									data1: json1,
+				 									data2: json2});
+
+				});
+			});
+
+
+		}else{
+
+			res.render('application.ejs', { content: 'comparador',
+		 									special: 'true',
+		 									superspecial: 'true',
+		 									min: min,
+		 									data1: 'null',
+				 							data2: 'null'});
+		}
+	});	
 });
 
 router.get('/api', function(req, res) {
