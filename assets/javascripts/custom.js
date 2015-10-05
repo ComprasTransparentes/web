@@ -130,47 +130,52 @@ $(document).ready(function() {
 		$('#item_option').text($('#add_item option:selected').text());
 	});
 
-	$('#submit_compare').attr('disabled', true);
+	if(dat1== "null"){
 
-	var check1 = false;
-	var check2 = false;
-	var check3 = false;
+		$('#submit_compare').attr('disabled', true);
+		
 
-	function chuika(){
-		check1 = true;
-		if ( check1 && check2 && check3){
-			$('#submit_compare').attr('disabled', false);					
-		}
 
-		else {
-			$('#submit_compare').attr('disabled', true);	
-		}
+		var check1 = false;
+		var check2 = false;
+		var check3 = false;
+
+
+
+		$('#add_min1').on('change', function(){
+
+			check1 = true;
+			if ( check1 && check2 && check3){
+				$('#submit_compare').attr('disabled', false);					
+			}
+
+			else {
+				$('#submit_compare').attr('disabled', true);	
+			}
+		});
+
+		$('#add_item').on('change', function(){
+			check2 = true;
+			if ( check1 && check2 && check3){
+				$('#submit_compare').attr('disabled', false);					
+			}
+
+			else {
+				$('#submit_compare').attr('disabled', true);	
+			}
+		});
+
+		$('#add_min2').on('change', function(){
+			check3 = true;
+			if ( check1 && check2 && check3){
+				$('#submit_compare').attr('disabled', false);					
+			}
+
+			else {
+				$('#submit_compare').attr('disabled', true);	
+			}
+		});
 	}
-
-
-	$('#add_min1').on('change', chuika());
-
-	$('#add_item').on('change', function(){
-		check2 = true;
-		if ( check1 && check2 && check3){
-			$('#submit_compare').attr('disabled', false);					
-		}
-
-		else {
-			$('#submit_compare').attr('disabled', true);	
-		}
-	});
-
-	$('#add_min2').on('change', function(){
-		check3 = true;
-		if ( check1 && check2 && check3){
-			$('#submit_compare').attr('disabled', false);					
-		}
-
-		else {
-			$('#submit_compare').attr('disabled', true);	
-		}
-	});
 
 
 	$('.min-selector').on('change', function() {

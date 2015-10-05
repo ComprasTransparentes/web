@@ -126,6 +126,7 @@ module.exports.getApiLic = function (name, pag, callback){
 		}
 		else
 			json = null;
+		console.log(json);
 		callback(json);
 	});
 };

@@ -1,3 +1,7 @@
+<script type="text/javascript">
+	var dat1 = JSON.stringify(data1);
+</script>
+
 <section class="container no-margin" id="comparator">
 
 	<div class="panel panel-transparent panel-searchbar-home">
@@ -15,9 +19,7 @@
 									<option value=<%-min.ministerios[r].code%>><%-min.ministerios[r].name%></option>
 								<%}%>
 								<%}else{%>
-								<script type="text/javascript">
-									check3=true;
-								</script>
+								
 								<option value=<%-data1.ministerio%>><%-data1.ministerio_nombre%></option>
 								<% for(var r=0;r<min.ministerios.length;r++){
 									if(data1.ministerio!=min.ministerios[r].code){%>
@@ -37,9 +39,7 @@
 									<option value=<%-min.item[r].code%>><%-min.item[r].name%></option>
 								<%}%>
 								<%}else{%>
-								<script type="text/javascript">
-									check1=true;
-								</script>
+								
 								<option value=<%-data1.categoria%>><%-data1.categoria_nombre%></option>
 								<% for(var r=0;r<min.item.length;r++){
 									if(data1.categoria!=min.item[r].code){%>
@@ -58,9 +58,7 @@
 									<option value=<%-min.ministerios[r].code%>><%-min.ministerios[r].name%></option>
 								<%}%>
 								<%}else{%>
-								<script type="text/javascript">
-									check2=true;
-								</script>
+								
 								<option value=<%-data2.ministerio%>><%-data2.ministerio_nombre%></option>
 								<% for(var r=0;r<min.ministerios.length;r++){
 									if(data2.ministerio!=min.ministerios[r].code){%>
@@ -69,9 +67,7 @@
 								}
 
 								%>
-								<script type="text/javascript">
-									$('#submit_compare').attr('disabled', false);
-								</script>
+								
 									
 								<%}%>
 							</select>
