@@ -12,51 +12,115 @@ if(lic.licitaciones.length == 0) {
 %> 
 	<div class="results-filter">
 
+	<form action="filter" method="get">
+
+	<input type="hidden" name="q" value=<%-element%>>
+
 		<h5>Filtrar resultados</h5>	
 		<div class="row narrow">
 			<div class="col col-xs-12 col-sm-6 col-md-3">
-			<select class="selector standard flat full-width">
-				<option selected="">Todos los productos</option>
-				<option>Producto 1</option>
-				<option>Producto 2</option>
+			<select class="selector standard flat full-width" name="plic">
+				<%if(producto==""){%>
+					<option selected="" value="">Todos los productos</option>	
+					<% for (var s=0; s<min.item.length; s++ ){%>
+					<option value=<%-min.item[s].code%>><%-min.item[s].name%></option>
+					<%}
+				}else{%>
+					<option value="">Todos los productos</option>	
+					<% for (var s=0; s<min.item.length; s++ ){
+						if(producto==min.item[s].code){%>
+						<option selected="" value=<%-min.item[s].code%>><%-min.item[s].name%></option>
+						<%}else{%>
+						<option value=<%-min.item[s].code%>><%-min.item[s].name%></option>
+						<%}
+						}
+					}%>
 			</select>
 			</div>	
 			<div class="col col-xs-12 col-sm-6 col-md-3">
-				<select class="selector standard flat full-width">
-					<option selected="">Todos los Estados</option>
-					<option>Estado 1</option>
-					<option>Estado 2</option>
+				<select class="selector standard flat full-width" name="elic">
+				<%if(estado==5){%>
+					<option value="">Todos los Estados</option>
+					<option selected="" value="5">Publicada</option>
+					<option value="6">Cerrada</option>
+					<option value="8">Adjudicada</option>
+					<option value="18">Revocada</option>
+					<option value="19">Suspendida</option>
+				<%}else if(estado==6){%>
+					<option value="">Todos los Estados</option>
+					<option value="5">Publicada</option>
+					<option selected="" value="6">Cerrada</option>
+					<option value="8">Adjudicada</option>
+					<option value="18">Revocada</option>
+					<option value="19">Suspendida</option>
+				<%}else if(estado==8){%>
+					<option value="">Todos los Estados</option>
+					<option value="5">Publicada</option>
+					<option value="6">Cerrada</option>
+					<option selected="" value="8">Adjudicada</option>
+					<option value="18">Revocada</option>
+					<option value="19">Suspendida</option>
+				<%}else if(estado==18){%>
+					<option value="">Todos los Estados</option>
+					<option value="5">Publicada</option>
+					<option value="6">Cerrada</option>
+					<option value="8">Adjudicada</option>
+					<option selected="" value="18">Revocada</option>
+					<option value="19">Suspendida</option>
+				<%}else if(estado==19){%>
+					<option value="">Todos los Estados</option>
+					<option value="5">Publicada</option>
+					<option value="6">Cerrada</option>
+					<option value="8">Adjudicada</option>
+					<option value="18">Revocada</option>
+					<option selected="" value="19">Suspendida</option>
+				<%}else{%>
+					<option selected="" value="">Todos los Estados</option>
+					<option value="5">Publicada</option>
+					<option value="6">Cerrada</option>
+					<option value="8">Adjudicada</option>
+					<option value="18">Revocada</option>
+					<option value="19">Suspendida</option>
+				<%}%>
 				</select>
 			</div>
 			<div class="col col-xs-12 col-sm-12 col-md-6">
 				<div class="input-group monto">
 				  <span class="input-group-addon small"><i class="fa fa-usd"></i></span>
-				  <input type="text" class="a form-control" placeholder="Desde">
-				  <input type="text" class="form-control" placeholder="Hasta">
+				  <input type="text" class="a form-control" placeholder="Desde" name="alic" value=<%-montoi%>>
+				  <input type="text" class="form-control" placeholder="Hasta" name="xlic" value=<%-montoe%>>
 				</div>
 			</div>
 		</div>
 		<div class="row narrow">
 			<div class="col col-sm-6 col-md-3">
-				<select class="selector dateselector no-search flat full-width">
-					<option value="fechastodas">Todas las Fechas</option>
-					<option value="creacion">Fecha de Creación</option>
-					<option value="apertura">Fecha de Apertura</option>
-					<option value="cierre">Fecha de Cierre</option>
-					<option value="adjudicacion">Fecha de Adjudicación</option>
+				<select class="selector dateselector no-search flat full-width" name="tlic">
+				<%if(tipo=="fecha_publicacion"){%>
+					<option value=""></option>
+					<option select=""  value="fecha_publicacion">Fecha de Publicación</option>
+					<option value="fecha_adjudicacion">Fecha de Adjudicación</option>
+				<%}else if(tipo=="fecha_adjudicacion"){%>
+					<option value=""></option>
+					<option value="fecha_publicacion">Fecha de Publicación</option>
+					<option select=""  value="fecha_adjudicacion">Fecha de Adjudicación</option>
+				<%}else{%>
+					<option select="" value=""></option>
+					<option value="fecha_publicacion">Fecha de Publicación</option>
+					<option value="fecha_adjudicacion">Fecha de Adjudicación</option>
+				<%}%>
 				</select>
 			</div>
 		</div>
 		<div class="datetarget row narrow">
-			<div class="invisible col col-sm-6" id="fechacreacion">
-				<p>Fecha de creación</p>
+			<div class="col col-sm-6" id="fecha">
+				<p>Fecha</p>
 				<div class="datepicker-group">
 					<div class="form-group">
 		                <div class='input-group date' id='picker1'>
 		                    <span class="input-group-addon">
 		                        <span class="glyphicon glyphicon-calendar"></span>
 		                    </span>
-		                    <input type='text' class="form-control" />
+		                    <input type='text' class="form-control" name="filic" value=<%-fecha_creacioni%>/>
 		                </div>
 		            </div>
 					<div class="form-group elmedio">
@@ -64,79 +128,7 @@ if(lic.licitaciones.length == 0) {
 					</div>
 					<div class="form-group">
 		                <div class='input-group date' id='picker2'>
-		                    <input type='text' class="form-control" />
-		                    <span class="input-group-addon">
-		                        <span class="glyphicon glyphicon-calendar"></span>
-		                    </span>
-		                </div>
-		            </div>
-		        </div>
-			</div>
-		    <div class="invisible col col-sm-6" id="fechaapertura">
-				<p>Fecha de apertura</p>
-				<div class="datepicker-group">
-					<div class="form-group">
-		                <div class='input-group date' id='picker3'>
-		                    <span class="input-group-addon">
-		                        <span class="glyphicon glyphicon-calendar"></span>
-		                    </span>
-		                    <input type='text' class="form-control" />
-		                </div>
-		            </div>
-					<div class="form-group elmedio">
-						<p>entre</p>
-					</div>
-					<div class="form-group">
-		                <div class='input-group date' id='picker4'>
-		                    <input type='text' class="form-control" />
-		                    <span class="input-group-addon">
-		                        <span class="glyphicon glyphicon-calendar"></span>
-		                    </span>
-		                </div>
-		            </div>
-		        </div>
-			</div>
-		    <div class="invisible col col-sm-6" id="fechacierre">
-				<p>Fecha de cierre</p>
-				<div class="datepicker-group">
-					<div class="form-group">
-		                <div class='input-group date' id='picker5'>
-		                    <span class="input-group-addon">
-		                        <span class="glyphicon glyphicon-calendar"></span>
-		                    </span>
-		                    <input type='text' class="form-control" />
-		                </div>
-		            </div>
-					<div class="form-group elmedio">
-						<p>entre</p>
-					</div>
-					<div class="form-group">
-		                <div class='input-group date' id='picker6'>
-		                    <input type='text' class="form-control" />
-		                    <span class="input-group-addon">
-		                        <span class="glyphicon glyphicon-calendar"></span>
-		                    </span>
-		                </div>
-		            </div>
-		        </div>
-			</div>
-		    <div class="invisible col col-sm-6" id="fechaadjudicacion">
-				<p>Fecha de adjudicación</p>
-				<div class="datepicker-group">
-					<div class="form-group">
-		                <div class='input-group date' id='picker7'>
-		                    <span class="input-group-addon">
-		                        <span class="glyphicon glyphicon-calendar"></span>
-		                    </span>
-		                    <input type='text' class="form-control" />
-		                </div>
-		            </div>
-					<div class="form-group elmedio">
-						<p>entre</p>
-					</div>
-					<div class="form-group">
-		                <div class='input-group date' id='picker8'>
-		                    <input type='text' class="form-control" />
+		                    <input type='text' class="form-control" name="fenlic" value=<%-fecha_creacione%> />
 		                    <span class="input-group-addon">
 		                        <span class="glyphicon glyphicon-calendar"></span>
 		                    </span>
@@ -150,6 +142,7 @@ if(lic.licitaciones.length == 0) {
 				<button class="btn btn-compras-transparentes pull-right">Filtrar</button>
 			</div>	
 		</div>
+		</form>
 	</div>
 <%
 

@@ -189,3 +189,15 @@ module.exports.getMinStats= function (min, cat , callback){
 		callback(json);
 	});
 };
+
+module.exports.getApiFilter= function (type, q ,pagina, producto, estado,tipo_fecha, fecha_creacioni, fecha_creacione,montoi,montoe,callback){
+
+	request("http://"+host+'/'+type+'?q='+q+'&producto='+producto+'&estado='+estado+'&'+tipo_fecha+'='+fecha_creacioni+'|'+fecha_creacione+'&monto='+montoi+'|'+montoe+'&pagina='+pagina, function (error, response, body) {
+		if (!error && (response.statusCode == 200 || response.statusCode == 201)) {
+			json = JSON.parse(body);		
+		}
+		else
+			json = null;
+		callback(json);
+	});
+};
