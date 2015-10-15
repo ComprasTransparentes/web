@@ -428,6 +428,7 @@ router.get('/comparador', function(req, res) {
 
 
 		}else{
+			console.log("papapapapapapa");
 
 			res.render('application.ejs', { content: 'comparador',
 		 									special: 'true',

@@ -63,10 +63,10 @@
 	  </div>
 	  <div class="modal-body">
 	  	<p class="small-lead">Agrega la siguiente línea de código en tu sitio</p>
-			<pre id="emb"><%-text%></pre>
+			<pre id='to_copy'><%-text%></pre>
 	  </div>
 	  <div class="modal-footer">
-			<button type="button" class="btn btn-compras-transparentes" class="clip_button" onclick="wissepicopy();">Copiar</button>
+			<button type="button" class="btn btn-compras-transparentes" id='#copy_button' data-clipboard-target='to_copy'>Copiar</button>
 			<button type="button" class="btn btn-compras-transparentes" data-dismiss="modal">Cerrar</button>
 	  </div>
 	</div>
@@ -75,15 +75,12 @@
 
 <script type="text/javascript">
 
-	var clip;
+	$(document).ready(function() {
 
-	function wissepicopy(){
-
-		clip = new ZeroClipboard(document.getElementById("emb"));
-		//clip = new ZeroClipboard();
-		//clip.setText($("#emb").text());
-
-	}
+    var clip = new ZeroClipboard($("#copy_button"), {
+        moviePath: "javascripts/ZeroClipboard.swf"
+    });
+});
 
       
     </script>
