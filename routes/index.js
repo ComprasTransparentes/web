@@ -169,7 +169,8 @@ router.get('/search', function(req, res) {
 					  											fecha_creacioni: '',
 					  											fecha_creacione: '',
 					  											montoi: '',
-					  											montoe: '' });
+					  											montoe: '',
+					  											na: 'search' });
 
 									}else{
 										var num = Math.floor((Math.random() * 10) + 1);
@@ -296,7 +297,8 @@ router.get('/filter', function(req, res) {
 					  											fecha_creacioni: fecha_creacioni,
 					  											fecha_creacione: fecha_creacione,
 					  											montoi: montoi,
-					  											montoe: montoe
+					  											montoe: montoe,
+					  											na: 'filter'
 					  											 });
 
 									}else{

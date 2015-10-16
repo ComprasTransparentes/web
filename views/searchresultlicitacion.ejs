@@ -1,5 +1,5 @@
 <%
-if(lic.licitaciones.length == 0) { 
+if(lic.licitaciones.length == 0 && na == 'search') { 
 %>
 
 	<% include noresults %>
@@ -40,42 +40,42 @@ if(lic.licitaciones.length == 0) {
 			<div class="col col-xs-12 col-sm-6 col-md-3">
 				<select class="selector standard flat full-width" name="elic">
 				<%if(estado==5){%>
-					<option value="">Todos los Estados</option>
+					<option value="">Todos los estados de licitación</option>
 					<option selected="" value="5">Publicada</option>
 					<option value="6">Cerrada</option>
 					<option value="8">Adjudicada</option>
 					<option value="18">Revocada</option>
 					<option value="19">Suspendida</option>
 				<%}else if(estado==6){%>
-					<option value="">Todos los Estados</option>
+					<option value="">Todos los estados de licitación</option>
 					<option value="5">Publicada</option>
 					<option selected="" value="6">Cerrada</option>
 					<option value="8">Adjudicada</option>
 					<option value="18">Revocada</option>
 					<option value="19">Suspendida</option>
 				<%}else if(estado==8){%>
-					<option value="">Todos los Estados</option>
+					<option value="">Todos los estados de licitación</option>
 					<option value="5">Publicada</option>
 					<option value="6">Cerrada</option>
 					<option selected="" value="8">Adjudicada</option>
 					<option value="18">Revocada</option>
 					<option value="19">Suspendida</option>
 				<%}else if(estado==18){%>
-					<option value="">Todos los Estados</option>
+					<option value="">Todos los estados de licitación</option>
 					<option value="5">Publicada</option>
 					<option value="6">Cerrada</option>
 					<option value="8">Adjudicada</option>
 					<option selected="" value="18">Revocada</option>
 					<option value="19">Suspendida</option>
 				<%}else if(estado==19){%>
-					<option value="">Todos los Estados</option>
+					<option value="">Todos los estados de licitación</option>
 					<option value="5">Publicada</option>
 					<option value="6">Cerrada</option>
 					<option value="8">Adjudicada</option>
 					<option value="18">Revocada</option>
 					<option selected="" value="19">Suspendida</option>
 				<%}else{%>
-					<option selected="" value="">Todos los Estados</option>
+					<option selected="" value="">Todos los estados de licitación</option>
 					<option value="5">Publicada</option>
 					<option value="6">Cerrada</option>
 					<option value="8">Adjudicada</option>
@@ -96,15 +96,15 @@ if(lic.licitaciones.length == 0) {
 			<div class="col col-sm-6 col-md-3">
 				<select class="selector dateselector no-search flat full-width" name="tlic">
 				<%if(tipo=="fecha_publicacion"){%>
-					<option value=""></option>
+					<option value="">Seleccione tipo de fecha</option>
 					<option select=""  value="fecha_publicacion">Fecha de Publicación</option>
 					<option value="fecha_adjudicacion">Fecha de Adjudicación</option>
 				<%}else if(tipo=="fecha_adjudicacion"){%>
-					<option value=""></option>
+					<option value="">Seleccione tipo de fecha</option>
 					<option value="fecha_publicacion">Fecha de Publicación</option>
 					<option select=""  value="fecha_adjudicacion">Fecha de Adjudicación</option>
 				<%}else{%>
-					<option select="" value=""></option>
+					<option select="" value="">Seleccione tipo de fecha</option>
 					<option value="fecha_publicacion">Fecha de Publicación</option>
 					<option value="fecha_adjudicacion">Fecha de Adjudicación</option>
 				<%}%>
