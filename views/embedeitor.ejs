@@ -66,7 +66,7 @@
 			<pre class='logger' id='to_copy'><%-text%></pre>
 	  </div>
 	  <div class="modal-footer">
-			<button type="button" class="btn btn-compras-transparentes copy" id='copy'  data-clipboard-text="Copied Button 1 Text">Copiar</button>
+			<button type="button" class="btn btn-compras-transparentes" id="d_clip_button" >Copiar</button>
 			<button type="button" class="btn btn-compras-transparentes" data-dismiss="modal">Cerrar</button>
 	  </div>
 	</div>
@@ -76,18 +76,23 @@
 <script type="text/javascript">
 
 
-	$(document).ready(function() {
-    ZeroClipboard.config({ moviePath: 'http://zeroclipboard.org/javascripts/zc/ZeroClipboard_1.3.2.swf',debug: true });
+	 ZeroClipboard.setMoviePath('http://www.comprastransparentes.cl:3000/assets/javascripts/ZeroClipboard.swf');
+        $(document).ready(function(){
+              $("#d_clip_button").each(function (i) {
+                    var clip = new ZeroClipboard.Client();
 
-    var client = new ZeroClipboard($('#copy'));
-    client.on('load', function(client) {
-        $('.flash-loaded').text('Flash player loaded at ' + $.now()).fadeIn();
-        client.on('mouseover', function(client, args) {
-            client.setText($(this).text());
-            $('.confirm-copy').text('text copied at ' + $.now()).fadeIn();
+                    var myTextToCopy = "fghjk";
+                    clip.setText( myTextToCopy );
+                        clip.addEventListener('complete', function (client, text) {
+                 alert("Copied text to clipboard." );
+                });
+                    clip.glue( "gfhjdk" );
+
+
+
+              });
+
+
         });
-    });
-});
-
       
     </script>
