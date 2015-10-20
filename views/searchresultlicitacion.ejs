@@ -99,14 +99,22 @@ if(lic.licitaciones.length == 0 && na == 'search') {
 					<option value="">Seleccione tipo de fecha</option>
 					<option select=""  value="fecha_publicacion">Fecha de Publicación</option>
 					<option value="fecha_adjudicacion">Fecha de Adjudicación</option>
+					<option value="fecha_creacion">Fecha de Creación</option>
 				<%}else if(tipo=="fecha_adjudicacion"){%>
 					<option value="">Seleccione tipo de fecha</option>
 					<option value="fecha_publicacion">Fecha de Publicación</option>
 					<option select=""  value="fecha_adjudicacion">Fecha de Adjudicación</option>
+					<option value="fecha_creacion">Fecha de Creación</option>
+				<%}else if(tipo=="fecha_creacion"){%>
+					<option value="">Seleccione tipo de fecha</option>
+					<option value="fecha_publicacion">Fecha de Publicación</option>
+					<option value="fecha_adjudicacion">Fecha de Adjudicación</option>
+					<option select="" value="fecha_creacion">Fecha de Creación</option>
 				<%}else{%>
 					<option select="" value="">Seleccione tipo de fecha</option>
 					<option value="fecha_publicacion">Fecha de Publicación</option>
 					<option value="fecha_adjudicacion">Fecha de Adjudicación</option>
+					<option value="fecha_creacion">Fecha de Creación</option>
 				<%}%>
 				</select>
 			</div>
