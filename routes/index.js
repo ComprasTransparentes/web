@@ -100,7 +100,34 @@ router.get('/', function(req, res) {
 });
 
 
-										
+
+router.get('/searchbar',function(req, res){
+
+	var min;
+	api.getMins(function(min){
+		min = min;
+
+	res.render('application.ejs', { content: 'searchresults',
+																element: '',
+							  									lic: [],
+							  									pro: [],
+							  									org: [],
+					  											special: 'true',
+					  											superspecial: 'true',
+					  											elGatito: true,
+					  											min: min,
+					  											producto: '',
+					  											estado: '',
+					  											tipo: '',
+					  											fecha_creacioni: '',
+					  											fecha_creacione: '',
+					  											montoi: '',
+					  											montoe: '',
+					  											na: 'search' });
+});
+
+
+});										
 
 
 
