@@ -343,7 +343,7 @@
 										<td nombrelic=<%-t%>><%-data.extra.licitaciones[t].nombre%></td>
 										<% 	var creacion;
 											var temp2 = new Date(data.extra.licitaciones[t].fecha_creacion);
-											creacion = temp2.getDate()+'-'+temp2.getMonth()+'-'+temp2.getFullYear();
+											creacion = temp2.getDate()+'-'+(temp2.getMonth()+1)+'-'+temp2.getFullYear();
 											%>
 										<td datelic=<%-t%>><%-creacion%></td>
 										<% var estado;

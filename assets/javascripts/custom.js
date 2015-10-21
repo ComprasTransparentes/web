@@ -44,6 +44,12 @@ $(document).ready(function() {
 
 
 
+    
+
+
+
+
+
 
 
 
@@ -126,44 +132,52 @@ $(document).ready(function() {
 		$('#item_option').text($('#add_item option:selected').text());
 	});
 
-	$('#submit_compare').attr('disabled', true);
+	if(dat1== "null"){
 
-	var check1 = false;
-	var check2 = false;
-	var check3 = false;
+		$('#submit_compare').attr('disabled', true);
+		
 
-	$('#add_min1').on('change', function(){
-		check1 = true;
-		if ( check1 && check2 && check3){
-			$('#submit_compare').attr('disabled', false);					
-		}
 
-		else {
-			$('#submit_compare').attr('disabled', true);	
-		}
-	});
+		var check1 = false;
+		var check2 = false;
+		var check3 = false;
 
-	$('#add_item').on('change', function(){
-		check2 = true;
-		if ( check1 && check2 && check3){
-			$('#submit_compare').attr('disabled', false);					
-		}
 
-		else {
-			$('#submit_compare').attr('disabled', true);	
-		}
-	});
 
-	$('#add_min2').on('change', function(){
-		check3 = true;
-		if ( check1 && check2 && check3){
-			$('#submit_compare').attr('disabled', false);					
-		}
+		$('#add_min1').on('change', function(){
 
-		else {
-			$('#submit_compare').attr('disabled', true);	
-		}
-	});
+			check1 = true;
+			if ( check1 && check2 && check3){
+				$('#submit_compare').attr('disabled', false);					
+			}
+
+			else {
+				$('#submit_compare').attr('disabled', true);	
+			}
+		});
+
+		$('#add_item').on('change', function(){
+			check2 = true;
+			if ( check1 && check2 && check3){
+				$('#submit_compare').attr('disabled', false);					
+			}
+
+			else {
+				$('#submit_compare').attr('disabled', true);	
+			}
+		});
+
+		$('#add_min2').on('change', function(){
+			check3 = true;
+			if ( check1 && check2 && check3){
+				$('#submit_compare').attr('disabled', false);					
+			}
+
+			else {
+				$('#submit_compare').attr('disabled', true);	
+			}
+		});
+	}
 
 
 	$('.min-selector').on('change', function() {
@@ -203,7 +217,7 @@ $(document).ready(function() {
 
 		$('#code_lic').text(data.extra.top_licitaciones[el.id].codigo);
 		$('#nombre_lic').text(data.extra.top_licitaciones[el.id].nombre);
-		$('#monto_lic').text(data.extra.top_licitaciones[el.id].monto);
+		$('#monto_lic').text(data.extra.top_licitaciones[el.id].monto_total);
 		$('#monto_lic_pro').text(data.extra.top_licitaciones[el.id].monto_adjudicado);
 		$('#link_lic').attr("href","/file?type=licitacion&code="+data.extra.top_licitaciones[el.id].codigo);
 
