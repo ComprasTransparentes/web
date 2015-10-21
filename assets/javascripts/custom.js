@@ -38,10 +38,6 @@ $(document).ready(function() {
 
 	$('.numformat').each( function() {
 
-		if(parseInt($(this).text()) > 10000000) {
-			console.log("gatito");
-		}
-
 		$(this).text($(this).text().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1."));
 
 	});
