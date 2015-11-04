@@ -272,13 +272,7 @@ router.get('/embed1', function(req, res) {
 
 
 router.get('*', function(req, res){
-	var num = Math.floor((Math.random() * 10) + 1);
-	console.log(num)
-	if(num==3 || num==7){
-		res.render('404.ejs');
-	}
-	else
-		res.render('404real.ejs');
+	res.render('404.ejs');
 });
 
 

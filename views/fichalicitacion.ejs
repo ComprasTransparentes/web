@@ -6,99 +6,101 @@
 <div class="row">
 	
 	<div class="col-md-4 pull-right pull-resp">
-		<div class="panel panel-color fich">
+		<div class="fixed-container">
+			<div class="panel panel-color fich">
 
-			<!-- Panel Organismo Licitador -->
-			<div class="panel-heading no-margin">
-				<h5>Organismo Licitador</h5>	
-			</div>
+				<!-- Panel Organismo Licitador -->
+				<div class="panel-heading no-margin">
+					<h5>Organismo Licitador</h5>	
+				</div>
 
-			<div class="panel-body no-margin">
-				<div>	
-					<span class="info-tag">Información Organismo</span>
+				<div class="panel-body no-margin">
+					<div>	
+						<span class="info-tag">Información Organismo</span>
+						<div>
+							<h5 class="bigger"><%- data.comprador.nombre_unidad %></h5>
+							<ul class="list-unstyled">
+								<li>Código: <%- data.comprador.codigo_unidad %></li>
+							</ul>
+						</div>
+					</div>
+
+					<div>	
+						<span class="info-tag">Información Unidad</span>
+						<div>
+							<h5><%- data.comprador.nombre_comprador %></h5>
+							<ul class="list-unstyled">
+								<li>Código: <%- data.comprador.codigo_comprador %></li>
+								<li>RUT: <%- data.comprador.rut_usuario %></li>
+								<li><%- data.comprador.direccion_unidad %>, <%- data.comprador.comuna_unidad %>, <%- data.comprador.region_unidad %></li>
+							</ul>
+						</div>
+					</div>	
+
 					<div>
-						<h5><%- data.comprador.nombre_unidad %></h5>
+						<span class="info-tag">Responsable Pago</span>
 						<ul class="list-unstyled">
-							<li>Código: <%- data.comprador.codigo_unidad %></li>
+							<li><i class="fa fa-user"></i><%- data.nombre_responsable_pago || "-" %></li>
+							<li><i class="fa fa-envelope"></i><%- data.email_responsable_pago || "-" %></li>
+						</ul>
+					</div>
+
+					<div>
+						<span class="info-tag">Responsable Contrato</span>
+						<ul class="list-unstyled">
+							<li><i class="fa fa-user"></i><%- data.nombre_responsable_contrato || "-" %></li>
+							<li><i class="fa fa-envelope"></i><%- data.email_responsable_contrato || "-" %></li>
+							<li><i class="fa fa-phone"></i><%- data.telefono_responsable_contrato || "-" %></li>
 						</ul>
 					</div>
 				</div>
 
-				<div>	
-					<span class="info-tag">Información Unidad</span>
-					<div>
-						<h5><%- data.comprador.nombre_comprador %></h5>
-						<ul class="list-unstyled">
-							<li>Código: <%- data.comprador.codigo_comprador %></li>
-							<li>RUT: <%- data.comprador.rut_usuario %></li>
-							<li><%- data.comprador.direccion_unidad %>, <%- data.comprador.comuna_unidad %>, <%- data.comprador.region_unidad %></li>
-						</ul>
-					</div>
-				</div>	
-
-				<div>
-					<span class="info-tag">Responsable Pago</span>
-					<ul class="list-unstyled">
-						<li><i class="fa fa-user"></i><%- data.nombre_responsable_pago || "-" %></li>
-						<li><i class="fa fa-envelope"></i><%- data.email_responsable_pago || "-" %></li>
-					</ul>
+				<div class="panel-footer no-margin transparent no-border">
+					<p>
+						<small><a href=<%-"/file?type=organismo&code="+data.comprador.id %>>Ir a ficha de organismo <i class="fa fa-arrow-circle-right"></i></a></small>
+					</p>
 				</div>
 
-				<div>
-					<span class="info-tag">Responsable Contrato</span>
+			</div>
+
+			<div class="panel panel-color fich">
+
+				<div class="panel-heading no-margin">
+					<h5>Fechas Importantes</h5>
+	 
+				<% 	var cierre;
+					var apertura;
+					var creacion;
+					var adjudicacion;
+					var temp = new Date(data.fecha_cierre);
+					cierre = temp.getDate()+'-'+temp.getMonth()+'-'+temp.getFullYear();
+					var temp2 = new Date(data.fecha_creacion);
+					creacion = temp2.getDate()+'-'+temp2.getMonth()+'-'+temp2.getFullYear();
+					var temp3 = new Date(data.fecha_adjudicacion);
+					adjudicacion = temp3.getDate()+'-'+temp3.getMonth()+'-'+temp3.getFullYear();
+					var temp4 = new Date(data.fecha_acto_apertura_economica);
+					apertura = temp4.getDate()+'-'+temp4.getMonth()+'-'+temp4.getFullYear();
+					%>
+				</div>
+
+				<div class="panel-body">
 					<ul class="list-unstyled">
-						<li><i class="fa fa-user"></i><%- data.nombre_responsable_contrato || "-" %></li>
-						<li><i class="fa fa-envelope"></i><%- data.email_responsable_contrato || "-" %></li>
-						<li><i class="fa fa-phone"></i><%- data.telefono_responsable_contrato || "-" %></li>
+					<li class="margin-bottom">
+						<span>Apertura: <%-apertura%></span>
+					</li>
+					<li class="margin-bottom">
+						<span>Creación: <%-creacion%></span>
+					</li>
+					<li class="margin-bottom">
+						<span>Cierre: <%-cierre%></span>
+					</li>
+					<li class="margin-bottom">
+						<span>Adjudicación: <%-adjudicacion%></span>
+					</li>
 					</ul>
 				</div>
 			</div>
-
-			<div class="panel-footer no-margin transparent no-border">
-				<p>
-					<small><a href=<%-"/file?type=organismo&code="+data.comprador.id %>>Ir a ficha de organismo <i class="fa fa-arrow-circle-right"></i></a></small>
-				</p>
-			</div>
-
-		</div>
-
-		<div class="panel panel-color fich">
-
-			<div class="panel-heading no-margin">
-				<h5>Fechas Importantes</h5>
- 
-			<% 	var cierre;
-				var apertura;
-				var creacion;
-				var adjudicacion;
-				var temp = new Date(data.fecha_cierre);
-				cierre = temp.getDate()+'-'+temp.getMonth()+'-'+temp.getFullYear();
-				var temp2 = new Date(data.fecha_creacion);
-				creacion = temp2.getDate()+'-'+temp2.getMonth()+'-'+temp2.getFullYear();
-				var temp3 = new Date(data.fecha_adjudicacion);
-				adjudicacion = temp3.getDate()+'-'+temp3.getMonth()+'-'+temp3.getFullYear();
-				var temp4 = new Date(data.fecha_acto_apertura_economica);
-				apertura = temp4.getDate()+'-'+temp4.getMonth()+'-'+temp4.getFullYear();
-				%>
-			</div>
-
-			<div class="panel-body">
-				<ul class="list-unstyled">
-				<li class="margin-bottom">
-					<span>Apertura: <%-apertura%></span>
-				</li>
-				<li class="margin-bottom">
-					<span>Creación: <%-creacion%></span>
-				</li>
-				<li class="margin-bottom">
-					<span>Cierre: <%-cierre%></span>
-				</li>
-				<li class="margin-bottom">
-					<span>Adjudicación: <%-adjudicacion%></span>
-				</li>
-				</ul>
-			</div>
-		</div>
+		</div>	
 	</div>
 
 	<div class="col-md-8">
