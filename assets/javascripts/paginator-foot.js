@@ -6,8 +6,9 @@ var options1 = {
             currentPage: 1,
             totalPages: Math.ceil(n_lic/maxitems),
             onPageChanged: function(e,oldPage,newPage){
-            	var url = "http://"+host+"/licitacion/?q="+ele+"&pagina="+newPage;
-                
+            	//var url = "http://"+host+"/licitacion/?q="+ele+"&pagina="+newPage;
+                var url = "http://"+host+'/licitacion?q='+ele+'&producto='+producto+'&estado='+estado+'&'+tipo_fecha+'='+fecha_creacioni+'|'+fecha_creacione+'&monto='+montoi+'|'+montoe+'&pagina='+newPage;
+                //console.log(url);
                 $.getJSON( url, function( data ) {
                 	console.log(data);
                     $('#tipo1').find("[type='lic']").attr("style","display: none");

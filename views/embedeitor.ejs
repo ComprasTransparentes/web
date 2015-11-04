@@ -3,8 +3,8 @@
   		return str.replace(new RegExp(find, 'g'), replace);
 	}
 
-	var api = "http://hacklab.errdd.com:8000";
-	var website = "http://hacklab.errdd.com:3000";
+	var api = "http://www.comprastransparentes.cl:8000";
+	var website = "http://www.comprastransparentes.cl:3000";
 
 	var text='<script type="text/javascript" charset="utf-8" src="'+website+'/javascripts/dug.js"></script><link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"><link rel="stylesheet" type="text/css" href="'+website+'/stylesheets/embed.css"/><script id="dugjs-template" type="text/x-dug-template"><div class="embed-container">';
 	text = text+'<div class="embed-container" id="comprastransparentes"><div class="fluid-container"><div class="panel panel-default"><div class="panel-body">'
@@ -63,10 +63,10 @@
 	  </div>
 	  <div class="modal-body">
 	  	<p class="small-lead">Agrega la siguiente línea de código en tu sitio</p>
-			<pre id="emb"><%-text%></pre>
+			<pre class='logger' id='exampleInput'><%-text%></pre>
 	  </div>
 	  <div class="modal-footer">
-			<button type="button" class="btn btn-compras-transparentes" class="clip_button">Copiar</button>
+			<button type="button" class="btn btn-compras-transparentes" id="btn-copy">Copiar</button>
 			<button type="button" class="btn btn-compras-transparentes" data-dismiss="modal">Cerrar</button>
 	  </div>
 	</div>
@@ -74,22 +74,98 @@
 </div>
 
 <script type="text/javascript">
-      var client = new ZeroClipboard( $('.clip_button') );
 
-      client.on( 'ready', function(event) {
-        // console.log( 'movie is loaded' );
 
-        client.on( 'copy', function(event) {
-          event.clipboardData.setData('text/plain', document.getElementById('emb').innerHTML);
-        } );
+	 //ZeroClipboard.setMoviePath('http://www.comprastransparentes.cl:3000/javascripts/ZeroClipboard.swf');
 
-        client.on( 'aftercopy', function(event) {
-          console.log('Copied text to clipboard: ' + document.getElementById('emb').innerHTML);
-        } );
-      } );
+	 function zcInit() {
+  var client = new ZeroClipboard($('#btn-copy'));
+  
+  client.on('ready', function(event) {
+    client.on('copy', function(event) {
+      // `this` === `client`
+      // `event.target` === the element that was clicked
 
-      client.on( 'error', function(event) {
-        // console.log( 'ZeroClipboard error of type "' + event.name + '": ' + event.message );
-        ZeroClipboard.destroy();
-      } );
+      // Get the text content of <input> or <textarea> that comes immediately before the clicked button
+      //var $prevEle = $(event.target).prev();
+      var text = $(".logger").text();//$prevEle.is('textarea') ? $prevEle.val().replace(/\n/g, '\r\n') : $prevEle.val();
+
+      // If value of `text` is not empty, set the data to clipboard
+      if (text) {
+        event.clipboardData.setData('text/plain', text);
+      }
+    });
+
+    // Show a message when the text is copied
+    client.on('aftercopy', function(event) {
+      if (event.data['text/plain']) {
+        //$(event.target).next().finish().fadeIn(30).fadeOut(1000);
+      }
+    });
+  });
+  
+  client.on('error', function(event) {
+    ZeroClipboard.destroy();
+  });
+}
+
+// Function for copying text using window.clipboardData
+function addHandler_WinClipData() {
+  $('#btn-copy').click(function() {
+    var $prevEle = $(this).prev();
+    var text = $prevEle.is('textarea') ? $prevEle.val().replace(/\n/g, '\r\n') : $prevEle.val();
+
+    // If value of `text` is not empty, set the data to clipboard
+    if (text && window.clipboardData.setData('Text', text)) {
+      // Show a message when the text is copied
+      //$(this).next().finish().fadeIn(30).fadeOut(1000);
+    }
+  });
+}
+
+// Function for pop up a message and select text in <input> or <textarea>, in case window.Clipboard data and Flash are not available
+function addHandler_AlertMsg() {
+  $('#btn-copy').click(function() {
+    if ($(this).prev().val()) {
+      alert('No Flash installed. Please copy manually');
+      $(this).prev().focus().select();
+    }
+  });
+}
+
+// Function for checking Flash availability
+function detectFlash() {
+  var hasFlash = false, obj, types, type;
+  try {
+    obj = new ActiveXObject('ShockwaveFlash.ShockwaveFlash');
+    if (obj) {
+      hasFlash = true;
+    }
+  } catch(e) {
+    types = navigator.mimeTypes;
+    type = 'application/x-shockwave-flash';
+    if (types && types[type] && types[type].enabledPlugin) {
+      hasFlash = true;
+    }
+  }
+  return hasFlash;
+}
+
+var hasWinClipData = !!(window.clipboardData && clipboardData.setData),
+  hasFlash = detectFlash();
+
+if (hasWinClipData) {   // Check if window.clipboardData is available
+  addHandler_WinClipData();
+} else if (hasFlash) {  // Check if Flash is available
+  $.ajax({
+    type: 'GET',
+    url: '//cdnjs.cloudflare.com/ajax/libs/zeroclipboard/2.2.0/ZeroClipboard.min.js',
+    dataType: 'script',
+    cache: true,
+    success: zcInit,
+    error: addHandler_AlertMsg
+  });
+} else {  // In case window.clipboardData and Flash are not available, bind a "click" event handler to the "copy buttons" to pop up a message when clicked
+  addHandler_AlertMsg();
+}
     </script>

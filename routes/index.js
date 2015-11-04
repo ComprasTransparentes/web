@@ -13,6 +13,7 @@ router.get('/', function(req, res) {
 	var lic;
 	var pro;
 	var cat;
+	
 		api.getStats(function(json){
 			json = json;
 			console.log(json);
@@ -39,9 +40,8 @@ router.get('/', function(req, res) {
 							  											superspecial: 'false',
 							  											lic: lic,
 							  											pro: pro,
-							  											cat: cat });
-
-										
+							  											cat: cat,
+							  											 });								
 
 										
 									}
@@ -101,6 +101,37 @@ router.get('/', function(req, res) {
 
 
 
+router.get('/searchbar',function(req, res){
+
+	var min;
+	api.getMins(function(min){
+		min = min;
+
+	res.render('application.ejs', { content: 'searchresults',
+																element: '',
+							  									lic: [],
+							  									pro: [],
+							  									org: [],
+					  											special: 'true',
+					  											superspecial: 'true',
+					  											elGatito: true,
+					  											min: min,
+					  											producto: '',
+					  											estado: '',
+					  											tipo: '',
+					  											fecha_creacioni: '',
+					  											fecha_creacione: '',
+					  											montoi: '',
+					  											montoe: '',
+					  											na: 'search' });
+});
+
+
+});										
+
+
+
+
 router.get('/search', function(req, res) {
 	//var type = 'licitacion';
 	var element = req.query.q;
@@ -131,6 +162,7 @@ router.get('/search', function(req, res) {
 		var lic;
 		var pro;
 		var org;
+		var min;
 		api.getApiLic(element,1,function(lic){
 			lic = lic;
 			console.log(lic);
@@ -146,16 +178,40 @@ router.get('/search', function(req, res) {
 							console.log(org);
 							if(org!=null){
 
-								res.render('application.ejs', { content: 'searchresults',
+								api.getMins(function(min){
+									min = min;
+									if(min!=null){
+										res.render('application.ejs', { content: 'searchresults',
 																element: element,
 							  									lic: lic,
 							  									pro: pro,
 							  									org: org,
 					  											special: 'true',
 					  											superspecial: 'true',
-					  											elGatito: token });
+					  											elGatito: token,
+					  											min: min,
+					  											producto: '',
+					  											estado: '',
+					  											tipo: '',
+					  											fecha_creacioni: '',
+					  											fecha_creacione: '',
+					  											montoi: '',
+					  											montoe: '',
+					  											na: 'search' });
 
+									}else{
+										var num = Math.floor((Math.random() * 10) + 1);
+										if(num==3 || num==7){
+												res.render('404.ejs');
+											}
+											else
+										  		res.render('404real.ejs');
 
+									}
+
+								});
+
+								
 							}
 								
 							else{
@@ -196,6 +252,134 @@ router.get('/search', function(req, res) {
 	}
 });
 
+router.get('/filter', function(req, res) {
+	//var type = 'licitacion';
+	var element = req.query.q;
+	var producto = req.query.plic;
+	var estado = req.query.elic;
+	var tipo = req.query.tlic;
+	var fecha_creacioni = req.query.filic;
+	var fecha_creacione = req.query.felic;
+	var montoi = req.query.alic;
+	var montoe = req.query.xlic;
+	var token = false;
+	if (element == undefined) {
+		token = true;
+	}
+
+	if(element == "wissepi"){
+		var num = Math.floor((Math.random() * 10) + 1);
+		var secret;
+		if(num==10 || num==1 || num==2 || num==3 || num==4){
+			secret = "1172739485.webm";
+		}
+		if(num==5 || num==6 || num==7){
+			secret = "8846251730.webm";			
+		}
+		if(num==8 || num==9 ){
+			secret = "22568195112.webm";		
+		}
+		res.render('wissepi.ejs',{secreto : secret,
+									
+  									special: 'false' });
+
+	}
+	else{
+		//var element = 'agujeros';
+		var lic;
+		var pro;
+		var org;
+		var min;
+		//api.getApiLic(element,1,function(lic){
+		api.getApiFilter("licitacion",element,1,producto,estado,tipo,fecha_creacioni,fecha_creacione,montoi, montoe,function(lic){
+			lic = lic;
+			console.log(lic);
+			if(lic!=null){
+
+				api.getApiPro(element,1,function(pro){
+					pro = pro;
+					console.log(pro);
+					if(pro!=null){
+
+						api.getApiOrg(element,1,function(org){
+							org = org;
+							console.log(org);
+							if(org!=null){
+
+								api.getMins(function(min){
+									min = min;
+									if(min!=null){
+										res.render('application.ejs', { content: 'searchresults',
+																element: element,
+							  									lic: lic,
+							  									pro: pro,
+							  									org: org,
+					  											special: 'true',
+					  											superspecial: 'true',
+					  											elGatito: token,
+					  											min: min,
+					  											producto: producto,
+					  											estado: estado,
+					  											tipo: tipo,
+					  											fecha_creacioni: fecha_creacioni,
+					  											fecha_creacione: fecha_creacione,
+					  											montoi: montoi,
+					  											montoe: montoe,
+					  											na: 'filter'
+					  											 });
+
+									}else{
+										var num = Math.floor((Math.random() * 10) + 1);
+										if(num==3 || num==7){
+												res.render('404.ejs');
+											}
+											else
+										  		res.render('404real.ejs');
+
+									}
+
+								});
+
+								
+							}
+								
+							else{
+								var num = Math.floor((Math.random() * 10) + 1);
+								if(num==3 || num==7){
+										res.render('404.ejs');
+									}
+									else
+								  		res.render('404real.ejs');
+								  }
+						});
+
+
+					}
+						
+					else{
+						var num = Math.floor((Math.random() * 10) + 1);
+						if(num==3 || num==7){
+								res.render('404.ejs');
+							}
+							else
+						  		res.render('404real.ejs');
+						  }
+				});
+
+
+			}
+				
+			else{
+				var num = Math.floor((Math.random() * 10) + 1);
+				if(num==3 || num==7){
+						res.render('404.ejs');
+					}
+					else
+				  		res.render('404real.ejs');
+				  }
+		});
+	}
+});
 
 
 
@@ -243,9 +427,46 @@ router.get('/lucheto', function(req, res) {
 });
 
 router.get('/comparador', function(req, res) {
- 	res.render('application.ejs', { content: 'comparador',
- 									special: 'true',
- 									superspecial: 'true'});	
+	var min;
+	var json1;
+	var json2;
+	var m1 = req.query.add_min1;
+	var m2 = req.query.add_min2;
+	console.log(m1);
+	var item = req.query.add_item;
+	api.getMins(function(min) {
+		min = min;
+		//console.log(min);
+		if(m1!=undefined&&m2!=undefined&&item!=undefined){
+
+			api.getMinStats(m1,item,function(json1){
+				json1 = json1;
+				console.log(json1);
+				api.getMinStats(m2,item,function(json2){
+					json2 = json2;
+					console.log(json2);
+					res.render('application.ejs', { content: 'comparador',
+				 									special: 'true',
+				 									superspecial: 'true',
+				 									min: min,
+				 									data1: json1,
+				 									data2: json2});
+
+				});
+			});
+
+
+		}else{
+			console.log("papapapapapapa");
+
+			res.render('application.ejs', { content: 'comparador',
+		 									special: 'true',
+		 									superspecial: 'true',
+		 									min: min,
+		 									data1: 'null',
+				 							data2: 'null'});
+		}
+	});	
 });
 
 router.get('/api', function(req, res) {

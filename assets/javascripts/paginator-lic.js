@@ -99,4 +99,4 @@ var licpro = {
             }
         }
 
-$('#licpropag').bootstrapPaginator(licorg);
+$('#licpropag').bootstrapPaginator(licpro);
