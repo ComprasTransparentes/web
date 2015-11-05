@@ -15,7 +15,7 @@
 				</div>
 
 				<div class="panel-body no-margin">
-					<div>	
+					<div>
 						<span class="info-tag">Información Organismo</span>
 						<div>
 							<h5 class="bigger"><%- data.comprador.nombre_unidad %></h5>
@@ -69,25 +69,25 @@
 
 			<div class="panel-heading no-margin">
 				<h5>Fechas Importantes</h5>
- 
-			<% 	var cierre;
-				var apertura;
-				var creacion;
-				var adjudicacion;
-				var temp = new Date(data.fecha_cierre);
-				cierre = temp.getDate()+'-'+(temp.getMonth()+1)+'-'+temp.getFullYear();
-				var temp2 = new Date(data.fecha_creacion);
-				creacion = temp2.getDate()+'-'+(temp2.getMonth()+1)+'-'+temp2.getFullYear();
-				var temp3 = new Date(data.fecha_adjudicacion);
-				adjudicacion = temp3.getDate()+'-'+(temp3.getMonth()+1)+'-'+temp3.getFullYear();
-				var temp4 = new Date(data.fecha_acto_apertura_economica);
-				apertura = temp4.getDate()+'-'+(temp4.getMonth()+1)+'-'+temp4.getFullYear();
+				<% 	
+					var cierre;
+					var apertura;
+					var creacion;
+					var adjudicacion;
+					var temp = new Date(data.fecha_cierre);
+					cierre = temp.getDate()+'-'+(temp.getMonth()+1)+'-'+temp.getFullYear();
+					var temp2 = new Date(data.fecha_creacion);
+					creacion = temp2.getDate()+'-'+(temp2.getMonth()+1)+'-'+temp2.getFullYear();
+					var temp3 = new Date(data.fecha_adjudicacion);
+					adjudicacion = temp3.getDate()+'-'+(temp3.getMonth()+1)+'-'+temp3.getFullYear();
+					var temp4 = new Date(data.fecha_acto_apertura_economica);
+					apertura = temp4.getDate()+'-'+(temp4.getMonth()+1)+'-'+temp4.getFullYear();
 				%>
 			</div>
 
 
-				<div class="panel-body">
-					<ul class="list-unstyled">
+			<div class="panel-body">
+				<ul class="list-unstyled">
 					<li class="margin-bottom">
 						<span>Apertura: <%-apertura%></span>
 					</li>
@@ -100,8 +100,7 @@
 					<li class="margin-bottom">
 						<span>Adjudicación: <%-adjudicacion%></span>
 					</li>
-					</ul>
-				</div>
+				</ul>
 			</div>
 		</div>	
 	</div>

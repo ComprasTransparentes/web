@@ -853,6 +853,7 @@ body {
 
 #licmascuantiosas, #provmasbeneficiados {
 	h4 {
+		line-height: 1.5;
 		.fa {
 			color: #{$turq};
 			font-size: 18px;
@@ -1294,6 +1295,7 @@ body {
 		> .legend {
 
 			h4 {
+				line-height: 1.5;
 				margin-right: 90px;
 				margin-top: 10px;
 				margin-bottom: 10px;
@@ -1327,6 +1329,7 @@ body {
 
 			span {
 				opacity: .7;
+				color: white;
 			}
 		}
 
@@ -2065,6 +2068,7 @@ input[type=number] {
 	&:last-child {border: none;}
 
 	h4 {
+		line-height: 1.5;
 		margin-bottom: 0px;
  
  	 	+ a {
@@ -2243,6 +2247,7 @@ input[type=number] {
 	}
 
 	h4 {
+		line-height: 1.5;
 		margin-top: 5px;
 		margin-bottom: 5px;
 
@@ -2404,6 +2409,7 @@ input[type=number] {
 	}
 
 	h4 {
+		line-height: 1.5;
 		font-weight: 300;
 		margin-bottom: 5px !important;
 	}
@@ -2593,6 +2599,11 @@ input[type=number] {
 				.highlighted-vendor {
 					padding-left: 0;
 					padding-right: 0;
+
+					.info-tag {
+						color: white;
+						opacity: .7;
+					}
 				}
 			}
 		}
@@ -2991,6 +3002,7 @@ input[type=number] {
 	float: right;
 
 	ul {
+		margin-top: 30px;
 		list-style: none;
 
 		li {
