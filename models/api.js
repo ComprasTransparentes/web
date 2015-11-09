@@ -1,8 +1,11 @@
 
+
 var request = require('request');
-var ip = 'hacklab.errdd.com';//'192.168.1.86';//'127.0.0.1';
-var port = '8000';
-var host = ip+':'+port;
+var conf = require('../config/conf');
+
+var ip = conf.ip;//'192.168.100.10';//'127.0.0.1';
+var port = conf.port;
+var host = conf.host;
 var fs = require('fs');
 
 
@@ -15,18 +18,20 @@ module.exports.getApiCode = function (type, code, pag, callback){
 			}
 			else
 				json = null;
-			console.log(json);
+			
 			callback(json);
 		});
 	}else{
 
 		request("http://"+host+'/'+type+'/'+code, function (error, response, body) {
+		
 			if (!error && (response.statusCode == 200 || response.statusCode == 201)) {
 				json = JSON.parse(body);		
 			}
 			else
 				json = null;
-			console.log(json);
+
+			
 			callback(json);
 		});
 	}
@@ -89,7 +94,7 @@ module.exports.getApiStats = function (callback){
 		}
 		else
 			json = null;
-		console.log(json);
+		
 		callback(json);
 	});
 };
@@ -126,7 +131,7 @@ module.exports.getApiLic = function (name, pag, callback){
 		}
 		else
 			json = null;
-		console.log(json);
+		
 		callback(json);
 	});
 };
@@ -200,4 +205,26 @@ module.exports.getApiFilter= function (type, q ,pagina, producto, estado,tipo_fe
 			json = null;
 		callback(json);
 	});
+};
+
+module.exports.getAllTenderP = function (proveedor, callback)
+{
+
+	var licitaciones = [];
+
+	request("http://"+host+"/proveedor/"+proveedor+"/licitacion", function (error, response, body){
+				
+				var json;
+				var aux = [];
+
+
+				if (!error && (response.statusCode == 200 || response.statusCode == 201)) 
+				{
+					json = JSON.parse(body);	
+					licitaciones = licitaciones.concat( json.licitaciones);	
+				}
+
+			callback(licitaciones);				
+	});
+	
 };

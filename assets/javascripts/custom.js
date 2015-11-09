@@ -217,8 +217,8 @@ $(document).ready(function() {
 
 		$('#code_lic').text(data.extra.top_licitaciones[el.id].codigo);
 		$('#nombre_lic').text(data.extra.top_licitaciones[el.id].nombre);
-		$('#monto_lic').text(data.extra.top_licitaciones[el.id].monto_total);
-		$('#monto_lic_pro').text(data.extra.top_licitaciones[el.id].monto_adjudicado);
+		$('#monto_lic').text(data.extra.top_licitaciones[el.id].monto_total.formatNumber(0,",","."));
+		$('#monto_lic_pro').text(data.extra.top_licitaciones[el.id].monto_adjudicado.formatNumber(0,",","."));
 		$('#link_lic').attr("href","/file?type=licitacion&code="+data.extra.top_licitaciones[el.id].codigo);
 
 
@@ -270,6 +270,15 @@ $(document).ready(function() {
 
 
 
-
+	Number.prototype.formatNumber = function (c, d, t) {
+        var n = this,
+            c = isNaN(c = Math.abs(c)) ? 2 : c,
+            d = d == undefined ? "." : d,
+            t = t == undefined ? "," : t,
+            s = n < 0 ? "-" : "",
+            i = parseInt(n = Math.abs(+n || 0).toFixed(c)) + "",
+            j = (j = i.length) > 3 ? j % 3 : 0;
+        return s + (j ? i.substr(0, j) + t : "") + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + t) + (c ? d + Math.abs(n - i).toFixed(c).slice(2) : "");
+    };
 
 

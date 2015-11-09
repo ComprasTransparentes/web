@@ -94,13 +94,13 @@
 				<!-- Carga si viene correcto -->
 				<div class="panel-body">
 					<div class="legend">
-						<h4>Licitaciones más cuantiosas</h4>
+						<h4>Licitaciones más cuantiosas </h4>
 						<p>Licitaciones en las que el proveedor se ha visto más beneficiado desde Enero de 2013</p>
 					</div>
 
 					<div class="row" id="licmascuantiosas">
 						<div class="col-md-6">
-							<table class="table postulant-list clickable-table">
+							<table class="table ">
 								<thead>
 									<tr>
 										<td>Título</td>
@@ -297,13 +297,13 @@
 
 					<div class="row">
 						<div class="col-sm-12">
-							<table class="table postulant-list">
+							<table class="table todas-licitaciones" >
 								<thead>
 									<td>Nombre</td>
 									<td>Código</td>
 									<td>Monto Adjudicado</td>
 									<td>Monto Total</td>
-									<td></td>
+									<td>Acción</td>
 								</thead>
 								<tbody id="liclist">
 
@@ -347,3 +347,38 @@
 </div>
 
 <script type="text/javascript" charset="utf-8" src="javascripts/paginator-lic.js"></script>
+<script type="text/javascript" >
+
+	var tabla	= $(".todas-licitaciones").dataTable({
+			"language" : CONST.dataTableLenguage
+		});
+	
+	$(function(){
+			$(".se-pre-con").show();
+
+			console.log(CONST.API + "/proveedor/"+ele+"/licitacion");
+		$.getJSON( CONST.API + "/proveedor/"+ele+"/licitacion", function(data){
+			console.log(data);
+			tabla.fnClearTable();
+			
+			if(data.licitaciones.length > 0)
+			{
+				for (var i = 0; i < data.licitaciones.length; i++) 
+				{
+					var row = [];
+
+					row.push(data.licitaciones[i].nombre);
+					row.push(data.licitaciones[i].codigo);
+					row.push("$" + data.licitaciones[i].monto_adjudicado.formatNumber(0,",", "."));
+					row.push("$" + data.licitaciones[i].monto_total.formatNumber(0,",", "."));
+					row.push('<a href="/file?type=licitacion&code='+data.licitaciones[i].codigo+'">Ver ficha <i class="fa fa-arrow-circle-right"></i></a>');
+
+					 tabla.fnAddData(row);
+				};	
+
+				tabla.fnDraw();
+			}
+			$(".se-pre-con").hide();
+		});
+	});
+</script>
