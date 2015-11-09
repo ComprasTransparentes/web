@@ -141,6 +141,7 @@ router.get('/searchbar',function(req, res){
 router.get('/search', function(req, res) {
 	//var type = 'licitacion';
 	var element = req.query.q;
+	console.log (req.query.q);
 	var token = false;
 	if (element == undefined) {
 		token = true;

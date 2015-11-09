@@ -90,7 +90,7 @@
 				<% }
 				
 				else {%>
-
+				<div class="se-pre-con"></div>
 				<!-- Carga si viene correcto -->
 				<div class="panel-body">
 					<div class="legend">
@@ -296,6 +296,7 @@
 					</div>
 
 					<div class="row">
+						<div class="se-pre-con-2 text-center" style="display:none;" ></div>
 						<div class="col-sm-12">
 							<table class="table todas-licitaciones" >
 								<thead>
@@ -306,20 +307,6 @@
 									<td>Acción</td>
 								</thead>
 								<tbody id="liclist">
-
-									<%for(var t= 0;t<data.extra.licitaciones.length; t++){%>
-									<tr id="lici" code=<%-t%>>
-										<td nombrelic=<%-t%>><%-data.extra.licitaciones[t].nombre%></td>
-										<td codelic=<%-t%>><%-data.extra.licitaciones[t].codigo%></td>
-
-										<td montoadjlic=<%-t%>><%-data.extra.licitaciones[t].monto_adjudicado%></td>
-
-								
-										<td montolic=<%-t%>><%-data.extra.licitaciones[t].monto_total%></td>
-										<td id="linklic"><a linklic=<%-t%> href=<%-"/file?type=licitacion&code="+data.extra.licitaciones[t].codigo%>>Ver ficha <i class="fa fa-arrow-circle-right"></i></a></td>
-									</tr>
-									<%}%>
-									
 								</tbody>
 							</table>
 						</div>
@@ -338,47 +325,73 @@
 					</div>
 					<!-- <div id="licpropag"></div>-->
 				</div>
-
 			</div>
 		</div>
-
-
 	</div>	
 </div>
 
-<script type="text/javascript" charset="utf-8" src="javascripts/paginator-lic.js"></script>
+
 <script type="text/javascript" >
 
 	var tabla	= $(".todas-licitaciones").dataTable({
-			"language" : CONST.dataTableLenguage
+			"language" : CONST.dataTableLenguage,
+			"bDeferRender": true,
+            "sPaginationType": "full_numbers"
 		});
 	
 	$(function(){
-			$(".se-pre-con").show();
 
-			console.log(CONST.API + "/proveedor/"+ele+"/licitacion");
-		$.getJSON( CONST.API + "/proveedor/"+ele+"/licitacion", function(data){
-			console.log(data);
-			tabla.fnClearTable();
+			$(".se-pre-con-2").show();
+			$.getJSON( CONST.API + "/proveedor/"+ele+"/licitacion", function(data){
 			
+			var rows = [];
+			//tabla.fnClearTable();
+			
+
 			if(data.licitaciones.length > 0)
 			{
-				for (var i = 0; i < data.licitaciones.length; i++) 
+
+				if(data.licitaciones.length > 8000)
 				{
-					var row = [];
+					for (var i = 0; i < data.licitaciones.length; i++) 
+					{
+						var row = [];
 
-					row.push(data.licitaciones[i].nombre);
-					row.push(data.licitaciones[i].codigo);
-					row.push("$" + data.licitaciones[i].monto_adjudicado.formatNumber(0,",", "."));
-					row.push("$" + data.licitaciones[i].monto_total.formatNumber(0,",", "."));
-					row.push('<a href="/file?type=licitacion&code='+data.licitaciones[i].codigo+'">Ver ficha <i class="fa fa-arrow-circle-right"></i></a>');
+						row.push(data.licitaciones[i].nombre);
+						row.push(data.licitaciones[i].codigo);
+						row.push("$" + data.licitaciones[i].monto_adjudicado.formatNumber(0,",", "."));
+						row.push("$" + data.licitaciones[i].monto_total.formatNumber(0,",", "."));
+						row.push('<a href="/file?type=licitacion&code='+data.licitaciones[i].codigo+'">Ver ficha <i class="fa fa-arrow-circle-right"></i></a>');
 
-					 tabla.fnAddData(row);
-				};	
+						rows.push(row); 
+					};	
+					setTimeout(function(){
+						
+						tabla.fnAddData(rows);
+					},1500);
+					
+				}
+				else
+				{
+					for (var i = 0; i < data.licitaciones.length; i++) 
+					{
+						var row = [];
 
-				tabla.fnDraw();
+						row.push(data.licitaciones[i].nombre);
+						row.push(data.licitaciones[i].codigo);
+						row.push("$" + data.licitaciones[i].monto_adjudicado.formatNumber(0,",", "."));
+						row.push("$" + data.licitaciones[i].monto_total.formatNumber(0,",", "."));
+						row.push('<a href="/file?type=licitacion&code='+data.licitaciones[i].codigo+'">Ver ficha <i class="fa fa-arrow-circle-right"></i></a>');
+
+						 rows.push(row); 
+					};	
+
+					tabla.fnAddData(rows);
+				}
 			}
-			$(".se-pre-con").hide();
+
+			$(".se-pre-con-2").hide();
+
 		});
 	});
 </script>

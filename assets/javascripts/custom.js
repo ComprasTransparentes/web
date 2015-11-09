@@ -241,7 +241,7 @@ $(document).ready(function() {
 		$('#rank_pro').text(index);
 		$('#name_pro').text(pro.top_proveedores[el.id].nombre);
 		$('#rut_pro').text("RUT: "+pro.top_proveedores[el.id].rut);
-		$('#cash_pro').text(pro.top_proveedores[el.id].monto);
+		$('#cash_pro').text(pro.top_proveedores[el.id].monto.formatNumber(0, ",", "."));
 		$('#link_pro').attr("href","/file?type=proveedor&code="+pro.top_proveedores[el.id].id);
 
 	}
@@ -253,7 +253,7 @@ $(document).ready(function() {
 		$('#rank_lic').text(index);
 		$('#name_lic').text(lic.top_licitaciones[el.id].nombre);
 		$('#code_lic').text("CÓDIGO: "+lic.top_licitaciones[el.id].codigo);
-		$('#cash_lic').text(lic.top_licitaciones[el.id].monto);
+		$('#cash_lic').text(lic.top_licitaciones[el.id].monto.formatNumber(0, ",", "."));
 		$('#link_lic').attr("href","/file?type=licitacion&code="+lic.top_licitaciones[el.id].codigo);
 
 	}
@@ -264,7 +264,7 @@ $(document).ready(function() {
 
 		$('#rank_cat').text(index);
 		$('#name_cate').text(cat.top_categorias[el.id].categoria);
-		$('#cash_cat').text(cat.top_categorias[el.id].monto);
+		$('#cash_cat').text(cat.top_categorias[el.id].monto.formatNumber(0, ",", "."));
 
 	}
 

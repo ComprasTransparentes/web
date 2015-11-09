@@ -6,13 +6,14 @@ var conf = require('../config/conf');
 var ip = conf.ip;//'192.168.100.10';//'127.0.0.1';
 var port = conf.port;
 var host = conf.host;
+var URI = require("uri-js");
 var fs = require('fs');
 
 
 module.exports.getApiCode = function (type, code, pag, callback){
 
 	if(type=="licitacion"){
-		request("http://"+host+'/'+type+'/'+code+'/?p_items='+pag, function (error, response, body) {
+		request(host+'/'+type+'/'+code+'/?p_items='+pag, function (error, response, body) {
 			if (!error && (response.statusCode == 200 || response.statusCode == 201)) {
 				json = JSON.parse(body);		
 			}
@@ -22,8 +23,8 @@ module.exports.getApiCode = function (type, code, pag, callback){
 			callback(json);
 		});
 	}else{
-
-		request("http://"+host+'/'+type+'/'+code, function (error, response, body) {
+		console.log(host+'/'+type+'/'+code);
+		request(host+'/'+type+'/'+code, function (error, response, body) {
 		
 			if (!error && (response.statusCode == 200 || response.statusCode == 201)) {
 				json = JSON.parse(body);		
@@ -39,7 +40,7 @@ module.exports.getApiCode = function (type, code, pag, callback){
 
 module.exports.getStats = function (callback){
 
-	request("http://"+host+'/stats/0', function (error, response, body) {
+	request(host+'/stats/0', function (error, response, body) {
 		if (!error && (response.statusCode == 200 || response.statusCode == 201)) {
 			json = JSON.parse(body);		
 		}
@@ -52,7 +53,7 @@ module.exports.getStats = function (callback){
 module.exports.getTopLic = function (callback){
 	console.log("perro muerto");
 
-	request("http://"+host+'/stats/top/licitaciones', function (error, response, body) {
+	request(host+'/stats/top/licitaciones', function (error, response, body) {
 		if (!error && (response.statusCode == 200 || response.statusCode == 201)) {
 			json = JSON.parse(body);		
 		}
@@ -64,7 +65,7 @@ module.exports.getTopLic = function (callback){
 
 module.exports.getTopPro = function (callback){
 
-	request("http://"+host+'/stats/top/proveedores', function (error, response, body) {
+	request(host+'/stats/top/proveedores', function (error, response, body) {
 		if (!error && (response.statusCode == 200 || response.statusCode == 201)) {
 			json = JSON.parse(body);		
 		}
@@ -76,7 +77,7 @@ module.exports.getTopPro = function (callback){
 
 module.exports.getTopCat = function (callback){
 
-	request("http://"+host+'/stats/top/categorias', function (error, response, body) {
+	request(host+'/stats/top/categorias', function (error, response, body) {
 		if (!error && (response.statusCode == 200 || response.statusCode == 201)) {
 			json = JSON.parse(body);		
 		}
@@ -88,7 +89,8 @@ module.exports.getTopCat = function (callback){
 
 module.exports.getApiStats = function (callback){
 
-	request("http://"+host+'/stats', function (error, response, body) {
+	console.log(host+'/stats');
+	request(host+'/stats', function (error, response, body) {
 		if (!error && (response.statusCode == 200 || response.statusCode == 201)) {
 			json = JSON.parse(body);		
 		}
@@ -101,7 +103,7 @@ module.exports.getApiStats = function (callback){
 
 module.exports.getApiFull = function (type, name, callback){
 
-	request("http://"+host+'/'+type+'?nombre='+name, function (error, response, body) {
+	request(host+'/'+type+'?nombre='+name, function (error, response, body) {
 		if (!error && (response.statusCode == 200 || response.statusCode == 201)) {
 			json = JSON.parse(body);		
 		}
@@ -113,7 +115,7 @@ module.exports.getApiFull = function (type, name, callback){
 
 module.exports.getApiGeneral = function (name, callback){
 
-	request("http://"+host+'/buscar?q='+name, function (error, response, body) {
+	request(host+'/buscar?q='+name, function (error, response, body) {
 		if (!error && (response.statusCode == 200 || response.statusCode == 201)) {
 			json = JSON.parse(body);		
 		}
@@ -125,12 +127,16 @@ module.exports.getApiGeneral = function (name, callback){
 
 module.exports.getApiLic = function (name, pag, callback){
 
-	request("http://"+host+'/licitacion/?q='+name+'&pagina='+pag, function (error, response, body) {
+	var encodeQueryString = URI.serialize(URI.parse(host+'/licitacion/?q='+name+'&pagina='+pag));
+	
+	request(encodeQueryString, function (error, response, body) {
+		//console.log(response);
 		if (!error && (response.statusCode == 200 || response.statusCode == 201)) {
 			json = JSON.parse(body);		
 		}
-		else
+		else{
 			json = null;
+		}
 		
 		callback(json);
 	});
@@ -138,7 +144,8 @@ module.exports.getApiLic = function (name, pag, callback){
 
 module.exports.getApiOrg = function (name, pag, callback){
 
-	request("http://"+host+'/organismo/?q='+name+'&pagina='+pag, function (error, response, body) {
+	var encode = URI.serialize(URI.parse(host+'/organismo/?q='+name+'&pagina='+pag));
+	request(encode, function (error, response, body) {
 		if (!error && (response.statusCode == 200 || response.statusCode == 201)) {
 			json = JSON.parse(body);		
 		}
@@ -150,7 +157,8 @@ module.exports.getApiOrg = function (name, pag, callback){
 
 module.exports.getApiPro = function (name, pag, callback){
 
-	request("http://"+host+'/proveedor/?q='+name+'&pagina='+pag, function (error, response, body) {
+	var encode = URI.serialize(URI.parse(host+'/proveedor/?q='+name+'&pagina='+pag));
+	request(encode, function (error, response, body) {
 		if (!error && (response.statusCode == 200 || response.statusCode == 201)) {
 			json = JSON.parse(body);		
 		}
@@ -163,7 +171,7 @@ module.exports.getApiPro = function (name, pag, callback){
 
 module.exports.getApiSimple= function (type, element , callback){
 
-	request("http://"+host+'/'+type+'?q='+element, function (error, response, body) {
+	request(host+'/'+type+'?q='+element, function (error, response, body) {
 		if (!error && (response.statusCode == 200 || response.statusCode == 201)) {
 			json = JSON.parse(body);		
 		}
@@ -185,7 +193,7 @@ module.exports.getMins= function (callback){
 
 module.exports.getMinStats= function (min, cat , callback){
 
-	request("http://"+host+'/ministerio/'+min+'/categoria/'+cat+'/stats', function (error, response, body) {
+	request(host+'/ministerio/'+min+'/categoria/'+cat+'/stats', function (error, response, body) {
 		if (!error && (response.statusCode == 200 || response.statusCode == 201)) {
 			json = JSON.parse(body);		
 		}
@@ -197,7 +205,7 @@ module.exports.getMinStats= function (min, cat , callback){
 
 module.exports.getApiFilter= function (type, q ,pagina, producto, estado,tipo_fecha, fecha_creacioni, fecha_creacione,montoi,montoe,callback){
 
-	request("http://"+host+'/'+type+'?q='+q+'&producto='+producto+'&estado='+estado+'&'+tipo_fecha+'='+fecha_creacioni+'|'+fecha_creacione+'&monto='+montoi+'|'+montoe+'&pagina='+pagina, function (error, response, body) {
+	request(host+'/'+type+'?q='+q+'&producto='+producto+'&estado='+estado+'&'+tipo_fecha+'='+fecha_creacioni+'|'+fecha_creacione+'&monto='+montoi+'|'+montoe+'&pagina='+pagina, function (error, response, body) {
 		if (!error && (response.statusCode == 200 || response.statusCode == 201)) {
 			json = JSON.parse(body);		
 		}
@@ -212,7 +220,7 @@ module.exports.getAllTenderP = function (proveedor, callback)
 
 	var licitaciones = [];
 
-	request("http://"+host+"/proveedor/"+proveedor+"/licitacion", function (error, response, body){
+	request(host+"/proveedor/"+proveedor+"/licitacion", function (error, response, body){
 				
 				var json;
 				var aux = [];
