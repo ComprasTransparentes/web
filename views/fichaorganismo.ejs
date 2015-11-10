@@ -2,45 +2,48 @@
   var data =<%-JSON.stringify(data)%>
   var n_item =<%-JSON.stringify(data.extra.n_licitaciones)%>;
   var ele =<%-JSON.stringify(code)%>;
+
 </script>
 
 <div class="container">
 	<div class="row">
-			
-		<div class="col-md-4 pull-right pull-resp">
-			<div class="panel panel-color fich">
+		
+			<div class="col-md-4 pull-right pull-resp">
+			<!--
+				<div class="panel panel-color fich">
 
-				<div class="panel-heading no-margin">
-					<h5>Información de Organismo</h5>	
-				</div>
-
-				<div class="panel-body no-margin">
-					<div>
-						<span class="info-tag">Organismo</span>
-						<div>
-							<h5 class="bigger"><%-data.nombre_comprador%></h5>
-							<ul class="list-unstyled">
-								<li>Código: <%-data.codigo_comprador%></li>
-							</ul>
-						</div>							
+					<div class="panel-heading no-margin">
+						<h5>Información de Organismo</h5>	
 					</div>
 
-					<!-- <div>
-						<span class="info-tag">Información Unidad</span>
+					<div class="panel-body no-margin">
 						<div>
-							<h5><%-data.nombre_unidad%></h5>
-							<ul class="list-unstyled">
-								<li>Unidad: <%-data.codigo_unidad%></li>
-								<li>RUT: <%-data.rut_unidad%></li>
-								<li><%-data.direccion_unidad%>, <%-data.comuna_unidad%>, <%-data.region_unidad%></li>
-							</ul>
+							<span class="info-tag">Organismo</span>
+							<div>
+								<h5 class="bigger"><%-data.nombre_comprador%></h5>
+								<ul class="list-unstyled">
+									<li>Código: <%-data.codigo_comprador%></li>
+								</ul>
+							</div>							
 						</div>
-					</div> -->
+
+						 <div>
+							<span class="info-tag">Información Unidad</span>
+							<div>
+								<h5><%-data.nombre_unidad%></h5>
+								<ul class="list-unstyled">
+									<li>Unidad: <%-data.codigo_unidad%></li>
+									<li>RUT: <%-data.rut_unidad%></li>
+									<li><%-data.direccion_unidad%>, <%-data.comuna_unidad%>, <%-data.region_unidad%></li>
+								</ul>
+							</div>
+						</div> 
+					</div>
+					
 				</div>
-
+				-->
 			</div>
-		</div>
-
+		
 		<div class="col-md-8">
 			<div class="panel panel-default stats">
 
@@ -53,7 +56,7 @@
 				<div class="panel-body">
 					
 					<div class="legend">
-						<h4>Ficha de Organismo Público</h4>
+						<h4>Ficha de Organismo <i class="bigger"><%-data.nombre_comprador%></i></h4>
 						<p>Información de licitaciones y estadísticas recopilada desde Enero de 2013</p>
 					</div>
 					<div class="panel panel-inverted">
@@ -328,17 +331,17 @@
 					</div>
 
 					<div class="row">
+					<div class="se-pre-con-2" ></div>
 						<div class="col-sm-12">
-							<table class="table postulant-list">
+							<table class="table todas-licitaciones postulant-list">
 								<thead>
 									<td>Nombre</td>
 									<td>Fecha de Creación</td>
 									<td>Estado</td>
-									<td></td>
 								</thead>
 								<tbody id="liclist">
-
-									<%for(var t= 0;t<data.extra.licitaciones.length; t++){%>
+									<!-- html 
+											<%for(var t= 0;t<data.extra.licitaciones.length; t++){%>
 									<tr id="lici" code=<%-t%>>
 										<td nombrelic=<%-t%>><%-data.extra.licitaciones[t].nombre%></td>
 										<% 	var creacion;
@@ -374,6 +377,10 @@
 										<td id="linklic"><a linklic=<%-t%> href=<%-"/file?type=licitacion&code="+data.extra.licitaciones[t].codigo%>>Ver ficha <i class="fa fa-arrow-circle-right"></i></a></td>
 									</tr>
 									<%}%>
+									comment -->
+									
+									
+									
 									
 								</tbody>
 							</table>
@@ -390,14 +397,23 @@
 							
 						</div>-->
 					</div>
-					<div id="licpag"></div>
-
-
+					<!-- <div id="licpag"></div> -->
+					
 				</div>
 
 			</div>
 		</div>
 	</div>	
 </div>
+<script type="text/javascript">
+	var tabla = $(".todas-licitaciones").dataTable({
 
-<script type="text/javascript" charset="utf-8" src="javascripts/paginator-lic.js"></script>
+		"language" : CONST.dataTableLenguage,
+			"bDeferRender": true,
+            "sPaginationType": "full_numbers"
+	});
+
+	$(function(){
+			getListAllLicOrg(ele);
+	});
+</script>

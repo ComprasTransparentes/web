@@ -34,13 +34,18 @@
   <script src="//cdn.embedly.com/widgets/platform.js"></script>
 
   <script type="text/javascript">
-  var data =<%-JSON.stringify(config)%>; 
-  
-    
+      var data =<%-JSON.stringify(config)%>; 
       var CONST = {};
-
       
       CONST.API = data.host;
+      CONST.estadosLicitacion = [];
+      CONST.estadosLicitacion.push({idEstado : 5 , nombre : "Publicada" });
+      CONST.estadosLicitacion.push({idEstado : 6 , nombre : "Cerrada" });
+      CONST.estadosLicitacion.push({idEstado : 7 , nombre : "Desierta" });
+      CONST.estadosLicitacion.push({idEstado : 8 , nombre : "Adjudicada" });
+      CONST.estadosLicitacion.push({idEstado : 18 , nombre : "Revocada" });
+      CONST.estadosLicitacion.push({idEstado : 19 , nombre : "Suspendida" });
+
       CONST.dataTableLenguage = {
                 "decimal": ",",
                 "emptyTable": "No hay información en la tabla.",
