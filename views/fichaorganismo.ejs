@@ -8,43 +8,43 @@
 <div class="container">
 	<div class="row">
 		
-			<div class="col-md-4 pull-right pull-resp">
-			<!--
-				<div class="panel panel-color fich">
+		<!-- 
+		<div class="col-md-4 pull-right pull-resp">			
+			<div class="panel panel-color fich">
 
-					<div class="panel-heading no-margin">
-						<h5>Información de Organismo</h5>	
-					</div>
-
-					<div class="panel-body no-margin">
-						<div>
-							<span class="info-tag">Organismo</span>
-							<div>
-								<h5 class="bigger"><%-data.nombre_comprador%></h5>
-								<ul class="list-unstyled">
-									<li>Código: <%-data.codigo_comprador%></li>
-								</ul>
-							</div>							
-						</div>
-
-						 <div>
-							<span class="info-tag">Información Unidad</span>
-							<div>
-								<h5><%-data.nombre_unidad%></h5>
-								<ul class="list-unstyled">
-									<li>Unidad: <%-data.codigo_unidad%></li>
-									<li>RUT: <%-data.rut_unidad%></li>
-									<li><%-data.direccion_unidad%>, <%-data.comuna_unidad%>, <%-data.region_unidad%></li>
-								</ul>
-							</div>
-						</div> 
-					</div>
-					
+				<div class="panel-heading no-margin">
+					<h5>Información de Organismo</h5>	
 				</div>
-				-->
+
+				<div class="panel-body no-margin">
+					<div>
+						<span class="info-tag">Organismo</span>
+						<div>
+							<h5 class="bigger"><%-data.nombre_comprador%></h5>
+							<ul class="list-unstyled">
+								<li>Código: <%-data.codigo_comprador%></li>
+							</ul>
+						</div>							
+					</div>
+
+					 <div>
+						<span class="info-tag">Información Unidad</span>
+						<div>
+							<h5><%-data.nombre_unidad%></h5>
+							<ul class="list-unstyled">
+								<li>Unidad: <%-data.codigo_unidad%></li>
+								<li>RUT: <%-data.rut_unidad%></li>
+								<li><%-data.direccion_unidad%>, <%-data.comuna_unidad%>, <%-data.region_unidad%></li>
+							</ul>
+						</div>
+					</div> 
+				</div>
+				
 			</div>
+		</div> 
+		-->
 		
-		<div class="col-md-8">
+		<div class="col-md-12">
 			<div class="panel panel-default stats">
 
 				<% include embedeitor %>
@@ -56,7 +56,10 @@
 				<div class="panel-body">
 					
 					<div class="legend">
-						<h4>Ficha de Organismo <i class="bigger"><%-data.nombre_comprador%></i></h4>
+						<i class="fa fa-university back-icon"></i>
+						<h4 class="super-title duper"><i class="fa fa-university"></i>Ficha de <strong>Organismo</strong></h4>
+						<h3 class="bigger"><%-data.nombre_comprador%></h3>
+						<span>Código: <%-data.id%></span>
 						<p>Información de licitaciones y estadísticas recopilada desde Enero de 2013</p>
 					</div>
 					<div class="panel panel-inverted">
@@ -331,8 +334,8 @@
 					</div>
 
 					<div class="row">
-					<div class="se-pre-con-2" ></div>
 						<div class="col-sm-12">
+							<div class="se-pre-con-2" ></div>
 							<table class="table todas-licitaciones postulant-list">
 								<thead>
 									<td>Nombre</td>

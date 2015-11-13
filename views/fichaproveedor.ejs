@@ -8,7 +8,7 @@
 <div class="container">
 	<div class="row">
 			
-		<div class="col-md-4 pull-right pull-resp">
+<!-- 		<div class="col-md-4 pull-right pull-resp">
 			<div class="panel panel-color fich">
 
 				<div class="panel-heading no-margin">
@@ -28,9 +28,9 @@
 					</div>
 				</div>
 			</div>
-		</div>
+		</div> -->
 
-		<div class="col-md-8">
+		<div class="col-md-12">
 			<div class="panel panel-default stats">
 			
 				<% include embedeitor %>
@@ -43,13 +43,16 @@
 					
 
 					<div class="legend">
-						<h4>Ficha de Proveedor</h4>
-						<p>Información de licitaciones y estadísticas recopilada desde Enero de 2013</p>
+						<i class="fa fa-truck back-icon"></i>
+						<h4 class="super-title duper"><i class="fa fa-truck"></i>Ficha de <strong>Proveedor</strong></h4>
+						<h3 class="bigger"><%-data.nombre%></h3>
+						<span>Código: <%-data.id%></span>
+						<span>RUT: <%-data.rut%></span>
+						<p><span><i class="fa fa-info-circle"></i>Información de licitaciones y estadísticas recopilada desde Enero de 2013</span></p>
 					</div>
 
 
 					<!-- Estadística Sumario -->
-					<span class="info-tag">Sumario</span>
 					<div class="panel panel-inverted">
 						<div class="panel-body">
 							<div class="row">
@@ -90,12 +93,11 @@
 				<% }
 				
 				else {%>
-				<div class="se-pre-con"></div>
 				<!-- Carga si viene correcto -->
 				<div class="panel-body">
 					<div class="legend">
 						<h4>Licitaciones más cuantiosas </h4>
-						<p>Licitaciones en las que el proveedor se ha visto más beneficiado desde Enero de 2013</p>
+						<p><span><i class="fa fa-info-circle"></i>Licitaciones en las que el proveedor se ha visto más beneficiado desde Enero de 2013</span></p>
 					</div>
 
 					<div class="row" id="licmascuantiosas">
@@ -292,12 +294,12 @@
 				<div class="panel-body">
 					<div class="legend">
 						<h4>Todas las licitaciones</h4>
-						<p>Lista de todas las licitaciones que ha ganado este proveedor desde Enero de 2013</p>
+						<p><span><i class="fa fa-info-circle"></i>Lista de todas las licitaciones que ha ganado este proveedor desde Enero de 2013</span></p>
 					</div>
 
 					<div class="row">
-						<div class="se-pre-con-2" ></div>
-						<div class="col-sm-12">
+						<div class="col-sm-12" style="position: relative;">
+							<div class="se-pre-con-2" ></div>
 							<table class="table postulant-list todas-licitaciones" >
 								<thead>
 									<td>Nombre</td>
