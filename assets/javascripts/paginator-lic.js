@@ -10,7 +10,7 @@ var licorg = {
                 var url = "http://"+host+"/organismo/"+ele+"/licitacion?pagina="+newPage;
                 
                 $.getJSON( url, function( data ) {
-                    console.log(data);
+                    
                     $("[id=lici]").attr("style","visibility: hidden");
                     for(var b=0; b< data.licitaciones.length;b++){
                         $('#liclist').find("[code='"+b+"']").attr("style","visibility: visible");
@@ -71,7 +71,7 @@ var licpro = {
                 var url = "http://"+host+"/proveedor/"+ele+"/licitacion?pagina="+newPage;
                 
                 $.getJSON( url, function( data ) {
-                    console.log(data);
+                    
                     $("[id=lici]").attr("style","visibility: hidden");
                     for(var b=0; b< data.licitaciones.length;b++){
                         $('#liclist').find("[code='"+b+"']").attr("style","visibility: visible");

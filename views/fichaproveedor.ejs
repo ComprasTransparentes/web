@@ -90,17 +90,17 @@
 				<% }
 				
 				else {%>
-
+				<div class="se-pre-con"></div>
 				<!-- Carga si viene correcto -->
 				<div class="panel-body">
 					<div class="legend">
-						<h4>Licitaciones más cuantiosas</h4>
+						<h4>Licitaciones más cuantiosas </h4>
 						<p>Licitaciones en las que el proveedor se ha visto más beneficiado desde Enero de 2013</p>
 					</div>
 
 					<div class="row" id="licmascuantiosas">
 						<div class="col-md-6">
-							<table class="table postulant-list clickable-table">
+							<table class="table ">
 								<thead>
 									<tr>
 										<td>Título</td>
@@ -296,30 +296,17 @@
 					</div>
 
 					<div class="row">
+						<div class="se-pre-con-2" ></div>
 						<div class="col-sm-12">
-							<table class="table postulant-list">
+							<table class="table postulant-list todas-licitaciones" >
 								<thead>
 									<td>Nombre</td>
 									<td>Código</td>
 									<td>Monto Adjudicado</td>
 									<td>Monto Total</td>
-									<td></td>
+									<td>Acción</td>
 								</thead>
 								<tbody id="liclist">
-
-									<%for(var t= 0;t<data.extra.licitaciones.length; t++){%>
-									<tr id="lici" code=<%-t%>>
-										<td nombrelic=<%-t%>><%-data.extra.licitaciones[t].nombre%></td>
-										<td codelic=<%-t%>><%-data.extra.licitaciones[t].codigo%></td>
-
-										<td montoadjlic=<%-t%>><%-data.extra.licitaciones[t].monto_adjudicado%></td>
-
-								
-										<td montolic=<%-t%>><%-data.extra.licitaciones[t].monto_total%></td>
-										<td id="linklic"><a linklic=<%-t%> href=<%-"/file?type=licitacion&code="+data.extra.licitaciones[t].codigo%>>Ver ficha <i class="fa fa-arrow-circle-right"></i></a></td>
-									</tr>
-									<%}%>
-									
 								</tbody>
 							</table>
 						</div>
@@ -336,14 +323,23 @@
 								
 						</div> -->
 					</div>
-					<div id="licpropag"></div>
+					<!-- <div id="licpropag"></div>-->
 				</div>
-
 			</div>
 		</div>
-
-
 	</div>	
 </div>
 
-<script type="text/javascript" charset="utf-8" src="javascripts/paginator-lic.js"></script>
+
+<script type="text/javascript" >
+
+	var tabla	= $(".todas-licitaciones").dataTable({
+			"language" : CONST.dataTableLenguage,
+			"bDeferRender": true,
+            "sPaginationType": "full_numbers"
+		});
+	
+	$(function(){
+			getListAllLicProve(ele);
+	});
+</script>

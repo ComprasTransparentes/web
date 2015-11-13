@@ -3,6 +3,8 @@
 $(window).load(function() {
 	// Animate loader off screen
 	$(".se-pre-con").fadeOut("slow");;
+
+
 });
 
 
@@ -19,7 +21,31 @@ function checkOverflow(el)
    return isOverflowing;
 };
 
+
+
 $(document).ready(function() {
+
+	String.prototype.formatNumber = function (c, d, t) {
+        var n = this,
+            c = isNaN(c = Math.abs(c)) ? 2 : c,
+            d = d == undefined ? "." : d,
+            t = t == undefined ? "," : t,
+            s = n < 0 ? "-" : "",
+            i = parseInt(n = Math.abs(+n || 0).toFixed(c)) + "",
+            j = (j = i.length) > 3 ? j % 3 : 0;
+        return s + (j ? i.substr(0, j) + t : "") + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + t) + (c ? d + Math.abs(n - i).toFixed(c).slice(2) : "");
+    };
+
+    Number.prototype.formatNumber = function (c, d, t) {
+        var n = this,
+            c = isNaN(c = Math.abs(c)) ? 2 : c,
+            d = d == undefined ? "." : d,
+            t = t == undefined ? "," : t,
+            s = n < 0 ? "-" : "",
+            i = parseInt(n = Math.abs(+n || 0).toFixed(c)) + "",
+            j = (j = i.length) > 3 ? j % 3 : 0;
+        return s + (j ? i.substr(0, j) + t : "") + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + t) + (c ? d + Math.abs(n - i).toFixed(c).slice(2) : "");
+    };
 
 	var notime = { 
 		format: 'DD/MM/YYYY',
@@ -36,25 +62,22 @@ $(document).ready(function() {
 	$('#picker7').datetimepicker(notime);
 	$('#picker8').datetimepicker(notime);
 
-	$('.numformat').each( function() {
+	/**
+	 	$('.numformat').each( function() {
 
 		$(this).text($(this).text().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1."));
 
+		});
+	 */
+	
+	
+	$('.numformat').each( function() {
+		$(this).text($(this).text().formatNumber(0,",", "."));
+
 	});
 
+	
 
-
-    
-
-
-
-
-
-
-
-
-
-  
   	// Select2
 
   	$(".standard").select2();
@@ -132,7 +155,9 @@ $(document).ready(function() {
 		$('#item_option').text($('#add_item option:selected').text());
 	});
 
-	if(dat1== "null"){
+/**
+ *
+ * if(dat1== "null"){
 
 		$('#submit_compare').attr('disabled', true);
 		
@@ -178,6 +203,10 @@ $(document).ready(function() {
 			}
 		});
 	}
+ *
+ */
+
+	
 
 
 	$('.min-selector').on('change', function() {
@@ -215,12 +244,31 @@ $(document).ready(function() {
 
 	function magia(el) {
 
+		console.log(data.extra.top_licitaciones[el.id]);
+
 		$('#code_lic').text(data.extra.top_licitaciones[el.id].codigo);
 		$('#nombre_lic').text(data.extra.top_licitaciones[el.id].nombre);
-		$('#monto_lic').text(data.extra.top_licitaciones[el.id].monto_total);
-		$('#monto_lic_pro').text(data.extra.top_licitaciones[el.id].monto_adjudicado);
 		$('#link_lic').attr("href","/file?type=licitacion&code="+data.extra.top_licitaciones[el.id].codigo);
 
+		//$('#monto_lic').text(data.extra.top_licitaciones[el.id].monto_total.formatNumber(0,",","."));
+		//$('#monto_lic_pro').text(data.extra.top_licitaciones[el.id].monto_adjudicado.formatNumber(0,",","."));
+
+		/**
+		 *
+		 * Entra al if si, se accede desde ficha organismo y else ficha proveedor
+		 *
+		 */
+		
+		if(data.extra.top_licitaciones[el.id].monto != null)
+		{
+
+			$('#monto_lic').text(data.extra.top_licitaciones[el.id].monto.formatNumber(0,",","."));
+		}
+		else
+		{
+			$('#monto_lic').text(data.extra.top_licitaciones[el.id].monto_total.formatNumber(0,",","."));
+			$('#monto_lic_pro').text(data.extra.top_licitaciones[el.id].monto_adjudicado.formatNumber(0,",","."));
+		}
 
 	}
 
@@ -229,7 +277,7 @@ $(document).ready(function() {
 		$('#code_pro').text(data.extra.top_proveedores[el.id].id);
 		$('#nombre_pro').text(data.extra.top_proveedores[el.id].nombre);
 		$('#rut_pro').text(data.extra.top_proveedores[el.id].rut);
-		$('#monto_pro').text(data.extra.top_proveedores[el.id].monto);
+		$('#monto_pro').text(data.extra.top_proveedores[el.id].monto.formatNumber(0,",","."));
 		$('#link_pro').attr("href","/file?type=proveedor&code="+data.extra.top_proveedores[el.id].id);
 
 	}
@@ -241,7 +289,7 @@ $(document).ready(function() {
 		$('#rank_pro').text(index);
 		$('#name_pro').text(pro.top_proveedores[el.id].nombre);
 		$('#rut_pro').text("RUT: "+pro.top_proveedores[el.id].rut);
-		$('#cash_pro').text(pro.top_proveedores[el.id].monto);
+		$('#cash_pro').text(pro.top_proveedores[el.id].monto.formatNumber(0, ",", "."));
 		$('#link_pro').attr("href","/file?type=proveedor&code="+pro.top_proveedores[el.id].id);
 
 	}
@@ -253,7 +301,7 @@ $(document).ready(function() {
 		$('#rank_lic').text(index);
 		$('#name_lic').text(lic.top_licitaciones[el.id].nombre);
 		$('#code_lic').text("CÓDIGO: "+lic.top_licitaciones[el.id].codigo);
-		$('#cash_lic').text(lic.top_licitaciones[el.id].monto);
+		$('#cash_lic').text(lic.top_licitaciones[el.id].monto.formatNumber(0, ",", "."));
 		$('#link_lic').attr("href","/file?type=licitacion&code="+lic.top_licitaciones[el.id].codigo);
 
 	}
@@ -264,12 +312,146 @@ $(document).ready(function() {
 
 		$('#rank_cat').text(index);
 		$('#name_cate').text(cat.top_categorias[el.id].categoria);
-		$('#cash_cat').text(cat.top_categorias[el.id].monto);
+		$('#cash_cat').text(cat.top_categorias[el.id].monto.formatNumber(0, ",", "."));
 
 	}
 
+	function getNombreLicitacion(IdEstado)
+	{
+		var estados = CONST.estadosLicitacion,
+			nombreEstado = "Indefinido - " + IdEstado; 
+
+			
+		$.each(estados, function(i,obj){
+			if(parseInt(obj.idEstado,10) == parseInt(IdEstado,10))
+			{
+				
+				nombreEstado = obj.nombre;
+				return false;
+			}
+		});
+
+		return nombreEstado;
+	}
+
+	function getListAllLicProve(prove)
+	{
+		$(".se-pre-con-2").show();
+			$.getJSON( CONST.API + "/proveedor/"+prove+"/licitacion", function(data){
+			
+			var rows = [];
+			//tabla.fnClearTable();
+			
+
+			if(data.licitaciones.length > 0)
+			{
+
+				if(data.licitaciones.length > 8000)
+				{
+					for (var i = 0; i < data.licitaciones.length; i++) 
+					{
+						var row = [];
+
+						row.push(data.licitaciones[i].nombre);
+						row.push(data.licitaciones[i].codigo);
+						row.push("$" + data.licitaciones[i].monto_adjudicado.formatNumber(0,",", "."));
+						row.push("$" + data.licitaciones[i].monto_total.formatNumber(0,",", "."));
+						row.push('<a href="/file?type=licitacion&code='+data.licitaciones[i].codigo+'">Ver ficha <i class="fa fa-arrow-circle-right"></i></a>');
+
+						rows.push(row); 
+					};	
+					setTimeout(function(){
+						
+						tabla.fnAddData(rows);
+					},1500);
+					
+				}
+				else
+				{
+					for (var i = 0; i < data.licitaciones.length; i++) 
+					{
+						var row = [];
+
+						row.push(data.licitaciones[i].nombre);
+						row.push(data.licitaciones[i].codigo);
+						row.push("$" + data.licitaciones[i].monto_adjudicado.formatNumber(0,",", "."));
+						row.push("$" + data.licitaciones[i].monto_total.formatNumber(0,",", "."));
+						row.push('<a href="/file?type=licitacion&code='+data.licitaciones[i].codigo+'">Ver ficha <i class="fa fa-arrow-circle-right"></i></a>');
+
+						 rows.push(row); 
+					};	
+
+					tabla.fnAddData(rows);
+				}
+			}
+
+			$(".se-pre-con-2").hide();
+
+		});
+
+	}
+
+	function getListAllLicOrg(org)
+	{
+		$(".se-pre-con-2").show();
+			$.getJSON( CONST.API + "/organismo/"+org+"/licitacion", function(data){
+			
+			var rows = [];
+			//tabla.fnClearTable();
+			
+
+			if(data.licitaciones.length > 0)
+			{
+
+				if(data.licitaciones.length > 8000)
+				{
+					for (var i = 0; i < data.licitaciones.length; i++) 
+					{
+						var row = [];
+
+						var d = new Date(data.licitaciones[i].fecha_creacion);
+
+						row.push(data.licitaciones[i].nombre);
+						row.push(d.getDate() + "-" +  (d.getMonth() + 1) + "-" + d.getFullYear());
+						row.push(getNombreLicitacion(data.licitaciones[i].estado));
+						
+						rows.push(row); 
+					};	
+					setTimeout(function(){
+						
+						tabla.fnAddData(rows);
+					},1500);
+					
+				}
+				else
+				{
+					for (var i = 0; i < data.licitaciones.length; i++) 
+					{
+						var row = [];
+
+						var d = new Date(data.licitaciones[i].fecha_creacion);
+
+						row.push(data.licitaciones[i].nombre);
+						row.push(d.getDate() + "-" +  (d.getMonth() + 1) + "-" + d.getFullYear());
+						row.push(getNombreLicitacion(data.licitaciones[i].estado));
+
+						 rows.push(row); 
+					};	
+
+					tabla.fnAddData(rows);
+				}
+			}
+
+			$(".se-pre-con-2").hide();
+
+		});
+
+	}
+
+	
 
 
 
+	
 
 

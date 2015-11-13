@@ -68,8 +68,6 @@ function degradex(nodes){
   var j = 0;
 
   for (var i =0; i< nodes.length; i++){
-
-    console.log(nodes[i].value);
     
       if(nodes[i].value>=31472702246&&nodes[i].parent.name=="root"){
         max[j]= nodes[i];
@@ -313,7 +311,7 @@ function toggleLegend() {
 // root to leaf, separated by hyphens. The second column is a count of how 
 // often that sequence occurred.
 function buildHierarchy(csv) {
-  console.log(csv);
+  
   var root = {"name": "root", "children": []};
   for (var i = 0; i < csv.length; i++) {
     var sequence = csv[i][0];

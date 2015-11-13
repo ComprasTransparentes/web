@@ -11,6 +11,9 @@
   <link rel="stylesheet" type="text/css" href="stylesheets/select2.css"/>
   <link rel="stylesheet" type="text/css" href="stylesheets/mlmn.css"/>
   <link rel="stylesheet" type="text/css" href="stylesheets/c3.min.css"/>
+  <link rel="stylesheet" type="text/css" href="stylesheets/dataTables.bootstrap.css"/>
+  <link rel="stylesheet" type="text/css" href="stylesheets/fixedHeader.dataTables.css"/>
+  <link rel="stylesheet" type="text/css" href="stylesheets/jquery.dataTables.min.css"/>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"/>
   <link rel="stylesheet" type="text/css" href="stylesheets/home.scss"/>
   <script type="text/javascript" charset="utf-8" src="jquery/dist/jquery.min.js"></script>
@@ -20,14 +23,56 @@
   <script type="text/javascript" charset="utf-8" src="javascripts/select2.min.js"></script>
   <script type="text/javascript" charset="utf-8" src="javascripts/d3.min.js"></script>
   <script type="text/javascript" charset="utf-8" src="javascripts/c3.min.js"></script>
+  <script type="text/javascript" charset="utf-8" src="javascripts/jquery.dataTables.min.js"></script>
   <script type="text/javascript" charset="utf-8" src="javascripts/bootstrap-paginator.min.js"></script>
-  <script type="text/javascript" charset="utf-8" src="/bower_components/moment/min/moment.min.js"></script>
+  <script type="text/javascript" charset="utf-8" src="/javascripts/moment.js"></script>
   <script type="text/javascript" src="/bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
   <link rel="stylesheet" href="/bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css" />
 
 
-  <script type="text/javascript" charset="utf-8" src="javascripts/custom.js"></script>
+  <script type="text/javascript" charset="utf-8" src="/javascripts/custom.js"></script>
   <script src="//cdn.embedly.com/widgets/platform.js"></script>
+
+  <script type="text/javascript">
+      var data =<%-JSON.stringify(config)%>; 
+      var CONST = {};
+      
+      CONST.API = data.host;
+      CONST.estadosLicitacion = [];
+      CONST.estadosLicitacion.push({idEstado : 5 , nombre : "Publicada" });
+      CONST.estadosLicitacion.push({idEstado : 6 , nombre : "Cerrada" });
+      CONST.estadosLicitacion.push({idEstado : 7 , nombre : "Desierta" });
+      CONST.estadosLicitacion.push({idEstado : 8 , nombre : "Adjudicada" });
+      CONST.estadosLicitacion.push({idEstado : 18 , nombre : "Revocada" });
+      CONST.estadosLicitacion.push({idEstado : 19 , nombre : "Suspendida" });
+
+      CONST.dataTableLenguage = {
+                "decimal": ",",
+                "emptyTable": "No hay información en la tabla.",
+                "info": "Mostrando _START_ de _END_ de _TOTAL_ filas.",
+                "infoEmpty": "Mostrando 0 de 0 de 0 propiedades.",
+                "infoFiltered": "(filtered from _MAX_ total entries)",
+                "infoPostFix": "",
+                "thousands": ".",
+                "lengthMenu": "Mostrar de _MENU_ filas",
+                "loadingRecords": "Loading...",
+                "processing": "Processing...",
+                "search": "Búsqueda rápida:",
+                "zeroRecords": "No existen registros",
+                "paginate": {
+                    "first": "Inicio",
+                    "last": "Ùltimo",
+                    "next": "Siguiente",
+                    "previous": "Anterior"
+                },
+                "aria": {
+                    "sortAscending": ": activate to sort column ascending",
+                    "sortDescending": ": activate to sort column descending"
+                }
+            };
+
+            console.log(CONST);
+  </script>
   
 </head>
 <body class="dark-body">

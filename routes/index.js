@@ -3,6 +3,7 @@ var express = require('express')
 			, http = require('http');
 /* Api calls */
 var api  = require('../models/api'); 
+var config =require('../config/conf')
 
 var router = express.Router();
 
@@ -16,28 +17,32 @@ router.get('/', function(req, res) {
 	
 		api.getStats(function(json){
 			json = json;
-			console.log(json);
+			
 			if(json!=null){
+
+
 
 				api.getTopLic(function(lic){
 					lic = lic;
-					console.log(lic);
+				
 					if(lic!=null){
 
 						api.getTopPro(function(pro){
 							pro = pro;
-							console.log(pro);
+							
 							if(pro!=null){
 
 								api.getTopCat(function(cat){
 									cat = cat;
-									console.log(cat);
+								
 									if(cat!=null){
+
 
 										res.render('application.ejs', { content: 'index',
 									  									data: json,
 							  											special: 'true',
 							  											superspecial: 'false',
+							  											config : config,
 							  											lic: lic,
 							  											pro: pro,
 							  											cat: cat,
@@ -117,6 +122,7 @@ router.get('/searchbar',function(req, res){
 					  											elGatito: true,
 					  											min: min,
 					  											producto: '',
+					  											config : config,
 					  											estado: '',
 					  											tipo: '',
 					  											fecha_creacioni: '',
@@ -135,6 +141,7 @@ router.get('/searchbar',function(req, res){
 router.get('/search', function(req, res) {
 	//var type = 'licitacion';
 	var element = req.query.q;
+	console.log (req.query.q);
 	var token = false;
 	if (element == undefined) {
 		token = true;
@@ -165,17 +172,17 @@ router.get('/search', function(req, res) {
 		var min;
 		api.getApiLic(element,1,function(lic){
 			lic = lic;
-			console.log(lic);
+		
 			if(lic!=null){
 
 				api.getApiPro(element,1,function(pro){
 					pro = pro;
-					console.log(pro);
+	
 					if(pro!=null){
 
 						api.getApiOrg(element,1,function(org){
 							org = org;
-							console.log(org);
+		
 							if(org!=null){
 
 								api.getMins(function(min){
@@ -192,6 +199,7 @@ router.get('/search', function(req, res) {
 					  											min: min,
 					  											producto: '',
 					  											estado: '',
+					  											config : config,
 					  											tipo: '',
 					  											fecha_creacioni: '',
 					  											fecha_creacione: '',
@@ -293,17 +301,17 @@ router.get('/filter', function(req, res) {
 		//api.getApiLic(element,1,function(lic){
 		api.getApiFilter("licitacion",element,1,producto,estado,tipo,fecha_creacioni,fecha_creacione,montoi, montoe,function(lic){
 			lic = lic;
-			console.log(lic);
+	
 			if(lic!=null){
 
 				api.getApiPro(element,1,function(pro){
 					pro = pro;
-					console.log(pro);
+					
 					if(pro!=null){
 
 						api.getApiOrg(element,1,function(org){
 							org = org;
-							console.log(org);
+							
 							if(org!=null){
 
 								api.getMins(function(min){
@@ -317,6 +325,7 @@ router.get('/filter', function(req, res) {
 					  											special: 'true',
 					  											superspecial: 'true',
 					  											elGatito: token,
+					  											config : config,
 					  											min: min,
 					  											producto: producto,
 					  											estado: estado,
@@ -400,23 +409,50 @@ router.get('/file', function(req, res) {
 	else if(type=='proveedor'){
 		cont = 'fichaproveedor';
 	}
+
+
 	api.getApiCode(type,code,1,function(json){
 		json = json;
+
+
 		if(json!=null)
+		{
+
+			if(type=="proveedor")
+			{
+
+				var licitaciones = json.extra.licitaciones,
+					n_paginas = json.extra.n_licitaciones % 10;
+
+
+				api.getAllTenderP(json.id, function(retorno)
+				{
+					console.log(retorno);
+					json.extra.licitaciones = retorno;
+				});
+					
+					
+
+
+			}
+
 			res.render('application.ejs', { content: cont,
 	  									data: json,
 	  									special: 'false',
 	  									superspecial: 'false',
+	  									config : config,
 	  									code: code,
 	  									type: type });
-		else{
+		}
+		else
+		{
 			var num = Math.floor((Math.random() * 10) + 1);
 			if(num==3 || num==7){
 						res.render('404.ejs');
 					}
 					else
 						res.render('404real.ejs');
-				  }
+	  	}
 	});  	
 });
 
@@ -432,7 +468,7 @@ router.get('/comparador', function(req, res) {
 	var json2;
 	var m1 = req.query.add_min1;
 	var m2 = req.query.add_min2;
-	console.log(m1);
+	
 	var item = req.query.add_item;
 	api.getMins(function(min) {
 		min = min;
@@ -441,13 +477,14 @@ router.get('/comparador', function(req, res) {
 
 			api.getMinStats(m1,item,function(json1){
 				json1 = json1;
-				console.log(json1);
+				
 				api.getMinStats(m2,item,function(json2){
 					json2 = json2;
-					console.log(json2);
+					
 					res.render('application.ejs', { content: 'comparador',
 				 									special: 'true',
 				 									superspecial: 'true',
+				 									config : config,
 				 									min: min,
 				 									data1: json1,
 				 									data2: json2});
@@ -457,11 +494,12 @@ router.get('/comparador', function(req, res) {
 
 
 		}else{
-			console.log("papapapapapapa");
+		
 
 			res.render('application.ejs', { content: 'comparador',
 		 									special: 'true',
 		 									superspecial: 'true',
+		 									config : config,
 		 									min: min,
 		 									data1: 'null',
 				 							data2: 'null'});
@@ -472,18 +510,21 @@ router.get('/comparador', function(req, res) {
 router.get('/api', function(req, res) {
  	res.render('application.ejs', { content: 'api',
  									special: 'false',
+ 									config : config,
  									superspecial: 'false'});	
 });
 
 router.get('/aboutus', function(req, res) {
  	res.render('application.ejs', { content: 'aboutus',
  									special: 'false',
+ 									config : config,
  									superspecial: 'false'});	
 });
 
 router.get('/lucheto2', function(req, res) {
  	res.render('application.ejs', { content: 'fichaorganismo',
   									special: 'false',
+  									config : config,
   									superspecial: 'false'});
 });
 
