@@ -1,10 +1,22 @@
 <form class="row" action="search" method="get">
 	<div class="col-sm-12">
-		<div class="input-group compras-transparentes">
-	      <input type="text" class="form-control" placeholder="Buscar en comprastransparentes.cl" name="q">
-	      <span class="input-group-btn">
-	        <button class="btn btn-default btn-compras-transparentes" type="submit">Buscar</button>
-	      </span>
+		<div class="compras-transparentes">
+				<p class="lookfor"><span>Deseo buscar</span>
+					<select class="selector no-search transparent-selector">
+						<option>Licitaciones</option>
+						<option>Organismos Públicos</option>
+						<option>Proveedores</option>
+					</select>
+				</p>
+				<div class="input-group">
+		      <input type="text" class="form-control" placeholder="Buscar en comprastransparentes.cl" name="q">
+		      <span class="input-group-btn">
+		        <button class="btn btn-default btn-compras-transparentes searchbar-btn" type="submit">Buscar</button>
+		      </span>
+		    </div>
+		    <p>
+		    	<a href="/searchbar" class="alt-link">... o realizar búsqueda avanzada</a>
+		    </p>
 	    </div>
   	</div>
 </form>

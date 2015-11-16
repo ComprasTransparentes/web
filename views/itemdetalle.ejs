@@ -3,20 +3,21 @@
 	<div class="row">
 		<div class="col-xs-6"><span class="info-tag" iditem=<%-k%>>item <%- k+1 %></span></div>
 		<%if(data.items[k].adjudicacion == null){%>
-			<div class="col-xs-6 text-right"><span class="info-tag" estadoitem=<%-k%>>no adjudicada</span></div>
+			<div class="col-xs-6 text-right"><span class="info-tag" style="color: #e74c3c;" estadoitem=<%-k%>>no adjudicado</span></div>
 		<%} else{%>
-			<div class="col-xs-6 text-right"><span class="info-tag" estadoitem=<%-k%>>adjudicada</span></div>
+			<div class="col-xs-6 text-right"><span class="info-tag" style="color: #2ecc71;" estadoitem=<%-k%>>adjudicado</span></div>
 		<% }%>
 	</div>
 
 	<div class="adj-detail">
 		<div class="teapot">
-			<span class="value" cantidaditem=<%-k%>><%- data.items[k].cantidad %></span>
+			<span class="numformat value" cantidaditem=<%-k%>><%- data.items[k].cantidad %></span>
 			<p unidaditem=<%-k%>><%-data.items[k].unidad%></p>
 		</div>
 		<div class="8cho">
 			<h4 nameitem=<%-k%>><%- data.items[k].nombre_producto %></h4>
-			<p desitem=<%-k%>><%- data.items[k].descripcion %></p>
+			<p class="margin-bottom double" desitem=<%-k%>><strong>Descripción:</strong> <%- data.items[k].descripcion %></p>
+			<!-- <p class="margin-bottom double"><strong>Cantidad solicitada:</strong> <em class="numformat" cantidaditem=<%-k%>><%- data.items[k].cantidad %></em> <em unidaditem=<%-k%>><%-data.items[k].unidad%></em></p> -->
 		</div>
 	</div>
 
@@ -33,7 +34,7 @@
 		<div class="panel-body" elseitem=<%-k%> style="display: none;">			
 			<span class="info-tag">Proveedor</span>
 			<h4 class="collapsable-text"><a hrefitem=<%-k%> href="#"></a></h4>
-			<p class="org-name" rutitem=<%-k%>>RUT: </p>
+			<!-- <p class="org-name" rutitem=<%-k%>>RUT: </p> -->
 
 			<div class="flex-wrapper grey-bck">
 				<div class="info-box">
@@ -96,12 +97,6 @@
 		</div>
 	</div>
 
-	<div class="row">
-		<div class="col-md-12">
-			<span class="label-tag pull-right">TOTAL NETO: <em class="clp" netoitem=<%-k%>><%- tot %></em></span>
-		</div>
-
-	</div>
 
 	<%} else{%>
 
@@ -115,7 +110,7 @@
 		<div class="panel-body" elseitem=<%-k%> style="display; block;">			
 			<span class="info-tag">Proveedor</span>
 			<h4 class="collapsable-text"><a hrefitem=<%-k%> href=<%-"/file?type=proveedor&code="+data.items[k].adjudicacion.proveedor.id%>><%- data.items[k].adjudicacion.proveedor.nombre %></a></h4>
-			<p class="org-name" rutitem=<%-k%>>RUT: <%- data.items[k].adjudicacion.proveedor.rut %></p>
+			<!-- <p class="org-name" rutitem=<%-k%>>RUT: <%- data.items[k].adjudicacion.proveedor.rut %></p> -->
 
 			<div class="flex-wrapper grey-bck">
 				<div class="info-box" id="bine">
@@ -178,12 +173,6 @@
 		</div>
 	</div>
 
-	<div class="row">
-		<div class="col-md-12">
-			<span class="label-tag pull-right">TOTAL NETO: <em class="clp" netoitem=<%-k%>><%- tot %></em></span>
-		</div>
-
-	</div>
 
 		<% }%>
 

@@ -20,14 +20,7 @@
 		if(elGatito==true) {
 		%>
 	<div class="compras-transparentes buscador-transparente">
-		<form action="search" method="get">	
-			<div class="input-group">
-		      	<input type="text" class="form-control" placeholder="Buscar en comprastransparentes.cl" name="q" value=<%- element %>>
-		      	<span class="input-group-btn">
-	        		<button class="btn btn-default btn-compras-transparentes" type="submit">Buscar</button>
-		      	</span>
-		    </div>
-		</form>
+		<% include searchbar %>
 	</div>
 
 	<p class="text-center search-desc">Realiza una búsqueda para comenzar. Filtra los resultados para cada categoría, así podrás optimizar y personalizar tu búsqueda.</p>
@@ -40,14 +33,7 @@
 	<div class="panel panel-default results-panel">
 		<div class="panel-body">
 
-			<form action="search" method="get">	
-				<div class="input-group">
-			      	<input type="text" class="form-control searchbar-asdf" placeholder="Buscar en comprastransparentes.cl" name="q" value=<%- element %>>
-			      	<span class="input-group-btn">
-		        		<button class="btn btn-default btn-compras-transparentes searchbar-btn" type="submit">Buscar</button>
-			      	</span>
-			    </div>
-			</form>
+			<% include searchbar %>
 
 
 			<h3>

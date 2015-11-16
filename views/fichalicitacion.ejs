@@ -16,17 +16,17 @@
 				</div>
 
 				<div class="panel-body no-margin">
-					<div>
+					<div class="marg30">
 						<span class="info-tag">Información Organismo</span>
 						<div>
-							<h5 class="bigger"><%- data.comprador.nombre_unidad %></h5>
+							<h5><%- data.comprador.nombre_unidad %></h5>
 							<ul class="list-unstyled">
 								<li>Código: <%- data.comprador.codigo_unidad %></li>
 							</ul>
 						</div>
 					</div>
 
-					<div>	
+					<div class="marg30">
 						<span class="info-tag">Información Unidad</span>
 						<div>
 							<h5><%- data.comprador.nombre_comprador %></h5>
@@ -38,7 +38,7 @@
 						</div>
 					</div>	
 
-					<div>
+					<div class="marg30">
 						<span class="info-tag">Responsable Pago</span>
 						<ul class="list-unstyled">
 							<li><i class="fa fa-user"></i><%- data.nombre_responsable_pago || "-" %></li>
@@ -46,7 +46,7 @@
 						</ul>
 					</div>
 
-					<div>
+					<div class="marg30">
 						<span class="info-tag">Responsable Contrato</span>
 						<ul class="list-unstyled">
 							<li><i class="fa fa-user"></i><%- data.nombre_responsable_contrato || "-" %></li>
@@ -112,6 +112,11 @@
 		<section class="panel panel-default fich licitacion">
 
 			<% include embedeitor %>
+			<div class="embed-stuff tomercado">
+				<a class="btn" href="#" target="_blank">
+	    			<span>Ver en mercado público</span>
+	  			</a>
+  			</div>
 
 			<% if(data.adjudicacion != null){ %>
 				<div class="embed-stuff tomercado">
@@ -124,17 +129,13 @@
 			<div class="panel-body">
 				
 				<div class="legend">
-					<h4>Ficha de licitación</h4>
-					<br>
+					<i class="fa fa-file-text-o back-icon"></i>
+					<h4 class="super-title duper"><i class="fa fa-file-text-o"></i>Ficha de <strong>Licitación</strong></h4>
+					<h4 class="bigger collapsable-text"><%- data.nombre %></h4>
+					<span>Código: <%- data.codigo %></span>
+					<p class="lic-des"><strong>Descripción:</strong> <%- data.descripcion %></p>
 				</div>
 
-				<span class="info-tag">Título </span>
-				
-				<div>
-					<h4 class="collapsable-text"><%- data.nombre %></h4>
-					<span>Código: <%- data.codigo %></span>
-					<p class="lic-des"><%- data.descripcion %></p>
-				</div>
 
 				<% var estado;
 					if(data.estados[0].estado==5){
@@ -159,8 +160,6 @@
 						estado = "Sin Estado"
 					}
 				%>
-
-				<span class="info-tag">Adjudicación </span>
 				
 				<div class="panel panel-inverted">
 

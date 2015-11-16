@@ -1,104 +1,24 @@
-<form class="row" action="search" method="get">	
-	<div class="col-md-12">
-		<div class="upper-searchbar">
-			<div class="row ">
-				<div class="col-sm-12">
-					<div class="input-group compras-avanzadas">
-				      <input type="text" class="form-control" placeholder="Buscar en comprastransparentes.cl" name="q">
-				      <span class="input-group-btn">
-				        <button class="btn btn-default btn-compras-transparentes" type="submit">Buscar</button>
-				      </span>
-				    </div>
-				</div>
-			</div>
+<form class="row" action="search" method="get">
+	<div class="col-sm-12">
+		<p class="lookfor"><span>Deseo buscar</span>
+			<select class="selector no-search transparent-selector">
+				<option>Licitaciones</option>
+				<option>Organismos Públicos</option>
+				<option>Proveedores</option>
+			</select>
+		</p>
+		<div class="input-group">
+	    <input type="text" class="form-control searchbar-asdf" placeholder="Buscar en comprastransparentes.cl" name="q">
+	    <span class="input-group-btn">
+	      <button class="btn btn-default btn-compras-transparentes searchbar-btn" type="submit">Buscar</button>
+	    </span>
+	  </div>
+	</div>
+
+	<div class="col-sm-12">
+		<div class="advanced-filters-container">
+			<h4>Filtros avanzados</h4>
+			<button class="btn btn-default btn-compras-transparentes">Agregar Nueva Regla</button>
 		</div>
-
-<!-- 		<div class="lower-searchbar">
-			<div class="row">
-				
-				<div class="col col-sm-4">
-				
-					<div class="input-group">
-					  <span class="input-group-addon"><i class="fa fa-usd"></i></span>
-					  <input type="text" class="form-control" placeholder="Desde">
-					  <input type="text" class="form-control" placeholder="Hasta">
-					</div>
-				</div>
-
-				<div class="col col-sm-4">
-					<select class="selector no-search flat">
-						<option>Estado 1</option>
-						<option>Estado 2</option>
-						<option>Estado 3</option>
-					</select>					
-				</div>
-
-				<div class="col col-sm-4">
-					<select class="selector no-search flat" data-placeholder="Seleccionar fecha">
-						<option></option>
-						<option>2do Semestre 2015</option>
-						<option>1er Semestre 2015</option>
-						<option>2do Semestre 2014</option>
-						<option>1er Semestre 2014</option>
-						<option>2do Semestre 2013</option>
-						<option>1er Semestre 2013</option>
-					</select>					
-				</div>
-			</div>
-		</div> -->
 	</div>
 </form>
-<!-- <div class="panel panel-grey">
-	<div class="panel-body ho">
-		<div class="flex-wrapper">
-			
-			<div class="left-box flex-wrapper">
-				<ul class="list-unstyled filter-list transparent no-filters">
-					<li class="text-center no-filters"><i class="fa fa-gears"></i>Aún no hay filtros aplicados</li>
-				</ul>
-
-				<ul class="list-unstyled filter-list transparent cosa-temporal">
-					
-						<% for(var i=0; i<6; i++) { %>
-							<% include filteritem %>
-						<% } %>
-					
-				</ul>
-			</div>
-
-			<div class="right-box panel panel-color">
-
-				<div class="panel-heading">
-					Agregar filtros
-				</div>
-
-				<div class="panel-body">						
-					<select class="selector no-search full-width flat margin-bottom" placeholder="Selecciona un filtro">
-						<option></option>
-						<optgroup label="Tipo de filtros 1">
-							<option>Filtro 1</option>
-							<option>Filtro 2</option>
-							<option>Filtro 3</option>
-						</optgroup>
-						<optgroup label="Tipo de filtros 2">
-							<option>Filtro A</option>
-							<option>Filtro B</option>
-							<option>Filtro C</option>
-						</optgroup>
-						<optgroup label="Tipo de filtros 3">
-							<option>Filtro gatito</option>
-							<option>Filtro perrito</option>
-							<option>Filtro garrito</option>
-						</optgroup>
-					</select>
-				</div>	
-				<div class="panel-footer">
-					<button class="btn btn-primary btn-block btn-compras-transparentes" id="addrule">+ Agregar Regla</button>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="panel-footer no-padding">
-		<div class="btn text-center ho-btn">Personalizar filtros <i class="fa fa-angle-down"></i></div>
-	</div>
-</div> -->
