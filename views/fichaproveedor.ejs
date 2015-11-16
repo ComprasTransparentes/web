@@ -2,6 +2,7 @@
   var data =<%-JSON.stringify(data)%>
   var n_item =<%-JSON.stringify(data.extra.n_licitaciones)%>;
   var ele =<%-JSON.stringify(code)%>;
+  console.log(data);
   var dat1;
 </script>
 
@@ -124,7 +125,7 @@
 
 										<tr class="active licitacion" id=<%-d%> onclick="magia(this);" >
 											<td><%-data.extra.top_licitaciones[d].nombre%></td>
-											<td><span class="numformat clp"><%-data.extra.top_licitaciones[d].monto_total%></span></td>
+											<td><span class="numformat clp"><%-data.extra.top_licitaciones[d].monto_adjudicado%></span></td>
 										</tr>
 
 									<% }
@@ -132,7 +133,7 @@
 
 										<tr class="licitacion" id=<%-d%> onclick="magia(this);" >
 											<td><%-data.extra.top_licitaciones[d].nombre%></td>
-											<td><span class="numformat clp"><%-data.extra.top_licitaciones[d].monto_total%></span></td>
+											<td><span class="numformat clp"><%-data.extra.top_licitaciones[d].monto_adjudicado%></span></td>
 										</tr>
 									<%}%><!-- Cierre else -->
 									
@@ -303,7 +304,6 @@
 									<td>Nombre</td>
 									<td>Código</td>
 									<td>Monto Adjudicado</td>
-									<td>Monto Total</td>
 									<td>Acción</td>
 								</thead>
 								<tbody id="liclist">

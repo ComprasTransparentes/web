@@ -2,7 +2,7 @@
   var data =<%-JSON.stringify(data)%>
   var n_item =<%-JSON.stringify(data.extra.n_licitaciones)%>;
   var ele =<%-JSON.stringify(code)%>;
-
+  console.log(data);
 </script>
 
 <div class="container">
@@ -181,8 +181,9 @@
 
 									<div class="row">
 										<div class="col-md-12">
-											<!-- <span class="numformat value">27</span>
-											<p>Proveedores beneficiados</p> -->
+											<% var date_aux = new Date(data.extra.top_licitaciones[0].fecha_adjudicacion); %>
+											<span class="value" id="fecha_adjudicacion"><%- date_aux.getDate() + "-" + (date_aux.getMonth() + 1) + "-" + date_aux.getFullYear()%></span>
+											<p>fecha adjudicación</p>
 										</div>
 										<div class="col-md-12">
 											<span class="numformat value clp" id="monto_lic"><%-data.extra.top_licitaciones[0].monto%></span>

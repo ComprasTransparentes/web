@@ -1,6 +1,7 @@
 <script type='text/javascript'>
   var n_item =<%-JSON.stringify(data.n_items)%>;
   var ele =<%-JSON.stringify(code)%>;
+  console.log(<%- JSON.stringify(data) %>);
 </script>
 
 <div class="row">
@@ -112,6 +113,14 @@
 
 			<% include embedeitor %>
 
+			<% if(data.adjudicacion != null){ %>
+				<div class="embed-stuff tomercado">
+				<a class="btn" href="<%- data.adjudicacion.acta_url %>" target="_blank">
+	    			<span>Ver en mercado público</span>
+	  			</a>
+  			</div>
+			<% } %>
+
 			<div class="panel-body">
 				
 				<div class="legend">
@@ -163,7 +172,7 @@
 							<div class="col-sm-4">
 								<%
 									var y = data.n_items;
-									var x = 0;
+									var x = data.n_items_adjudicados;
 									var total = 0;
 									for(var e=0;e<data.items.length;e++){
 										if(data.items[e].adjudicacion != null){
@@ -172,7 +181,7 @@
 										}
 									}
 								%>
-								<span class="numformat value"><span><%- x %></span>/<span><%- y %></span></span>
+								<span class="value "><%- data.n_items_adjudicados + "/" + data.n_items %></span>
 								<p>items adjudicados</p>
 							</div>
 
