@@ -76,16 +76,6 @@ $(document).ready(function() {
 
 	});
 
-	
-
-  	// Select2
-
-  	$(".standard").select2();
-
-	$(".no-search").select2({
-	  minimumResultsForSearch: Infinity
-	}); 
-
 
 	// Unable spinner on input[type="number"]
 
@@ -236,6 +226,77 @@ $(document).ready(function() {
 
 	});
 
+	$('#firststep .btn-next').on('click', function(){
+		$(this).closest('.comparator-step').addClass('hidden');
+		$(this).closest('.comparator-step').siblings('.comparator-step').removeClass('hidden');
+	});
+
+	$('#secondstep .btn-prev').on('click', function(){
+		$(this).closest('.comparator-step').addClass('hidden');
+		$(this).closest('.comparator-step').siblings('.comparator-step').removeClass('hidden');
+	});
+
+	$('#secondstep .btn-next').on('click', function(){
+		$(this).closest('.comparator-step').addClass('hidden');
+		$(this).closest('.comparator-step').siblings('.comparator').removeClass('hidden');
+	});
+
+
+	//===========================//
+	//==== BUSCADOR AVANZADO ====//
+	//===========================//
+
+	$('.btn-add-filter').on('click', function(){
+		$(this).toggleClass('active').closest('.input-group').toggleClass('border-thingy').closest('.col-sm-12').siblings('.col-sm-12').find('.advanced-filters-container').toggleClass('hidden');		
+	});
+
+	// elementos = {
+	// 	add_select: ( $('<div class="filter-module follow-up"><select class="selector flat standard full-width" placeholder="Selecciona una categoría"><option></option><option>1</option><option>2</option></select></div>') ),
+	// 	add_plata: ( $('<p class="mockup">elPerrito</p>') ),
+	// 	add_picker: ( $('<p class="mockup">elManolo</p>') )
+	// }
+
+	// $('#lic_adv_fil').on('change', function(){
+	// 	$('.mockup').remove();
+	// 	var option = $($('#lic_adv_fil option:selected')).val();
+	// 	$(this).closest('.filter-module').after(elementos[option]);
+	// });
+	
+	var loadoption = $($('#lookfor option:selected')).val();
+	$('#filters_search_'+loadoption).toggleClass('hidden');
+
+	$('#lookfor').on('change', function(){
+		$('.filters-container-panel').addClass('hidden');
+		loadoption = $($('#lookfor option:selected')).val();
+		$('#filters_search_'+loadoption).removeClass('hidden');
+	});
+
+	elementos = {
+		add_select: "otro_select",
+		add_plata: "youtubemoney",
+		add_picker: "fechapicker"
+	}
+
+	$('#lic_adv_fil').on('change', function(){
+		$('.follow-up').addClass('hidden');
+		var option = $($('#lic_adv_fil option:selected')).val();
+		$(this).closest('.filter-module').siblings("#"+elementos[option]).removeClass('hidden');
+	});	
+
+
+
+
+	// $('.btn-filtros').on('click', function(){
+
+	// });
+
+	// Select2
+
+  	$(".standard").select2();
+
+	$(".no-search").select2({
+	  minimumResultsForSearch: Infinity
+	}); 
 
 
 });

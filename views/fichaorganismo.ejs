@@ -8,42 +8,6 @@
 <div class="container">
 	<div class="row">
 		
-		<!-- 
-		<div class="col-md-4 pull-right pull-resp">			
-			<div class="panel panel-color fich">
-
-				<div class="panel-heading no-margin">
-					<h5>Información de Organismo</h5>	
-				</div>
-
-				<div class="panel-body no-margin">
-					<div>
-						<span class="info-tag">Organismo</span>
-						<div>
-							<h5 class="bigger"><%-data.nombre_comprador%></h5>
-							<ul class="list-unstyled">
-								<li>Código: <%-data.codigo_comprador%></li>
-							</ul>
-						</div>							
-					</div>
-
-					 <div>
-						<span class="info-tag">Información Unidad</span>
-						<div>
-							<h5><%-data.nombre_unidad%></h5>
-							<ul class="list-unstyled">
-								<li>Unidad: <%-data.codigo_unidad%></li>
-								<li>RUT: <%-data.rut_unidad%></li>
-								<li><%-data.direccion_unidad%>, <%-data.comuna_unidad%>, <%-data.region_unidad%></li>
-							</ul>
-						</div>
-					</div> 
-				</div>
-				
-			</div>
-		</div> 
-		-->
-		
 		<div class="col-md-12">
 			<div class="panel panel-default stats">
 
@@ -60,28 +24,35 @@
 						<h4 class="super-title duper"><i class="fa fa-university"></i>Ficha de <strong>Organismo</strong></h4>
 						<h3 class="bigger"><%-data.nombre_comprador%></h3>
 						<span>Código: <%-data.id%></span>
-						<p>Información de licitaciones y estadísticas recopilada desde Enero de 2013</p>
+						<p>Información recopilada desde Enero de 2013</p>
 					</div>
 					<div class="panel panel-inverted">
 						<div class="panel-body">
 							<div class="row">
-								<div class="col-md-6 col-sm-6">
+								<div class="col-sm-6">
 									<span class="numformat value clp"><%-data.extra.monto_adjudicado%></span>
-									<p>gasto total en productos comprados</p>
+									<p>gasto total</p>
 								</div>
-								<div class="col-md-6 col-sm-6">
+								<div class="col-sm-6">
 									<span class="numformat value"><%-data.extra.n_licitaciones%></span>
-									<p>cantidad de licitaciones publicadas</p>
+									<p>licitaciones publicadas</p>
 								</div>
-								<div class="col-md-6 col-sm-6">
+								<div class="col-sm-6">
 									<span class="numformat value"><%-data.extra.n_licitaciones_adjudicadas%></span>
-									<p>cantidad de licitaciones adjudicadas</p>
+									<p>licitaciones adjudicadas</p>
 								</div>
-								<div class="col-md-6 col-sm-6">
+								<div class="col-sm-6">
 									<span class="numformat value clp"><%- Math.floor(data.extra.monto_adjudicado/data.extra.n_licitaciones_adjudicadas) %></span>
-									<p>monto promedio de gasto por licitación</p>
+									<p>gasto promedio por licitación</p>
 								</div>
-								<!-- <div class="col-md-6 col-sm-6">
+								<div class="col-sm-12">
+									<div class="contraparte-estrella">
+										<!-- <i class="fa fa-star"></i> -->
+										<span class="value">Hola</span>
+										<p>proveedor favorito</p>
+									</div>
+								</div>
+								<!-- <div class="col-sm-6">
 									<span class="numformat value">78</span>
 									<p>proveedores beneficiados</p>
 								</div> -->
@@ -307,8 +278,6 @@
 												<p>organismos compradores</p>
 											</div> -->
 										</div>
-										
-										<br>
 
 									</div>
 
@@ -413,7 +382,8 @@
 
 		"language" : CONST.dataTableLenguage,
 			"bDeferRender": true,
-            "sPaginationType": "full_numbers"
+            "sPaginationType": "full_numbers",
+            "columnDefs": [{ "width": "40%", "targets": 0 }]
 	});
 
 	$(function(){

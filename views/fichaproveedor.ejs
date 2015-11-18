@@ -48,7 +48,7 @@
 						<h3 class="bigger"><%-data.nombre%></h3>
 						<span>Código: <%-data.id%></span>
 						<span>RUT: <%-data.rut%></span>
-						<p><span><i class="fa fa-info-circle"></i>Información de licitaciones y estadísticas recopilada desde Enero de 2013</span></p>
+						<p>Información de licitaciones y estadísticas recopilada desde Enero de 2013</p>
 					</div>
 
 
@@ -58,7 +58,7 @@
 							<div class="row">
 								<div class="col-md-6 col-sm-6">
 									<span class="numformat value clp"><%-data.extra.monto_adjudicado%></span>
-									<p>Monto total adjudicado</p>
+									<p>Monto adjudicado por proveedor</p>
 								</div>
 								<div class="col-md-6 col-sm-6">
 									<span class="numformat value"><%-data.extra.n_licitaciones%></span>
@@ -97,12 +97,12 @@
 				<div class="panel-body">
 					<div class="legend">
 						<h4>Licitaciones más cuantiosas </h4>
-						<p><span><i class="fa fa-info-circle"></i>Licitaciones en las que el proveedor se ha visto más beneficiado desde Enero de 2013</span></p>
+						<p>Licitaciones en las que el proveedor se ha visto más beneficiado desde Enero de 2013</p>
 					</div>
 
 					<div class="row" id="licmascuantiosas">
 						<div class="col-md-6">
-							<table class="table ">
+							<table class="table postulant-list clickable-table">
 								<thead>
 									<tr>
 										<td>Título</td>
@@ -294,7 +294,7 @@
 				<div class="panel-body">
 					<div class="legend">
 						<h4>Todas las licitaciones</h4>
-						<p><span><i class="fa fa-info-circle"></i>Lista de todas las licitaciones que ha ganado este proveedor desde Enero de 2013</span></p>
+						<p>Lista de todas las licitaciones que ha ganado este proveedor desde Enero de 2013</p>
 					</div>
 
 					<div class="row">
@@ -305,7 +305,7 @@
 									<td>Nombre</td>
 									<td>Código</td>
 									<td>Monto Adjudicado</td>
-									<td>Monto Total</td>
+									<td>Total Licitación</td>
 									<td>Acción</td>
 								</thead>
 								<tbody id="liclist">
@@ -338,7 +338,8 @@
 	var tabla	= $(".todas-licitaciones").dataTable({
 			"language" : CONST.dataTableLenguage,
 			"bDeferRender": true,
-            "sPaginationType": "full_numbers"
+            "sPaginationType": "full_numbers",
+            "columnDefs": [{ "width": "40%", "targets": 0 }]
 		});
 	
 	$(function(){
