@@ -20,97 +20,188 @@
 
 	<div class="col-sm-12">
 		<div class="advanced-filters-container">
+			
+			<!-- Panel de izquierda para seleccionar filtros -->
 			<div class="filters-container">
 				<!-- Filtros avanzados para Licitaciones -->
 				<div class="filters-container-panel hidden" id="filters_search_licitacion">
-					<h5 class="super-title duper">Filtros <strong>Licitaciones</strong></h5>
-					<div class="filter-module">
-						<select class="selector flat no-search full-width" placeholder="Selecciona un filtro" id="lic_adv_fil">
-							<option></option>
-							<option value="add_select">Categoría de Producto</option>
-							<optgroup label="Estado de Licitación">
-								<option value="">Licitaciones Publicadas</option>
-								<option value="">Licitaciones Adjudicadas</option>
-								<option value="">Licitaciones Revocadas</option>
-								<option value="">Licitaciones Suspendidas</option>
-							</optgroup>	
-							<option value="add_plata">Monto ($)</option>
-							<optgroup label="Tipo de Fecha">
-								<option value="add_picker">Fecha de Publicación</option>
-								<option value="add_picker">Fecha de Adjudicación</option>
-								<option value="add_picker">Fecha de Cerre</option>
-							</optgroup>
-						</select>
+					<div class="filter-header">
+						<h5 class="super-title duper">Filtros <strong>Licitaciones</strong></h5>
 					</div>
-
-					<!-- Cosas que debieran agregarse -->
-
-					<!-- Select agregado -->
-					<div class="filter-module follow-up hidden" id="otro_select">
-						<select class="selector flat standard full-width" placeholder="Selecciona una categoría">
-							<option></option>
-							<option>1</option>
-							<option>2</option>
-						</select>
-					</div>
-
-					<!-- Datepickers -->
-					<div class="filter-module follow-up hidden" id="fechapicker">
-						<div class="datepicker-group">
-							<div class="form-group">
-				                <div class='input-group date' id='picker1'>
-				                    <input type='text' class="form-control" name="filic" placeholder="Fecha desde" value=<%-fecha_creacioni%>/>
-				                    <span class="input-group-addon">
-				                        <span class="fa fa-calendar"></span>
-				                    </span>
-				                </div>
-				            </div>
-							<div class="form-group">
-				                <div class='input-group date' id='picker2'>
-				                    <input type='text' class="form-control" name="felic" placeholder="Fecha hasta" value=<%-fecha_creacione%> />
-				                    <span class="input-group-addon">
-				                        <span class="fa fa-calendar"></span>
-				                    </span>
-				                </div>
-				            </div>
-				        </div>	
-					</div>
-
-					<!-- Inputs de plata -->
-					<div class="filter-module follow-up hidden" id="youtubemoney">
-						<div class="monto">
-							<input type="number" class="form-control" placeholder="Monto desde" name="alic" value=<%-montoi%>>
-							<input type="number" class="form-control" placeholder="Monto hasta" name="xlic" value=<%-montoe%>>
+					<div class="fil-modules">
+						<div class="filter-module">
+							<select class="selector flat no-search full-width" placeholder="Selecciona un filtro" id="lic_adv_fil">
+								<option></option>
+								<option value="add_select">Categoría de Producto</option>
+								<optgroup label="Estado de Licitación">
+									<option value="">Licitaciones Publicadas</option>
+									<option value="">Licitaciones Adjudicadas</option>
+									<option value="">Licitaciones Revocadas</option>
+									<option value="">Licitaciones Suspendidas</option>
+								</optgroup>	
+								<option value="add_plata">Monto ($)</option>
+								<optgroup label="Tipo de Fecha">
+									<option value="add_picker">Fecha de Publicación</option>
+									<option value="add_picker">Fecha de Adjudicación</option>
+									<option value="add_picker">Fecha de Cerre</option>
+								</optgroup>
+							</select>
 						</div>
-					</div>
-					<!-- /Cosas que debieran agregarse fin -->
 
+						<!-- Cosas que debieran agregarse -->
+
+						<!-- Select agregado -->
+						<div class="filter-module follow-up hidden" id="otro_select">
+							<select class="selector flat standard full-width" placeholder="Selecciona una categoría">
+								<option></option>
+								<option>1</option>
+								<option>2</option>
+							</select>
+						</div>
+
+						<!-- Datepickers -->
+						<div class="filter-module follow-up hidden" id="fechapicker">
+							<div class="datepicker-group">
+								<div class="form-group">
+					                <div class='input-group date' id='picker1'>
+					                    <input type='text' class="form-control" name="filic" placeholder="Fecha desde" value=<%-fecha_creacioni%>/>
+					                    <span class="input-group-addon">
+					                        <span class="fa fa-calendar"></span>
+					                    </span>
+					                </div>
+					            </div>
+								<div class="form-group">
+					                <div class='input-group date' id='picker2'>
+					                    <input type='text' class="form-control" name="felic" placeholder="Fecha hasta" value=<%-fecha_creacione%> />
+					                    <span class="input-group-addon">
+					                        <span class="fa fa-calendar"></span>
+					                    </span>
+					                </div>
+					            </div>
+					        </div>	
+						</div>
+
+						<!-- Inputs de plata -->
+						<div class="filter-module follow-up hidden" id="youtubemoney">
+							<div class="monto">
+								<input type="number" class="form-control" placeholder="Monto desde" name="alic" value=<%-montoi%>>
+								<input type="number" class="form-control" placeholder="Monto hasta" name="xlic" value=<%-montoe%>>
+							</div>
+						</div>
+						<!-- /Cosas que debieran agregarse fin -->
+					</div>	
 					<button type="button" class="btn btn-filtros btn-block"><i class="fa fa-plus-circle"></i> Agregar filtro</button>
 				</div>
 
 				<!-- Filtros avanzados para Organismos -->
 				<div class="filters-container-panel hidden" id="filters_search_organismo">
-					<h5 class="super-title duper">Filtros <strong>Organismos Públicos</strong></h5>
+					<div class="filter-header">
+						<h5 class="super-title duper">Filtros <strong>Organismos Públicos</strong></h5>
+					</div>
+						<div class="fil-modules">
+							<div class="filter-module">
+								
+							</div>
+							<div class="filter-module follow-up hidden">
+								
+							</div>	
+						</div>
 					<button type="button" class="btn btn-filtros btn-block"><i class="fa fa-plus-circle"></i> Agregar filtro</button>
 				</div>
 
 				<!-- Filtros avanzados para Proveedores -->
 				<div class="filters-container-panel hidden" id="filters_search_proveedor">
-					<h5 class="super-title duper">Filtros <strong>Proveedores</strong></h5>
+					<div class="filter-header">
+						<h5 class="super-title duper">Filtros <strong>Proveedores</strong></h5>
+					</div>
+						<div class="fil-modules">
+							<div class="filter-module">
+								
+							</div>
+							<div class="filter-module follow-up hidden">
+								
+							</div>	
+						</div>
 					<button type="button" class="btn btn-filtros btn-block"><i class="fa fa-plus-circle"></i> Agregar filtro</button>
 				</div>
 			</div>
+
+			<!-- Panel de derecha donde saldrán los filtros agregados -->
 			<div class="added-filters-list">
 				<div class="filters-list-container hidden" id="filters_list_licitacion">
-					<h5>Filtros aplicados Licitacion</h5>		
+					<h5 class="super-title duper">Filtros aplicados</h5>
+					<span data-toggle="modal" data-target="#eraseAllModal"><i class="fa fa-trash-o"></i>Borrar todos</span>
+					<!-- Filtro de categoría de Producto-->
+					<div class="filter-list-item">
+						<ul class="list-unstyled list-inline querystring">
+							<li class="static-string">Licitaciones con el siguiente producto</li>
+							<li>Nombre de la categoría</li>
+						</ul>
+						<span class="close-thing"><i class="fa fa-times"></i></span>
+					</div>
+
+					<!-- Filtro de Estado de Licitación-->
+					<div class="filter-list-item">
+						<ul class="list-unstyled list-inline querystring">
+							<li class="static-string">Licitaciones con estado</li>
+							<li>Activas</li>
+						</ul>
+						<span class="close-thing"><i class="fa fa-times"></i></span>
+					</div>
+
+					<!-- Filtro de Monto de Licitación-->
+					<div class="filter-list-item">
+						<ul class="list-unstyled list-inline querystring">
+							<li class="static-string">Licitaciones con monto entre</li>
+							<li class="clp numformat">1000</li>
+							<li class="static-string">y</li>
+							<li class="clp numformat">25000</li>
+						</ul>
+						<span class="close-thing"><i class="fa fa-times"></i></span>
+					</div>
+
+					<!-- Filtro de Fecha de Licitación-->
+					<div class="filter-list-item">
+						<ul class="list-unstyled list-inline querystring">
+							<li class="static-string">Licitaciones con fecha</li>
+							<li>Adjudicación</li>
+							<li class="static-string">entre</li>
+							<li>01/03/2013</li>
+							<li class="static-string">y</li>
+							<li>01/03/2014</li>
+						</ul>
+						<span class="close-thing"><i class="fa fa-times"></i></span>
+					</div>
+
 				</div>
 				<div class="filters-list-container hidden" id="filters_list_organismo">
-					<h5>Filtros aplicados Organismo</h5>		
+					<h5 class="super-title duper">Filtros aplicados</h5>
+					<span data-toggle="modal" data-target="#eraseAllModal"><i class="fa fa-trash-o"></i>Borrar todos</span>		
 				</div>
 				<div class="filters-list-container hidden" id="filters_list_proveedor">
-					<h5>Filtros aplicados Proveedor</h5>		
+					<h5 class="super-title duper">Filtros aplicados</h5>
+					<span data-toggle="modal" data-target="#eraseAllModal"><i class="fa fa-trash-o"></i>Borrar todos</span>		
 				</div>
 			</div>
 		</div>
 	</div>
 </form>
+
+<div class="modal fade" id="eraseAllModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+	<div class="modal-content">
+	  <div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="fa fa-times"></i></span></button>
+		<h4 class="modal-title" id="myModalLabel">Embeber contenido</h4>
+	  </div>
+	  <div class="modal-body">
+	  	<p class="small-lead">Agrega la siguiente línea de código en tu sitio</p>
+			<pre class='logger' id='exampleInput'><%-text%></pre>
+	  </div>
+	  <div class="modal-footer">
+			<button type="button" class="btn btn-compras-transparentes" id="btn-copy">Copiar</button>
+			<button type="button" class="btn btn-compras-transparentes" data-dismiss="modal">Cerrar</button>
+	  </div>
+	</div>
+  </div>
+</div>

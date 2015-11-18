@@ -45,13 +45,12 @@
 									<span class="numformat value clp"><%- Math.floor(data.extra.monto_adjudicado/data.extra.n_licitaciones_adjudicadas) %></span>
 									<p>gasto promedio por licitación</p>
 								</div>
-								<div class="col-sm-12">
+								<!-- <div class="col-sm-12">
 									<div class="contraparte-estrella">
-										<!-- <i class="fa fa-star"></i> -->
 										<span class="value">Hola</span>
 										<p>proveedor favorito</p>
 									</div>
-								</div>
+								</div> -->
 								<!-- <div class="col-sm-6">
 									<span class="numformat value">78</span>
 									<p>proveedores beneficiados</p>
@@ -310,7 +309,9 @@
 								<thead>
 									<td>Nombre</td>
 									<td>Fecha de Creación</td>
+									<!-- <td>Monto Adjudicado</td> -->
 									<td>Estado</td>
+									<td>Acción</td>
 								</thead>
 								<tbody id="liclist">
 									<!-- html 
@@ -384,7 +385,7 @@
 		"language" : CONST.dataTableLenguage,
 			"bDeferRender": true,
             "sPaginationType": "full_numbers",
-            "columnDefs": [{ "width": "40%", "targets": 0 }]
+            "columnDefs": [{ "width": "60%", "targets": 0 }]
 	});
 
 	$(function(){

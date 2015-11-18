@@ -264,11 +264,17 @@ $(document).ready(function() {
 	
 	var loadoption = $($('#lookfor option:selected')).val();
 	$('#filters_search_'+loadoption).toggleClass('hidden');
+	$('#filters_list_'+loadoption).removeClass('hidden');
 
 	$('#lookfor').on('change', function(){
+		
 		$('.filters-container-panel').addClass('hidden');
+		$('.filters-list-container').addClass('hidden');
+		
 		loadoption = $($('#lookfor option:selected')).val();
+		
 		$('#filters_search_'+loadoption).removeClass('hidden');
+		$('#filters_list_'+loadoption).removeClass('hidden');
 	});
 
 	elementos = {
@@ -281,7 +287,11 @@ $(document).ready(function() {
 		$('.follow-up').addClass('hidden');
 		var option = $($('#lic_adv_fil option:selected')).val();
 		$(this).closest('.filter-module').siblings("#"+elementos[option]).removeClass('hidden');
-	});	
+	});
+
+	$('.close-thing').on('click', function(){
+		$(this).closest('.filter-list-item').remove();
+	});
 
 
 
@@ -480,7 +490,14 @@ $(document).ready(function() {
 
 						row.push(data.licitaciones[i].nombre);
 						row.push(d.getDate() + "-" +  (d.getMonth() + 1) + "-" + d.getFullYear());
+						// if ( typeof(data.licitaciones[i].monto_adjudicado) == "undefined"){
+						// 	row.push("0");
+						// }
+						// else {
+						// 	row.push("$" + data.licitaciones[i].monto_adjudicado.formatNumber(0,",", "."));
+						// }
 						row.push(getNombreLicitacion(data.licitaciones[i].estado));
+						row.push('<a href="/file?type=licitacion&code='+data.licitaciones[i].codigo+'">Ver ficha <i class="fa fa-arrow-circle-right"></i></a>');
 						
 						rows.push(row); 
 					};	
@@ -500,9 +517,16 @@ $(document).ready(function() {
 
 						row.push(data.licitaciones[i].nombre);
 						row.push(d.getDate() + "-" +  (d.getMonth() + 1) + "-" + d.getFullYear());
+						// if ( typeof(data.licitaciones[i].monto_adjudicado) == "undefined"){
+						// 	row.push("0");
+						// }
+						// else {
+						// 	row.push("$" + data.licitaciones[i].monto_adjudicado.formatNumber(0,",", "."));
+						// }
 						row.push(getNombreLicitacion(data.licitaciones[i].estado));
+						row.push('<a href="/file?type=licitacion&code='+data.licitaciones[i].codigo+'">Ver ficha <i class="fa fa-arrow-circle-right"></i></a>');
 
-						 rows.push(row); 
+						rows.push(row); 
 					};	
 
 					tabla.fnAddData(rows);
