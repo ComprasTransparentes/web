@@ -375,6 +375,12 @@ $(document).ready(function() {
 		 * Entra al if si, se accede desde ficha organismo y else ficha proveedor
 		 *
 		 */
+
+		 if($("#fecha_adjudicacion").length > 0)
+		 {
+		 	var fecha_adjudicacion_aux = new Date(data.extra.top_licitaciones[el.id].fecha_adjudicacion);
+		 	$("#fecha_adjudicacion").text( fecha_adjudicacion_aux.getDate() + "-" + (fecha_adjudicacion_aux.getMonth() + 1) + "-" + fecha_adjudicacion_aux.getFullYear()  );
+		 }
 		
 		if(data.extra.top_licitaciones[el.id].monto != null)
 		{
@@ -472,7 +478,7 @@ $(document).ready(function() {
 						row.push(data.licitaciones[i].nombre);
 						row.push(data.licitaciones[i].codigo);
 						row.push("$" + data.licitaciones[i].monto_adjudicado.formatNumber(0,",", "."));
-						row.push("$" + data.licitaciones[i].monto_total.formatNumber(0,",", "."));
+						//row.push("$" + data.licitaciones[i].monto_total.formatNumber(0,",", "."));
 						row.push('<a href="/file?type=licitacion&code='+data.licitaciones[i].codigo+'">Ver ficha <i class="fa fa-arrow-circle-right"></i></a>');
 
 						rows.push(row); 
