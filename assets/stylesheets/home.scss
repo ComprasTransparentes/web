@@ -494,7 +494,7 @@ header, footer {
 						@include transition( all .125s);
 					}
 
-					&:hover {
+					&:hover, &:focus, &:active, &:visited {
 
 						color: white;
 						@include transition( all .125s);
@@ -521,7 +521,7 @@ header, footer {
 
 					}
 
-					&:hover {
+					&:hover, &:focus, &:active, &:visited {
 						a { 
 							background-color: transparent;
 							color: white;
@@ -558,7 +558,7 @@ header, footer {
 				background-color: white;
 			}
 
-			&:hover, &:focus, &:active {
+			&:hover, &:focus, &:active, &:visited {
 				background: transparent;
 
 				.icon-bar {
