@@ -105,19 +105,27 @@
 
 		switch(TipoBusqueda)
 		{
+			case 0:
+				break;
 			case 1:
 				AliasBusqueda = "licitacion";
+				
+				$("#lookfor").val(AliasBusqueda).trigger("change");
 				break;
 			case 2:
 				AliasBusqueda = "organismo";
+				
+				$("#lookfor").val(AliasBusqueda).trigger("change");
 				break;
 			case 3:
 				AliasBusqueda = "proveedor";
+				
+				$("#lookfor").val(AliasBusqueda).trigger("change");
 				break;
 
 		}
-		$("#lookfor").val(AliasBusqueda).trigger("change");
-		$(".btn-add-filter").trigger("click");
+		
+		
 		$(".searchbar-asdf").val(ele);
 	});
 </script>
