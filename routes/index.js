@@ -40,6 +40,7 @@ router.get('/', function(req, res) {
 
 										res.render('application.ejs', { content: 'index',
 									  									data: json,
+									  									active_nav : "/",
 							  											special: 'true',
 							  											superspecial: 'false',
 							  											config : config,
@@ -117,8 +118,11 @@ router.get('/searchbar',function(req, res){
 							  									lic: [],
 							  									pro: [],
 							  									org: [],
+							  									NumeroRegistros : 0,
+							  									TipoBusqueda : 0,
 					  											special: 'true',
 					  											superspecial: 'true',
+					  											active_nav : "/searchbar",
 					  											elGatito: true,
 					  											min: min,
 					  											producto: '',
@@ -140,8 +144,11 @@ router.get('/searchbar',function(req, res){
 
 router.get('/search', function(req, res) {
 	//var type = 'licitacion';
-	var element = req.query.q;
+	var element = req.query.q,
+	 	TipoBusqueda = parseInt(req.query.TipoBusqueda, 10);
 	console.log (req.query.q);
+	console.log(req.query);
+	
 	var token = false;
 	if (element == undefined) {
 		token = true;
@@ -166,11 +173,163 @@ router.get('/search', function(req, res) {
 	}
 	else{
 		//var element = 'agujeros';
-		var lic;
-		var pro;
-		var org;
-		var min;
-		api.getApiLic(element,1,function(lic){
+		var lic = null;
+		var pro = null;
+		var org = null;
+		var min = null;
+
+		/*
+			TipoBusqueda => 1 => Licitacion
+			TipoBusqueda => 2 => Organismos
+			TipoBusqueda => 3 => Provedores
+		*/
+
+		switch(TipoBusqueda)
+		{
+			case 1: 
+				api.getApiLic(element, 1, function(lic){
+					lic = lic;
+
+					if(lic != null)
+					{
+
+						api.getMins(function(mins){
+							min = mins;
+
+							if(min!=null){
+										res.render('application.ejs', { content: 'searchresults',
+																element: element,
+							  									lic: lic,
+							  									pro: pro,
+							  									org: org,
+							  									NumeroRegistros : lic.n_licitaciones,
+							  									TipoBusqueda : TipoBusqueda,
+							  									active_nav : "/searchbar",
+					  											special: 'true',
+					  											superspecial: 'true',
+					  											elGatito: token,
+					  											min: min,
+					  											producto: '',
+					  											estado: '',
+					  											config : config,
+					  											tipo: '',
+					  											fecha_creacioni: '',
+					  											fecha_creacione: '',
+					  											montoi: '',
+					  											montoe: '',
+					  											na: 'search' });
+
+									}else{
+										var num = Math.floor((Math.random() * 10) + 1);
+										if(num==3 || num==7){
+												res.render('404.ejs');
+											}
+											else
+										  		res.render('404real.ejs');
+
+									}
+						});
+					}
+				});
+				break;
+				case 2:
+				api.getApiOrg(element, 1, function(org){
+					org = org;
+
+					if(org != null)
+					{
+
+						api.getMins(function(mins){
+							min = mins;
+
+							if(min!=null){
+										res.render('application.ejs', { content: 'searchresults',
+																element: element,
+							  									lic: lic,
+							  									pro: pro,
+							  									org: org,
+							  									TipoBusqueda : TipoBusqueda,
+							  									NumeroRegistros : org.n_organismos,
+							  									active_nav : "/searchbar",
+					  											special: 'true',
+					  											superspecial: 'true',
+					  											elGatito: token,
+					  											min: min,
+					  											producto: '',
+					  											estado: '',
+					  											config : config,
+					  											tipo: '',
+					  											fecha_creacioni: '',
+					  											fecha_creacione: '',
+					  											montoi: '',
+					  											montoe: '',
+					  											na: 'search' });
+
+									}else{
+										var num = Math.floor((Math.random() * 10) + 1);
+										if(num==3 || num==7){
+												res.render('404.ejs');
+											}
+											else
+										  		res.render('404real.ejs');
+
+									}
+						});
+					}
+				});
+				break;
+				case 3:
+				api.getApiPro(element, 1, function(pro){
+					pro = pro;
+
+					if(pro != null)
+					{
+
+						api.getMins(function(mins){
+							min = mins;
+
+							if(min!=null){
+										res.render('application.ejs', { content: 'searchresults',
+																element: element,
+							  									lic: lic,
+							  									pro: pro,
+							  									org: org,
+							  									TipoBusqueda : TipoBusqueda,
+							  									NumeroRegistros : pro.n_proveedores,
+							  									active_nav : "/searchbar",
+					  											special: 'true',
+					  											superspecial: 'true',
+					  											elGatito: token,
+					  											min: min,
+					  											producto: '',
+					  											estado: '',
+					  											config : config,
+					  											tipo: '',
+					  											fecha_creacioni: '',
+					  											fecha_creacione: '',
+					  											montoi: '',
+					  											montoe: '',
+					  											na: 'search' });
+
+									}else{
+										var num = Math.floor((Math.random() * 10) + 1);
+										if(num==3 || num==7){
+												res.render('404.ejs');
+											}
+											else
+										  		res.render('404real.ejs');
+
+									}
+						});
+					}
+				});
+				break;
+
+		}
+
+		/**
+		 *
+		 api.getApiLic(element,1,function(lic){
 			lic = lic;
 		
 			if(lic!=null){
@@ -257,6 +416,10 @@ router.get('/search', function(req, res) {
 				  		res.render('404real.ejs');
 				  }
 		});
+		 *
+		 */
+		
+		
 	}
 });
 
@@ -483,6 +646,7 @@ router.get('/comparador', function(req, res) {
 					
 					res.render('application.ejs', { content: 'comparador',
 				 									special: 'true',
+				 									active_nav : "/comparador",
 				 									superspecial: 'true',
 				 									config : config,
 				 									min: min,
@@ -499,6 +663,7 @@ router.get('/comparador', function(req, res) {
 			res.render('application.ejs', { content: 'comparador',
 		 									special: 'true',
 		 									superspecial: 'true',
+		 									active_nav : "/comparador",
 		 									config : config,
 		 									min: min,
 		 									data1: 'null',
@@ -510,6 +675,7 @@ router.get('/comparador', function(req, res) {
 router.get('/api', function(req, res) {
  	res.render('application.ejs', { content: 'api',
  									special: 'false',
+ 									active_nav : "/api",
  									config : config,
  									superspecial: 'false'});	
 });
@@ -517,6 +683,7 @@ router.get('/api', function(req, res) {
 router.get('/aboutus', function(req, res) {
  	res.render('application.ejs', { content: 'aboutus',
  									special: 'false',
+ 									active_nav : "/aboutus",
  									config : config,
  									superspecial: 'false'});	
 });

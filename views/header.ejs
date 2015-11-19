@@ -48,3 +48,10 @@
       </div><!-- /.container-fluid -->
     </nav>
 </header>
+<script type="text/javascript">
+    var active = "<%- active_nav %>";
+    console.log(active);
+
+    $(".navbar-nav a[href='"+active+"']").parent().addClass("active");
+
+</script>

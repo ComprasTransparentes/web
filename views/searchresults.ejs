@@ -1,7 +1,7 @@
 <script type='text/javascript'>
-  var n_lic =<%-JSON.stringify(lic.n_licitaciones)%>;
-  var n_pro =<%-JSON.stringify(pro.n_proveedores)%>;
-  var n_org =<%-JSON.stringify(org.n_organismos)%>;
+  var n_lic =<%-JSON.stringify(NumeroRegistros)%>;
+  var n_pro =<%-JSON.stringify(NumeroRegistros)%>;
+  var n_org =<%-JSON.stringify(NumeroRegistros)%>;
   var ele =<%-JSON.stringify(element)%>;
   var producto =<%-JSON.stringify(producto)%>;
   var estado =<%-JSON.stringify(estado)%>;
@@ -10,6 +10,8 @@
   var fecha_creacione =<%-JSON.stringify(fecha_creacione)%>;
   var montoi =<%-JSON.stringify(montoi)%>;
   var montoe =<%-JSON.stringify(montoe)%>;
+
+  console.log(n_lic);
 </script>
 
 <section class="container">
@@ -45,46 +47,38 @@
 					<span>Mostrando resultados de</span>
 					<span><%- element %></span>
 					<span class="no-margin">
-						<em>Se encontraron <%- lic.n_licitaciones+org.n_organismos+pro.n_proveedores %> coincidencias</em>
+						<em>Se encontraron <%- NumeroRegistros %> coincidencias</em>
 					</span>
 				</li>
 	
 
 			</ul>
 
-		  <!-- Result pills -->
-		  <ul class="nav nav-pills search-tabs" role="tablist">
-		  	<div class="pills-border"></div>
-		    <li role="presentation" class="active"><a href="#tipo1" aria-controls="tipo2" role="tab" data-toggle="tab">Licitaciones <small><%- lic.n_licitaciones %></small></a></li>
-		    <li role="presentation"><a href="#tipo3" aria-controls="tipo3" role="tab" data-toggle="tab">Organismos <small><%- org.n_organismos %></small></a></li>
-		    <li role="presentation"><a href="#tipo4" aria-controls="tipo4" role="tab" data-toggle="tab">Proveedores <small><%- pro.n_proveedores %></small></a></li>
-		  </ul>
-
 		  <!-- Tab panes -->
-		  <div class="tab-content search-results-panel">
+		  <div class="search-results-panel">
 		    
 		    <!-- Licitaciones lista -->
 		    <div role="tabpanel" class="tab-pane active" id="tipo1">
 
-				<% include searchresultlicitacion %>
-				<div id="pag1"></div>
+		    <% if(TipoBusqueda == 1){
+		    	%>
+		    	<% include searchresultlicitacion%>
+		     <% } %> 
+		    	 
+			<% if(TipoBusqueda == 2){
+		    	%>
+		    	<% include searchresultorg%>
+		     <% } %> 
+
+		     <% if(TipoBusqueda == 3){
+		    	%>
+		    	<% include searchresultpro%>
+		     <% } %> 
+
 
 		    </div>
 
-		    <!-- Organismos lista -->
-		    <div role="tabpanel" class="tab-pane" id="tipo3">
-
-				<% include searchresultorg %>
-				<div id="pag3"></div>
-
-		    </div>
-
-		    <div role="tabpanel" class="tab-pane" id="tipo4">
-
-				<% include searchresultpro %>
-				<div id="pag4"></div>
-
-		    </div>
+		    
 
 		  </div>
 
@@ -102,3 +96,28 @@
 <script type="text/javascript" charset="utf-8" src="javascripts/paginator-foot.js"></script>
 
 </section>
+
+<script type="text/javascript">
+	$(function(){
+
+		var TipoBusqueda = <%- JSON.stringify(TipoBusqueda)%>,
+			AliasBusqueda = "";
+
+		switch(TipoBusqueda)
+		{
+			case 1:
+				AliasBusqueda = "licitacion";
+				break;
+			case 2:
+				AliasBusqueda = "organismo";
+				break;
+			case 3:
+				AliasBusqueda = "proveedor";
+				break;
+
+		}
+		$("#lookfor").val(AliasBusqueda).trigger("change");
+		$(".btn-add-filter").trigger("click");
+		$(".searchbar-asdf").val(ele);
+	});
+</script>
