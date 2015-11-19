@@ -277,20 +277,66 @@ $(document).ready(function() {
 		$('#filters_list_'+loadoption).removeClass('hidden');
 	});
 
-	elementos = {
+	// Tipos de elementos en option del select de filtros de LICITACIONES
+	elementosLicitacion = {
 		add_select: "otro_select",
 		add_plata: "youtubemoney",
 		add_picker: "fechapicker"
 	}
 
+	// Remueve y agrega el tipo de elemento acorde según lo seleccionado en el select de filtros de licitación
 	$('#lic_adv_fil').on('change', function(){
 		$('.follow-up').addClass('hidden');
 		var option = $($('#lic_adv_fil option:selected')).val();
-		$(this).closest('.filter-module').siblings("#"+elementos[option]).removeClass('hidden');
+		$(this).closest('.filter-module').siblings("#"+elementosLicitacion[option]).removeClass('hidden');
 	});
+
+	// Tipos de elementos en option del select de filtros de ORGANISMOS
+	elementosOrganismo = {
+		add_cant_lic: "cant_lic",
+		add_mont_lic: "mont_lic",
+		add_mont_prov_lic: "mont_prov_lic",
+		add_cant_prov_lic: "cant_prov_lic"
+	}
+
+	// Remueve y agrega el tipo de elemento acorde según lo seleccionado en el select de filtros de organismo
+	$('#org_adv_fil').on('change', function(){
+		$('.follow-up').addClass('hidden');
+		var option = $($('#org_adv_fil option:selected')).val();
+		$(this).closest('.filter-module').siblings("#"+elementosOrganismo[option]).removeClass('hidden');
+	});
+
+	// Tipos de elementos en option del select de filtros de PROVEEDORES
+	elementosProveedor = {
+		sum_cant_lic: "cant_licitacion",
+		sum_mont_lic: "mont_licitacion",
+		sum_mont_org_lic: "mont_org_licitacion",
+		sum_cant_org_lic: "cant_org_licitacion"
+	}
+
+	// Remueve y agrega el tipo de elemento acorde según lo seleccionado en el select de filtros de organismo
+	$('#prov_adv_fil').on('change', function(){
+		$('.follow-up').addClass('hidden');
+		var option = $($('#prov_adv_fil option:selected')).val();
+		$(this).closest('.filter-module').siblings("#"+elementosProveedor[option]).removeClass('hidden');
+	});
+
+
+
+
+	// Borrar Filtros y Modal Confirmación
 
 	$('.close-thing').on('click', function(){
 		$(this).closest('.filter-list-item').remove();
+	});
+
+	$('.erase-all').on('click', function(){
+		var aBorrar = $(this).siblings('.filter-list-item');
+
+		$('.btn-borrar').click(function(){
+			$(aBorrar).remove();
+		});
+
 	});
 
 
