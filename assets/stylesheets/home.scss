@@ -48,6 +48,43 @@ $purp: "#788EDB";
 	background: url('../images/spinner.gif') center no-repeat #fff;
 }
 
+
+/* ============================ */
+/* ======== ANIMATIONS ======== */
+/* ============================ */
+
+@-webkit-keyframes glowing {
+  0% { color: #004A7F; -webkit-text-shadow: 0 0 3px #004A7F; }
+  50% { color: #0094FF; -webkit-text-shadow: 0 0 10px #0094FF; }
+  100% { color: #004A7F; -webkit-text-shadow: 0 0 3px #004A7F; }
+}
+
+@-moz-keyframes glowing {
+  0% { color: #004A7F; -moz-text-shadow: 0 0 3px #004A7F; }
+  50% { color: #0094FF; -moz-text-shadow: 0 0 10px #0094FF; }
+  100% { color: #004A7F; -moz-text-shadow: 0 0 3px #004A7F; }
+}
+
+@-o-keyframes glowing {
+  0% { color: #004A7F; text-shadow: 0 0 3px #004A7F; }
+  50% { color: #0094FF; text-shadow: 0 0 10px #0094FF; }
+  100% { color: #004A7F; text-shadow: 0 0 3px #004A7F; }
+}
+
+@keyframes glowing {
+  0% { color: #004A7F; text-shadow: 0 0 3px #004A7F; }
+  50% { color: #0094FF; text-shadow: 0 0 10px #0094FF; }
+  100% { color: #004A7F; text-shadow: 0 0 3px #004A7F; }
+}
+
+.prueba {
+  -webkit-animation: glowing 1500ms infinite;
+  -moz-animation: glowing 1500ms infinite;
+  -o-animation: glowing 1500ms infinite;
+  animation: glowing 1500ms infinite;
+}
+
+
 /* ======================= */
 /* ======== MIXIN ======== */
 /* ======================= */
@@ -225,7 +262,7 @@ html,body {
     height: 50px;
     width: 50px;
     padding: 20px;
-    padding-top: 14px;
+    padding-top: 15px;
     display: block;
     cursor: pointer;
     position: absolute;
@@ -233,7 +270,7 @@ html,body {
     right: 12px;
 
 		&:hover {
-			background-color: rgba(38,40,79,.25);
+			background-color: rgba( 0, 0, 0, .1);
 			color: white;
 			@include transition(all .125s);
 		}
@@ -1228,9 +1265,7 @@ body {
 			height: auto;
 		}
 	}
-}
 
-.stats {
 
 	&.panel.panel-default {
 		border: none;
@@ -1499,7 +1534,6 @@ body {
 		margin-top: 114px;
 
 		+ .results-panel {
-			margin-top: -15px;
 			padding-top: 15px;
 
 			.lookfor {
@@ -2945,7 +2979,7 @@ input[type=number] {
 			.ranking-name {
 				display: inline-block;
 				font-size: 28px;
-				font-weight: 200;
+				font-weight: 300;
 				margin-top: 15px;
 				margin-left: -45px;
 				padding-right: 15px;
@@ -3785,7 +3819,10 @@ input[type=number] {
 
     p {
     	a {
-    		word-break: break-all;
+
+    		@media #{$md} {
+    			word-break: break-all;
+    		}
     	}
     }
 
