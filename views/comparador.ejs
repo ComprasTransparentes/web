@@ -20,30 +20,22 @@
 				<div class="row">
 					<div class="col-sm-6 flex-wrapper">
 						<label>Ministerio 1</label>
-						<select class="selector flat standard flex-item" data-placeholder="Selecciona un ministerio">
-							<%if(data1=='null'){%>
-							<option></option>
-							<% for(var r=0;r<min.ministerios.length;r++){%>
-								<option value=<%-min.ministerios[r].code%>><%-min.ministerios[r].name%></option>
-							<%}%>
-							<%}else{%>
-							
-							<option value=<%-data1.ministerio%>><%-data1.ministerio_nombre%></option>
+						<select class="selector flat standard flex-item min-1" data-placeholder="Selecciona un ministerio">
 							<% for(var r=0;r<min.ministerios.length;r++){
 								if(data1.ministerio!=min.ministerios[r].code){%>
 									<option value=<%-min.ministerios[r].code%>><%-min.ministerios[r].name%></option>
 								<%}
 							}%>
-								
-							<%}%>
 						</select>
 					</div>
 					<div class="col-sm-6 flex-wrapper">
 						<label>Ministerio 2</label>
-						<select class="selector flat standard flex-item" data-placeholder="Selecciona un ministerio">
-							<option></option>
-							<option>1</option>
-							<option>2</option>
+						<select class="selector flat standard flex-item min-2" data-placeholder="Selecciona un ministerio">
+							<% for(var r=0;r<min.ministerios.length;r++){
+								if(data1.ministerio!=min.ministerios[r].code){%>
+									<option value=<%-min.ministerios[r].code%>><%-min.ministerios[r].name%></option>
+								<%}
+							}%>
 						</select>
 					</div>
 				</div>
@@ -302,3 +294,10 @@
 	</div>
 
 </section>
+<script type="text/javascript">
+$(function(){
+	$("#firststep .min-1").on("change", function(){
+		console.log($(this).val());
+	});
+});
+</script>

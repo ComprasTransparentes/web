@@ -602,6 +602,8 @@ router.get('/file', function(req, res) {
 			res.render('application.ejs', { content: cont,
 	  									data: json,
 	  									special: 'false',
+	  									NumeroRegistros : 0,
+	  									active_nav : "",
 	  									superspecial: 'false',
 	  									config : config,
 	  									code: code,
@@ -631,12 +633,26 @@ router.get('/comparador', function(req, res) {
 	var json2;
 	var m1 = req.query.add_min1;
 	var m2 = req.query.add_min2;
+
+	console.log(m1);
+	console.log(m2);
 	
 	var item = req.query.add_item;
 	api.getMins(function(min) {
 		min = min;
 		//console.log(min);
-		if(m1!=undefined&&m2!=undefined&&item!=undefined){
+
+		res.render('application.ejs', { content: 'comparador',
+		 									special: 'true',
+		 									superspecial: 'true',
+		 									active_nav : "/comparador",
+		 									config : config,
+		 									min: min,
+		 									data1: 'null',
+				 							data2: 'null'});
+		/**
+		 *
+		 * if(m1!=undefined&&m2!=undefined&&item!=undefined){
 
 			api.getMinStats(m1,item,function(json1){
 				json1 = json1;
@@ -660,15 +676,12 @@ router.get('/comparador', function(req, res) {
 		}else{
 		
 
-			res.render('application.ejs', { content: 'comparador',
-		 									special: 'true',
-		 									superspecial: 'true',
-		 									active_nav : "/comparador",
-		 									config : config,
-		 									min: min,
-		 									data1: 'null',
-				 							data2: 'null'});
+			
 		}
+		 *
+		 */
+		
+		
 	});	
 });
 
