@@ -21,6 +21,7 @@
 					<div class="col-sm-6 flex-wrapper">
 						<label>Ministerio 1</label>
 						<select class="selector flat standard flex-item min-1" data-placeholder="Selecciona un ministerio">
+							<option>Seleccione...</option>
 							<% for(var r=0;r<min.ministerios.length;r++){
 								if(data1.ministerio!=min.ministerios[r].code){%>
 									<option value=<%-min.ministerios[r].code%>><%-min.ministerios[r].name%></option>
@@ -30,7 +31,8 @@
 					</div>
 					<div class="col-sm-6 flex-wrapper">
 						<label>Ministerio 2</label>
-						<select class="selector flat standard flex-item min-2" data-placeholder="Selecciona un ministerio">
+						<select class="selector flat standard flex-item min-2" disabled  data-placeholder="Selecciona un ministerio">
+							<option>Seleccione...</option>
 							<% for(var r=0;r<min.ministerios.length;r++){
 								if(data1.ministerio!=min.ministerios[r].code){%>
 									<option value=<%-min.ministerios[r].code%>><%-min.ministerios[r].name%></option>
@@ -53,10 +55,10 @@
 					<div class="col-sm-3 flex-wrapper"></div>
 					<div class="col-sm-6 flex-wrapper">
 						<label>Categoría</label>
-						<select class="selector flat standard flex-item" data-placeholder="Selecciona una categoría">
-							<option></option>
-							<option>1</option>
-							<option>2</option>
+						<select class="selector flat standard flex-item cat-step-2"  data-placeholder="Selecciona una categoría">
+							<% for(var r=0;r<min.item.length;r++){%>								
+								<option value=<%-min.item[r].code%>><%-min.item[r].name%></option>
+							<%} %>
 						</select>
 					</div>
 					<div class="col-sm-3 flex-wrapper"></div>
@@ -65,80 +67,41 @@
 			<div class="them-buttons">
 				<!-- Cuando el botón no esté disponible para clickear, agregar la clase disabled además del atributo -->
 				<button class="btn btn-prev pull-left disabled" disabled=""><i class="fa fa-arrow-left"></i>Volver</button>
-				<button class="btn btn-next pull-right">Siguiente<i class="fa fa-arrow-right"></i></button>
+				<button class="btn btn-next btn-comparador  pull-right">Siguiente<i class="fa fa-arrow-right"></i></button>
 			</div>
 		</div>
 
 		<!-- Paso Resultados -->
 		<div class="comparator hidden">
-			<form action="comparador" method="get">	
+			
 				<div class="comparator-settings">
 					<div class="comparator-list">
 						<div class="comparator-item selector-thingy">
 							<div class="correlative min-parent">
 								<select class="selector flat full-width standard min-selector" data-placeholder="Selecciona un organismo" id="add_min1" name="add_min1">
-									<%if(data1=='null'){%>
-									<option></option>
 									<% for(var r=0;r<min.ministerios.length;r++){%>
-										<option value=<%-min.ministerios[r].code%>><%-min.ministerios[r].name%></option>
-									<%}%>
-									<%}else{%>
-									
-									<option value=<%-data1.ministerio%>><%-data1.ministerio_nombre%></option>
-									<% for(var r=0;r<min.ministerios.length;r++){
-										if(data1.ministerio!=min.ministerios[r].code){%>
 											<option value=<%-min.ministerios[r].code%>><%-min.ministerios[r].name%></option>
-										<%}
-									}%>
-										
 									<%}%>
 									
 								</select>
 							</div>
 							<div class="correlative min-parent">
 								<select class="selector flat full-width standard min-selector" data-placeholder="Y con quién compararás" id="add_min2" name="add_min2">
-									<%if(data2=='null'){%>
-									<option></option>
 									<% for(var r=0;r<min.ministerios.length;r++){%>
-										<option value=<%-min.ministerios[r].code%>><%-min.ministerios[r].name%></option>
-									<%}%>
-									<%}else{%>
-									
-									<option value=<%-data2.ministerio%>><%-data2.ministerio_nombre%></option>
-									<% for(var r=0;r<min.ministerios.length;r++){
-										if(data2.ministerio!=min.ministerios[r].code){%>
 											<option value=<%-min.ministerios[r].code%>><%-min.ministerios[r].name%></option>
-										<%}
-									}
-
-									%>
-									
-										
 									<%}%>
 								</select>
 							</div>
 							<div class="correlative">
 								<select class="selector flat full-width standard" data-placeholder="Una categoría de comparación" id="add_item" name="add_item">
-									<%if(data1=='null'){%>
-									<option></option>
 									<% for(var r=0;r<min.item.length;r++){%>
 										<option value=<%-min.item[r].code%>><%-min.item[r].name%></option>
-									<%}%>
-									<%}else{%>
-									
-									<option value=<%-data1.categoria%>><%-data1.categoria_nombre%></option>
-									<% for(var r=0;r<min.item.length;r++){
-										if(data1.categoria!=min.item[r].code){%>
-											<option value=<%-min.item[r].code%>><%-min.item[r].name%></option>
-										<%}
-									}%>
-										
 									<%}%>
 								</select>
 							</div>
 							<div class="correlative">
 								<!-- <btn class="btn btn-default btn-compras-transparentes"type="submit" name="submit" value="Submit" id="submit_compare">Comparar</btn> -->
-								 <button class="btn btn-default btn-compras-transparentes" id="submit_compare">Comparar</button>
+								 <button type="button" class="btn btn-default btn-comparador btn-compras-transparentes" id="submit_compare">Comparar</button>
 							</div>
 						</div>
 					</div>
@@ -289,7 +252,7 @@
 							</li>
 						</ul>
 				</div>
-			</form>
+			
 		</div>
 	</div>
 
@@ -297,7 +260,48 @@
 <script type="text/javascript">
 $(function(){
 	$("#firststep .min-1").on("change", function(){
-		console.log($(this).val());
+		
+		/* habilita todos los min2 */
+		$(".min-2").attr("disabled",false);
+		$(".min-2 option").each(function(i, o){$(this).attr("disabled", false)});
+		
+
+		/* Inactiva el min_2 */
+		$(".min-2 option[value='"+$(this).val()+"']").attr("disabled", "disabled");
+
+		/* Cambia el valor en el min1 en el paso 3 */
+		$("#add_min1").val($(this).val()).trigger("change");
 	});
+
+	$(".min-2").on("change", function(){
+		$("#add_min2").val($(this).val()).trigger("change");	
+	});
+
+	$(".cat-step-2").on("change", function(){
+		$("#add_item").val($(this).val()).trigger("change");
+	});
+
+	$(".btn-comparador").on("click", function(){
+
+		var params = {};
+
+		params.min1 = $("#add_min1").val();
+		params.min2 = $("#add_min1").val();
+		params.item = $("#add_item").val();
+
+		console.log(params);
+		$.ajax({
+			url : "/comparar_mins",
+			data : params,
+			dataType : "Json",
+			type : "post",
+			success : function(r)
+			{
+				console.log(r);
+			}
+		});
+
+	});
+
 });
 </script>

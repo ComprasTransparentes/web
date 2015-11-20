@@ -4,9 +4,11 @@ var express = require('express')
 /* Api calls */
 var api  = require('../models/api'); 
 var config =require('../config/conf')
+//var bodyParser = require('body-parser');
 
 var router = express.Router();
 
+//router.use(ro);
 /* GET home page. */
 router.get('/', function(req, res) {
 
@@ -629,18 +631,10 @@ router.get('/lucheto', function(req, res) {
 
 router.get('/comparador', function(req, res) {
 	var min;
-	var json1;
-	var json2;
-	var m1 = req.query.add_min1;
-	var m2 = req.query.add_min2;
-
-	console.log(m1);
-	console.log(m2);
-	
+		
 	var item = req.query.add_item;
 	api.getMins(function(min) {
 		min = min;
-		//console.log(min);
 
 		res.render('application.ejs', { content: 'comparador',
 		 									special: 'true',
@@ -683,6 +677,13 @@ router.get('/comparador', function(req, res) {
 		
 		
 	});	
+});
+
+router.post('/comparar_mins', function(req,res){
+
+	console.log(req.body);
+
+	res.send("HolaHola");
 });
 
 router.get('/api', function(req, res) {
