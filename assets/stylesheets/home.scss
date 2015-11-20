@@ -494,7 +494,7 @@ header, footer {
 						@include transition( all .125s);
 					}
 
-					&:hover {
+					&:hover, &:focus, &:active, &:visited {
 
 						color: white;
 						@include transition( all .125s);
@@ -521,7 +521,7 @@ header, footer {
 
 					}
 
-					&:hover {
+					&:hover, &:focus, &:active, &:visited {
 						a { 
 							background-color: transparent;
 							color: white;
@@ -558,7 +558,7 @@ header, footer {
 				background-color: white;
 			}
 
-			&:hover, &:focus, &:active {
+			&:hover, &:focus, &:active, &:visited {
 				background: transparent;
 
 				.icon-bar {
@@ -1708,14 +1708,25 @@ body {
     			margin-bottom: 0;
     		}
 
+    		p {
+    			text-align: left;
+			    padding: 0;
+			    font-weight: 500;
+			    color: #{$ltblue};
+
+			    .fa {
+			    	margin-right: 5px;
+			    }
+    		}
+
     		.querystring {
     			margin: 0;
     			margin-right: 25px;
 
     			li {
-    				color: #333;
 					font-style: italic;
 					display: inline;
+					color: #4a4a4a;
 
     				&.static-string {
     					font-style: normal;
