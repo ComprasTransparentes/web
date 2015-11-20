@@ -30,12 +30,15 @@
 		}
 	else { %>
 	
-	<div class="compras-transparentes buscador-transparente"></div>
+	<div class="compras-transparentes buscador-transparente">
+		
+		<% include searchbar %>
+		
+	</div>
 	
 	<div class="panel panel-default results-panel">
 		<div class="panel-body">
 
-			<% include searchbar %>
 
 
 			<h3>
@@ -63,17 +66,20 @@
 		    <% if(TipoBusqueda == 1){
 		    	%>
 		    	<% include searchresultlicitacion%>
+		    	<div id="pag1"></div>
 		     <% } %> 
 		    	 
 			<% if(TipoBusqueda == 2){
 		    	%>
 		    	<% include searchresultorg%>
+		    	<div id="pag3"></div>
 		     <% } %> 
 
 		     <% if(TipoBusqueda == 3){
 		    	%>
 		    	<% include searchresultpro%>
-		     <% } %> 
+		    	<div id="pag4"></div>
+		     <% } %>
 
 
 		    </div>
@@ -103,27 +109,7 @@
 		var TipoBusqueda = <%- JSON.stringify(TipoBusqueda)%>,
 			AliasBusqueda = "";
 
-		switch(TipoBusqueda)
-		{
-			case 0:
-				break;
-			case 1:
-				AliasBusqueda = "licitacion";
-				
-				$("#lookfor").val(AliasBusqueda).trigger("change");
-				break;
-			case 2:
-				AliasBusqueda = "organismo";
-				
-				$("#lookfor").val(AliasBusqueda).trigger("change");
-				break;
-			case 3:
-				AliasBusqueda = "proveedor";
-				
-				$("#lookfor").val(AliasBusqueda).trigger("change");
-				break;
-
-		}
+		$("#lookfor").val(TipoBusqueda).trigger("change");
 		
 		
 		$(".searchbar-asdf").val(ele);

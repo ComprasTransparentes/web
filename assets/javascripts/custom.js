@@ -263,6 +263,7 @@ $(document).ready(function() {
 	// });
 	
 	var loadoption = $($('#lookfor option:selected')).val();
+	var AliasBusqueda = "";
 	$('#filters_search_'+loadoption).toggleClass('hidden');
 	$('#filters_list_'+loadoption).removeClass('hidden');
 
@@ -271,7 +272,28 @@ $(document).ready(function() {
 		$('.filters-container-panel').addClass('hidden');
 		$('.filters-list-container').addClass('hidden');
 		
-		loadoption = $($('#lookfor option:selected')).val();
+
+		switch(parseInt($($('#lookfor option:selected')).val(), 10 ))
+		{
+			case 0:
+				break;
+			case 1:
+				AliasBusqueda = "licitacion";
+				
+				break;
+			case 2:
+				AliasBusqueda = "organismo";
+				
+				
+				break;
+			case 3:
+				AliasBusqueda = "proveedor";
+				
+				
+				break;
+		}
+
+		loadoption = AliasBusqueda;
 		
 		$('#filters_search_'+loadoption).removeClass('hidden');
 		$('#filters_list_'+loadoption).removeClass('hidden');
