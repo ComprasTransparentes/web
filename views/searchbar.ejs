@@ -2,7 +2,7 @@
 	<div class="col-sm-12">
 		<p class="lookfor"><span>Deseo buscar</span>
 			<select class="selector no-search transparent-selector" id="lookfor" name="TipoBusqueda">
-				<option value="1">Licitaciones</option>
+				<option value="1" selected="selected">Licitaciones</option>
 				<option value="2">Organismos Públicos</option>
 				<option value="3">Proveedores</option>
 			</select>
@@ -43,7 +43,7 @@
 								<optgroup label="Tipo de Fecha">
 									<option value="add_picker">Fecha de Publicación</option>
 									<option value="add_picker">Fecha de Adjudicación</option>
-									<option value="add_picker">Fecha de Cerre</option>
+									<option value="add_picker">Fecha de Cierre</option>
 								</optgroup>
 							</select>
 						</div>
@@ -575,3 +575,5 @@
 	</div>
   </div>
 </div>
+
+<script type="text/javascript">$(function(){$("#lookfor option[value='1']").trigger("click");})</script>

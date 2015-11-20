@@ -121,7 +121,7 @@ router.get('/searchbar',function(req, res){
 							  									pro: [],
 							  									org: [],
 							  									NumeroRegistros : 0,
-							  									TipoBusqueda : 0,
+							  									TipoBusqueda : 1,
 					  											special: 'true',
 					  											superspecial: 'true',
 					  											active_nav : "/searchbar",

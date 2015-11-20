@@ -263,7 +263,8 @@ $(document).ready(function() {
 	// });
 	
 	var loadoption = $($('#lookfor option:selected')).val();
-	var AliasBusqueda = "";
+	var AliasBusqueda = "licitacion";
+	
 	$('#filters_search_'+loadoption).toggleClass('hidden');
 	$('#filters_list_'+loadoption).removeClass('hidden');
 
