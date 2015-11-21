@@ -134,7 +134,7 @@
 									<!-- Fechas Licitaciones -->
 									<div class="datepicker-group">
 										<div class="form-group">
-							                <div class='input-group date' id='picker1'>
+							                <div class='input-group date' id='picker3'>
 							                    <input type='text' class="form-control" placeholder="Fecha desde">
 							                    <span class="input-group-addon">
 							                        <span class="fa fa-calendar"></span>
@@ -142,7 +142,7 @@
 							                </div>
 							            </div>
 										<div class="form-group">
-							                <div class='input-group date' id='picker2'>
+							                <div class='input-group date' id='picker4'>
 							                    <input type='text' class="form-control" placeholder="Fecha hasta"/>
 							                    <span class="input-group-addon">
 							                        <span class="fa fa-calendar"></span>
@@ -160,19 +160,10 @@
 										<input type="number" class="form-control" placeholder="Monto hasta">
 									</div>
 									
-									<!-- Estado Licitaciones -->
-									<select class="selector flat no-search full-width" style="margin-bottom: 15px;">
-										<option>Todos los estados de licitación</option>
-										<option>Licitaciones Publicadas</option>
-										<option>Licitaciones Adjudicadas</option>
-										<option>Licitaciones Revocadas</option>
-										<option>Licitaciones Suspendidas</option>
-									</select>
-
 									<!-- Fechas Licitaciones -->
 									<div class="datepicker-group">
 										<div class="form-group">
-							                <div class='input-group date' id='picker1'>
+							                <div class='input-group date' id='picker5'>
 							                    <input type='text' class="form-control" placeholder="Fecha desde">
 							                    <span class="input-group-addon">
 							                        <span class="fa fa-calendar"></span>
@@ -180,7 +171,7 @@
 							                </div>
 							            </div>
 										<div class="form-group">
-							                <div class='input-group date' id='picker2'>
+							                <div class='input-group date' id='picker6'>
 							                    <input type='text' class="form-control" placeholder="Fecha hasta"/>
 							                    <span class="input-group-addon">
 							                        <span class="fa fa-calendar"></span>
@@ -242,34 +233,25 @@
 									<option></option>
 									<option value="sum_cant_lic">Cantidad de licitaciones ganadas</option>
 									<option value="sum_mont_lic">Por monto adjudicado</option>
-									<option value="sum_mont_prov_lic">Por monto transado con organismo</option>
-									<option value="sum_cant_prov_lic">Por cantidad de licitaciones con organismo</option>
+									<option value="sum_mont_org_lic">Por monto transado con organismo</option>
+									<option value="sum_cant_org_lic">Por cantidad de licitaciones con organismo</option>
 								</select>
 							</div>
 							
 							<!-- Cosas que debieran agregarse -->
 
-								<!-- Filtro organismo por cantidad de licitaciones -->
+								<!-- Filtro proveedor por cantidad de licitaciones ganadas -->
 								<div class="filter-module follow-up hidden" id="cant_licitacion">
 									<!-- Cantidad de licitaciones -->
 									<div class="monto" style="margin-bottom: 15px;">
 										<input type="number" class="form-control" placeholder="Cantidad desde">
 										<input type="number" class="form-control" placeholder="Cantidad hasta">
 									</div>
-									
-									<!-- Estado Licitaciones -->
-									<select class="selector flat no-search full-width" style="margin-bottom: 15px;">
-										<option>Todos los estados de licitación</option>
-										<option>Licitaciones Publicadas</option>
-										<option>Licitaciones Adjudicadas</option>
-										<option>Licitaciones Revocadas</option>
-										<option>Licitaciones Suspendidas</option>
-									</select>
 
 									<!-- Fechas Licitaciones -->
 									<div class="datepicker-group">
 										<div class="form-group">
-							                <div class='input-group date' id='picker1'>
+							                <div class='input-group date' id='picker7'>
 							                    <input type='text' class="form-control" placeholder="Fecha desde">
 							                    <span class="input-group-addon">
 							                        <span class="fa fa-calendar"></span>
@@ -277,7 +259,7 @@
 							                </div>
 							            </div>
 										<div class="form-group">
-							                <div class='input-group date' id='picker2'>
+							                <div class='input-group date' id='picker8'>
 							                    <input type='text' class="form-control" placeholder="Fecha hasta"/>
 							                    <span class="input-group-addon">
 							                        <span class="fa fa-calendar"></span>
@@ -287,27 +269,18 @@
 							        </div>	
 								</div>
 
-								<!-- Filtro organismo por monto de licitaciones -->
+								<!-- Filtro proveedor por monto de licitaciones ganadas -->
 								<div class="filter-module follow-up hidden" id="mont_licitacion">
 									<!-- Monto de licitaciones -->
 									<div class="monto" style="margin-bottom: 15px;">
 										<input type="number" class="form-control" placeholder="Monto desde">
 										<input type="number" class="form-control" placeholder="Monto hasta">
 									</div>
-									
-									<!-- Estado Licitaciones -->
-									<select class="selector flat no-search full-width" style="margin-bottom: 15px;">
-										<option>Todos los estados de licitación</option>
-										<option>Licitaciones Publicadas</option>
-										<option>Licitaciones Adjudicadas</option>
-										<option>Licitaciones Revocadas</option>
-										<option>Licitaciones Suspendidas</option>
-									</select>
 
 									<!-- Fechas Licitaciones -->
 									<div class="datepicker-group">
 										<div class="form-group">
-							                <div class='input-group date' id='picker1'>
+							                <div class='input-group date' id='picker9'>
 							                    <input type='text' class="form-control" placeholder="Fecha desde">
 							                    <span class="input-group-addon">
 							                        <span class="fa fa-calendar"></span>
@@ -315,7 +288,7 @@
 							                </div>
 							            </div>
 										<div class="form-group">
-							                <div class='input-group date' id='picker2'>
+							                <div class='input-group date' id='picker10'>
 							                    <input type='text' class="form-control" placeholder="Fecha hasta"/>
 							                    <span class="input-group-addon">
 							                        <span class="fa fa-calendar"></span>
@@ -325,15 +298,15 @@
 							        </div>	
 								</div>
 
-								<!-- Filtro organismo por monto transado con proveedor -->
+								<!-- Filtro proveedor por monto transado con organismo -->
 								<div class="filter-module follow-up hidden" id="mont_org_licitacion">
 									<!-- Lista de proveedores -->
-									<select class="selector flat no-search full-width" style="margin-bottom: 15px;" placeholder="Selecciona un proveedor">
+									<select class="selector flat no-search full-width" style="margin-bottom: 15px;" placeholder="Selecciona un organismo">
 										<option></option>
-										<option>Proveedor 1</option>
-										<option>Proveedor 2</option>
-										<option>Proveedor 3</option>
-										<option>Proveedor 4</option>
+										<option>Organismo 1</option>
+										<option>Organismo 2</option>
+										<option>Organismo 3</option>
+										<option>Organismo 4</option>
 									</select>
 
 									<!-- Monto de licitaciones -->
@@ -343,15 +316,15 @@
 									</div>
 								</div>
 
-								<!-- Filtro organismo por cantidad de licitaciones transadas con proveedor -->
+								<!-- Filtro proveedor por cantidad de licitaciones transadas con organismo -->
 								<div class="filter-module follow-up hidden" id="cant_org_licitacion">
 									<!-- Lista de proveedores -->
-									<select class="selector flat no-search full-width" style="margin-bottom: 15px;" placeholder="Selecciona un proveedor">
+									<select class="selector flat no-search full-width" style="margin-bottom: 15px;" placeholder="Selecciona un organismo">
 										<option></option>
-										<option>Proveedor 1</option>
-										<option>Proveedor 2</option>
-										<option>Proveedor 3</option>
-										<option>Proveedor 4</option>
+										<option>Organismo 1</option>
+										<option>Organismo 2</option>
+										<option>Organismo 3</option>
+										<option>Organismo 4</option>
 									</select>
 
 									<!-- Cantidad de licitaciones -->
