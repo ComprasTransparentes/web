@@ -61,6 +61,8 @@ $(document).ready(function() {
 	$('#picker6').datetimepicker(notime);
 	$('#picker7').datetimepicker(notime);
 	$('#picker8').datetimepicker(notime);
+	$('#picker9').datetimepicker(notime);
+	$('#picker10').datetimepicker(notime);
 
 	/**
 	 	$('.numformat').each( function() {
