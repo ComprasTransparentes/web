@@ -679,11 +679,27 @@ router.get('/comparador', function(req, res) {
 	});	
 });
 
-router.post('/comparar_mins', function(req,res){
+router.get('/comparar_mins', function(req,res){
 
-	console.log(req.body);
+	console.log(req.query);
 
-	res.send("HolaHola");
+	var min1 = req.query.min1,
+		min2 = req.query.min2,
+		item = req.query.item;
+
+	var info_min1,
+		info_min2;
+
+	api.getMinStats(min1,item,function(info_min1){
+		info_min1 = info_min1;
+		console.log(info_min1);
+
+		api.getMinStats(min2,item, function(info_min2){
+			info_min2 = info_min2;
+			console.log(info_min2);
+			res.send({"respuesta" : "1", "min1" : info_min1, "min2" : info_min2});
+		});
+	});
 });
 
 router.get('/api', function(req, res) {
