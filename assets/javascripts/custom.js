@@ -549,7 +549,7 @@ $(document).ready(function() {
 			var rows = [];
 			//tabla.fnClearTable();
 			
-
+			console.log(data.licitaciones.length);
 			if(data.licitaciones.length > 0)
 			{
 
