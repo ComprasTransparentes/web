@@ -24,8 +24,6 @@
 	<div class="compras-transparentes buscador-transparente">
 		<% include searchbar %>
 	</div>
-
-	<p class="text-center search-desc">Realiza una búsqueda para comenzar. Filtra los resultados para cada categoría, así podrás optimizar y personalizar tu búsqueda.</p>
 		<%
 		}
 	else { %>
@@ -39,10 +37,17 @@
 	<div class="panel panel-default results-panel">
 		<div class="panel-body">
 
-
-
 			<h3>
-				Resultados de Búsqueda
+				Resultados de Búsqueda:
+				<% if (TipoBusqueda == 1) {%>
+					<span>Licitaciones</span>
+				<% } %> 
+				<% if (TipoBusqueda == 2) {%>
+					<span>Organismos Públicos</span>
+				<% } %> 
+				<% if (TipoBusqueda == 3) {%>
+					<span>Proveedores</span>
+				<% } %> 
 			</h3>
 			<ul class="list-unstyled search-result-description">
 
@@ -58,7 +63,7 @@
 			</ul>
 
 		  <!-- Tab panes -->
-		  <div class="search-results-panel">
+		  <div class="search-results-panel" id="search-results-panel">
 		    
 		    <!-- Licitaciones lista -->
 		    <div role="tabpanel" class="tab-pane active" id="tipo1">
@@ -117,4 +122,6 @@
 		
 		$(".searchbar-asdf").val(ele);
 	});
+
+	$("html, body").animate({scrollTop: $('#search-results-panel').offset().top }, 1000);
 </script>

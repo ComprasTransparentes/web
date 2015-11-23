@@ -379,6 +379,8 @@ $(document).ready(function() {
 	  minimumResultsForSearch: Infinity
 	}); 
 
+	$('[data-toggle="tooltip"]').tooltip();
+
 
 });
 

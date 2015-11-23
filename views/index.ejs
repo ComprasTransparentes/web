@@ -57,7 +57,7 @@
 		</div>
 		<div class="panel-body">
 
-			<p class="small-lead">Distribución del gasto público del Estado de Chile a nivel de ministerios, y subsiguientes divisiones.</p>
+			<p class="small-lead">Distribución del gasto público del Estado de Chile a nivel de ministerios.</p>
 
 			<div class="grafico">
 				<div id="chart">
@@ -77,7 +77,7 @@
 	<!-- /Gráfico 1 -->
 
 	<!-- Slider de rankings -->
-	<div class="panel panel-default stats">
+	<div class="panel panel-default stats" style="overflow: hidden;">
 		<div class="panel-body ltblue-back no-padding">
 
 			<div id="carousel-rankings" class="carousel  slide" data-ride="carousel">
@@ -99,6 +99,7 @@
 						</h4>
 					</div>
 			      	<div class="panel-body">
+			      		<p class="small-lead">Lista de los 5 proveedores que más dinero han obtenido a través de transacciones con organismos públicos del estado.</p>
 						<p>Ver información correspondiente a:</p>
 						<div class="ranking-filter">
 							<form>
@@ -132,7 +133,7 @@
 									</div>
 									<div class="row">
 										<div class="col-md-12 text-right text-resp med">
-											<a href=<%-"/file?type=proveedor&code="+pro.top_proveedores[0].id%> id="link_pro">Ver detalle <i class="fa fa-arrow-circle-right" ></i></a>
+											<a href=<%-"/file?type=proveedor&code="+pro.top_proveedores[0].id%> id="link_pro">Ver Información sobre Proveedor <i class="fa fa-arrow-circle-right" ></i></a>
 										</div>
 									</div>
 								</div>
@@ -168,6 +169,7 @@
 						</h4>
 					</div>
 			    	<div class="panel-body">
+			      		<p class="small-lead">Lista de las 5 licitaciones más cuantiosas realizadas por organismos públicos del estado.</p>
 						<p>Ver información correspondiente a:</p>
 						<div class="ranking-filter">
 							<form>
@@ -209,7 +211,7 @@
 									</div>
 									<div class="row">
 										<div class="col-md-12 text-right text-resp med">
-											<a href=<%-"/file?type=licitacion&code="+lic.top_licitaciones[0].codigo%> id="link_lic">Ver detalle <i class="fa fa-arrow-circle-right"></i></a>
+											<a href=<%-"/file?type=licitacion&code="+lic.top_licitaciones[0].codigo%> id="link_lic">Ver detalle de Licitación <i class="fa fa-arrow-circle-right"></i></a>
 										</div>
 									</div>
 								</div>
@@ -244,6 +246,7 @@
 						</h4>
 					</div>
 			    	<div class="panel-body">
+			      		<p class="small-lead">Lista de las 5 categorías en las que más dinero se ha transado por concepto de licitaciones.</p>
 						<p>Ver información correspondiente a:</p>
 						<div class="ranking-filter">
 							<form>
@@ -284,7 +287,7 @@
 									</div>
 									<div class="row">
 										<div class="col-md-12 text-right text-resp med">
-											<a href="#">Ver detalle <i class="fa fa-arrow-circle-right"></i></a>
+											<a href="#">Ver licitaciones en esta categoría <i class="fa fa-arrow-circle-right"></i></a>
 										</div>
 									</div>
 								</div>
