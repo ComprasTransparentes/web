@@ -15,7 +15,7 @@
 			<div class="selector-group">
 				<div class="row">
 					<div class="col-sm-6 flex-wrapper">
-						<label>Ministerio 1</label>
+						<label>Organismo 1</label>
 						<select class="selector flat standard flex-item min-1" data-placeholder="Selecciona un ministerio">
 							<option>Seleccione...</option>
 							<% for(var r=0;r<min.ministerios.length;r++){
@@ -26,7 +26,7 @@
 						</select>
 					</div>
 					<div class="col-sm-6 flex-wrapper">
-						<label>Ministerio 2</label>
+						<label>Organismo 2</label>
 						<select class="selector flat standard flex-item min-2" disabled  data-placeholder="Selecciona un ministerio">
 							<option>Seleccione...</option>
 							<% for(var r=0;r<min.ministerios.length;r++){
@@ -39,7 +39,7 @@
 				</div>
 			</div>
 			<div class="them-buttons">
-				<button class="btn btn-next pull-right" >Siguiente<i class="fa fa-arrow-right"></i></button>
+				<button class="btn btn-next pull-right disabled" disabled>Siguiente<i class="fa fa-arrow-right"></i></button>
 			</div>
 		</div>
 
@@ -63,7 +63,7 @@
 			<div class="them-buttons">
 				<!-- Cuando el botón no esté disponible para clickear, agregar la clase disabled además del atributo -->
 				<button class="btn btn-prev pull-left disabled" disabled=""><i class="fa fa-arrow-left"></i>Volver</button>
-				<button class="btn btn-next btn-comparador  pull-right">Siguiente<i class="fa fa-arrow-right"></i></button>
+				<button class="btn btn-next pull-right">Siguiente<i class="fa fa-arrow-right"></i></button>
 			</div>
 		</div>
 
@@ -97,7 +97,7 @@
 							</div>
 							<div class="correlative">
 								<!-- <btn class="btn btn-default btn-compras-transparentes"type="submit" name="submit" value="Submit" id="submit_compare">Comparar</btn> -->
-								 <button type="button" class="btn btn-default btn-comparador" id="">Comparar</button>
+								 <button type="button" class="btn btn-default btn-comparador btn-compras-transparentes" id="">Comparar</button>
 							</div>
 						</div>
 					</div>
@@ -137,7 +137,7 @@
 							<li class="comparator-item grey5">
 								<div class="correlative flex-reverse">
 									<h6 class="text-right">									
-										<p class="total-dinero" data-min="1"></p>
+										<p class="total-dinero clp" data-min="1"></p>
 										<p>total de dinero otorgado en licitaciones</p>
 									</h6>
 								</div>
@@ -149,7 +149,7 @@
 								</div>
 								<div class="correlative">
 									<h6>
-										<p class="total-dinero" data-min="2"></p>
+										<p class="total-dinero clp" data-min="2"></p>
 										<p>total de dinero otorgado en licitaciones</p>
 									</h6>
 								</div>
