@@ -101,7 +101,7 @@
 							</div>
 							<div class="correlative">
 								<!-- <btn class="btn btn-default btn-compras-transparentes"type="submit" name="submit" value="Submit" id="submit_compare">Comparar</btn> -->
-								 <button type="button" class="btn btn-default btn-comparador btn-compras-transparentes" id="submit_compare">Comparar</button>
+								 <button type="button" class="btn btn-default btn-comparador" id="">Comparar</button>
 							</div>
 						</div>
 					</div>
@@ -130,7 +130,7 @@
 								<div class="comparator-item">
 									<div class="correlative">
 										<h6 class="no-border item-option">
-											<p><%-data2.categoria_nombre%></p>
+											<p id="categoria_comparador"><%-data2.categoria_nombre%></p>
 											<p id="item_option"></p>
 										</h6>
 									</div>
@@ -140,12 +140,8 @@
 						<ul class="list-unstyled comparator-list">
 							<li class="comparator-item grey5">
 								<div class="correlative flex-reverse">
-								<% if(data1.monto_total>data2.monto_total){%>
-									<h6 class="text-right winning">
-									<%}else{%>
-									<h6 class="text-right">
-									<%}%>
-										<p><%-data1.monto_total%></p>
+									<h6 class="text-right">									
+										<p class="total-dinero" data-min="1"></p>
 										<p>total de dinero otorgado en licitaciones</p>
 									</h6>
 								</div>
@@ -156,24 +152,16 @@
 									<span>Dinero Total</span>
 								</div>
 								<div class="correlative">
-								<% if(data2.monto_total>data1.monto_total){%>
-									<h6 class="winning">
-									<%}else{%>
 									<h6>
-									<%}%>
-										<p><%-data2.monto_total%></p>
+										<p class="total-dinero" data-min="2"></p>
 										<p>total de dinero otorgado en licitaciones</p>
 									</h6>
 								</div>
 							</li>
 							<li class="comparator-item grey4">
 								<div class="correlative flex-reverse">
-									<% if(data1.monto_promedio>data2.monto_promedio){%>
-									<h6 class="text-right winning">
-									<%}else{%>
-									<h6 class="text-right">
-									<%}%>
-										<p><%-data1.monto_promedio%></p>
+									<h6 class="text-right">									
+										<p class="valor-promedio" data-min="1"></p>
 										<p>valor promedio por licitacion</p>
 									</h6>
 								</div>
@@ -184,24 +172,16 @@
 									<span>Valor Promedio</span>
 								</div>
 								<div class="correlative">
-									<% if(data2.monto_promedio>data1.monto_promedio){%>
-									<h6 class="winning">
-									<%}else{%>
 									<h6>
-									<%}%>
-										<p><%-data2.monto_promedio%></p>
+										<p class="valor-promedio" data-min="2"></p>
 										<p>valor promedio por licitacion</p>
 									</h6>
 								</div>
 							</li>
 							<li class="comparator-item grey3">
 								<div class="correlative flex-reverse">
-									<% if(data1.n_licitaciones_adjudicadas>data2.n_licitaciones_adjudicadas){%>
-									<h6 class="text-right winning">
-									<%}else{%>
 									<h6 class="text-right">
-									<%}%>
-										<p><%-data1.n_licitaciones_adjudicadas%></p>
+										<p class="licitacion-ad" data-min="1"></p>
 										<p>licitaciones adjudicadas</p>
 									</h6>
 								</div>
@@ -212,24 +192,18 @@
 									<span>Licitaciones</span>
 								</div>
 								<div class="correlative">
-									<% if(data2.n_licitaciones_adjudicadas>data1.n_licitaciones_adjudicadas){%>
-									<h6 class="winning">
-									<%}else{%>
 									<h6>
-									<%}%>
-										<p><%-data2.n_licitaciones_adjudicadas%></p>
+										<p class="licitacion-ad" data-min="2"></p>
 										<p>licitaciones adjudicadas</p>
 									</h6>
 								</div>
 							</li>
 							<li class="comparator-item grey2">
 								<div class="correlative flex-reverse">
-									<% if(data1.n_proveedores>data2.n_proveedores){%>
-									<h6 class="text-right winning">
-									<%}else{%>
+									
 									<h6 class="text-right">
-									<%}%>
-										<p><%-data1.n_proveedores%></p>
+									
+										<p class="proveedor-fa" data-min="1"></p>
 										<p>proveedores favorecidos</p>
 									</h6>
 								</div>
@@ -240,12 +214,9 @@
 									<span>Proveedores</span>
 								</div>
 								<div class="correlative">
-									<% if(data2.n_proveedores>data1.n_proveedores){%>
-									<h6 class="winning">
-									<%}else{%>
+									
 									<h6>
-									<%}%>
-										<p><%-data2.n_proveedores%></p>
+										<p class="proveedor-fa" data-min="2"></p>
 										<p>proveedores favorecidos</p>
 									</h6>
 								</div>
@@ -284,20 +255,118 @@ $(function(){
 	$(".btn-comparador").on("click", function(){
 
 		var params = {};
+		$(".se-pre-con").show();
 
 		params.min1 = $("#add_min1").val();
-		params.min2 = $("#add_min1").val();
+		params.min2 = $("#add_min2").val();
 		params.item = $("#add_item").val();
 
-		console.log(params);
 		$.ajax({
-			url : "/comparar_mins",
+			url : "/comparar_mins" ,
 			data : params,
 			dataType : "Json",
-			type : "post",
+			type : "GET",
 			success : function(r)
 			{
-				console.log(r);
+				
+				$(".winning").each(function(i,obj){
+					$(this).removeClass("winning");
+				});
+
+				if(r.min1 != null && r.min2 != null)
+				{
+
+					$("#ministerio_option_1").text(r.min1.ministerio_nombre);
+					$("#categoria_comparador").text(r.min1.categoria_nombre);
+					$("#ministerio_option_2").text(r.min2.ministerio_nombre);
+
+					//Dinero Total
+					if(r.min1.monto_total == 0 && r.min2.monto_total == 0)
+					{
+						$(".total-dinero[data-min='1']").text(r.min1.monto_total);
+						$(".total-dinero[data-min='2']").text(r.min2.monto_total);
+					}
+					else
+					{
+						if(r.min1.monto_total > r.min2.monto_total)
+						{
+							$(".total-dinero[data-min='1']").text(r.min1.monto_total.formatNumber(0,",", "."));
+							$(".total-dinero[data-min='1']").parent().addClass("winning");
+							$(".total-dinero[data-min='2']").text(r.min2.monto_total.formatNumber(0,",", "."));
+						}else
+						{
+							$(".total-dinero[data-min='1']").text(r.min1.monto_total.formatNumber(0,",", "."));
+							$(".total-dinero[data-min='2']").text(r.min2.monto_total.formatNumber(0,",", "."));
+							$(".total-dinero[data-min='2']").parent().addClass("winning");				
+						}
+					}
+
+					//Valor Promedio
+					if(r.min1.monto_promedio == 0 && r.min2.monto_promedio)
+					{
+						$(".valor-promedio[data-min='1']").text(r.min1.monto_promedio);
+						$(".valor-promedio[data-min='2']").text(r.min2.monto_promedio);
+					}
+					else
+					{
+						if(r.min1.monto_promedio > r.min2.monto_promedio)
+						{
+							$(".valor-promedio[data-min='1']").text(r.min1.monto_promedio.formatNumber(0,",", "."));
+							$(".valor-promedio[data-min='1']").parent().addClass("winning");
+							$(".valor-promedio[data-min='2']").text(r.min2.monto_promedio.formatNumber(0,",", "."));
+						}else
+						{
+							$(".valor-promedio[data-min='1']").text(r.min1.monto_promedio.formatNumber(0,",", "."));
+							$(".valor-promedio[data-min='2']").text(r.min2.monto_promedio.formatNumber(0,",", "."));
+							$(".valor-promedio[data-min='2']").parent().addClass("winning");
+						}
+					}
+
+					//Licitaciones adjudicadas
+					if(r.min1.n_licitaciones_adjudicadas == 0 && r.min2.n_licitaciones_adjudicadas)
+					{
+						$(".licitacion-ad[data-min='1']").text(r.min1.n_licitaciones_adjudicadas);
+						$(".licitacion-ad[data-min='2']").text(r.min2.n_licitaciones_adjudicadas);
+					}
+					else
+					{
+						if(r.min1.n_licitaciones_adjudicadas > r.min2.n_licitaciones_adjudicadas)
+						{
+							$(".licitacion-ad[data-min='1']").text(r.min1.n_licitaciones_adjudicadas);
+							$(".licitacion-ad[data-min='1']").parent().addClass("winning");
+							$(".licitacion-ad[data-min='2']").text(r.min2.n_licitaciones_adjudicadas);
+						}else
+						{
+							$(".licitacion-ad[data-min='1']").text(r.min1.n_licitaciones_adjudicadas);
+							$(".licitacion-ad[data-min='2']").text(r.min2.n_licitaciones_adjudicadas);
+							$(".licitacion-ad[data-min='2']").parent().addClass("winning");
+						}
+					}
+
+					//Proveedores
+					if(r.min1.n_proveedores == 0 && r.min2.n_proveedores)
+					{
+						$(".proveedor-fa[data-min='1']").text(r.min1.n_proveedores);
+						$(".proveedor-fa[data-min='2']").text(r.min2.n_proveedores);
+					}
+					else
+					{
+						if(r.min1.n_proveedores > r.min2.n_proveedores)
+						{
+							$(".proveedor-fa[data-min='1']").text(r.min1.n_proveedores);
+							$(".proveedor-fa[data-min='2']").text(r.min2.n_proveedores);
+							$(".proveedor-fa[data-min='1']").parent().addClass("winning");
+						}else
+						{
+							$(".proveedor-fa[data-min='1']").text(r.min1.n_proveedores);
+							$(".proveedor-fa[data-min='2']").text(r.min2.n_proveedores);
+							$(".proveedor-fa[data-min='2']").parent().addClass("winning");
+						}
+					}
+				}
+
+				$(".se-pre-con").hide();
+				
 			}
 		});
 
