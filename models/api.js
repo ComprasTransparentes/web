@@ -236,3 +236,23 @@ module.exports.getAllTenderP = function (proveedor, callback)
 	});
 	
 };
+
+module.exports.getItemCategoria = function(callback)
+{
+	var categorias = [];
+
+	request(host + "/organismo/10/categoria", function(error, response, body)
+		{
+			var json;
+				var aux = [];
+
+
+				if (!error && (response.statusCode == 200 || response.statusCode == 201)) 
+				{
+					json = JSON.parse(body);	
+					categorias = categorias.concat( json.organismos);	
+				}
+
+			callback(categorias);	
+		});
+};

@@ -633,10 +633,17 @@ router.get('/comparador', function(req, res) {
 	var min;
 		
 	var item = req.query.add_item;
-	api.getMins(function(min) {
+	var categorias;
+	api.getItemCategoria(function(cat){
+
+		categorias = cat;
+
+		api.getMins(function(min) {
 		min = min;
 
-		res.render('application.ejs', { content: 'comparador',
+		console.log(categorias);
+		res.render('application.ejs', { 	content: 'comparador',
+											categorias : categorias, 
 		 									special: 'true',
 		 									superspecial: 'true',
 		 									active_nav : "/comparador",
@@ -644,39 +651,13 @@ router.get('/comparador', function(req, res) {
 		 									min: min,
 		 									data1: 'null',
 				 							data2: 'null'});
-		/**
-		 *
-		 * if(m1!=undefined&&m2!=undefined&&item!=undefined){
-
-			api.getMinStats(m1,item,function(json1){
-				json1 = json1;
-				
-				api.getMinStats(m2,item,function(json2){
-					json2 = json2;
-					
-					res.render('application.ejs', { content: 'comparador',
-				 									special: 'true',
-				 									active_nav : "/comparador",
-				 									superspecial: 'true',
-				 									config : config,
-				 									min: min,
-				 									data1: json1,
-				 									data2: json2});
-
-				});
-			});
-
-
-		}else{
 		
-
-			
-		}
-		 *
-		 */
 		
 		
 	});	
+
+	});
+	
 });
 
 router.get('/comparar_mins', function(req,res){
