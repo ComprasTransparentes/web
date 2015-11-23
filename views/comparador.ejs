@@ -286,13 +286,13 @@ $(function(){
 					{
 						if(r.min1.monto_total > r.min2.monto_total)
 						{
-							$(".total-dinero[data-min='1']").text(r.min1.monto_total.formatNumber(0,",", "."));
+							$(".total-dinero[data-min='1']").text("$" + r.min1.monto_total.formatNumber(0,",", "."));
 							$(".total-dinero[data-min='1']").parent().addClass("winning");
-							$(".total-dinero[data-min='2']").text(r.min2.monto_total.formatNumber(0,",", "."));
+							$(".total-dinero[data-min='2']").text("$" + r.min2.monto_total.formatNumber(0,",", "."));
 						}else
 						{
-							$(".total-dinero[data-min='1']").text(r.min1.monto_total.formatNumber(0,",", "."));
-							$(".total-dinero[data-min='2']").text(r.min2.monto_total.formatNumber(0,",", "."));
+							$(".total-dinero[data-min='1']").text("$" + r.min1.monto_total.formatNumber(0,",", "."));
+							$(".total-dinero[data-min='2']").text("$" + r.min2.monto_total.formatNumber(0,",", "."));
 							$(".total-dinero[data-min='2']").parent().addClass("winning");				
 						}
 					}
@@ -307,13 +307,13 @@ $(function(){
 					{
 						if(r.min1.monto_promedio > r.min2.monto_promedio)
 						{
-							$(".valor-promedio[data-min='1']").text(r.min1.monto_promedio.formatNumber(0,",", "."));
+							$(".valor-promedio[data-min='1']").text("$" + r.min1.monto_promedio.formatNumber(0,",", "."));
 							$(".valor-promedio[data-min='1']").parent().addClass("winning");
-							$(".valor-promedio[data-min='2']").text(r.min2.monto_promedio.formatNumber(0,",", "."));
+							$(".valor-promedio[data-min='2']").text("$" + r.min2.monto_promedio.formatNumber(0,",", "."));
 						}else
 						{
-							$(".valor-promedio[data-min='1']").text(r.min1.monto_promedio.formatNumber(0,",", "."));
-							$(".valor-promedio[data-min='2']").text(r.min2.monto_promedio.formatNumber(0,",", "."));
+							$(".valor-promedio[data-min='1']").text("$" + r.min1.monto_promedio.formatNumber(0,",", "."));
+							$(".valor-promedio[data-min='2']").text("$" + r.min2.monto_promedio.formatNumber(0,",", "."));
 							$(".valor-promedio[data-min='2']").parent().addClass("winning");
 						}
 					}
@@ -328,13 +328,13 @@ $(function(){
 					{
 						if(r.min1.n_licitaciones_adjudicadas > r.min2.n_licitaciones_adjudicadas)
 						{
-							$(".licitacion-ad[data-min='1']").text(r.min1.n_licitaciones_adjudicadas);
+							$(".licitacion-ad[data-min='1']").text(r.min1.n_licitaciones_adjudicadas.formatNumber(0,",", "."));
 							$(".licitacion-ad[data-min='1']").parent().addClass("winning");
-							$(".licitacion-ad[data-min='2']").text(r.min2.n_licitaciones_adjudicadas);
+							$(".licitacion-ad[data-min='2']").text(r.min2.n_licitaciones_adjudicadas.formatNumber(0,",", "."));
 						}else
 						{
-							$(".licitacion-ad[data-min='1']").text(r.min1.n_licitaciones_adjudicadas);
-							$(".licitacion-ad[data-min='2']").text(r.min2.n_licitaciones_adjudicadas);
+							$(".licitacion-ad[data-min='1']").text(r.min1.n_licitaciones_adjudicadas.formatNumber(0,",", "."));
+							$(".licitacion-ad[data-min='2']").text(r.min2.n_licitaciones_adjudicadas.formatNumber(0,",", "."));
 							$(".licitacion-ad[data-min='2']").parent().addClass("winning");
 						}
 					}
@@ -349,13 +349,13 @@ $(function(){
 					{
 						if(r.min1.n_proveedores > r.min2.n_proveedores)
 						{
-							$(".proveedor-fa[data-min='1']").text(r.min1.n_proveedores);
-							$(".proveedor-fa[data-min='2']").text(r.min2.n_proveedores);
+							$(".proveedor-fa[data-min='1']").text(r.min1.n_proveedores.formatNumber(0,",", "."));
+							$(".proveedor-fa[data-min='2']").text(r.min2.n_proveedores.formatNumber(0,",", "."));
 							$(".proveedor-fa[data-min='1']").parent().addClass("winning");
 						}else
 						{
-							$(".proveedor-fa[data-min='1']").text(r.min1.n_proveedores);
-							$(".proveedor-fa[data-min='2']").text(r.min2.n_proveedores);
+							$(".proveedor-fa[data-min='1']").text(r.min1.n_proveedores.formatNumber(0,",", "."));
+							$(".proveedor-fa[data-min='2']").text(r.min2.n_proveedores.formatNumber(0,",", "."));
 							$(".proveedor-fa[data-min='2']").parent().addClass("winning");
 						}
 					}
