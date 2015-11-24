@@ -3090,6 +3090,7 @@ input[type=number] {
 
 	.carousel-control {
 		width: 45px;
+		opacity: 1;
 
 		@media #{$sm} {
 			width: 30px;
@@ -3100,16 +3101,14 @@ input[type=number] {
 		}
 
 		.fa-angle-left, .fa-angle-right {
-			opacity: .7;
-			display: inline-block;
 			position: absolute;
 			top: 50%;
 			margin-top: -10px;
 			z-index: 5;
 			width: 30px;
-	    height: 30px;
-	    margin-top: -15px;
-	    font-size: 30px;
+		    height: 30px;
+		    margin-top: -15px;
+		    font-size: 30px;
 		}
 
 		.fa-angle-left {

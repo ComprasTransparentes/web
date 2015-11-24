@@ -147,58 +147,38 @@ $(document).ready(function() {
 		$('#item_option').text($('#add_item option:selected').text());
 	});
 
-/**
- *
- * if(dat1== "null"){
 
-		$('#submit_compare').attr('disabled', true);
-		
+	/* Validación de Etapa 1 y Etapa 2 del comparador */
 
-
-		var check1 = false;
-		var check2 = false;
-		var check3 = false;
-
-
-
-		$('#add_min1').on('change', function(){
-
-			check1 = true;
-			if ( check1 && check2 && check3){
-				$('#submit_compare').attr('disabled', false);					
-			}
-
-			else {
-				$('#submit_compare').attr('disabled', true);	
-			}
-		});
-
-		$('#add_item').on('change', function(){
-			check2 = true;
-			if ( check1 && check2 && check3){
-				$('#submit_compare').attr('disabled', false);					
-			}
-
-			else {
-				$('#submit_compare').attr('disabled', true);	
-			}
-		});
-
-		$('#add_min2').on('change', function(){
-			check3 = true;
-			if ( check1 && check2 && check3){
-				$('#submit_compare').attr('disabled', false);					
-			}
-
-			else {
-				$('#submit_compare').attr('disabled', true);	
-			}
-		});
-	}
- *
- */
-
+	var checkA = false;
+	var checkB = false;
+	var checkC = false;
 	
+	$( '#firststep .btn-next' ).attr('disabled', true);
+	$( '#secondstep .btn-next' ).attr('disabled', true);
+
+	$( '.min-1' ).on( 'change', function() {
+		checkA = true;
+		if(checkB) {
+			$( '#firststep .btn-next' ).removeClass('disabled');
+			$( '#firststep .btn-next' ).attr('disabled', false);
+		}
+	});
+
+	$( '.min-2' ).on( 'change', function() {
+		checkB = true;
+		if( checkA) {
+			$( '#firststep .btn-next' ).removeClass('disabled');
+			$( '#firststep .btn-next' ).attr('disabled', false);
+		}
+	});
+
+	$( '.cat-step-2' ).on( 'change', function() {
+		$( '#secondstep .btn-next' ).removeClass('disabled');
+		$( '#secondstep .btn-next' ).attr('disabled', false);
+	});	
+
+	/* Fin */
 
 
 	$('.min-selector').on('change', function() {
