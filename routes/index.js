@@ -699,6 +699,14 @@ router.get('/aboutus', function(req, res) {
  									superspecial: 'false'});	
 });
 
+router.get('/faq', function(req, res) {
+ 	res.render('application.ejs', { content: 'faq',
+ 									special: 'false',
+ 									active_nav : "/faq",
+ 									config : config,
+ 									superspecial: 'false'});	
+});
+
 router.get('/lucheto2', function(req, res) {
  	res.render('application.ejs', { content: 'fichaorganismo',
   									special: 'false',

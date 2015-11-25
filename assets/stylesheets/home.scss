@@ -1,5 +1,3 @@
-
-
 /* =========================== */
 /* ======== VARIABLES ======== */
 /* =========================== */
@@ -421,7 +419,7 @@ header, footer {
 
 						li {
 							display: inline-block;
-							margin: 0 2px;
+							margin: 0 5px;
 
 							a {
 								color: white;
@@ -433,7 +431,7 @@ header, footer {
 							li {
 								i {
 									width: 26px;
-									font-size: 16px;
+									font-size: 20px;
 									opacity: .6;
 
 									&:hover {
@@ -441,11 +439,11 @@ header, footer {
 									}
 								}
 
-								&:first-child {
+								/*&:first-child {
 									i {
 										font-size: 14px;
 									}
-								}
+								}*/
 							}
 						}
 						
@@ -1523,6 +1521,16 @@ body {
 	}
 }
 
+.parrafo-buscador {
+	color: white;
+	opacity: 0.8;
+	max-width: 480px;
+	margin: 0px auto 30px;
+	font-size: 13px;
+	line-height: 1.5;
+	letter-spacing: .02em;
+}
+
 
 .compras-transparentes {
 	background-image: url("../images/comprastransparentes-logo.png");
@@ -1542,6 +1550,7 @@ body {
 	&.buscador-transparente {
 		background-image: url("../images/buscadortransparente-05.png");
 		padding-bottom: 0;
+		padding-top: 90px;
 		margin-top: 114px;
 
 		+ .results-panel {
@@ -1566,7 +1575,7 @@ body {
 	}
 
 	@media #{$sm} {
-		padding-top: 12%;
+		padding-top: 20%;
    		background-size: 90%;
 	}
 
@@ -2165,33 +2174,48 @@ input[type=number] {
 		width: 100%;
 	}
 
-	&.transparent-selector {
-	    margin-top: -3px;
 
-		.select2-choice {
-			box-shadow: none;
-			border: none;
-			background: transparent;
-			font-size: 18px;
-			padding-left: 2px;
-			color: #{$turq};
+	&.flat {
+		&.transparent-selector {
+		    margin-top: -4px;
+		    margin-left: 10px;
 
-			.select2-chosen {
-				margin-right: 30px;
+			.select2-choice {				
+			    background: transparent;
+			    font-size: 18px;
+			    padding-left: 15px;
+			    color: #46CDCF;
+			    height: 40px;
+			    line-height: 39px;
+
+				.select2-chosen {
+					margin-right: 40px;
+				}
+
+				.select2-arrow {
+					background-color: transparent;
+					background-image: none;
+					width: 40px;
+
+					b {
+						background: url('../images/select2turq.png') no-repeat 4px 4px;
+					}
+
+
+				}
 			}
+			&.select2-dropdown-open {
 
-			.select2-arrow {
-				background-color: transparent;
-				background-image: none;
-				width: 33px;
-				b {
-					background: url('../images/select2turq.png') no-repeat 0 0px;
+				.select2-choice {
+					.select2-arrow {
+						b {
+							background-position: -29px 3px !important;
+						}
+					}
 				}
 			}
 		}
-	}
 
-	&.flat {
 		.select2-choice {
 
 			box-shadow: none;
@@ -3812,9 +3836,9 @@ input[type=number] {
 	    color: #{$ltblue};
 	    padding-right: 10px;
 
-	    p {
-	    	margin: 0;
-	    }
+		    p {
+		    	margin: 0;
+		    }
 		}
 	}
 
@@ -3825,52 +3849,55 @@ input[type=number] {
 	}
 
 	.x-thing {
-    background: rgba(0,0,0,.05);
-    padding: 25px 45px 15px;
-    border-radius: 4px;
-    position: relative;
-    margin-bottom: 60px;
-    /*overflow: hidden;*/
+	    background: rgba(0,0,0,.05);
+	    padding: 25px 45px 15px;
+	    border-radius: 4px;
+	    position: relative;
+	    margin-bottom: 60px;
+	    /*overflow: hidden;*/
 
-    p {
-    	a {
+	    p {
+	    	a {
 
-    		@media #{$md} {
-    			word-break: break-all;
-    		}
-    	}
-    }
+	    		@media #{$md} {
+	    			word-break: break-all;
+	    		}
+	    	}
+	    }
 
-    &.darkz {
-    	/*max-width: 640px;*/
-    	margin: 60px auto;
-    	background-color: #{$blue};
+	    &.darkz {
+	    	/*max-width: 640px;*/
+	    	margin: 60px auto;
+	    	background-color: #{$blue};
 
-    	p {
-    		text-align: center;
-    		color: rgba(255,255,255,.7);
-    	}
-    }
+	    	p {
+	    		text-align: center;
+	    		color: rgba(255,255,255,.7);
+	    	}
+	    }
 
-    >.fa {
-	    position: absolute;
-	    color: #46CDCF;
-      top: -30px;
-	    left: -30px;
-	    border: 5px solid;
-	    height: 65px;
-	    border-radius: 50%;
-	    font-size: 44px;
-	    width: 65px;
-	    padding: 6px 21px;
-	    background-color: white;
+	    >.fa {
+		    position: absolute;
+		    color: #46CDCF;
+	      	top: -30px;
+		    left: -30px;
+		    border: 5px solid;
+		    height: 65px;
+		    border-radius: 50%;
+		    font-size: 44px;
+		    width: 65px;
+		    padding: 6px 21px;
+		    background-color: white;
 
 			&.fa-code {
-	    	padding: 9px;
-	    	font-size: 36px;
-	    }
-	    
-    }
+		    	padding: 9px;
+		    	font-size: 36px;
+	    	}
+
+	    	&.fa-question {
+		    	padding: 5px 14px;
+	    	}		    
+    	}
 	}
 }
 
@@ -4183,4 +4210,44 @@ input[type=number] {
 
     	}
 	}
+}
+
+
+@media (min-width: 768px) and (max-width: 991px) {
+    .navbar-header {
+        float: none;
+    }
+    .navbar-toggle {
+        display: block;
+        margin-right: 0;
+    }
+    .navbar-collapse {
+        border-top: 1px solid transparent;
+        box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
+    }
+    .navbar-collapse.collapse {
+        display: none!important;
+    }
+    .navbar-nav {
+        float: none!important;
+        margin: 7.5px -15px;
+    }
+    .navbar-nav>li {
+        float: none;
+    }
+    .navbar-nav>li>a {
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+    .navbar-text {
+        float: none;
+        margin: 15px 0;
+    }
+    /* since 3.1.0 */
+    .navbar-collapse.collapse.in { 
+        display: block!important;
+    }
+    .collapsing {
+        overflow: hidden!important;
+    }
 }
