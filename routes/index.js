@@ -55,12 +55,7 @@ router.get('/', function(req, res) {
 									}
 								
 									else{
-										var num = Math.floor((Math.random() * 10) + 1);
-										if(num==3 || num==7){
-												res.render('404.ejs');
-											}
-											else
-										  		res.render('404real.ejs');
+										res.render('404.ejs');
 										  }
 								});
 
@@ -70,12 +65,7 @@ router.get('/', function(req, res) {
 							}
 						
 							else{
-								var num = Math.floor((Math.random() * 10) + 1);
-								if(num==3 || num==7){
-										res.render('404.ejs');
-									}
-									else
-								  		res.render('404real.ejs');
+								res.render('404.ejs');
 								  }
 						});
 
@@ -83,12 +73,7 @@ router.get('/', function(req, res) {
 					}
 				
 					else{
-						var num = Math.floor((Math.random() * 10) + 1);
-						if(num==3 || num==7){
-								res.render('404.ejs');
-							}
-							else
-						  		res.render('404real.ejs');
+						res.render('404.ejs');
 						  }
 				});
 
@@ -96,12 +81,7 @@ router.get('/', function(req, res) {
 			}
 	
 			else{
-				var num = Math.floor((Math.random() * 10) + 1);
-				if(num==3 || num==7){
-						res.render('404.ejs');
-					}
-					else
-				  		res.render('404real.ejs');
+				res.render('404.ejs');
 				  }
 		});
 
@@ -239,12 +219,7 @@ router.get('/search', function(req, res) {
 					  											na: 'search' });
 
 									}else{
-										var num = Math.floor((Math.random() * 10) + 1);
-										if(num==3 || num==7){
-												res.render('404.ejs');
-											}
-											else
-										  		res.render('404real.ejs');
+										res.render('404.ejs');
 
 									}
 						});
@@ -286,12 +261,7 @@ router.get('/search', function(req, res) {
 					  											na: 'search' });
 
 									}else{
-										var num = Math.floor((Math.random() * 10) + 1);
-										if(num==3 || num==7){
-												res.render('404.ejs');
-											}
-											else
-										  		res.render('404real.ejs');
+										res.render('404.ejs');
 
 									}
 						});
@@ -333,12 +303,7 @@ router.get('/search', function(req, res) {
 					  											na: 'search' });
 
 									}else{
-										var num = Math.floor((Math.random() * 10) + 1);
-										if(num==3 || num==7){
-												res.render('404.ejs');
-											}
-											else
-										  		res.render('404real.ejs');
+										res.render('404.ejs');
 
 									}
 						});
@@ -525,12 +490,7 @@ router.get('/filter', function(req, res) {
 					  											 });
 
 									}else{
-										var num = Math.floor((Math.random() * 10) + 1);
-										if(num==3 || num==7){
-												res.render('404.ejs');
-											}
-											else
-										  		res.render('404real.ejs');
+										res.render('404.ejs');
 
 									}
 
@@ -540,12 +500,7 @@ router.get('/filter', function(req, res) {
 							}
 								
 							else{
-								var num = Math.floor((Math.random() * 10) + 1);
-								if(num==3 || num==7){
-										res.render('404.ejs');
-									}
-									else
-								  		res.render('404real.ejs');
+								res.render('404.ejs');
 								  }
 						});
 
@@ -553,12 +508,7 @@ router.get('/filter', function(req, res) {
 					}
 						
 					else{
-						var num = Math.floor((Math.random() * 10) + 1);
-						if(num==3 || num==7){
-								res.render('404.ejs');
-							}
-							else
-						  		res.render('404real.ejs');
+						res.render('404.ejs');
 						  }
 				});
 
@@ -566,12 +516,7 @@ router.get('/filter', function(req, res) {
 			}
 				
 			else{
-				var num = Math.floor((Math.random() * 10) + 1);
-				if(num==3 || num==7){
-						res.render('404.ejs');
-					}
-					else
-				  		res.render('404real.ejs');
+				res.render('404.ejs');
 				  }
 		});
 	}
@@ -635,12 +580,7 @@ router.get('/file', function(req, res) {
 		}
 		else
 		{
-			var num = Math.floor((Math.random() * 10) + 1);
-			if(num==3 || num==7){
-						res.render('404.ejs');
-					}
-					else
-						res.render('404real.ejs');
+			res.render('404.ejs');
 	  	}
 	});  	
 });
@@ -717,6 +657,14 @@ router.get('/aboutus', function(req, res) {
  	res.render('application.ejs', { content: 'aboutus',
  									special: 'false',
  									active_nav : "/aboutus",
+ 									config : config,
+ 									superspecial: 'false'});	
+});
+
+router.get('/faq', function(req, res) {
+ 	res.render('application.ejs', { content: 'faq',
+ 									special: 'false',
+ 									active_nav : "/faq",
  									config : config,
  									superspecial: 'false'});	
 });

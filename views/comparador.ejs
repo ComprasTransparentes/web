@@ -6,7 +6,7 @@
 	<div class="panel panel-transparent panel-searchbar-home">
 
 		<div class="compras-transparentes comparador-transparente"></div>
-		<p class="text-center">Revisa en detalle y compara el gasto de cada ministerio por categoría con nuestro Comparador.</p>
+		<p class="text-center">Revisa en detalle y compara el gasto de cada ministerio por categoría con nuestro Comparador. Selecciona los organismos públicos que deseas comparar y luego una categoría de comparación.</p>
 		
 		<!-- Paso 1 -->
 		<div class="separator"></div>
@@ -15,9 +15,9 @@
 			<div class="selector-group">
 				<div class="row">
 					<div class="col-sm-6 flex-wrapper">
-						<label>Ministerio 1</label>
-						<select class="selector flat standard flex-item min-1" data-placeholder="Selecciona un ministerio">
-							<option>Seleccione...</option>
+						<label>Organismo 1</label>
+						<select class="selector flat standard flex-item min-1" data-placeholder="Selecciona un organismo público">
+							<option></option>
 							<% for(var r=0;r<min.ministerios.length;r++){
 								if(data1.ministerio!=min.ministerios[r].code){%>
 									<option value=<%-min.ministerios[r].code%>><%-min.ministerios[r].name%></option>
@@ -26,9 +26,9 @@
 						</select>
 					</div>
 					<div class="col-sm-6 flex-wrapper">
-						<label>Ministerio 2</label>
-						<select class="selector flat standard flex-item min-2" disabled  data-placeholder="Selecciona un ministerio">
-							<option>Seleccione...</option>
+						<label>Organismo 2</label>
+						<select class="selector flat standard flex-item min-2" disabled  data-placeholder="Selecciona un organismo público">
+							<option></option>
 							<% for(var r=0;r<min.ministerios.length;r++){
 								if(data1.ministerio!=min.ministerios[r].code){%>
 									<option value=<%-min.ministerios[r].code%>><%-min.ministerios[r].name%></option>
@@ -39,7 +39,7 @@
 				</div>
 			</div>
 			<div class="them-buttons">
-				<button class="btn btn-next pull-right" >Siguiente<i class="fa fa-arrow-right"></i></button>
+				<button class="btn btn-next pull-right disabled" disabled>Siguiente<i class="fa fa-arrow-right"></i></button>
 			</div>
 		</div>
 
@@ -52,6 +52,7 @@
 					<div class="col-sm-6 flex-wrapper">
 						<label>Categoría</label>
 						<select class="selector flat standard flex-item cat-step-2"  data-placeholder="Selecciona una categoría">
+							<option></option>
 							<% for(var r=0;r<min.item.length;r++){%>								
 								<option value=<%-min.item[r].code%>><%-min.item[r].name%></option>
 							<%} %>
@@ -61,9 +62,8 @@
 				</div>
 			</div>
 			<div class="them-buttons">
-				<!-- Cuando el botón no esté disponible para clickear, agregar la clase disabled además del atributo -->
-				<button class="btn btn-prev pull-left disabled" disabled=""><i class="fa fa-arrow-left"></i>Volver</button>
-				<button class="btn btn-next btn-comparador  pull-right">Siguiente<i class="fa fa-arrow-right"></i></button>
+				<button class="btn btn-prev pull-left"><i class="fa fa-arrow-left"></i>Volver</button>
+				<button class="btn btn-next pull-right disabled" disabled="">Siguiente<i class="fa fa-arrow-right"></i></button>
 			</div>
 		</div>
 
@@ -97,7 +97,7 @@
 							</div>
 							<div class="correlative">
 								<!-- <btn class="btn btn-default btn-compras-transparentes"type="submit" name="submit" value="Submit" id="submit_compare">Comparar</btn> -->
-								 <button type="button" class="btn btn-default btn-comparador" id="">Comparar</button>
+								 <button type="button" class="btn btn-default btn-comparador btn-compras-transparentes" id="">Comparar</button>
 							</div>
 						</div>
 					</div>
@@ -232,7 +232,6 @@ $(function(){
 		$(".min-2").attr("disabled",false);
 		$(".min-2 option").each(function(i, o){$(this).attr("disabled", false)});
 		
-
 		/* Inactiva el min_2 */
 		$(".min-2 option[value='"+$(this).val()+"']").attr("disabled", "disabled");
 
@@ -265,6 +264,8 @@ $(function(){
 			success : function(r)
 			{
 				
+				console.log(r);
+
 				$(".winning").each(function(i,obj){
 					$(this).removeClass("winning");
 				});
@@ -360,6 +361,9 @@ $(function(){
 						}
 					}
 				}
+				// else {
+				// 	$( '.comparator-list' ).append('<div class="alert alert-danger" role="alert">No hay datos</div>');
+				// }
 
 				$(".se-pre-con").hide();
 				
