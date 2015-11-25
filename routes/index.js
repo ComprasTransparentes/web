@@ -91,9 +91,15 @@ router.get('/', function(req, res) {
 
 router.get('/searchbar',function(req, res){
 
-	var min;
-	api.getMins(function(min){
+	var min,
+		categorias;
+
+	api.getCategorias(function(categorias){
+		categorias = categorias;
+
+		api.getMins(function(min){
 		min = min;
+
 
 	res.render('application.ejs', { content: 'searchresults',
 																element: '',
@@ -102,6 +108,7 @@ router.get('/searchbar',function(req, res){
 							  									org: [],
 							  									NumeroRegistros : 0,
 							  									TipoBusqueda : 1,
+							  									categorias : categorias,
 					  											special: 'true',
 					  											superspecial: 'true',
 					  											active_nav : "/searchbar",
@@ -117,6 +124,8 @@ router.get('/searchbar',function(req, res){
 					  											montoe: '',
 					  											na: 'search' });
 });
+	});
+	
 
 
 });										
@@ -159,15 +168,20 @@ router.get('/search', function(req, res) {
 		var pro = null;
 		var org = null;
 		var min = null;
+		var categorias = null;
 
-		/*
+		
+
+		api.getCategorias(function(categorias){
+			categorias = categorias.categorias;
+
+			/*
 			TipoBusqueda => 1 => Licitacion
 			TipoBusqueda => 2 => Organismos
 			TipoBusqueda => 3 => Provedores
-		*/
-
-		switch(TipoBusqueda)
-		{
+			*/
+			switch(TipoBusqueda)
+			{
 			case 1: 
 				api.getApiLic(element, 1, function(lic){
 					lic = lic;
@@ -178,12 +192,15 @@ router.get('/search', function(req, res) {
 						api.getMins(function(mins){
 							min = mins;
 
+
+
 							if(min!=null){
 										res.render('application.ejs', { content: 'searchresults',
 																element: element,
 							  									lic: lic,
 							  									pro: pro,
 							  									org: org,
+							  									categorias : categorias,
 							  									NumeroRegistros : lic.n_licitaciones,
 							  									TipoBusqueda : TipoBusqueda,
 							  									active_nav : "/searchbar",
@@ -225,6 +242,7 @@ router.get('/search', function(req, res) {
 							  									lic: lic,
 							  									pro: pro,
 							  									org: org,
+							  									categorias : categorias,
 							  									TipoBusqueda : TipoBusqueda,
 							  									NumeroRegistros : org.n_organismos,
 							  									active_nav : "/searchbar",
@@ -267,6 +285,7 @@ router.get('/search', function(req, res) {
 							  									pro: pro,
 							  									org: org,
 							  									TipoBusqueda : TipoBusqueda,
+							  									categorias : categorias,
 							  									NumeroRegistros : pro.n_proveedores,
 							  									active_nav : "/searchbar",
 					  											special: 'true',
@@ -293,6 +312,9 @@ router.get('/search', function(req, res) {
 				break;
 
 		}
+		});
+
+		
 
 		/**
 		 *
