@@ -1791,7 +1791,7 @@ body {
 
     				&:after {
 			    		content: '>';
-			    		margin-left: 5px;
+			    		margin: 0 5px;
 			    		color: #{$turq};
 			    	}
 
@@ -3639,6 +3639,26 @@ input[type=number] {
 
 		.modal-body {
 			padding: 15px 30px;
+		}
+
+		.btn-borrar {
+			&.btn {
+		    	color: white;
+		    	background-color: #{$turq};
+		    	border-color: #169D9F;
+
+			    &:hover, &:focus, &:active {
+			    	color: #eee;
+			    	background: #36bdbf;
+			    	border-color: #169D9F;
+
+			    	&:hover, &:focus, &:active {
+						color: #eee;
+				    	background: #36bdbf;
+				    	border-color: #169D9F;    		
+			    	}
+			    }
+			}
 		}
 	}
 }
