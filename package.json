@@ -13,7 +13,7 @@
     "embedly": "^1.0.4",
     "express": "^4.13.3",
     "express-compile-sass": "^3.0.4",
-    "node-sass": "^3.3.3",
+    "node-sass": "~3.4.2",
     "request": "^2.63.0",
     "uri-js": "^2.1.1"
   }

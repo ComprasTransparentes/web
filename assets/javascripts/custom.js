@@ -21,6 +21,43 @@ function checkOverflow(el)
    return isOverflowing;
 };
 
+function numberPoint(num){
+	var numbers = [];
+	while(1){
+		if(num==0){
+			console.log(numbers);
+			break;
+		}
+		numbers.push(num%1000);
+		num = (num-num%1000)/1000;
+	}
+	var ret = "";
+
+	for(var k=numbers.length-1;k>=0;k--){
+		console.log("a");
+		ret = ret.concat(numbers[k]);
+		if(k!=0){
+			ret = ret.concat(".");
+		}
+	}
+	console.log(ret);
+	return ret;
+};
+
+function isRut(element){
+
+	if(element.indexOf("-")!=-1 && element.indexOf(".")==-1){
+
+		var rut = element.split("-");
+		var num = numberPoint(rut[0]);
+		return num.concat("-",rut[1]);
+
+	}
+	else{
+		return element;
+	}
+};
+
 
 
 $(document).ready(function() {
