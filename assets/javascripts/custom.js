@@ -21,6 +21,41 @@ function checkOverflow(el)
    return isOverflowing;
 };
 
+function numberPoint(num){
+	var numbers = [];
+	while(1){
+		if(num==0){
+			break;
+		}
+		numbers.push(num%1000);
+		num = (num-num%1000)/1000;
+	}
+	var ret = "";
+
+	for(var k=numbers.length-1;k>=0;k--){
+		ret = ret.concat(numbers[k]);
+		if(k!=0){
+			ret = ret.concat(".");
+		}
+	}
+	console.log(ret);
+	return ret;
+};
+
+function isRut(element){
+
+	if(element.indexOf("-")!=-1 && element.indexOf(".")==-1){
+
+		var rut = element.split("-");
+		var num = numberPoint(rut[0]);
+		return num.concat("-",rut[1]);
+
+	}
+	else{
+		return element;
+	}
+};
+
 
 
 $(document).ready(function() {
@@ -292,7 +327,7 @@ $(document).ready(function() {
 	// Remueve y agrega el tipo de elemento acorde según lo seleccionado en el select de filtros de licitación
 	$('#lic_adv_fil').on('change', function(){
 		$('.follow-up').addClass('hidden');
-		var option = $($('#lic_adv_fil option:selected')).val();
+		var option = $($('#lic_adv_fil option:selected')).attr("value-aux");
 		$(this).closest('.filter-module').siblings("#"+elementosLicitacion[option]).removeClass('hidden');
 	});
 
@@ -331,9 +366,7 @@ $(document).ready(function() {
 
 	// Borrar Filtros y Modal Confirmación
 
-	$('.close-thing').on('click', function(){
-		$(this).closest('.filter-list-item').remove();
-	});
+	
 
 	$('.erase-all').on('click', function(){
 		var aBorrar = $(this).siblings('.filter-list-item');

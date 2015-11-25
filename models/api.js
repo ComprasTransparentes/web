@@ -191,6 +191,15 @@ module.exports.getMins= function (callback){
 	});
 };
 
+module.exports.getCategorias = function(callback){
+	fs.readFile('assets/categorias.json', 'utf8', function (err, data) {
+		
+		if (err) throw err;
+  		var obj = JSON.parse(data);
+  		callback(obj);
+	});
+};
+
 module.exports.getMinStats= function (min, cat , callback){
 
 	request(host+'/ministerio/'+min+'/categoria/'+cat+'/stats', function (error, response, body) {
