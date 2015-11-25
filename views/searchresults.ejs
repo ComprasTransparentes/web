@@ -24,6 +24,41 @@
 	<div class="compras-transparentes buscador-transparente">
 		<% include searchbar %>
 	</div>
+	<div class="panel panel-default results-panel" style="display:none;">
+		<div class="panel-body">
+
+			<h3>
+				Resultados de Búsqueda:
+					<span></span>
+					<span></span>
+					<span></span>
+			</h3>
+			<ul class="list-unstyled search-result-description">
+
+				<li >
+					<span>Mostrando resultados de</span>
+					<span><%- element %></span>
+					<span class="no-margin">
+						<em>Se encontraron <%- NumeroRegistros %> coincidencias</em>
+					</span>
+				</li>
+	
+
+			</ul>
+			<div class="search-results-panel" id="search-results-panel">
+		 	<!-- Tab panes -->
+		  <div class="search-results-panel" id="search-results-panel">
+		    
+		    <!-- Licitaciones lista -->
+		    <div role="tabpanel" class="tab-pane active" id="tipo1">		    
+		    	<div id="pag1"></div><div id="pag3"></div><div id="pag4"></div>
+		    </div>
+
+		</div>
+		 </div>
+		</div>
+	</div>
+		 
 		<%
 		}
 	else { %>
@@ -123,5 +158,5 @@
 		$(".searchbar-asdf").val(ele);
 	});
 
-	$("html, body").animate({scrollTop: $('#search-results-panel').offset().top }, 1000);
+	//$("html, body").animate({scrollTop: $('#search-results-panel').offset().top }, 1000);
 </script>

@@ -312,7 +312,7 @@ $(document).ready(function() {
 	// Remueve y agrega el tipo de elemento acorde según lo seleccionado en el select de filtros de licitación
 	$('#lic_adv_fil').on('change', function(){
 		$('.follow-up').addClass('hidden');
-		var option = $($('#lic_adv_fil option:selected')).val();
+		var option = $($('#lic_adv_fil option:selected')).attr("value-aux");
 		$(this).closest('.filter-module').siblings("#"+elementosLicitacion[option]).removeClass('hidden');
 	});
 
@@ -351,9 +351,7 @@ $(document).ready(function() {
 
 	// Borrar Filtros y Modal Confirmación
 
-	$('.close-thing').on('click', function(){
-		$(this).closest('.filter-list-item').remove();
-	});
+	
 
 	$('.erase-all').on('click', function(){
 		var aBorrar = $(this).siblings('.filter-list-item');

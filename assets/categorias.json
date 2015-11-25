@@ -1,0 +1,224 @@
+{
+  "categorias" : [
+    {
+      "categoria": "Alimentos, bebidas y tabaco",
+      "id": 1
+    },
+    {
+      "categoria": "Artículos de electrónica",
+      "id": 2
+    },
+    {
+      "categoria": "Artículos de fabricación y producción",
+      "id": 3
+    },
+    {
+      "categoria": "Artículos eléctricos y de iluminación",
+      "id": 4
+    },
+    {
+      "categoria": "Artículos para estructuras, obras y construcciones",
+      "id": 5
+    },
+    {
+      "categoria": "Artículos para plantas y animales",
+      "id": 6
+    },
+    {
+      "categoria": "Combustibles, lubricantes y anticorrosivos",
+      "id": 7
+    },
+    {
+      "categoria": "Educación, formación, entrenamiento y capacitación",
+      "id": 8
+    },
+    {
+      "categoria": "Equipamiento para el acondicionamiento, distribución y filtrado de fluidos",
+      "id": 9
+    },
+    {
+      "categoria": "Equipamiento para laboratorios",
+      "id": 10
+    },
+    {
+      "categoria": "Equipamiento para manejo y estiba de materiales",
+      "id": 11
+    },
+    {
+      "categoria": "Equipamiento y suministros médicos",
+      "id": 12
+    },
+    {
+      "categoria": "Equipos y suministros de defensa, orden público, protección y seguridad",
+      "id": 13
+    },
+    {
+      "categoria": "Equipos y suministros de imprenta, fotográficos y audiovisuales",
+      "id": 14
+    },
+    {
+      "categoria": "Equipos y suministros de limpieza",
+      "id": 15
+    },
+    {
+      "categoria": "Equipos, accesorios y suministros de oficina",
+      "id": 16
+    },
+    {
+      "categoria": "Equipos, suministros y accesorios deportivos y recreativos",
+      "id": 17
+    },
+    {
+      "categoria": "Herramientas y maquinaria en general",
+      "id": 18
+    },
+    {
+      "categoria": "Instrumentos musicales, juegos, juguetes, artesanías y materiales educativos",
+      "id": 19
+    },
+    {
+      "categoria": "Maquinaria para agricultura, pesca y silvicultura",
+      "id": 20
+    },
+    {
+      "categoria": "Maquinaria para construcción y edificación",
+      "id": 21
+    },
+    {
+      "categoria": "Maquinaria para fabricación y transformación industrial",
+      "id": 22
+    },
+    {
+      "categoria": "Maquinaria para generación y distribución de energía",
+      "id": 23
+    },
+    {
+      "categoria": "Maquinaria para minería y perforación",
+      "id": 24
+    },
+    {
+      "categoria": "Maquinarias, equipos y suministros para la industria de servicios",
+      "id": 25
+    },
+    {
+      "categoria": "Medicamentos y productos farmacéuticos",
+      "id": 26
+    },
+    {
+      "categoria": "Muebles y mobiliario",
+      "id": 27
+    },
+    {
+      "categoria": "Muebles, accesorios, electrodomésticos y productos electrónicos",
+      "id": 28
+    },
+    {
+      "categoria": "Organizaciones sociales, laborales y clubes",
+      "id": 29
+    },
+    {
+      "categoria": "Organizaciones y consultorías políticas, demográficas, económicas, sociales y de administración pública",
+      "id": 30
+    },
+    {
+      "categoria": "Productos de papel",
+      "id": 31
+    },
+    {
+      "categoria": "Productos derivados de minerales, plantas y animales",
+      "id": 32
+    },
+    {
+      "categoria": "Productos impresos y publicaciones",
+      "id": 33
+    },
+    {
+      "categoria": "Productos para relojería, joyería y gemas",
+      "id": 34
+    },
+    {
+      "categoria": "Productos químicos industriales",
+      "id": 35
+    },
+    {
+      "categoria": "Resinas, cauchos, espumas y elastómeros",
+      "id": 36
+    },
+    {
+      "categoria": "Ropa, maletas y productos de aseo personal",
+      "id": 37
+    },
+    {
+      "categoria": "Salud, servicios sanitarios y alimentación",
+      "id": 38
+    },
+    {
+      "categoria": "Servicios agrícolas, pesqueros, forestales y relacionados con la fauna",
+      "id": 39
+    },
+    {
+      "categoria": "Servicios basados en ingeniería, ciencias sociales y tecnología de la información",
+      "id": 40
+    },
+    {
+      "categoria": "Servicios básicos y de información pública",
+      "id": 41
+    },
+    {
+      "categoria": "Servicios de Viajes, alimentación, alojamiento y entretenimiento",
+      "id": 42
+    },
+    {
+      "categoria": "Servicios de construcción y mantenimiento",
+      "id": 43
+    },
+    {
+      "categoria": "Servicios de cuidado personal y domésticos",
+      "id": 44
+    },
+    {
+      "categoria": "Servicios de defensa nacional, orden público y seguridad",
+      "id": 45
+    },
+    {
+      "categoria": "Servicios de limpieza industrial",
+      "id": 46
+    },
+    {
+      "categoria": "Servicios de perforación de minería, petróleo y gas",
+      "id": 47
+    },
+    {
+      "categoria": "Servicios de producción y fabricación industrial",
+      "id": 48
+    },
+    {
+      "categoria": "Servicios de transporte, almacenaje y correo",
+      "id": 49
+    },
+    {
+      "categoria": "Servicios editoriales, de diseño, publicidad, gráficos y artistas",
+      "id": 50
+    },
+    {
+      "categoria": "Servicios financieros, pensiones y seguros",
+      "id": 51
+    },
+    {
+      "categoria": "Servicios medioambientales",
+      "id": 52
+    },
+    {
+      "categoria": "Servicios profesionales, administrativos y consultorías de gestión empresarial",
+      "id": 53
+    },
+    {
+      "categoria": "Tecnologías de la información, telecomunicaciones y radiodifusión",
+      "id": 54
+    },
+    {
+      "categoria": "Vehículos y equipamiento en general",
+      "id": 55
+    }
+  ]
+}
