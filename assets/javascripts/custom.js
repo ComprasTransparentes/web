@@ -21,6 +21,10 @@ function checkOverflow(el)
    return isOverflowing;
 };
 
+function isNumber(n) {
+  return !isNaN(parseFloat(n)) && isFinite(n);
+}
+
 function numberPoint(num){
 	var numbers = [];
 	while(1){
@@ -47,8 +51,12 @@ function isRut(element){
 	if(element.indexOf("-")!=-1 && element.indexOf(".")==-1){
 
 		var rut = element.split("-");
-		var num = numberPoint(rut[0]);
-		return num.concat("-",rut[1]);
+		if(isNumber(rut[0])){
+			var num = numberPoint(rut[0]);
+			return num.concat("-",rut[1]);
+		}else{
+			return element;
+		}
 
 	}
 	else{
