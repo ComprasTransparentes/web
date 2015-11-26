@@ -655,11 +655,26 @@
 				switch(tipo_filtro)
 				{
 					case 1:
-					$(".filters-list-container").append('<div class="filter-list-item"><p><i class="fa fa-file-o"></i>Cantidad de Licitaciones adjudicadas</p><ul class="list-unstyled list-inline querystring"><li class="static-string">Proveedores con un total entre</li><li>'+$(".pro-cant-lic-desde").val().formatNumber(0,",",".")+'</li><li class="static-string">y</li><li>'+$(".pro-cant-lic-hasta").val().formatNumber(0,",",".")+'</li><li class="static-string">licitaciones adjudicadas entre</li><li>'+$(".pro-fecha-lic-desde").val()+'</li><li class="static-string">y</li><li>'+$(".pro-fecha-lic-hasta").val()+'</li></ul><span class="close-thing" data-tipo-filtro="3" data-attr=""><i class="fa fa-times"></i></span></div>');
+					$(".filters-list-container").append('<div class="filter-list-item"><p><i class="fa fa-file-o"></i>Cantidad de Licitaciones adjudicadas</p><ul class="list-unstyled list-inline querystring"><li class="static-string">Proveedores con un total entre</li><li>'+$(".pro-cant-lic-desde").val().formatNumber(0,",",".")+'</li><li class="static-string">y</li><li>'+$(".pro-cant-lic-hasta").val().formatNumber(0,",",".")+'</li><li class="static-string">licitaciones adjudicadas entre</li><li>'+$(".pro-fecha-lic-desde").val()+'</li><li class="static-string">y</li><li>'+$(".pro-fecha-lic-hasta").val()+'</li></ul><span class="close-thing" data-tipo-filtro="3" data-attr="'+index_pro+'"><i class="fa fa-times"></i></span></div>');
+
+					var aux_filter =  {} ;
+					 	aux_filter.n_licitaciones_adjudicadas  =  $(".pro-cant-lic-desde").val() + "|" + $(".pro-cant-lic-hasta").val();
+					 	aux_filter.fecha_adjudicacion = $(".pro-fecha-lic-desde").val() + "|" + $(".pro-fecha-lic-hasta").val();
+
+					 	filtro_proveedores.filtros.push(aux_filter);
+					 	index_pro++;
+
 					break;
 
 					case 2:
-					$(".filters-list-container").append('<div class="filter-list-item"><p><i class="fa fa-usd"></i>Monto de Licitaciones adjudicadas</p><ul class="list-unstyled list-inline querystring"><li class="static-string">Proveedores con licitaciones por un monto entre</li><li class="clp numformat">'+$(".pro-monto-lic-desde").val().formatNumber(0,",",".")+'</li><li class="static-string">y</li><li class="clp numformat">'+$(".pro-monto-lic-hasta").val().formatNumber(0,",",".")+'</li><li class="static-string">adjudicadas entre</li><li>'+$(".pro-monto-lic-fecha-desde").val()+'</li><li class="static-string">y</li><li>'+$(".pro-monto-lic-fecha-hasta").val()+'</li></ul><span class="close-thing" data-tipo-filtro="3" data-attr=""><i class="fa fa-times"></i></span></div>');
+					$(".filters-list-container").append('<div class="filter-list-item"><p><i class="fa fa-usd"></i>Monto de Licitaciones adjudicadas</p><ul class="list-unstyled list-inline querystring"><li class="static-string">Proveedores con licitaciones por un monto entre</li><li class="clp numformat">'+$(".pro-monto-lic-desde").val().formatNumber(0,",",".")+'</li><li class="static-string">y</li><li class="clp numformat">'+$(".pro-monto-lic-hasta").val().formatNumber(0,",",".")+'</li><li class="static-string">adjudicadas entre</li><li>'+$(".pro-monto-lic-fecha-desde").val()+'</li><li class="static-string">y</li><li>'+$(".pro-monto-lic-fecha-hasta").val()+'</li></ul><span class="close-thing" data-tipo-filtro="3" data-attr="'+index_pro+'"><i class="fa fa-times"></i></span></div>');
+
+					var aux_filter =  {} ;
+					 	aux_filter.monto_adjudicado  =  $(".pro-monto-lic-desde").val() + "|" + $(".pro-monto-lic-hasta").val();
+					 	aux_filter.fecha_adjudicacion = $(".pro-fecha-lic-desde").val() + "|" + $(".pro-fecha-lic-hasta").val();
+
+					 	filtro_proveedores.filtros.push(aux_filter);
+					 	index_pro++;
 					break;
 				}
 
@@ -675,7 +690,7 @@
 
 		$(document).on("click", ".btn-compras-transparentes", function(){
 			var $filtro = $("#lookfor option:selected").val();
-
+			console.log($filtro);
 			switch(parseInt($filtro,10))
 			{	
 				case 1:
@@ -757,37 +772,86 @@
 					break;
 
 				case 2: 
-					
+					$(".se-pre-con").show();
 					var palabra = $("input[name='q']").val();
 
 					var $post = {};
 					 $post.filtros = [];
 
-					for (var i = 0; i < filtro_organismos.filtros.length; i++) {
-
-						console.log(typeof(filtro_organismos.filtros[i]));
+					for (var i = 0; i < filtro_organismos.filtros.length; i++) 
+					{
 						if(typeof(filtro_organismos.filtros[i]) != "undefined")
 						{
-							console.log("enttra");
 							$post.filtros.push(filtro_organismos.filtros[i]);	
-
 						}
 					}
 					
 
-						$.ajax({
-						"url" : "http://cctt.ngrok.io" + "/organismo/?q="+palabra,
+					$.ajax({
+						"url" : CONST.API + "/organismo/?q="+palabra + "&pagina=1",
 						"data" : JSON.stringify($post),
 						"type" : "POST",
 						 "contentType": "application/json",
 						"dataType" : "JSON",
 						"success" : function(r){
-							console.log($post);
-							console.log(r);
-          					
-          					$($(".search-result-description li span")[1]).text(filtro_licitacion.q);
+							          					
+          					$("#tipo1").html("");
+          					$($(".search-result-description li span")[1]).text(palabra);
 
+
+          					if(r.organismos.length > 0)
+          					{
+          						var n_org = 10,
+									maxitems = r.n_organismos;
+
+								$($(".search-result-description li span")[2]).text("Se encontraron " + maxitems + " coincidencias ");
+
+          						for(var j = 0; j < r.organismos.length ; j++)
+          						{
+          							var aux = '<div class="search-result-item" code="'+j+'" type="org" visibility="visible">';
+          							aux += '<h4 class="collapsable-text"><a namelinkorg="'+j+'" href="/file?type=organismo&code=+"'+r.organismos[j].id+'" class="long-text">'+ r.organismos[j].nombre + '</a></h4>';
+          							aux += '<p class="org-name inline" namecat="'+j+'">'+r.organismos[j].categoria + '</p></div>';
+
+          							
+      								$("#tipo1").append(aux);
+          						}
+
+          						var test_org = {
+							            currentPage: 1,
+							            totalPages: Math.ceil(maxitems/n_org),
+							          	   onPageChanged: function(e,oldPage,newPage){
+								                var url = CONST.API + "/organismo/?q="+palabra+"&pagina="+newPage;
+								                $(".se-pre-con").show();
+								                
+								                $.ajax({
+								                	"url" : url,
+													"data" : JSON.stringify($post),
+													"type" : "POST",
+													 "contentType": "application/json",
+													"dataType" : "JSON",
+													"success" : function( data ) {
+								                    console.log(data);
+								                    //$('#tipo1').find("[type='org']").attr("style","display: none");
+								                    for(var b=0; b< data.organismos.length;b++){
+								                        $('#tipo1').find("[code='"+b+"']").filter("[type='org']").attr("style","display: block");
+								                        $('.search-result-item .collapsable-text').find("[namelinkorg='"+b+"']").text(data.organismos[b].nombre);
+								                        $('.search-result-item .collapsable-text').find("[namelinkorg='"+b+"']").attr("href","/file?type=organismo&code="+data.organismos[b].codigo);
+								                        $('.search-result-item').find("[namecat='"+b+"']").text(data.organismos[b].categoria);                    
+								                    }
+
+								                    $(".se-pre-con").hide();
+								                }
+								                });
+								                
+
+								                $(".se-pre-con").hide();
+												$("html, body").animate({scrollTop: $('#search-results-panel').offset().top }, 1000);
+								            }
+							        };
+          					}
 							
+							$("#tipo1").append('<div id="pag2"></div>');
+						        $('#pag2').bootstrapPaginator(test_org);
 
 							$(".results-panel").show();
 							$(".se-pre-con").hide();
@@ -795,6 +859,93 @@
 						}
 					});
 
+					break;
+
+					case 3:
+						$(".se-pre-con").show();
+					var palabra = $("input[name='q']").val();
+
+					var $post = {};
+					 $post.filtros = [];
+
+					for (var i = 0; i < filtro_proveedores.filtros.length; i++) 
+					{
+						if(typeof(filtro_proveedores.filtros[i]) != "undefined")
+						{
+							$post.filtros.push(filtro_proveedores.filtros[i]);	
+						}
+					}
+
+					$.ajax({
+						"url" : CONST.API + "/proveedor/?q="+palabra + "&pagina=1",
+						"data" : JSON.stringify($post),
+						"type" : "POST",
+						 "contentType": "application/json",
+						"dataType" : "JSON",
+						"success" : function(r){
+					        
+					       	$("#tipo1").html("");
+          					$($(".search-result-description li span")[1]).text(palabra);
+
+          					if(r.proveedores.length > 0)
+          					{
+          						var n_pro = 10,
+									maxitems = r.n_proveedores;
+
+									$($(".search-result-description li span")[2]).text("Se encontraron " + maxitems + " coincidencias ");
+
+          						for(var j = 0; j < r.proveedores.length ; j++)
+          						{
+          							var aux = '<div class="search-result-item" code="'+j+'" type="pro" visibility="visible">';
+          							aux += '<h4 class="collapsable-text"><a namelinkpro="'+j+'" href="/file?type=proveedor&code='+r.proveedores[j].id +'  class="long-text">'+ r.proveedores[j].nombre +'</a></h4><p class="org-name inline" rutpro="'+j+'">'+r.proveedores[j].rut + '</p>';
+          							aux += '</div>';
+          							
+      								$("#tipo1").append(aux);
+          						}
+
+          						var test_pro = {
+							            currentPage: 1,
+							            totalPages: Math.ceil(maxitems/n_pro),
+							          	   onPageChanged: function(e,oldPage,newPage){
+								                var url = CONST.API + "/proveedor/?q="+palabra+"&pagina="+newPage;
+								                $(".se-pre-con").show();
+								                
+								                $.ajax({
+								                	"url" : url,
+													"data" : JSON.stringify($post),
+													"type" : "POST",
+													 "contentType": "application/json",
+													"dataType" : "JSON",
+													"success" : function( data ) {
+								                   
+								                    $('#tipo1').find("[type='pro']").attr("style","display: none");
+								                    for(var b=0; b< data.proveedores.length;b++){
+								                        $('#tipo1').find("[code='"+b+"']").filter("[type='pro']").attr("style","display: block");
+								                        $('.search-result-item .collapsable-text').find("[namelinkpro='"+b+"']").text(data.proveedores[b].nombre);
+								                        $('.search-result-item .collapsable-text').find("[namelinkorg='"+b+"']").attr("href","/file?type=proveedores&code="+data.proveedores[b].id);
+								                        $('.search-result-item').find("[rutpro='"+b+"']").text(data.proveedores[b].rut);                    
+								                    }
+
+								                    $(".se-pre-con").hide();
+								                }
+								                });
+								                
+
+								                $(".se-pre-con").hide();
+												$("html, body").animate({scrollTop: $('#search-results-panel').offset().top }, 1000);
+								            }
+							        };
+          					}
+							
+							$("#tipo1").append('<div id="pag4"></div>');
+						        $('#pag4').bootstrapPaginator(test_pro);
+
+							$(".results-panel").show();
+							$(".se-pre-con").hide();
+							$("html, body").animate({scrollTop: $('#search-results-panel').offset().top }, 1000);			
+          					
+						}
+					});
 					break;
 			}
 		});
@@ -812,17 +963,13 @@
 			{
 				case 1:
 				 	delete filtro_licitacion[$(this).attr("data-attr")]; 
-
-				 	
-
-
 				break;
 				case 2:
 					delete filtro_organismos.filtros[$(this).attr("data-attr")];
 					console.log(filtro_organismos);
 				break;
 				case 3:
-					delete filtro_proveedores.filtro_licitacion[$(this).attr("data-attr")];
+					delete filtro_proveedores.filtros[$(this).attr("data-attr")];
 					console.log(filtro_proveedores);
 				break;
 
