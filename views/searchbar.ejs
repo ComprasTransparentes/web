@@ -900,7 +900,7 @@
           						for(var j = 0; j < r.proveedores.length ; j++)
           						{
           							var aux = '<div class="search-result-item" code="'+j+'" type="pro" visibility="visible">';
-          							aux += '<h4 class="collapsable-text"><a namelinkpro="'+j+'" href="/file?type=proveedor&code='+r.proveedores[j].id +'  class="long-text">'+ r.proveedores[j].nombre +'</a></h4><p class="org-name inline" rutpro="'+j+'">'+r.proveedores[j].rut + '</p>';
+          							aux += '<h4 class="collapsable-text"><a namelinkpro="'+j+'" href="/file?type=proveedor&code='+r.proveedores[j].id +'" class="long-text">'+ r.proveedores[j].nombre +'</a></h4><p class="org-name inline" rutpro="'+j+'">'+r.proveedores[j].rut + '</p>';
           							aux += '</div>';
           							
       								$("#tipo1").append(aux);
