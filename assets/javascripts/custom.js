@@ -64,6 +64,42 @@ function isRut(element){
 	}
 };
 
+function minMinGetCat(){
+
+	var min1 = $('.min-1 option:selected').val();
+	var min2 = $('.min-2 option:selected').val();
+	var call = ""
+	call = call.concat(CONST.API,"/ministerio/categoria?ministerio=",min1,"&ministerio=",min2);
+
+	$.getJSON(call, function(data){
+		$.each(data.categorias, function (i, item) {
+			var aux = '<option value='+item.id+'>'+item.nombre+'</option>';
+		    $('.cat-step-2').append(aux);
+		});
+
+		$('.cat-step-2').addClass('selector flat standard flex-item').select2();
+
+	})
+
+}
+
+function minMinGetCat2(){
+
+	var min1 = $('#add_min1 option:selected').val();
+	var min2 = $('#add_min2 option:selected').val();
+	$('#add_item option').remove();
+	var call = ""
+	call = call.concat(CONST.API,"/ministerio/categoria?ministerio=",min1,"&ministerio=",min2);
+	$.getJSON(call, function(data){
+		$.each(data.categorias, function (i, item) {
+			var aux = '<option value='+item.id+'>'+item.nombre+'</option>';
+		    $('#add_item').append(aux);
+		});
+
+	})
+
+}
+
 
 
 $(document).ready(function() {

@@ -39,7 +39,7 @@
 				</div>
 			</div>
 			<div class="them-buttons">
-				<button class="btn btn-next pull-right disabled" disabled>Siguiente<i class="fa fa-arrow-right"></i></button>
+				<button class="btn btn-next pull-right disabled" onclick="minMinGetCat();" disabled>Siguiente<i class="fa fa-arrow-right"></i></button>
 			</div>
 		</div>
 
@@ -51,11 +51,9 @@
 					<div class="col-sm-3 flex-wrapper"></div>
 					<div class="col-sm-6 flex-wrapper">
 						<label>Categoría</label>
-						<select class="selector flat standard flex-item cat-step-2"  data-placeholder="Selecciona una categoría">
+						<select class="cat-step-2"  data-placeholder="Selecciona una categoría">
 							<option></option>
-							<% for(var r=0;r<min.item.length;r++){%>								
-								<option value=<%-min.item[r].code%>><%-min.item[r].name%></option>
-							<%} %>
+							
 						</select>
 					</div>
 					<div class="col-sm-3 flex-wrapper"></div>
@@ -63,7 +61,7 @@
 			</div>
 			<div class="them-buttons">
 				<button class="btn btn-prev pull-left"><i class="fa fa-arrow-left"></i>Volver</button>
-				<button class="btn btn-next pull-right disabled" disabled="">Siguiente<i class="fa fa-arrow-right"></i></button>
+				<button class="btn btn-next btn-comparador pull-right disabled" disabled="">Siguiente<i class="fa fa-arrow-right"></i></button>
 			</div>
 		</div>
 
@@ -74,7 +72,7 @@
 					<div class="comparator-list">
 						<div class="comparator-item selector-thingy">
 							<div class="correlative min-parent">
-								<select class="selector flat full-width standard min-selector" data-placeholder="Selecciona un organismo" id="add_min1" name="add_min1">
+								<select class="selector flat full-width standard min-selector" data-placeholder="Selecciona un organismo" id="add_min1" name="add_min1" onchange="minMinGetCat2();">
 									<% for(var r=0;r<min.ministerios.length;r++){%>
 											<option value=<%-min.ministerios[r].code%>><%-min.ministerios[r].name%></option>
 									<%}%>
@@ -82,7 +80,7 @@
 								</select>
 							</div>
 							<div class="correlative min-parent">
-								<select class="selector flat full-width standard min-selector" data-placeholder="Y con quién compararás" id="add_min2" name="add_min2">
+								<select class="selector flat full-width standard min-selector" data-placeholder="Y con quién compararás" id="add_min2" name="add_min2" onchange="minMinGetCat2();">
 									<% for(var r=0;r<min.ministerios.length;r++){%>
 											<option value=<%-min.ministerios[r].code%>><%-min.ministerios[r].name%></option>
 									<%}%>
@@ -90,9 +88,7 @@
 							</div>
 							<div class="correlative">
 								<select class="selector flat full-width standard" data-placeholder="Una categoría de comparación" id="add_item" name="add_item">
-									<% for(var r=0;r<min.item.length;r++){%>
-										<option value=<%-min.item[r].code%>><%-min.item[r].name%></option>
-									<%}%>
+									
 								</select>
 							</div>
 							<div class="correlative">
