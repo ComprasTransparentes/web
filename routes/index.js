@@ -96,6 +96,7 @@ router.get('/searchbar',function(req, res){
 
 	api.getCategorias(function(categorias){
 		categorias = categorias;
+		console.log(categorias);
 
 		api.getMins(function(min){
 		min = min;
