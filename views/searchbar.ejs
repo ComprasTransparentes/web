@@ -26,7 +26,7 @@
 				<!-- Filtros avanzados para Licitaciones -->
 				<div class="filters-container-panel hidden" id="filters_search_licitacion">
 					<div class="filter-header">
-						<h5 class="super-title duper">Filtros <strong>Licitaciones</strong></h5>
+						<h5 class="super-title duper">Filtrar por <strong>Licitaciones</strong></h5>
 					</div>
 					<div class="fil-modules">
 						<div class="filter-module">
@@ -99,16 +99,16 @@
 				<!-- Filtros avanzados para Organismos -->
 				<div class="filters-container-panel hidden" id="filters_search_organismo">
 					<div class="filter-header">
-						<h5 class="super-title duper">Filtros <strong>Organismos Públicos</strong></h5>
+						<h5 class="super-title duper">Filtrar por <strong>Organismos Públicos</strong></h5>
 					</div>
 						<div class="fil-modules">
 							<div class="filter-module">
 								<select class="selector flat no-search full-width filtro-organismos" placeholder="Selecciona un filtro" id="org_adv_fil">
 									<option></option>
-									<option value="add_cant_lic" data-id="1" >Cantidad de licitaciones ofrecidas</option>
-									<option value="add_mont_lic" data-id="2" >Por monto de licitaciones</option>
-									<!--<option value="add_mont_prov_lic">Por monto transado con proveedor</option>
-									<option value="add_cant_prov_lic">Por cantidad de licitaciones con proveedor</option>-->
+									<option value="add_cant_lic" data-id="1" >Cantidad de Licitaciones Ofrecidas</option>
+									<option value="add_mont_lic" data-id="2" >Por monto de Licitaciones Adjudicadas</option>
+									<!--<option value="add_mont_prov_lic">Por monto transado con Proveedor</option>
+									<option value="add_cant_prov_lic">Por cantidad de Licitaciones con Proveedor</option>-->
 								</select>
 							</div>
 							
@@ -123,8 +123,8 @@
 									</div>
 									
 									<!-- Estado Licitaciones -->
-									<select class="selector flat no-search full-width cant-lic-org-estado-lic" style="margin-bottom: 15px;">
-										<option>Seleccione...</option>
+									<select class="selector flat no-search full-width cant-lic-org-estado-lic" style="margin-bottom: 15px;" placeholder="Estado de Licitación">
+										<option></option>
 										<option data-alias="Publicada" disabled="disabled">Licitaciones Publicadas</option>
 										<option data-alias="Adjudicada" >Licitaciones Adjudicadas</option>
 										
@@ -224,14 +224,14 @@
 				<!-- Filtros avanzados para Proveedores -->
 				<div class="filters-container-panel hidden" id="filters_search_proveedor">
 					<div class="filter-header">
-						<h5 class="super-title duper">Filtros <strong>Proveedores</strong></h5>
+						<h5 class="super-title duper">Filtrar por <strong>Proveedores</strong></h5>
 					</div>
 						<div class="fil-modules">
 							<div class="filter-module">
 								<select class="selector flat no-search full-width filtro-proveedores" placeholder="Selecciona un filtro" id="prov_adv_fil">
-									<option>Seleccione...</option>
-									<option value="sum_cant_lic" data-id="1">Cantidad de licitaciones ganadas</option>
-									<option value="sum_mont_lic" data-id="2">Por monto adjudicado</option>
+									<option></option>
+									<option value="sum_cant_lic" data-id="1">Cantidad de Licitaciones Adjudicadas</option>
+									<option value="sum_mont_lic" data-id="2">Por monto Adjudicado</option>
 									<!--<option value="sum_mont_org_lic">Por monto transado con organismo</option>
 									<option value="sum_cant_org_lic">Por cantidad de licitaciones con organismo</option>-->
 								</select>
@@ -344,7 +344,7 @@
 				<!-- Panel para los filtros de Licitación -->
 				<div class="filters-list-container hidden" id="filters_list_licitacion">
 					<h5 class="super-title duper">Filtros aplicados</h5>
-					<span data-toggle="modal" data-target="#eraseAllModal" class="erase-all"><i class="fa fa-trash-o"></i>Borrar todo</span>
+					<span data-toggle="modal" data-target="#eraseAllModal" class="erase-all"><i class="fa fa-trash-o"></i>Borrar todos los filtros de búsqueda</span>
 					<!-- Filtro de categoría de Producto-->
 					
 				</div>
@@ -352,7 +352,7 @@
 				<!-- Panel para los filtros de organismo -->
 				<div class="filters-list-container hidden" id="filters_list_organismo">
 					<h5 class="super-title duper">Filtros aplicados</h5>
-					<span data-toggle="modal" data-target="#eraseAllModal" class="erase-all"><i class="fa fa-trash-o"></i>Borrar todo</span>
+					<span data-toggle="modal" data-target="#eraseAllModal" class="erase-all"><i class="fa fa-trash-o"></i>Borrar todos los filtros de búsqueda</span>
 					<!--
 					<!-- Filtro de Cantidad de Licitaciones Ofrecidas
 					<div class="filter-list-item">
@@ -421,7 +421,7 @@
 				<!-- Panel para los filtros de proveedor -->
 				<div class="filters-list-container hidden" id="filters_list_proveedor">
 					<h5 class="super-title duper">Filtros aplicados</h5>
-					<span data-toggle="modal" data-target="#eraseAllModal" class="erase-all"><i class="fa fa-trash-o"></i>Borrar todo</span>
+					<span data-toggle="modal" data-target="#eraseAllModal" class="erase-all"><i class="fa fa-trash-o"></i>Borrar todos los filtros de búsqueda</span>
 
 					<!-- 
 					<!-- Filtro de Cantidad de Licitaciones Adjudicadas
@@ -502,7 +502,7 @@
 
 	  </div>
 	  <div class="modal-footer no-border">
-			<button type="button" class="btn btn-compras-transparentes btn-borrar" data-dismiss="modal">Borrar Todo</button>
+			<button type="button" class="btn btn-borrar" data-dismiss="modal">Borrar Todo</button>
 	  </div>
 	</div>
   </div>
@@ -548,48 +548,49 @@
 				{
 					//Categoria producto
 					case 1:
-					$(".filters-list-container").append('<div class="filter-list-item"><p><i class="fa fa-industry"></i>Categoría de producto</p><ul class="list-unstyled list-inline querystring"><li class="static-string">Licitaciones con el siguiente producto</li><li> '+ $(".categoria-licitacion").find("option:selected").text() +'</li></ul><span class="close-thing" data-tipo-filtro="1" data-attr="categoria_producto"><i class="fa fa-times"></i></span></div>');
+					$(".filters-list-container").append('<div class="filter-list-item"><p><i class="fa fa-industry"></i>Categoría de producto</p><ul class="list-unstyled list-inline querystring"><li class="static-string">Licitaciones en la categoría</li><li> '+ $(".categoria-licitacion").find("option:selected").text() +'</li></ul><span class="close-thing" data-tipo-filtro="1" data-attr="categoria_producto"><i class="fa fa-times"></i></span></div>');
 					
 					filtro_licitacion.categoria_producto = $(".categoria-licitacion").val();
 
 					break;
 					//Licitaciones Publicadas
 					case 2:
-					$(".filters-list-container").append('<div class="filter-list-item"><p><i class="fa fa-tasks"></i>Estado de licitación</p><ul class="list-unstyled list-inline querystring"><li class="static-string">Licitaciones con estado</li><li> ' + $(".filtro-licitacion option:selected").attr("data-nombre-estado") + '</li></ul><span class="close-thing" data-tipo-filtro="1" data-attr="estado"><i class="fa fa-times"></i></span></div>');
+					$(".filters-list-container").append('<div class="filter-list-item"><p><i class="fa fa-tasks"></i>Estado actual de Licitación</p><ul class="list-unstyled list-inline querystring"><li class="static-string">Licitaciones con estado</li><li> ' + $(".filtro-licitacion option:selected").attr("data-nombre-estado") + '</li></ul><span class="close-thing" data-tipo-filtro="1" data-attr="estado"><i class="fa fa-times"></i></span></div>');
 
 					filtro_licitacion.estado = $(".filtro-licitacion option:selected").attr("data-id-estado");
 
 					break;
 					//Licitaciones Adjudicadas
 					case 3:
-					$(".filters-list-container").append('<div class="filter-list-item"><p><i class="fa fa-tasks"></i>Estado de licitación</p><ul class="list-unstyled list-inline querystring"><li class="static-string">Licitaciones con estado</li><li> ' + $(".filtro-licitacion option:selected").attr("data-nombre-estado") + '</li></ul><span class="close-thing" data-tipo-filtro="1" data-attr="estado"><i class="fa fa-times"></i></span></div>');
+					$(".filters-list-container").append('<div class="filter-list-item"><p><i class="fa fa-tasks"></i>Estado actual de Licitación</p><ul class="list-unstyled list-inline querystring"><li class="static-string">Licitaciones con estado</li><li> ' + $(".filtro-licitacion option:selected").attr("data-nombre-estado") + '</li></ul><span class="close-thing" data-tipo-filtro="1" data-attr="estado"><i class="fa fa-times"></i></span></div>');
 
 					filtro_licitacion.estado = $(".filtro-licitacion option:selected").attr("data-id-estado");
 
 					break;
 					//Licitaciones Revocadas
 					case 4:
-					$(".filters-list-container").append('<div class="filter-list-item"><p><i class="fa fa-tasks"></i>Estado de licitación</p><ul class="list-unstyled list-inline querystring"><li class="static-string">Licitaciones con estado</li><li> ' + $(".filtro-licitacion option:selected").attr("data-nombre-estado") + '</li></ul><span class="close-thing" data-tipo-filtro="1" data-attr="estado"><i class="fa fa-times"></i></span></div>');
+					$(".filters-list-container").append('<div class="filter-list-item"><p><i class="fa fa-tasks"></i>Estado actual de Licitación</p><ul class="list-unstyled list-inline querystring"><li class="static-string">Licitaciones con estado</li><li> ' + $(".filtro-licitacion option:selected").attr("data-nombre-estado") + '</li></ul><span class="close-thing" data-tipo-filtro="1" data-attr="estado"><i class="fa fa-times"></i></span></div>');
 
 					filtro_licitacion.estado = $(".filtro-licitacion option:selected").attr("data-id-estado");
 
 					break;
 					//Licitaciones Suspendidas
 					case 5:
-					$(".filters-list-container").append('<div class="filter-list-item"><p><i class="fa fa-tasks"></i>Estado de licitación</p><ul class="list-unstyled list-inline querystring"><li class="static-string">Licitaciones con estado</li><li> ' + $(".filtro-licitacion option:selected").attr("data-nombre-estado") + '</li></ul><span class="close-thing" data-tipo-filtro="1" data-attr="estado"><i class="fa fa-times"></i></span></div>');
+					$(".filters-list-container").append('<div class="filter-list-item"><p><i class="fa fa-tasks"></i>Estado actual de Licitación</p><ul class="list-unstyled list-inline querystring"><li class="static-string">Licitaciones con estado</li><li> ' + $(".filtro-licitacion option:selected").attr("data-nombre-estado") + '</li></ul><span class="close-thing" data-tipo-filtro="1" data-attr="estado"><i class="fa fa-times"></i></span></div>');
 
 					filtro_licitacion.estado = $(".filtro-licitacion option:selected").attr("data-id-estado");
 
 					break;
+					//Monto
 					case 6:
-					$(".filters-list-container").append('<div class="filter-list-item"><p><i class="fa fa-usd"></i>Monto de licitación</p><ul class="list-unstyled list-inline querystring"><li class="static-string">Licitaciones con monto entre</li><li class="clp numformat"> '+ $(".filtro-licitacion-monto-desde").val().formatNumber(0, ",", ".") +'</li><li class="static-string"> y </li><li class="clp numformat"> '+$(".filtro-licitacion-monto-hasta").val().formatNumber(0, ",", ".") +'</li>	</ul><span class="close-thing" data-tipo-filtro="1" data-attr="monto"><i class="fa fa-times"></i></span></div>');
+					$(".filters-list-container").append('<div class="filter-list-item"><p><i class="fa fa-usd"></i>Monto de Adjudicación de Licitación</p><ul class="list-unstyled list-inline querystring"><li class="static-string">Licitaciones adjudicadas con monto entre</li><li class="clp numformat"> '+ $(".filtro-licitacion-monto-desde").val().formatNumber(0, ",", ".") +'</li><li class="static-string"> y </li><li class="clp numformat"> '+$(".filtro-licitacion-monto-hasta").val().formatNumber(0, ",", ".") +'</li>	</ul><span class="close-thing" data-tipo-filtro="1" data-attr="monto"><i class="fa fa-times"></i></span></div>');
 
 					filtro_licitacion.monto = $(".filtro-licitacion-monto-desde").val() + "|" + $(".filtro-licitacion-monto-hasta").val();
 
 					break;
 					//Fecha de Publicación
 					case 7:
-					$(".filters-list-container").append('<div class="filter-list-item"><p><i class="fa fa-calendar"></i>Fecha de licitación</p><ul class="list-unstyled list-inline querystring">	<li class="static-string"> Licitaciones con fecha </li><li> Publicación </li><li class="static-string">entre</li>	<li> '+$(".filtro-licitacion-fecha-desde").val() +'</li>	<li class="static-string"> y </li><li> '+$(".filtro-licitacion-fecha-hasta").val() +'</li></ul><span class="close-thing" data-tipo-filtro="1" data-attr="fecha_publicacion"><i class="fa fa-times"></i></span></div>');
+					$(".filters-list-container").append('<div class="filter-list-item"><p><i class="fa fa-calendar"></i>Fecha de licitación</p><ul class="list-unstyled list-inline querystring">	<li class="static-string"> Licitaciones con fecha de</li><li> Publicación </li><li class="static-string">entre el</li>	<li> '+$(".filtro-licitacion-fecha-desde").val() +'</li>	<li class="static-string"> y </li><li> '+$(".filtro-licitacion-fecha-hasta").val() +'</li></ul><span class="close-thing" data-tipo-filtro="1" data-attr="fecha_publicacion"><i class="fa fa-times"></i></span></div>');
 
 						filtro_licitacion.fecha_publicacion = $(".filtro-licitacion-fecha-desde").val() + "|" + $(".filtro-licitacion-fecha-hasta").val();
 					break;
@@ -598,14 +599,14 @@
 
 					//Fecha de Adjudicación
 					case 8:
-					$(".filters-list-container").append('<div class="filter-list-item"><p><i class="fa fa-calendar"></i>Fecha de licitación</p><ul class="list-unstyled list-inline querystring">	<li class="static-string"> Licitaciones con fecha </li><li> Adjudicación </li><li class="static-string">entre</li>	<li> '+$(".filtro-licitacion-fecha-desde").val() +'</li>	<li class="static-string"> y </li><li> '+$(".filtro-licitacion-fecha-hasta").val() +'</li></ul><span class="close-thing" data-tipo-filtro="1" data-attr="fecha_adjudicacion"><i class="fa fa-times"></i></span></div>');
+					$(".filters-list-container").append('<div class="filter-list-item"><p><i class="fa fa-calendar"></i>Fecha de licitación</p><ul class="list-unstyled list-inline querystring">	<li class="static-string"> Licitaciones con fecha de</li><li> Adjudicación </li><li class="static-string">entre el</li>	<li> '+$(".filtro-licitacion-fecha-desde").val() +'</li>	<li class="static-string"> y </li><li> '+$(".filtro-licitacion-fecha-hasta").val() +'</li></ul><span class="close-thing" data-tipo-filtro="1" data-attr="fecha_adjudicacion"><i class="fa fa-times"></i></span></div>');
 
 					filtro_licitacion.fecha_adjudicacion = $(".filtro-licitacion-fecha-desde").val() + "|" + $(".filtro-licitacion-fecha-hasta").val();
 
 					break;
 					//Fecha de Cierre
 					case 9:
-					$(".filters-list-container").append('<div class="filter-list-item"><p><i class="fa fa-calendar"></i>Fecha de licitación</p><ul class="list-unstyled list-inline querystring">	<li class="static-string"> Licitaciones con fecha </li><li> Cierre </li><li class="static-string">entre</li>	<li> '+$(".filtro-licitacion-fecha-desde").val() +'</li>	<li class="static-string"> y </li><li> '+$(".filtro-licitacion-fecha-hasta").val() +'</li></ul><span class="close-thing" data-tipo-filtro="1" data-attr="fecha_cierre"><i class="fa fa-times"></i></span></div>');
+					$(".filters-list-container").append('<div class="filter-list-item"><p><i class="fa fa-calendar"></i>Fecha de licitación</p><ul class="list-unstyled list-inline querystring">	<li class="static-string"> Licitaciones con fecha de</li><li> Cierre </li><li class="static-string">entre el</li>	<li> '+$(".filtro-licitacion-fecha-desde").val() +'</li>	<li class="static-string"> y </li><li> '+$(".filtro-licitacion-fecha-hasta").val() +'</li></ul><span class="close-thing" data-tipo-filtro="1" data-attr="fecha_cierre"><i class="fa fa-times"></i></span></div>');
 
 					filtro_licitacion.fecha_cierre = $(".filtro-licitacion-fecha-desde").val() + "|" + $(".filtro-licitacion-fecha-hasta").val();
 
@@ -622,7 +623,7 @@
 				switch(tipo_filtro)
 				{
 					case 1 :
-					 	$(".filters-list-container").append('<div class="filter-list-item"><p><i class="fa fa-file-o"></i>Cantidad de Licitaciones ofrecidas</p><ul class="list-unstyled list-inline querystring"><li class="static-string">Organismos con un total de</li><li> '+$(".cant-lic-org-cant-desde").val().formatNumber(0, ",", ".")+'</li><li class="static-string"> y</li><li> '+$(".cant-lic-org-cant-hasta").val().formatNumber(0, ",", ".")+'</li><li class="static-string">licitaciones</li><li> '+$(".cant-lic-org-estado-lic option:selected").attr('data-alias')+'</li><li class="static-string">entre</li><li> '+$(".cant-lic-org-fecha-desde").val()+'</li> <li class="static-string">y</li><li> '+$(".cant-lic-org-fecha-hasta").val()+'</li></ul><span class="close-thing" data-tipo-filtro="2" data-attr="'+index_org+'"><i class="fa fa-times"></i></span></div>');
+					 	$(".filters-list-container").append('<div class="filter-list-item"><p><i class="fa fa-file-o"></i>Cantidad de Licitaciones Ofrecidas</p><ul class="list-unstyled list-inline querystring"><li class="static-string">Organismos que han publicado entre</li><li> '+$(".cant-lic-org-cant-desde").val().formatNumber(0, ",", ".")+'</li><li class="static-string"> y</li><li> '+$(".cant-lic-org-cant-hasta").val().formatNumber(0, ",", ".")+'</li><li class="static-string">licitaciones</li><li> '+$(".cant-lic-org-estado-lic option:selected").attr('data-alias')+'</li><li class="static-string">entre el</li><li> '+$(".cant-lic-org-fecha-desde").val()+'</li> <li class="static-string">y</li><li> '+$(".cant-lic-org-fecha-hasta").val()+'</li></ul><span class="close-thing" data-tipo-filtro="2" data-attr="'+index_org+'"><i class="fa fa-times"></i></span></div>');
 					 	
 					 	var aux_filter =  {} ;
 					 	aux_filter.n_licitaciones_adjudicadas  =  $(".cant-lic-org-cant-desde").val() + "|" + $(".cant-lic-org-cant-hasta").val();
@@ -633,7 +634,7 @@
 					 	index_org++;
 					break;
 					case 2:
-						$(".filters-list-container").append('<div class="filter-list-item"><p><i class="fa fa-usd"></i>Monto de Licitaciones adjudicadas</p><ul class="list-unstyled list-inline querystring"><li class="static-string">Organismos con licitaciones por un monto entre</li><li class="clp numformat"> '+$(".cant-lic-org-2-monto-desde").val().formatNumber(0, ",", ".")+'</li><li class="static-string"> y</li><li class="clp numformat"> '+$(".cant-lic-org-2-monto-hasta").val().formatNumber(0, ",", ".")+'</li><li class="static-string">con fecha de cierre entre</li><li> '+$(".cant-lic-org-2-fecha-desde").val()+'</li><li class="static-string">y</li><li> '+$(".cant-lic-org-2-fecha-hasta").val()+'</li></ul><span class="close-thing" data-tipo-filtro="2" data-attr="'+index_org+'"><i class="fa fa-times"></i></span></div>');
+						$(".filters-list-container").append('<div class="filter-list-item"><p><i class="fa fa-usd"></i>Monto de Licitaciones Ofrecidas y Adjudicadas</p><ul class="list-unstyled list-inline querystring"><li class="static-string">Organismos que han publicado licitaciones por un monto entre</li><li class="clp numformat"> '+$(".cant-lic-org-2-monto-desde").val().formatNumber(0, ",", ".")+'</li><li class="static-string"> y</li><li class="clp numformat"> '+$(".cant-lic-org-2-monto-hasta").val().formatNumber(0, ",", ".")+'</li><li class="static-string">y han sido adjudicadas entre el</li><li> '+$(".cant-lic-org-2-fecha-desde").val()+'</li><li class="static-string">y</li><li> '+$(".cant-lic-org-2-fecha-hasta").val()+'</li></ul><span class="close-thing" data-tipo-filtro="2" data-attr="'+index_org+'"><i class="fa fa-times"></i></span></div>');
 
 						var aux_filter =  {} ;
 					 	aux_filter.monto_adjudicado  =  $(".cant-lic-org-2-monto-desde").val() + "|" + $(".cant-lic-org-2-monto-hasta").val();
@@ -655,11 +656,11 @@
 				switch(tipo_filtro)
 				{
 					case 1:
-					$(".filters-list-container").append('<div class="filter-list-item"><p><i class="fa fa-file-o"></i>Cantidad de Licitaciones adjudicadas</p><ul class="list-unstyled list-inline querystring"><li class="static-string">Proveedores con un total entre</li><li>'+$(".pro-cant-lic-desde").val().formatNumber(0,",",".")+'</li><li class="static-string">y</li><li>'+$(".pro-cant-lic-hasta").val().formatNumber(0,",",".")+'</li><li class="static-string">licitaciones adjudicadas entre</li><li>'+$(".pro-fecha-lic-desde").val()+'</li><li class="static-string">y</li><li>'+$(".pro-fecha-lic-hasta").val()+'</li></ul><span class="close-thing" data-tipo-filtro="3" data-attr=""><i class="fa fa-times"></i></span></div>');
+					$(".filters-list-container").append('<div class="filter-list-item"><p><i class="fa fa-file-o"></i>Cantidad de Licitaciones Adjudicadas</p><ul class="list-unstyled list-inline querystring"><li class="static-string">Proveedores que se han adjudicado entre</li><li>'+$(".pro-cant-lic-desde").val().formatNumber(0,",",".")+'</li><li class="static-string">y</li><li>'+$(".pro-cant-lic-hasta").val().formatNumber(0,",",".")+'</li><li class="static-string">licitaciones entre el</li><li>'+$(".pro-fecha-lic-desde").val()+'</li><li class="static-string">y</li><li>'+$(".pro-fecha-lic-hasta").val()+'</li></ul><span class="close-thing" data-tipo-filtro="3" data-attr=""><i class="fa fa-times"></i></span></div>');
 					break;
 
 					case 2:
-					$(".filters-list-container").append('<div class="filter-list-item"><p><i class="fa fa-usd"></i>Monto de Licitaciones adjudicadas</p><ul class="list-unstyled list-inline querystring"><li class="static-string">Proveedores con licitaciones por un monto entre</li><li class="clp numformat">'+$(".pro-monto-lic-desde").val().formatNumber(0,",",".")+'</li><li class="static-string">y</li><li class="clp numformat">'+$(".pro-monto-lic-hasta").val().formatNumber(0,",",".")+'</li><li class="static-string">adjudicadas entre</li><li>'+$(".pro-monto-lic-fecha-desde").val()+'</li><li class="static-string">y</li><li>'+$(".pro-monto-lic-fecha-hasta").val()+'</li></ul><span class="close-thing" data-tipo-filtro="3" data-attr=""><i class="fa fa-times"></i></span></div>');
+					$(".filters-list-container").append('<div class="filter-list-item"><p><i class="fa fa-usd"></i>Monto de Licitaciones Adjudicadas</p><ul class="list-unstyled list-inline querystring"><li class="static-string">Proveedores que se han adjudicado entre</li><li class="clp numformat">'+$(".pro-monto-lic-desde").val().formatNumber(0,",",".")+'</li><li class="static-string">y</li><li class="clp numformat">'+$(".pro-monto-lic-hasta").val().formatNumber(0,",",".")+'</li><li class="static-string">entre el</li><li>'+$(".pro-monto-lic-fecha-desde").val()+'</li><li class="static-string">y</li><li>'+$(".pro-monto-lic-fecha-hasta").val()+'</li></ul><span class="close-thing" data-tipo-filtro="3" data-attr=""><i class="fa fa-times"></i></span></div>');
 					break;
 				}
 
