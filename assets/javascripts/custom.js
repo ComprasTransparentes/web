@@ -449,7 +449,7 @@ $(document).ready(function() {
 
 		$('#code_lic').text(data.extra.top_licitaciones[el.id].codigo);
 		$('#nombre_lic').text(data.extra.top_licitaciones[el.id].nombre);
-		$('#link_lic').attr("href","/file?type=licitacion&code="+data.extra.top_licitaciones[el.id].codigo);
+		$('#link_lic').attr("href","/file?type=licitacion&code="+data.extra.top_licitaciones[el.id].id);
 
 		//$('#monto_lic').text(data.extra.top_licitaciones[el.id].monto_total.formatNumber(0,",","."));
 		//$('#monto_lic_pro').text(data.extra.top_licitaciones[el.id].monto_adjudicado.formatNumber(0,",","."));
@@ -466,10 +466,10 @@ $(document).ready(function() {
 		 	$("#fecha_adjudicacion").text( fecha_adjudicacion_aux.getDate() + "-" + (fecha_adjudicacion_aux.getMonth() + 1) + "-" + fecha_adjudicacion_aux.getFullYear()  );
 		 }
 		
-		if(data.extra.top_licitaciones[el.id].monto != null)
+		if(data.extra.top_licitaciones[el.id].adjudicacion.monto != null)
 		{
 
-			$('#monto_lic').text(data.extra.top_licitaciones[el.id].monto.formatNumber(0,",","."));
+			$('#monto_lic').text(data.extra.top_licitaciones[el.id].adjudicacion.monto.formatNumber(0,",","."));
 		}
 		else
 		{
@@ -484,7 +484,7 @@ $(document).ready(function() {
 		$('#code_pro').text(data.extra.top_proveedores[el.id].id);
 		$('#nombre_pro').text(data.extra.top_proveedores[el.id].nombre);
 		$('#rut_pro').text(data.extra.top_proveedores[el.id].rut);
-		$('#monto_pro').text(data.extra.top_proveedores[el.id].monto.formatNumber(0,",","."));
+		$('#monto_pro').text(data.extra.top_proveedores[el.id].monto_adjudicado.formatNumber(0,",","."));
 		$('#link_pro').attr("href","/file?type=proveedor&code="+data.extra.top_proveedores[el.id].id);
 
 	}
@@ -563,9 +563,20 @@ $(document).ready(function() {
 
 						row.push(data.licitaciones[i].nombre);
 						row.push(data.licitaciones[i].codigo);
-						row.push("$" + data.licitaciones[i].monto_adjudicado.formatNumber(0,",", "."));
+
+						if(data.licitaciones[i].adjudicacion != null)
+						{
+
+							row.push("$" + data.licitaciones[i].adjudicacion.monto.formatNumber(0,",", "."));
+						}
+						else
+						{
+
+							row.push("-");
+						}
+						
 						//row.push("$" + data.licitaciones[i].monto_total.formatNumber(0,",", "."));
-						row.push('<a href="/file?type=licitacion&code='+data.licitaciones[i].codigo+'">Ver ficha <i class="fa fa-arrow-circle-right"></i></a>');
+						row.push('<a href="/file?type=licitacion&code='+data.licitaciones[i].id+'">Ver ficha <i class="fa fa-arrow-circle-right"></i></a>');
 
 						rows.push(row); 
 					};	
@@ -583,11 +594,22 @@ $(document).ready(function() {
 
 						row.push(data.licitaciones[i].nombre);
 						row.push(data.licitaciones[i].codigo);
-						row.push("$" + data.licitaciones[i].monto_adjudicado.formatNumber(0,",", "."));
-						row.push("$" + data.licitaciones[i].monto_total.formatNumber(0,",", "."));
-						row.push('<a href="/file?type=licitacion&code='+data.licitaciones[i].codigo+'">Ver ficha <i class="fa fa-arrow-circle-right"></i></a>');
+						
+						if(data.licitaciones[i].adjudicacion != null)
+						{
 
-						 rows.push(row); 
+							row.push("$" + data.licitaciones[i].adjudicacion.monto.formatNumber(0,",", "."));
+						}
+						else
+						{
+
+							row.push("-");
+						}
+
+						//row.push("$" + data.licitaciones[i].adjudicacion.monto_total.formatNumber(0,",", "."));
+						row.push('<a href="/file?type=licitacion&code='+data.licitaciones[i].id+'">Ver ficha <i class="fa fa-arrow-circle-right"></i></a>');
+
+					 	rows.push(row); 
 					};	
 
 					tabla.fnAddData(rows);
@@ -618,7 +640,7 @@ $(document).ready(function() {
 					{
 						var row = [];
 
-						var d = new Date(data.licitaciones[i].fecha_creacion);
+						var d = new Date(data.licitaciones[i].fecha_publicacion);
 
 						row.push(data.licitaciones[i].nombre);
 						row.push(d.getDate() + "-" +  (d.getMonth() + 1) + "-" + d.getFullYear());
@@ -645,7 +667,7 @@ $(document).ready(function() {
 					{
 						var row = [];
 
-						var d = new Date(data.licitaciones[i].fecha_creacion);
+						var d = new Date(data.licitaciones[i].fecha_publicacion);
 
 						row.push(data.licitaciones[i].nombre);
 						row.push(d.getDate() + "-" +  (d.getMonth() + 1) + "-" + d.getFullYear());
