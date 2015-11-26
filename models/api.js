@@ -256,7 +256,7 @@ module.exports.getAllTenderP = function (proveedor, callback)
 
 	var licitaciones = [];
 
-	request(host+"/proveedor/"+proveedor+"/licitacion", function (error, response, body){
+	request(host+"/licitacion/?proveedor="+proveedor+"&orden=-monto_adjudicado&pagina=1", function (error, response, body){
 				
 				var json;
 				var aux = [];
@@ -265,7 +265,7 @@ module.exports.getAllTenderP = function (proveedor, callback)
 				if (!error && (response.statusCode == 200 || response.statusCode == 201)) 
 				{
 					json = JSON.parse(body);	
-					licitaciones = licitaciones.concat( json.licitaciones);	
+					licitaciones = json.licitaciones;	
 				}
 
 			callback(licitaciones);				

@@ -593,17 +593,18 @@ router.get('/file', function(req, res) {
 			if(type=="proveedor")
 			{
 
-				var licitaciones = json.extra.licitaciones,
-					n_paginas = json.extra.n_licitaciones % 10;
+				//var licitaciones = json.extra.licitaciones,
+				//	n_paginas = json.extra.n_licitaciones % 10;
 
+				json.extra = {};
 
 				api.getAllTenderP(json.id, function(retorno)
 				{
-					console.log(retorno);
-					json.extra.licitaciones = retorno;
-				});
+					
+					console.log(json);
+					json.extra.top_licitaciones = retorno;
 
-				json2 = null;
+					json2 = null;
 				res.render('application.ejs', { content: cont,
 	  									data: json,
 	  									special: 'false',
@@ -614,6 +615,9 @@ router.get('/file', function(req, res) {
 	  									code: code,
 	  									type: type,
 	  									item: json2 });
+				});
+
+				
 	
 
 			}

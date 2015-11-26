@@ -449,7 +449,7 @@ $(document).ready(function() {
 
 		$('#code_lic').text(data.extra.top_licitaciones[el.id].codigo);
 		$('#nombre_lic').text(data.extra.top_licitaciones[el.id].nombre);
-		$('#link_lic').attr("href","/file?type=licitacion&code="+data.extra.top_licitaciones[el.id].codigo);
+		$('#link_lic').attr("href","/file?type=licitacion&code="+data.extra.top_licitaciones[el.id].id);
 
 		//$('#monto_lic').text(data.extra.top_licitaciones[el.id].monto_total.formatNumber(0,",","."));
 		//$('#monto_lic_pro').text(data.extra.top_licitaciones[el.id].monto_adjudicado.formatNumber(0,",","."));
@@ -563,9 +563,20 @@ $(document).ready(function() {
 
 						row.push(data.licitaciones[i].nombre);
 						row.push(data.licitaciones[i].codigo);
-						row.push("$" + data.licitaciones[i].monto_adjudicado.formatNumber(0,",", "."));
+
+						if(data.licitaciones[i].adjudicacion != null)
+						{
+
+							row.push("$" + data.licitaciones[i].adjudicacion.monto.formatNumber(0,",", "."));
+						}
+						else
+						{
+
+							row.push("-");
+						}
+						
 						//row.push("$" + data.licitaciones[i].monto_total.formatNumber(0,",", "."));
-						row.push('<a href="/file?type=licitacion&code='+data.licitaciones[i].codigo+'">Ver ficha <i class="fa fa-arrow-circle-right"></i></a>');
+						row.push('<a href="/file?type=licitacion&code='+data.licitaciones[i].id+'">Ver ficha <i class="fa fa-arrow-circle-right"></i></a>');
 
 						rows.push(row); 
 					};	
@@ -583,11 +594,22 @@ $(document).ready(function() {
 
 						row.push(data.licitaciones[i].nombre);
 						row.push(data.licitaciones[i].codigo);
-						row.push("$" + data.licitaciones[i].monto_adjudicado.formatNumber(0,",", "."));
-						row.push("$" + data.licitaciones[i].monto_total.formatNumber(0,",", "."));
-						row.push('<a href="/file?type=licitacion&code='+data.licitaciones[i].codigo+'">Ver ficha <i class="fa fa-arrow-circle-right"></i></a>');
+						
+						if(data.licitaciones[i].adjudicacion != null)
+						{
 
-						 rows.push(row); 
+							row.push("$" + data.licitaciones[i].adjudicacion.monto.formatNumber(0,",", "."));
+						}
+						else
+						{
+
+							row.push("-");
+						}
+
+						//row.push("$" + data.licitaciones[i].adjudicacion.monto_total.formatNumber(0,",", "."));
+						row.push('<a href="/file?type=licitacion&code='+data.licitaciones[i].id+'">Ver ficha <i class="fa fa-arrow-circle-right"></i></a>');
+
+					 	rows.push(row); 
 					};	
 
 					tabla.fnAddData(rows);
