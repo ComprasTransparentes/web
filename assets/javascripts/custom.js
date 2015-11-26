@@ -518,7 +518,7 @@ $(document).ready(function() {
 		var index = parseInt(el.id)+1;
 
 		$('#rank_cat').text(index);
-		$('#name_cate').text(cat.categorias[el.id].categoria);
+		$('#name_cate').text(cat.categorias[el.id].nombre);
 		$('#cash_cat').text(cat.categorias[el.id].monto.formatNumber(0, ",", "."));
 		$('#link_cat').attr("href","/search?cat=0&TipoBusqueda=1&q="+cat.categorias[el.id].id);
 		
