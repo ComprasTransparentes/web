@@ -1,37 +1,64 @@
+#comprastransparentes {
+    font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
+}
 
-  #comprastransparentes.embed-container { margin: auto; max-width: 480px; }
-  #comprastransparentes .panel-default {
+#comprastransparentes.embed-container { margin: auto; max-width: 480px; }
+
+#comprastransparentes .panel-default {
     background-color: #3D84A8;
     border-color: rgba(21, 92, 128, 0.3);
     color: white;
-  }
+    margin-bottom: 30px;
+    border-radius: 4px;
+}
 
-  #comprastransparentes .panel-default a {color: #46CDCF;}
-  #comprastransparentes .panel-default a:hover {color: #30466D;}
-  #comprastransparentes .clp:before {content: '\0024';}
+#comprastransparentes .panel-default a {
+    color: #46CDCF;
+    float: left;
+    font-size: 14px;
+    text-decoration: none;
+    line-height: 26px;
+}
 
-  #comprastransparentes .panel-default .panel-footer {
+#comprastransparentes .panel-default a:hover {color: #30466D;}
+
+#comprastransparentes .clp:before {content: '\0024';}
+
+#comprastransparentes .panel-default .panel-body {
+    padding: 15px;
+}
+
+#comprastransparentes .panel-default .panel-footer {
     background-color: rgba(21, 92, 128, 0.25);
-    border-top-color: rgba(21, 92, 128, 0.3);
-  }
+    border: 1px solid rgba(21, 92, 128, 0.3);
+    border-bottom-right-radius: 3px;
+    border-bottom-left-radius: 3px;
+    padding: 10px 15px;
+    overflow: hidden;
+}
 
-  #comprastransparentes .panel-default .panel-footer img {
+#comprastransparentes .panel-default .panel-footer img {
     width: 180px;
-  }
+    display: block;
+}
 
-  #comprastransparentes .title {
+#comprastransparentes .title {
     font-weight: 300;
     font-size: 18px;
     margin: 10px 0 5px;
-  }
+}
 
-  #comprastransparentes p {
+#comprastransparentes p {
     font-size: 13px;
-    margin-bottom: 5px;
+    margin: 5px 0;
     font-weight: 300;
     color: rgba(255,255,255,.75);
-  }
+}
 
-  #comprastransparentes p strong {
+#comprastransparentes p strong {
     color: rgba(255,255,255,.9);
-  }
+}
+
+#comprastransparentes .pull-right {
+    float: right !important;
+} 

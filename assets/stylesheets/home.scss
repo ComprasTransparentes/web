@@ -4,6 +4,8 @@
 
 @import url(http://fonts.googleapis.com/css?family=Roboto:400,100,300,300italic,400italic,500,500italic,700,700italic,900,900italic);
 
+$xsm: "(max-width: 640px)";
+
 $sm: "(max-width: 767px)";
 
 $minsm: "(min-width: 768px)";
@@ -181,18 +183,16 @@ $purp: "#788EDB";
 /* ======== GENERAL ======== */
 /* ========================= */
 
-input::-webkit-input-placeholder,
-input:-moz-placeholder,
-input::-moz-placeholder,
-input:-ms-input-placeholder {
-	color: red;
-}
-
 .container {
 	@media #{$md} {
 		width: auto;
 	}
+	@media #{$xsm} {
+		padding-left: 10px;
+		padding-right: 10px;
+	}
 }
+
 
 .marg30 {
 	margin-bottom: 30px;
@@ -214,7 +214,11 @@ html,body {
 		    padding-bottom: 465px;
 
 		    @media #{$sm} {
-				padding-bottom: 675px;		    	
+				padding-bottom: 675px;
+		    }
+
+		    @media #{$xsm} {
+		    	padding-bottom: 840px;
 		    }
 		}
 	}
@@ -242,7 +246,13 @@ html,body {
 	    line-height: 1.1;
 	    margin-top: 10px;
 	    margin-bottom: 15px;
-    }	
+    }
+
+    @media #{$xsm} {
+    	font-size: 18px;
+    	margin-top: 12px;
+    	margin-bottom: 6px;
+    }
 }
 
 .col {
@@ -330,6 +340,11 @@ html,body {
 	font-size: 18px;
 	font-weight: 300;
 	margin-bottom: 30px;
+
+	@media #{$xsm} {
+		font-size: 14px;
+		margin-bottom: 15px;
+	}
 }
 
 .separator {
@@ -408,6 +423,11 @@ header, footer {
 						&.logo-list {
 							li {
 								margin: 0 8px;
+								
+								@media #{$xsm} {
+							    	margin-bottom: 16px;
+							    }
+
 								&:first-child {
 									margin-left: 0;
 								}
@@ -810,6 +830,10 @@ body {
 
 	&.dark-body {
 		background-color: #{$blue};
+
+		@media screen and (max-width: 359px) {
+			background-color: pink;			
+		}
 
 		#site-wrapper {
 			>.container {
@@ -1365,6 +1389,10 @@ body {
 		margin-bottom: 0 !important;
 		padding: 15px;
 		padding-bottom: 30px;
+
+		@media #{$xsm} {
+			padding: 10px;
+		}
 	}
 
 	.pagination {
@@ -1453,8 +1481,17 @@ body {
 		    padding: 5px 15px;
 		    border-radius: 4px;
 
-		    @media #{$sm} {
-					width: 100% !important;
+		   		@media #{$sm} {
+					width: 90% !important;
+					padding: 0;
+
+					.value {
+						font-size: 28px;
+
+						+ p {
+							margin-bottom: 10px;
+						}
+					}
 				}
 
 			}
@@ -1518,6 +1555,10 @@ body {
 		font-size: 13px;
 		line-height: 1.5;
 		letter-spacing: .02em;
+
+	    @media #{$xsm} {
+	    	margin-bottom: 0;
+    	}
 	}
 }
 
@@ -1541,6 +1582,38 @@ body {
 	background-position: top center;
 	background-size: initial;
 
+	>.input-group, .normal-group {
+
+		@media #{$xsm} {
+			display: block;
+
+			.searchbar-asdf {
+				margin-bottom: 15px;
+			    border-radius: 4px !important;
+			    height: 44px;
+			    padding-top: 16px;
+			    padding-bottom: 16px;
+			    padding-left: 36px;
+			    background-size: 36px;
+			    font-size: 12px;
+			}
+
+			.searchbar-btn {
+				width: 100%;
+				border-radius: 4px;
+				padding-top: 9px;
+				height: 44px;
+				margin-bottom: 15px;
+			}
+
+			.toggler-thing {
+				display: none;
+			}
+		}
+	}
+
+
+
 	&.comparador-transparente {
 		background-image: url("../images/comparadortransparente.png");
 		padding-bottom: 0;
@@ -1556,17 +1629,21 @@ body {
 		+ .results-panel {
 			padding-top: 15px;
 
-			.lookfor {
-				color: #333;
-				text-align: center;
-			}
-
 			form {
 				>.input-group {
 					margin: 15px 0 30px;
 				}
 			}
 		}
+
+		@media #{$xsm} {
+	    	margin-top: -5px;
+	    	padding-top: 60px;
+
+	    	.parrafo-buscador {
+	    		padding: 0;
+	    	}
+	    }
 	}
 
 	@media #{$md} {
@@ -1575,9 +1652,15 @@ body {
 	}
 
 	@media #{$sm} {
-		padding-top: 20%;
    		background-size: 90%;
+		padding-top: 20%;
 	}
+
+	@media #{$xsm} {
+    	background-size: 100%;
+    	margin-top: 40px;
+    	padding-top: 30%;
+    }
 
 	.searchbar-asdf {
 		padding-left: 66px;
@@ -1614,6 +1697,11 @@ body {
 	color: white;
 	font-size: 18px;
 	margin-bottom: 20px;
+
+	> span {
+	    margin-bottom: 10px;
+    	display: inline-block;
+	}
 }
 
 .advanced-filters-container {
@@ -1636,6 +1724,12 @@ body {
     	
     	@include flex(0 0 280px);
     	@include flexbox();
+
+    	@media #{$xsm} {
+    		border-right: none;
+    		border-bottom: 1px solid #ccc;
+    		@include flex(1 0 auto);
+    	}
 
     	.filters-container-panel {
     		width: 100%;
@@ -1707,10 +1801,6 @@ body {
 				padding-top: 0;
 			}
     	}
-
-
-
-	
     }
 
     .added-filters-list {
@@ -1821,7 +1911,12 @@ body {
 			    }
     		}
     	}
+    }
 
+    @media #{$xsm} {
+    	border-radius: 4px;
+    	@include flex-wrap(wrap);
+    	margin-right: 0;
     }
 
 
@@ -2198,9 +2293,8 @@ input[type=number] {
 					width: 40px;
 
 					b {
-						background: url('../images/select2turq.png') no-repeat 4px 4px;
+						background: url('../images/select2turq.png') no-repeat 4px 4px !important;
 					}
-
 
 				}
 			}
