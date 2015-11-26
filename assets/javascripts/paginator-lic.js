@@ -46,7 +46,7 @@ var licorg = {
                         }
 
                         $('[id=lici]').find("[estadolic='"+b+"']").text(estado);
-                        $('#linklic').find("[linklic='"+b+"']").attr("href","/file?type=licitacion&code="+data.licitaciones[b].codigo);
+                        $('#linklic').find("[linklic='"+b+"']").attr("href","/file?type=licitacion&code="+data.licitaciones[b].id);
 
                        
 
@@ -83,7 +83,7 @@ var licpro = {
 
                         
                         $('[id=lici]').find("[montolic='"+b+"']").text(data.licitaciones[b].monto_total);
-                        $('#linklic').find("[linklic='"+b+"']").attr("href","/file?type=licitacion&code="+data.licitaciones[b].codigo);
+                        $('#linklic').find("[linklic='"+b+"']").attr("href","/file?type=licitacion&code="+data.licitaciones[b].id);
 
                        
 

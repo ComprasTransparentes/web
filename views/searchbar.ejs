@@ -725,7 +725,7 @@
 								for(var i = 0 ; i < lics.length ; i++)
 								{
 									var aux  = '<div class="search-result-item" code="'+i+'" type="lic" visibility="visible">';
-									aux += '<h4 class="collapsable-text"><a class="long-text" namelinklic="'+i+'" href="/file?type=licitacion&code='+ lics[i].codigo +'">'+lics[i].nombre+'</a></h4>';
+									aux += '<h4 class="collapsable-text"><a class="long-text" namelinklic="'+i+'" href="/file?type=licitacion&code='+ lics[i].id +'">'+lics[i].nombre+'</a></h4>';
 
 									aux += '<a linkorglic="' + i + '" href="/file?type=organismo&code='+lics[i].organismo.id+'"><p class="org-name" nameorglic="'+i+'">' + lics[i].organismo.nombre + '<i class="fa fa-arrow-circle-right"></i></p></a>';
 									aux += '<p class="lic-des" deslic="'+i+'" >'+lics[i].descripcion+'</p></div>';
@@ -748,7 +748,7 @@
 												for(var b=0; b< data.licitaciones.length;b++){
 							                        $('#tipo1').find("[code='"+b+"']").filter("[type='lic']").attr("style","display: block");
 								                	$('.search-result-item .collapsable-text').find("[namelinklic='"+b+"']").text(data.licitaciones[b].nombre);
-							                        $('.search-result-item .collapsable-text').find("[namelinklic='"+b+"']").attr("href","/file?type=licitacion&code="+data.licitaciones[b].codigo);
+							                        $('.search-result-item .collapsable-text').find("[namelinklic='"+b+"']").attr("href","/file?type=licitacion&code="+data.licitaciones[b].id);
 							                        $('.search-result-item').find("[nameorglic='"+b+"']").text(data.licitaciones[b].organismo.nombre);
 							                        $('.search-result-item').find("[linkorglic='"+b+"']").attr("href","/file?type=organismo&code="+data.licitaciones[b].organismo.id);
 							                        $('.search-result-item').find("[deslic='"+b+"']").text(data.licitaciones[b].descripcion);

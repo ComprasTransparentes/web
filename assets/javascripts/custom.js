@@ -651,7 +651,7 @@ $(document).ready(function() {
 						// 	row.push("$" + data.licitaciones[i].monto_adjudicado.formatNumber(0,",", "."));
 						// }
 						row.push(getNombreLicitacion(data.licitaciones[i].estado));
-						row.push('<a href="/file?type=licitacion&code='+data.licitaciones[i].codigo+'">Ver ficha <i class="fa fa-arrow-circle-right"></i></a>');
+						row.push('<a href="/file?type=licitacion&code='+data.licitaciones[i].id+'">Ver ficha <i class="fa fa-arrow-circle-right"></i></a>');
 						
 						rows.push(row); 
 					};	
@@ -678,7 +678,7 @@ $(document).ready(function() {
 						// 	row.push("$" + data.licitaciones[i].monto_adjudicado.formatNumber(0,",", "."));
 						// }
 						row.push(getNombreLicitacion(data.licitaciones[i].estado));
-						row.push('<a href="/file?type=licitacion&code='+data.licitaciones[i].codigo+'">Ver ficha <i class="fa fa-arrow-circle-right"></i></a>');
+						row.push('<a href="/file?type=licitacion&code='+data.licitaciones[i].id+'">Ver ficha <i class="fa fa-arrow-circle-right"></i></a>');
 
 						rows.push(row); 
 					};	
