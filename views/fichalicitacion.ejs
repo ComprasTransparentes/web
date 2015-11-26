@@ -19,9 +19,9 @@
 					<div class="marg30">
 						<span class="info-tag">Información Organismo</span>
 						<div>
-							<h5><%- data.comprador.nombre_unidad %></h5>
+							<h5><%- data.organismo.nombre %></h5>
 							<ul class="list-unstyled">
-								<li>Código: <%- data.comprador.codigo_unidad %></li>
+								<li>Código: <%- data.organismo.id %></li>
 							</ul>
 						</div>
 					</div>
@@ -29,11 +29,10 @@
 					<div class="marg30">
 						<span class="info-tag">Información Unidad</span>
 						<div>
-							<h5><%- data.comprador.nombre_comprador %></h5>
+							<h5><%- data.unidad.nombre %></h5>
 							<ul class="list-unstyled">
-								<li>Código: <%- data.comprador.codigo_comprador %></li>
-								<li>RUT: <%- data.comprador.rut_usuario %></li>
-								<li><%- data.comprador.direccion_unidad %>, <%- data.comprador.comuna_unidad %>, <%- data.comprador.region_unidad %></li>
+								<li>RUT: <%- data.unidad.rut %></li>
+								<li><%- data.unidad.direccion %>, <%- data.unidad.comuna %>, <%- data.unidad.region %></li>
 							</ul>
 						</div>
 					</div>	
@@ -41,24 +40,24 @@
 					<div class="marg30">
 						<span class="info-tag">Responsable Pago</span>
 						<ul class="list-unstyled">
-							<li><i class="fa fa-user"></i><%- data.nombre_responsable_pago || "-" %></li>
-							<li><i class="fa fa-envelope"></i><%- data.email_responsable_pago || "-" %></li>
+							<li><i class="fa fa-user"></i><%- data.responsable_pago.nombre || "-" %></li>
+							<li><i class="fa fa-envelope"></i><%- data.responsable_pago.email || "-" %></li>
 						</ul>
 					</div>
 
 					<div class="marg30">
 						<span class="info-tag">Responsable Contrato</span>
 						<ul class="list-unstyled">
-							<li><i class="fa fa-user"></i><%- data.nombre_responsable_contrato || "-" %></li>
-							<li><i class="fa fa-envelope"></i><%- data.email_responsable_contrato || "-" %></li>
-							<li><i class="fa fa-phone"></i><%- data.telefono_responsable_contrato || "-" %></li>
+							<li><i class="fa fa-user"></i><%- data.responsable_contrato.nombre || "-" %></li>
+							<li><i class="fa fa-envelope"></i><%- data.responsable_contrato.email || "-" %></li>
+							<li><i class="fa fa-phone"></i><%- data.responsable_contrato.telefono || "-" %></li>
 						</ul>
 					</div>
 				</div>
 
 				<div class="panel-footer no-margin transparent no-border">
 					<p>
-						<small><a class="btn btn-compras full-width" href=<%-"/file?type=organismo&code="+data.comprador.id %>>Ir a ficha de organismo <i class="fa fa-arrow-circle-right"></i></a></small>
+						<small><a class="btn btn-compras full-width" href=<%-"/file?type=organismo&code="+data.organismo.id %>>Ir a ficha de organismo <i class="fa fa-arrow-circle-right"></i></a></small>
 					</p>
 				</div>
 
@@ -81,7 +80,7 @@
 					creacion = temp2.getDate()+'-'+(temp2.getMonth()+1)+'-'+temp2.getFullYear();
 					var temp3 = new Date(data.fecha_adjudicacion);
 					adjudicacion = temp3.getDate()+'-'+(temp3.getMonth()+1)+'-'+temp3.getFullYear();
-					var temp4 = new Date(data.fecha_acto_apertura_economica);
+					var temp4 = new Date(data.fecha_inicio);
 					apertura = temp4.getDate()+'-'+(temp4.getMonth()+1)+'-'+temp4.getFullYear();
 				%>
 			</div>
@@ -96,10 +95,10 @@
 						<span>Apertura: <%-apertura%></span>
 					</li>
 					<li class="margin-bottom">
-						<span>Adjudicación: <%-adjudicacion%></span>
+						<span>Cierre: <%-cierre%></span>
 					</li>
 					<li class="margin-bottom">
-						<span>Cierre: <%-cierre%></span>
+						<span>Adjudicación: <%-adjudicacion%></span>
 					</li>
 				</ul>
 			</div>
@@ -117,15 +116,15 @@
 			  </button>
 			</div>
 
-			<div class="embed-stuff tomercado">
+			<!--<div class="embed-stuff tomercado">
 				<a class="btn" href="#" target="_blank">
 	    			<span>Ver en mercado público</span>
 	  			</a>
-  			</div>
+  			</div>-->
 
 			<% if(data.adjudicacion != null){ %>
 				<div class="embed-stuff tomercado">
-				<a class="btn" href="<%- data.adjudicacion.acta_url %>" target="_blank">
+				<a class="btn" href="<%- data.adjudicacion.acta %>" target="_blank">
 	    			<span>Ver en mercado público</span>
 	  			</a>
   			</div>
@@ -143,22 +142,22 @@
 
 
 				<% var estado;
-					if(data.estados[0].estado==5){
+					if(data.estado==5){
 						estado = "Publicada";
 					}
-					else if(data.estados[0].estado==6){
+					else if(data.estado==6){
 						estado = "Cerrada";
 					}
-					else if(data.estados[0].estado==7){
+					else if(data.estado==7){
 						estado = "Desierta";
 					}
-					else if(data.estados[0].estado==18){
+					else if(data.estado==18){
 						estado = "Revocada";
 					}
-					else if(data.estados[0].estado==19){
+					else if(data.estado==19){
 						estado = "Suspendida";
 					}
-					else if(data.estados[0].estado==8){
+					else if(data.estado==8){
 						estado = "Adjudicada";
 					}
 					else{
@@ -176,16 +175,17 @@
 							<div class="col-sm-4">
 								<%
 									var y = data.n_items;
-									var x = data.n_items_adjudicados;
-									var total = 0;
-									for(var e=0;e<data.items.length;e++){
-										if(data.items[e].adjudicacion != null){
-											x++;
-											total = total + data.items[e].adjudicacion.monto_unitario*data.items[e].adjudicacion.cantidad;
-										}
+									if(data.adjudicacion!=null){
+										var x = data.adjudicacion.n_items;
+										var total = data.adjudicacion.monto;
+										
+
+									}else{
+										var total = 0;
+										var x = 0;
 									}
 								%>
-								<span class="value "><%- data.n_items_adjudicados + "/" + data.n_items %></span>
+								<span class="value "><%- x + "/" + y %></span>
 								<p>items adjudicados</p>
 							</div>
 

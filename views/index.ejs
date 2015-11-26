@@ -122,18 +122,18 @@
 									<div class="row">
 										<div class="col-md-8">
 											<span class="info-tag">Proveedor</span>
-											<h3 class="ranking-title" id="name_pro"><i class="fa fa-angle-double-right"></i><%-pro.top_proveedores[0].nombre%></h3>
-											<span>RUT: <%-pro.top_proveedores[0].rut%></span>
+											<h3 class="ranking-title" id="name_pro"><i class="fa fa-angle-double-right"></i><%-pro.proveedores[0].nombre%></h3>
+											<span>RUT: <%-pro.proveedores[0].rut%></span>
 										</div>
 										<div class="col-md-4 ammount-container text-right text-resp">
 											<span class="info-tag">Monto en pesos</span>
-											<h3 class="numformat ranking-title clp" id="cash_pro"><%-pro.top_proveedores[0].monto%></h3>
+											<h3 class="numformat ranking-title clp" id="cash_pro"><%-pro.proveedores[0].monto%></h3>
 											<span>total facturado</span>
 										</div>
 									</div>
 									<div class="row">
 										<div class="col-md-12 text-right text-resp med">
-											<a href=<%-"/file?type=proveedor&code="+pro.top_proveedores[0].id%> id="link_pro">Ver Información sobre Proveedor <i class="fa fa-arrow-circle-right" ></i></a>
+											<a href=<%-"/file?type=proveedor&code="+pro.proveedores[0].id%> id="link_pro">Ver Información sobre Proveedor <i class="fa fa-arrow-circle-right" ></i></a>
 										</div>
 									</div>
 								</div>
@@ -141,7 +141,7 @@
 							<br>
 							<table class="table ranking-list clickable-table">
 								<tbody>
-									<%for(var y=0; y< pro.top_proveedores.length;y++){ 
+									<%for(var y=0; y< pro.proveedores.length;y++){ 
 										if(y==0){%>
 
 									<tr class="active" id=<%-y%> onclick="magia3(this);">
@@ -149,8 +149,8 @@
 									<tr id=<%-y%> onclick="magia3(this);">
 									<%}%>
 										<td><span class="index-sign"><%- y+1 %></span></td>
-										<td><%-pro.top_proveedores[y].nombre%></td>
-										<td><span class="numformat clp"><%-pro.top_proveedores[y].monto%></span></td>
+										<td><%-pro.proveedores[y].nombre%></td>
+										<td><span class="numformat clp"><%-pro.proveedores[y].monto%></span></td>
 
 									</tr>
 									<%}%>
@@ -200,18 +200,18 @@
 									<div class="row">
 										<div class="col-md-8">
 											<span class="info-tag">Licitación</span>
-											<h3 class="ranking-title" id="name_lic"><i class="fa fa-angle-double-right"></i><%-lic.top_licitaciones[0].nombre%></h3>
-											<span id="code_lic">Código: <%-lic.top_licitaciones[0].codigo%></span>
+											<h3 class="ranking-title" id="name_lic"><i class="fa fa-angle-double-right"></i><%-lic.licitaciones[0].nombre%></h3>
+											<span id="code_lic">Código: <%-lic.licitaciones[0].codigo%></span>
 										</div>
 										<div class="col-md-4 ammount-container text-right text-resp">
 											<span class="info-tag">Monto en pesos</span>
-											<h3 class="numformat ranking-title clp" id="cash_lic"><%-lic.top_licitaciones[0].monto%></h3>
+											<h3 class="numformat ranking-title clp" id="cash_lic"><%-lic.licitaciones[0].monto%></h3>
 											<span>total transado</span>
 										</div>
 									</div>
 									<div class="row">
 										<div class="col-md-12 text-right text-resp med">
-											<a href=<%-"/file?type=licitacion&code="+lic.top_licitaciones[0].codigo%> id="link_lic">Ver detalle de Licitación <i class="fa fa-arrow-circle-right"></i></a>
+											<a href=<%-"/file?type=licitacion&code="+lic.licitaciones[0].id%> id="link_lic">Ver detalle de Licitación <i class="fa fa-arrow-circle-right"></i></a>
 										</div>
 									</div>
 								</div>
@@ -219,7 +219,7 @@
 							<br>
 							<table class="table ranking-list clickable-table">
 								<tbody>
-									<%for(var y=0; y< lic.top_licitaciones.length;y++){ 
+									<%for(var y=0; y< lic.licitaciones.length;y++){ 
 										if(y==0){%>
 
 									<tr class="active" id=<%-y%> onclick="magia4(this);">
@@ -227,8 +227,8 @@
 									<tr id=<%-y%> onclick="magia4(this);">
 									<%}%>
 										<td><span class="index-sign"><%- y+1 %></span></td>
-										<td><%- lic.top_licitaciones[y].nombre%></td>
-										<td><span class="numformat clp"><%- lic.top_licitaciones[y].monto%></span></td>
+										<td><%- lic.licitaciones[y].nombre%></td>
+										<td><span class="numformat clp"><%- lic.licitaciones[y].monto%></span></td>
 
 									</tr>
 									<%}%>																			
@@ -277,17 +277,17 @@
 									<div class="row">
 										<div class="col-md-8">
 											<span class="info-tag">Categoría</span>
-											<h3 class="ranking-title" id="name_cate"><i class="fa fa-angle-double-right"></i><%-cat.top_categorias[0].categoria%></h3>
+											<h3 class="ranking-title" id="name_cate"><i class="fa fa-angle-double-right"></i><%-cat.categorias[0].nombre%></h3>
 										</div>
 										<div class="col-md-4 ammount-container text-right text-resp">
 											<span class="info-tag">Monto en pesos</span>
-											<h3 class="numformat ranking-title clp" id="cash_cat"><%-cat.top_categorias[0].monto%></h3>
+											<h3 class="numformat ranking-title clp" id="cash_cat"><%-cat.categorias[0].monto%></h3>
 											<span>total transado</span>
 										</div>
 									</div>
 									<div class="row">
 										<div class="col-md-12 text-right text-resp med">
-											<a href="#">Ver licitaciones en esta categoría <i class="fa fa-arrow-circle-right"></i></a>
+											<a href=<%-"/licitacion?producto="+cat.categorias[0].id%>>Ver licitaciones en esta categoría <i class="fa fa-arrow-circle-right"></i></a>
 										</div>
 									</div>
 								</div>
@@ -296,7 +296,7 @@
 							<table class="table ranking-list clickable-table">
 								<tbody>
 
-									<%for(var y=0; y< cat.top_categorias.length;y++){ 
+									<%for(var y=0; y< cat.categorias.length;y++){ 
 										if(y==0){%>
 
 									<tr class="active" id=<%-y%> onclick="magia5(this);">
@@ -304,8 +304,8 @@
 									<tr id=<%-y%> onclick="magia5(this);">
 									<%}%>
 										<td><span class="index-sign"><%- y+1 %></span></td>
-										<td><%- cat.top_categorias[y].categoria%></td>
-										<td><span class="numformat clp"><%- cat.top_categorias[y].monto%></span></td>
+										<td><%- cat.categorias[y].categoria%></td>
+										<td><span class="numformat clp"><%- cat.categorias[y].monto%></span></td>
 
 									</tr>
 									<%}%>

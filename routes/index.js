@@ -531,6 +531,7 @@ router.get('/file', function(req, res) {
 	//var code = '2393-298-L114';
 	//var code = '1509-5-L114';
 	var json;
+	var json2;
 	var cont;
 	if(type=='licitacion'){
 		cont = 'filesviewer';
@@ -562,13 +563,9 @@ router.get('/file', function(req, res) {
 					console.log(retorno);
 					json.extra.licitaciones = retorno;
 				});
-					
-					
 
-
-			}
-
-			res.render('application.ejs', { content: cont,
+				json2 = null;
+				res.render('application.ejs', { content: cont,
 	  									data: json,
 	  									special: 'false',
 	  									NumeroRegistros : 0,
@@ -576,7 +573,42 @@ router.get('/file', function(req, res) {
 	  									superspecial: 'false',
 	  									config : config,
 	  									code: code,
-	  									type: type });
+	  									type: type,
+	  									item: json2 });
+	
+
+			}
+			else if(type=="licitacion"){
+				api.getItemLic(code, function(json2){
+					json2 = json2;
+					console.log(json);
+					res.render('application.ejs', { content: cont,
+	  									data: json,
+	  									special: 'false',
+	  									NumeroRegistros : 0,
+	  									active_nav : "",
+	  									superspecial: 'false',
+	  									config : config,
+	  									code: code,
+	  									type: type,
+	  									item: json2 });
+
+				});
+
+			}else if(type=="organismo"){
+				json2=null;
+
+				res.render('application.ejs', { content: cont,
+		  									data: json,
+		  									special: 'false',
+		  									NumeroRegistros : 0,
+		  									active_nav : "",
+		  									superspecial: 'false',
+		  									config : config,
+		  									code: code,
+		  									type: type,
+		  									item: json2 });
+			}
 		}
 		else
 		{

@@ -1,8 +1,8 @@
-<% for(var k=0; k<data.items.length; k++) { %>
+<% for(var k=0; k<item.items.length; k++) { %>
 <li class="itemdetalle" code=<%-k%> style="display: block;" id="unititem">
 	<div class="row">
 		<div class="col-xs-6"><span class="info-tag" iditem=<%-k%>>item <%- k+1 %></span></div>
-		<%if(data.items[k].adjudicacion == null){%>
+		<%if(item.items[k].adjudicacion == null){%>
 			<div class="col-xs-6 text-right"><span class="info-tag" style="color: #e74c3c;" estadoitem=<%-k%>>no adjudicado</span></div>
 		<%} else{%>
 			<div class="col-xs-6 text-right"><span class="info-tag" style="color: #2ecc71;" estadoitem=<%-k%>>adjudicado</span></div>
@@ -11,19 +11,19 @@
 
 	<div class="adj-detail">
 		<div class="teapot">
-			<span class="numformat value" cantidaditem=<%-k%>><%- data.items[k].cantidad %></span>
-			<p unidaditem=<%-k%>><%-data.items[k].unidad%></p>
+			<span class="numformat value" cantidaditem=<%-k%>><%- item.items[k].cantidad %></span>
+			<p unidaditem=<%-k%>><%-item.items[k].unidad%></p>
 		</div>
 		<div class="8cho">
-			<h4 nameitem=<%-k%>><%- data.items[k].nombre_producto %></h4>
-			<p class="margin-bottom double" desitem=<%-k%>><strong>Descripción:</strong> <%- data.items[k].descripcion %></p>
-			<!-- <p class="margin-bottom double"><strong>Cantidad solicitada:</strong> <em class="numformat" cantidaditem=<%-k%>><%- data.items[k].cantidad %></em> <em unidaditem=<%-k%>><%-data.items[k].unidad%></em></p> -->
+			<h4 nameitem=<%-k%>><%- item.items[k].nombre_producto %></h4>
+			<p class="margin-bottom double" desitem=<%-k%>><strong>Descripción:</strong> <%- item.items[k].descripcion %></p>
+			<!-- <p class="margin-bottom double"><strong>Cantidad solicitada:</strong> <em class="numformat" cantidaditem=<%-k%>><%- item.items[k].cantidad %></em> <em unidaditem=<%-k%>><%-item.items[k].unidad%></em></p> -->
 		</div>
 	</div>
 
 	<div class="panel panel-grey">
 
-	<%if(data.items[k].adjudicacion == null ){%>
+	<%if(item.items[k].adjudicacion == null ){%>
 
  	<div class="empty-placeholder" ifitem=<%-k%> style="display: block;">
 			<h4 class="text-center" style="font-weight: 300; opacity: .5;">
@@ -109,21 +109,21 @@
 
 		<div class="panel-body" elseitem=<%-k%> style="display; block;">			
 			<span class="info-tag">Proveedor</span>
-			<h4 class="collapsable-text"><a hrefitem=<%-k%> href=<%-"/file?type=proveedor&code="+data.items[k].adjudicacion.proveedor.id%>><%- data.items[k].adjudicacion.proveedor.nombre %></a></h4>
-			<!-- <p class="org-name" rutitem=<%-k%>>RUT: <%- data.items[k].adjudicacion.proveedor.rut %></p> -->
+			<h4 class="collapsable-text"><a hrefitem=<%-k%> href=<%-"/file?type=proveedor&code="+item.items[k].adjudicacion.proveedor.id%>><%- item.items[k].adjudicacion.proveedor.nombre %></a></h4>
+			<p class="org-name" rutitem=<%-k%>>RUT: <%- item.items[k].adjudicacion.proveedor.rut %></p>
 
 			<div class="flex-wrapper grey-bck">
 				<div class="info-box" id="bine">
-					<span class="numformat value small" cantitem=<%-k%>><%- data.items[k].adjudicacion.cantidad %></span>
+					<span class="numformat value small" cantitem=<%-k%>><%- item.items[k].adjudicacion.cantidad %></span>
 					<p>cantidad adjudicada</p>
 				</div>
 				<div class="info-box text-center text-resp">
-					<span class="numformat value small" cashitem=<%-k%>><%- data.items[k].adjudicacion.monto_unitario %></span>
+					<span class="numformat value small" cashitem=<%-k%>><%- item.items[k].adjudicacion.monto_unitario %></span>
 					<p>precio unitario</p>
 				</div>
 				<div class="info-box text-right text-resp">
-				<% var tot = data.items[k].adjudicacion.cantidad*data.items[k].adjudicacion.monto_unitario; %>
-					<span class="numformat value small clp" totalitem=<%-k%> ><%- tot %></span>
+
+					<span class="numformat value small clp" totalitem=<%-k%> ><%- item.items[k].adjudicacion.monto_total %></span>
 					<p>monto total</p>
 				</div>
 			</div>
