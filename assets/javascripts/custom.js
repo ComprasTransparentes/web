@@ -671,7 +671,49 @@ $(document).ready(function() {
 
 	}
 
-	
+
+(function($,W,D)
+{
+    var JQUERY4U = {};
+
+    JQUERY4U.UTIL =
+    {
+        setupFormValidation: function()
+        {
+            //form validation rules
+            $("#basic_search").validate({
+                rules: {
+                    q: "required"
+                },
+                messages: {
+                    q: "Ingrese busqueda"
+                },
+                submitHandler: function(form) {
+                    form.submit();
+                }
+            });
+
+            $("#add_filt").validate({
+                rules: {
+                    p1: "required"
+                },
+                messages: {
+                    p1: "Ingrese Fecha"
+                },
+                submitHandler: function(form) {
+                    form.submit();
+                }
+            });
+
+        }
+    }
+
+    //when the dom has loaded setup form validation rules
+    $(D).ready(function($) {
+        JQUERY4U.UTIL.setupFormValidation();
+    });
+
+})(jQuery, window, document);
 
 
 

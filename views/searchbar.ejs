@@ -1,4 +1,4 @@
-<form class="row" action="search" method="get" sytle="margin-bottom: 60px;">
+<form class="row" action="search" method="get" id="advanced_search" sytle="margin-bottom: 60px;">
 	<div class="col-sm-12">
 		<p class="lookfor"><span>Deseo buscar</span>
 			<select class="selector no-search transparent-selector flat" id="lookfor" name="TipoBusqueda">
@@ -63,7 +63,7 @@
 							<div class="filter-module follow-up hidden" id="fechapicker">
 								<div class="datepicker-group">
 									<div class="form-group">
-						                <div class='input-group date' id='picker1'>
+						                <div class='input-group date' name="p1" id='picker1'>
 						                    <input type='text' class="form-control filtro-licitacion-fecha-desde" placeholder="Fecha desde">
 						                    <span class="input-group-addon">
 						                        <span class="fa fa-calendar"></span>
@@ -71,7 +71,7 @@
 						                </div>
 						            </div>
 									<div class="form-group">
-						                <div class='input-group date' id='picker2'>
+						                <div class='input-group date' name="p2" id='picker2'>
 						                    <input type='text' class="form-control filtro-licitacion-fecha-hasta" placeholder="Fecha hasta"/>
 						                    <span class="input-group-addon">
 						                        <span class="fa fa-calendar"></span>
@@ -92,7 +92,7 @@
 						<!-- /Cosas que debieran agregarse fin -->
 					</div>	
 					<div class="filter-footer">
-						<button type="button" class="btn btn-filtros btn-block"><i class="fa fa-plus-circle"></i> Agregar filtro</button>
+						<button type="button" class="btn btn-filtros btn-block" id="add_filt"><i class="fa fa-plus-circle"></i> Agregar filtro</button>
 					</div>
 				</div>
 
