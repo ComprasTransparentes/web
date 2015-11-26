@@ -494,10 +494,10 @@ $(document).ready(function() {
 		var index = parseInt(el.id)+1;
 
 		$('#rank_pro').text(index);
-		$('#name_pro').text(pro.top_proveedores[el.id].nombre);
-		$('#rut_pro').text("RUT: "+pro.top_proveedores[el.id].rut);
-		$('#cash_pro').text(pro.top_proveedores[el.id].monto.formatNumber(0, ",", "."));
-		$('#link_pro').attr("href","/file?type=proveedor&code="+pro.top_proveedores[el.id].id);
+		$('#name_pro').text(pro.proveedores[el.id].nombre);
+		$('#rut_pro').text("RUT: "+pro.proveedores[el.id].rut);
+		$('#cash_pro').text(pro.proveedores[el.id].monto.formatNumber(0, ",", "."));
+		$('#link_pro').attr("href","/file?type=proveedor&code="+pro.proveedores[el.id].id);
 
 	}
 
@@ -506,10 +506,10 @@ $(document).ready(function() {
 		var index = parseInt(el.id)+1;
 
 		$('#rank_lic').text(index);
-		$('#name_lic').text(lic.top_licitaciones[el.id].nombre);
-		$('#code_lic').text("CÓDIGO: "+lic.top_licitaciones[el.id].codigo);
-		$('#cash_lic').text(lic.top_licitaciones[el.id].monto.formatNumber(0, ",", "."));
-		$('#link_lic').attr("href","/file?type=licitacion&code="+lic.top_licitaciones[el.id].codigo);
+		$('#name_lic').text(lic.licitaciones[el.id].nombre);
+		$('#code_lic').text("CÓDIGO: "+lic.licitaciones[el.id].codigo);
+		$('#cash_lic').text(lic.licitaciones[el.id].monto.formatNumber(0, ",", "."));
+		$('#link_lic').attr("href","/file?type=licitacion&code="+lic.licitaciones[el.id].id);
 
 	}
 
@@ -518,8 +518,10 @@ $(document).ready(function() {
 		var index = parseInt(el.id)+1;
 
 		$('#rank_cat').text(index);
-		$('#name_cate').text(cat.top_categorias[el.id].categoria);
-		$('#cash_cat').text(cat.top_categorias[el.id].monto.formatNumber(0, ",", "."));
+		$('#name_cate').text(cat.categorias[el.id].categoria);
+		$('#cash_cat').text(cat.categorias[el.id].monto.formatNumber(0, ",", "."));
+		$('#link_cat').attr("href","/search?cat=0&TipoBusqueda=1&q="+cat.categorias[el.id].id);
+		
 
 	}
 

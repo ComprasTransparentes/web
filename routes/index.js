@@ -136,278 +136,316 @@ router.get('/searchbar',function(req, res){
 router.get('/search', function(req, res) {
 	//var type = 'licitacion';
 	var element = req.query.q,
-	 	TipoBusqueda = parseInt(req.query.TipoBusqueda, 10);
+	TipoBusqueda = parseInt(req.query.TipoBusqueda, 10);
 	console.log (req.query.q);
 	console.log(req.query);
-	
-	var token = false;
-	if (element == undefined) {
-		token = true;
-	}
-
-	if(element == "wissepi"){
-		var num = Math.floor((Math.random() * 10) + 1);
-		var secret;
-		if(num==10 || num==1 || num==2 || num==3 || num==4){
-			secret = "1172739485.webm";
-		}
-		if(num==5 || num==6 || num==7){
-			secret = "8846251730.webm";			
-		}
-		if(num==8 || num==9 ){
-			secret = "22568195112.webm";		
-		}
-		res.render('wissepi.ejs',{secreto : secret,
-									
-  									special: 'false' });
-
-	}
-	else{
-		//var element = 'agujeros';
-		var lic = null;
-		var pro = null;
-		var org = null;
-		var min = null;
-		var categorias = null;
-
-		
-
-		api.getCategorias(function(categorias){
-			categorias = categorias.categorias;
-
-			/*
-			TipoBusqueda => 1 => Licitacion
-			TipoBusqueda => 2 => Organismos
-			TipoBusqueda => 3 => Provedores
-			*/
-			switch(TipoBusqueda)
-			{
-			case 1: 
-				api.getApiLic(element, 1, function(lic){
-					lic = lic;
-
-					if(lic != null)
-					{
-
-						api.getMins(function(mins){
-							min = mins;
-
-
-
-							if(min!=null){
-										res.render('application.ejs', { content: 'searchresults',
-																element: element,
-							  									lic: lic,
-							  									pro: pro,
-							  									org: org,
-							  									categorias : categorias,
-							  									NumeroRegistros : lic.n_licitaciones,
-							  									TipoBusqueda : TipoBusqueda,
-							  									active_nav : "/searchbar",
-					  											special: 'true',
-					  											superspecial: 'true',
-					  											elGatito: token,
-					  											min: min,
-					  											producto: '',
-					  											estado: '',
-					  											config : config,
-					  											tipo: '',
-					  											fecha_creacioni: '',
-					  											fecha_creacione: '',
-					  											montoi: '',
-					  											montoe: '',
-					  											na: 'search' });
-
-									}else{
-										res.render('404.ejs');
-
-									}
-						});
-					}
-				});
-				break;
-				case 2:
-				api.getApiOrg(element, 1, function(org){
-					org = org;
-
-					if(org != null)
-					{
-
-						api.getMins(function(mins){
-							min = mins;
-
-							if(min!=null){
-										res.render('application.ejs', { content: 'searchresults',
-																element: element,
-							  									lic: lic,
-							  									pro: pro,
-							  									org: org,
-							  									categorias : categorias,
-							  									TipoBusqueda : TipoBusqueda,
-							  									NumeroRegistros : org.n_organismos,
-							  									active_nav : "/searchbar",
-					  											special: 'true',
-					  											superspecial: 'true',
-					  											elGatito: token,
-					  											min: min,
-					  											producto: '',
-					  											estado: '',
-					  											config : config,
-					  											tipo: '',
-					  											fecha_creacioni: '',
-					  											fecha_creacione: '',
-					  											montoi: '',
-					  											montoe: '',
-					  											na: 'search' });
-
-									}else{
-										res.render('404.ejs');
-
-									}
-						});
-					}
-				});
-				break;
-				case 3:
-				api.getApiPro(element, 1, function(pro){
-					pro = pro;
-
-					if(pro != null)
-					{
-
-						api.getMins(function(mins){
-							min = mins;
-
-							if(min!=null){
-										res.render('application.ejs', { content: 'searchresults',
-																element: element,
-							  									lic: lic,
-							  									pro: pro,
-							  									org: org,
-							  									TipoBusqueda : TipoBusqueda,
-							  									categorias : categorias,
-							  									NumeroRegistros : pro.n_proveedores,
-							  									active_nav : "/searchbar",
-					  											special: 'true',
-					  											superspecial: 'true',
-					  											elGatito: token,
-					  											min: min,
-					  											producto: '',
-					  											estado: '',
-					  											config : config,
-					  											tipo: '',
-					  											fecha_creacioni: '',
-					  											fecha_creacione: '',
-					  											montoi: '',
-					  											montoe: '',
-					  											na: 'search' });
-
-									}else{
-										res.render('404.ejs');
-
-									}
-						});
-					}
-				});
-				break;
-
-		}
+	var cat = req.query.cat;
+	if(cat!= undefined){
+		api.getCatSearch(element,function(json){
+			json= json;
+			api.getCategorias(function(categorias){
+				categorias = categorias.categorias;
+				api.getMins(function(mins){
+								min = mins;
+			res.render('application.ejs', { content: 'searchresults',
+																	element: element,
+								  									lic: json,
+								  									pro: 'null',
+								  									org: 'null',
+								  									categorias : categorias,
+								  									NumeroRegistros : json.n_licitaciones,
+								  									TipoBusqueda : TipoBusqueda,
+								  									active_nav : "/searchbar",
+						  											special: 'true',
+						  											superspecial: 'true',
+						  											elGatito: false,
+						  											min: min,
+						  											producto: '',
+						  											estado: '',
+						  											config : config,
+						  											tipo: '',
+						  											fecha_creacioni: '',
+						  											fecha_creacione: '',
+						  											montoi: '',
+						  											montoe: '',
+						  											na: 'search' });
+		});
 		});
 
-		
+		});
 
-		/**
-		 *
-		 api.getApiLic(element,1,function(lic){
-			lic = lic;
-		
-			if(lic!=null){
 
-				api.getApiPro(element,1,function(pro){
-					pro = pro;
+	}else{
 	
-					if(pro!=null){
+		var token = false;
+		if (element == undefined) {
+			token = true;
+		}
 
-						api.getApiOrg(element,1,function(org){
-							org = org;
-		
-							if(org!=null){
+		if(element == "wissepi"){
+			var num = Math.floor((Math.random() * 10) + 1);
+			var secret;
+			if(num==10 || num==1 || num==2 || num==3 || num==4){
+				secret = "1172739485.webm";
+			}
+			if(num==5 || num==6 || num==7){
+				secret = "8846251730.webm";			
+			}
+			if(num==8 || num==9 ){
+				secret = "22568195112.webm";		
+			}
+			res.render('wissepi.ejs',{secreto : secret,
+										
+	  									special: 'false' });
 
-								api.getMins(function(min){
-									min = min;
-									if(min!=null){
-										res.render('application.ejs', { content: 'searchresults',
-																element: element,
-							  									lic: lic,
-							  									pro: pro,
-							  									org: org,
-					  											special: 'true',
-					  											superspecial: 'true',
-					  											elGatito: token,
-					  											min: min,
-					  											producto: '',
-					  											estado: '',
-					  											config : config,
-					  											tipo: '',
-					  											fecha_creacioni: '',
-					  											fecha_creacione: '',
-					  											montoi: '',
-					  											montoe: '',
-					  											na: 'search' });
+		}
+		else{
+			//var element = 'agujeros';
+			var lic = null;
+			var pro = null;
+			var org = null;
+			var min = null;
+			var categorias = null;
 
-									}else{
-										var num = Math.floor((Math.random() * 10) + 1);
-										if(num==3 || num==7){
-												res.render('404.ejs');
-											}
-											else
-										  		res.render('404real.ejs');
+			
 
-									}
+			api.getCategorias(function(categorias){
+				categorias = categorias.categorias;
 
-								});
+				/*
+				TipoBusqueda => 1 => Licitacion
+				TipoBusqueda => 2 => Organismos
+				TipoBusqueda => 3 => Provedores
+				*/
+				switch(TipoBusqueda)
+				{
+				case 1: 
+					api.getApiLic(element, 1, function(lic){
+						lic = lic;
 
-								
-							}
-								
-							else{
-								var num = Math.floor((Math.random() * 10) + 1);
-								if(num==3 || num==7){
-										res.render('404.ejs');
-									}
-									else
-								  		res.render('404real.ejs');
-								  }
-						});
+						if(lic != null)
+						{
+
+							api.getMins(function(mins){
+								min = mins;
 
 
-					}
-						
-					else{
-						var num = Math.floor((Math.random() * 10) + 1);
-						if(num==3 || num==7){
-								res.render('404.ejs');
-							}
-							else
-						  		res.render('404real.ejs');
-						  }
-				});
 
+								if(min!=null){
+											res.render('application.ejs', { content: 'searchresults',
+																	element: element,
+								  									lic: lic,
+								  									pro: pro,
+								  									org: org,
+								  									categorias : categorias,
+								  									NumeroRegistros : lic.n_licitaciones,
+								  									TipoBusqueda : TipoBusqueda,
+								  									active_nav : "/searchbar",
+						  											special: 'true',
+						  											superspecial: 'true',
+						  											elGatito: token,
+						  											min: min,
+						  											producto: '',
+						  											estado: '',
+						  											config : config,
+						  											tipo: '',
+						  											fecha_creacioni: '',
+						  											fecha_creacione: '',
+						  											montoi: '',
+						  											montoe: '',
+						  											na: 'search' });
+
+										}else{
+											res.render('404.ejs');
+
+										}
+							});
+						}
+					});
+					break;
+					case 2:
+					api.getApiOrg(element, 1, function(org){
+						org = org;
+
+						if(org != null)
+						{
+
+							api.getMins(function(mins){
+								min = mins;
+
+								if(min!=null){
+											res.render('application.ejs', { content: 'searchresults',
+																	element: element,
+								  									lic: lic,
+								  									pro: pro,
+								  									org: org,
+								  									categorias : categorias,
+								  									TipoBusqueda : TipoBusqueda,
+								  									NumeroRegistros : org.n_organismos,
+								  									active_nav : "/searchbar",
+						  											special: 'true',
+						  											superspecial: 'true',
+						  											elGatito: token,
+						  											min: min,
+						  											producto: '',
+						  											estado: '',
+						  											config : config,
+						  											tipo: '',
+						  											fecha_creacioni: '',
+						  											fecha_creacione: '',
+						  											montoi: '',
+						  											montoe: '',
+						  											na: 'search' });
+
+										}else{
+											res.render('404.ejs');
+
+										}
+							});
+						}
+					});
+					break;
+					case 3:
+					api.getApiPro(element, 1, function(pro){
+						pro = pro;
+
+						if(pro != null)
+						{
+
+							api.getMins(function(mins){
+								min = mins;
+
+								if(min!=null){
+											res.render('application.ejs', { content: 'searchresults',
+																	element: element,
+								  									lic: lic,
+								  									pro: pro,
+								  									org: org,
+								  									TipoBusqueda : TipoBusqueda,
+								  									categorias : categorias,
+								  									NumeroRegistros : pro.n_proveedores,
+								  									active_nav : "/searchbar",
+						  											special: 'true',
+						  											superspecial: 'true',
+						  											elGatito: token,
+						  											min: min,
+						  											producto: '',
+						  											estado: '',
+						  											config : config,
+						  											tipo: '',
+						  											fecha_creacioni: '',
+						  											fecha_creacione: '',
+						  											montoi: '',
+						  											montoe: '',
+						  											na: 'search' });
+
+										}else{
+											res.render('404.ejs');
+
+										}
+							});
+						}
+					});
+					break;
 
 			}
-				
-			else{
-				var num = Math.floor((Math.random() * 10) + 1);
-				if(num==3 || num==7){
-						res.render('404.ejs');
-					}
-					else
-				  		res.render('404real.ejs');
-				  }
-		});
-		 *
-		 */
+			});
+
+			
+
+			/**
+			 *
+			 api.getApiLic(element,1,function(lic){
+				lic = lic;
+			
+				if(lic!=null){
+
+					api.getApiPro(element,1,function(pro){
+						pro = pro;
 		
+						if(pro!=null){
+
+							api.getApiOrg(element,1,function(org){
+								org = org;
+			
+								if(org!=null){
+
+									api.getMins(function(min){
+										min = min;
+										if(min!=null){
+											res.render('application.ejs', { content: 'searchresults',
+																	element: element,
+								  									lic: lic,
+								  									pro: pro,
+								  									org: org,
+						  											special: 'true',
+						  											superspecial: 'true',
+						  											elGatito: token,
+						  											min: min,
+						  											producto: '',
+						  											estado: '',
+						  											config : config,
+						  											tipo: '',
+						  											fecha_creacioni: '',
+						  											fecha_creacione: '',
+						  											montoi: '',
+						  											montoe: '',
+						  											na: 'search' });
+
+										}else{
+											var num = Math.floor((Math.random() * 10) + 1);
+											if(num==3 || num==7){
+													res.render('404.ejs');
+												}
+												else
+											  		res.render('404real.ejs');
+
+										}
+
+									});
+
+									
+								}
+									
+								else{
+									var num = Math.floor((Math.random() * 10) + 1);
+									if(num==3 || num==7){
+											res.render('404.ejs');
+										}
+										else
+									  		res.render('404real.ejs');
+									  }
+							});
+
+
+						}
+							
+						else{
+							var num = Math.floor((Math.random() * 10) + 1);
+							if(num==3 || num==7){
+									res.render('404.ejs');
+								}
+								else
+							  		res.render('404real.ejs');
+							  }
+					});
+
+
+				}
+					
+				else{
+					var num = Math.floor((Math.random() * 10) + 1);
+					if(num==3 || num==7){
+							res.render('404.ejs');
+						}
+						else
+					  		res.render('404real.ejs');
+					  }
+			});
+			 *
+			 */
+		
+		}
 		
 	}
 });
@@ -521,6 +559,7 @@ router.get('/filter', function(req, res) {
 		});
 	}
 });
+
 
 
 
