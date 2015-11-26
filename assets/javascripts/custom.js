@@ -424,9 +424,21 @@ $(document).ready(function() {
 
 
 
-	// $('.btn-filtros').on('click', function(){
+	$('.btn-filtros').on('click', function(){
+		var asdf = $(this).closest('.filters-container-panel').attr('id');
+		console.log(asdf);
+		if ( asdf == "filters_search_licitacion") {
+			$("#filters_list_licitacion").find('.daslafito').hide();
+		}
+		if ( asdf == "filters_search_organismo") {
+			$("#filters_list_licitacion").find('.daslafito').hide();
+		}
+		if ( asdf == "filters_search_proveedor") {
+			$("#filters_list_licitacion").find('.daslafito').hide();
+		}
+	});
 
-	// });
+	
 
 	// Select2
 

@@ -48,6 +48,19 @@ $purp: "#788EDB";
 	background: url('../images/spinner.gif') center no-repeat #fff;
 }
 
+label.error {
+	background: #26aDaF;
+    color: white;
+    padding: 15px 10px 8px;
+    border-bottom-left-radius: 4px;
+    display: block;
+    font-size: 12px;
+    line-height: 17px;
+    margin-top: 22px;
+    margin-bottom: 0;
+    font-weight: 300;
+}
+
 
 /* ============================ */
 /* ======== ANIMATIONS ======== */
@@ -1614,24 +1627,20 @@ body {
 
 	.normal-group {
 		@media #{$xsm} {
-			.searchbar-btn {
-				display: none;
-			}
+			overflow: hidden;
 		}
 	}
 
 	.btn-hidden {
 		width: 100%;
 		border-radius: 4px;
-		padding-top: 9px;
+		padding-top: 9px !important;
 		height: 44px;
 		margin-bottom: 15px;
 		display: none;
 
 		@media #{$xsm} {
-			&.hidden {
-				display: block !important;
-			}
+			display: block !important;
 		}
 	}
 
@@ -1751,6 +1760,7 @@ body {
     	@media #{$xsm} {
     		border-right: none;
     		border-bottom: 1px solid #ccc;
+    		width: 100%;
     		@include flex(1 0 auto);
     	}
 
@@ -1951,6 +1961,7 @@ body {
     	border-radius: 4px;
     	@include flex-wrap(wrap);
     	margin-right: 0;
+    	margin-bottom: 15px;
     }
 
 
