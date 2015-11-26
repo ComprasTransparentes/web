@@ -88,8 +88,8 @@
 							<div class="filter-module follow-up hidden" id="youtubemoney">
 								<div class="monto">
 								<form id="lic-monto">
-									<input type="number" class="form-control filtro-licitacion-monto-desde" placeholder="Monto desde">
-									<input type="number" class="form-control filtro-licitacion-monto-hasta" placeholder="Monto hasta">
+									<input type="number" class="form-control required filtro-licitacion-monto-desde" name="filtro-licitacion-monto-desde" placeholder="Monto desde" />
+									<input type="number" class="form-control required filtro-licitacion-monto-hasta" name="filtro-licitacion-monto-hasta" placeholder="Monto hasta" />
 								</form>
 								</div>
 							</div>
@@ -811,18 +811,43 @@
 
 		$(document).on("click", ".btn-compras-transparentes", function(){
 			var $filtro = $("#lookfor option:selected").val();
-			console.log($filtro);
+			
 			switch(parseInt($filtro,10))
 			{	
 				case 1:
 					
 					filtro_licitacion.q = $("input[name='q']").val();
+
+					filtro_licitacion.estado = [];
+
+					if(typeof(filtro_licitacion.estado_pub) != "undefined")
+					{
+						filtro_licitacion.estado.push(filtro_licitacion.estado_pub);
+					}
+
+					if(typeof(filtro_licitacion.estado_adj) != "undefined")
+					{
+						filtro_licitacion.estado.push(filtro_licitacion.estado_adj);
+					}
+
+					if(typeof(filtro_licitacion.estado_sus) != "undefined")
+					{
+						filtro_licitacion.estado.push(filtro_licitacion.estado_sus);
+					}
+
+					if(typeof(filtro_licitacion.estado_rev) != "undefined")
+					{
+						filtro_licitacion.estado.push(filtro_licitacion.estado_rev);
+					}
+
+					//filtro_licitacion.estado = JSON.stringify(filtro_licitacion.estado);
 					
 					$(".se-pre-con").show();
 					$.ajax({
 						"url" : CONST.API + "/licitacion/",
 						"data" : filtro_licitacion,
 						"type" : "GET",
+						"traditional" : true,
 						"dataType" : "JSON",
 						"success" : function(r){
 							console.log(r);
@@ -1088,11 +1113,10 @@
 				break;
 				case 2:
 					delete filtro_organismos.filtros[$(this).attr("data-attr")];
-					console.log(filtro_organismos);
 				break;
 				case 3:
 					delete filtro_proveedores.filtros[$(this).attr("data-attr")];
-					console.log(filtro_proveedores);
+					
 				break;
 
 			}
