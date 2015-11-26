@@ -466,10 +466,10 @@ $(document).ready(function() {
 		 	$("#fecha_adjudicacion").text( fecha_adjudicacion_aux.getDate() + "-" + (fecha_adjudicacion_aux.getMonth() + 1) + "-" + fecha_adjudicacion_aux.getFullYear()  );
 		 }
 		
-		if(data.extra.top_licitaciones[el.id].monto != null)
+		if(data.extra.top_licitaciones[el.id].adjudicacion.monto != null)
 		{
 
-			$('#monto_lic').text(data.extra.top_licitaciones[el.id].monto.formatNumber(0,",","."));
+			$('#monto_lic').text(data.extra.top_licitaciones[el.id].adjudicacion.monto.formatNumber(0,",","."));
 		}
 		else
 		{
@@ -484,7 +484,7 @@ $(document).ready(function() {
 		$('#code_pro').text(data.extra.top_proveedores[el.id].id);
 		$('#nombre_pro').text(data.extra.top_proveedores[el.id].nombre);
 		$('#rut_pro').text(data.extra.top_proveedores[el.id].rut);
-		$('#monto_pro').text(data.extra.top_proveedores[el.id].monto.formatNumber(0,",","."));
+		$('#monto_pro').text(data.extra.top_proveedores[el.id].monto_adjudicado.formatNumber(0,",","."));
 		$('#link_pro').attr("href","/file?type=proveedor&code="+data.extra.top_proveedores[el.id].id);
 
 	}
@@ -618,7 +618,7 @@ $(document).ready(function() {
 					{
 						var row = [];
 
-						var d = new Date(data.licitaciones[i].fecha_creacion);
+						var d = new Date(data.licitaciones[i].fecha_publicacion);
 
 						row.push(data.licitaciones[i].nombre);
 						row.push(d.getDate() + "-" +  (d.getMonth() + 1) + "-" + d.getFullYear());
@@ -645,7 +645,7 @@ $(document).ready(function() {
 					{
 						var row = [];
 
-						var d = new Date(data.licitaciones[i].fecha_creacion);
+						var d = new Date(data.licitaciones[i].fecha_publicacion);
 
 						row.push(data.licitaciones[i].nombre);
 						row.push(d.getDate() + "-" +  (d.getMonth() + 1) + "-" + d.getFullYear());

@@ -50,8 +50,8 @@ module.exports.getApiCode = function (type, code, pag, callback){
 			callback(json);
 		});
 	}else{
-		console.log(host+'/'+type+'/'+code);
-		request(host+'/'+type+'/'+code, function (error, response, body) {
+		console.log(host+'/'+type+'/'+code+ '/embed');
+		request(host+'/'+type+'/'+code + '/embed', function (error, response, body) {
 		
 			if (!error && (response.statusCode == 200 || response.statusCode == 201)) {
 				json = JSON.parse(body);		
@@ -291,4 +291,40 @@ module.exports.getItemCategoria = function(callback)
 
 			callback(categorias);	
 		});
+};
+
+module.exports.getLicTopOrg = function(id_org,callback)
+{
+	var lic = {};
+
+	request(host + "/licitacion/?organismo="+id_org+"&pagina=1&orden=-monto", function(error, response, body){
+			var json;
+			var aux = [];
+
+
+			if (!error && (response.statusCode == 200 || response.statusCode == 201)) 
+			{
+				json = JSON.parse(body);	
+				lic = json.licitaciones;	
+			}
+
+			callback(lic);
+	});
+};
+
+module.exports.getProTopOrg = function(id_org, callback){
+	var prov = {};
+
+	request(host + "/proveedor/?monto_adjudicado=0|&organismo_adjudicador="+id_org+"&orden=-monto_adjudicado&pagina=1", function(error, response, body){
+
+		var json; 
+
+		if (!error && (response.statusCode == 200 || response.statusCode == 201)) 
+			{
+				json = JSON.parse(body);	
+				prov = json.proveedores;	
+			}
+
+		callback(prov);
+	});
 };

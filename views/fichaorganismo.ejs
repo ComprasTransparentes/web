@@ -1,7 +1,6 @@
 <script type='text/javascript'>
   var data =<%-JSON.stringify(data)%>
-  var n_item =<%-JSON.stringify(data.extra.n_licitaciones)%>;
-  var ele =<%-JSON.stringify(code)%>;
+   var ele =<%-JSON.stringify(code)%>;
   console.log(data);
 </script>
 
@@ -22,7 +21,7 @@
 					<div class="legend">
 						<i class="fa fa-university back-icon"></i>
 						<h4 class="super-title duper"><i class="fa fa-university"></i>Ficha de <strong>Organismo</strong></h4>
-						<h3 class="bigger"><%-data.nombre_comprador%></h3>
+						<h3 class="bigger"><%-data.nombre%></h3>
 						<span>Código: <%-data.id%></span>
 						<p>Información recopilada desde Enero de 2013</p>
 					</div>
@@ -30,19 +29,19 @@
 						<div class="panel-body">
 							<div class="row">
 								<div class="col-sm-6">
-									<span class="numformat value clp"><%-data.extra.monto_adjudicado%></span>
+									<span class="numformat value clp"><%-data.stats.monto_adjudicado%></span>
 									<p>gasto total</p>
 								</div>
 								<div class="col-sm-6">
-									<span class="numformat value"><%-data.extra.n_licitaciones%></span>
+									<span class="numformat value"><%-data.stats.n_licitaciones_publicadas%></span>
 									<p>licitaciones publicadas</p>
 								</div>
 								<div class="col-sm-6">
-									<span class="numformat value"><%-data.extra.n_licitaciones_adjudicadas%></span>
+									<span class="numformat value"><%-data.stats.n_licitaciones_adjudicadas%></span>
 									<p>licitaciones adjudicadas</p>
 								</div>
 								<div class="col-sm-6">
-									<span class="numformat value clp"><%- Math.floor(data.extra.monto_adjudicado/data.extra.n_licitaciones_adjudicadas) %></span>
+									<span class="numformat value clp"><%- Math.floor(data.stats.monto_adjudicado/data.stats.n_licitaciones_adjudicadas) %></span>
 									<p>gasto promedio por licitación</p>
 								</div>
 								<!-- <div class="col-sm-12">
@@ -118,7 +117,7 @@
 
 										<tr class="active licitacion" id=<%-d%> onclick="magia(this);" >
 											<td><%-data.extra.top_licitaciones[d].nombre%></td>
-											<td><span class="numformat clp"><%-data.extra.top_licitaciones[d].monto%></span></td>
+											<td><span class="numformat clp"><%-data.extra.top_licitaciones[d].adjudicacion.monto%></span></td>
 										</tr>
 
 									<% } 
@@ -126,7 +125,7 @@
 											
 										<tr class="licitacion" id=<%-d%> onclick="magia(this);" >
 											<td><%-data.extra.top_licitaciones[d].nombre%></td>
-											<td><span class="numformat clp"><%-data.extra.top_licitaciones[d].monto%></span></td>
+											<td><span class="numformat clp"><%-data.extra.top_licitaciones[d].adjudicacion.monto%></span></td>
 										</tr>
 									<%}%><!-- Cierre else -->
 									
@@ -159,7 +158,7 @@
 											<p>fecha adjudicación</p>
 										</div>
 										<div class="col-md-12">
-											<span class="numformat value clp" id="monto_lic"><%-data.extra.top_licitaciones[0].monto%></span>
+											<span class="numformat value clp" id="monto_lic"><%-data.extra.top_licitaciones[0].adjudicacion.monto%></span>
 											<p class="checkmillion">monto total</p>
 										</div>
 									</div>
@@ -232,14 +231,14 @@
 
 										<tr class="active proveedor" id=<%-d%> onclick="magia2(this);" >
 											<td><%-data.extra.top_proveedores[d].nombre%></td>
-											<td><span class="numformat clp"><%-data.extra.top_proveedores[d].monto%></span></td>
+											<td><span class="numformat clp"><%-data.extra.top_proveedores[d].monto_adjudicado%></span></td>
 										</tr>
 
 									<% }
 									else{ %>
 										<tr class="proveedor" id=<%-d%> onclick="magia2(this);" >
 											<td><%-data.extra.top_proveedores[d].nombre%></td>
-											<td><span class="numformat clp"><%-data.extra.top_proveedores[d].monto%></span></td>
+											<td><span class="numformat clp"><%-data.extra.top_proveedores[d].monto_adjudicado%></span></td>
 										</tr>
 									<%}%><!-- Cierre else -->
 									
@@ -266,7 +265,7 @@
 
 										<div class="row">
 											<div class="col-md-12">
-												<span class="numformat value clp" id="monto_pro"><%-data.extra.top_proveedores[0].monto%></span>
+												<span class="numformat value clp" id="monto_pro"><%-data.extra.top_proveedores[0].monto_adjudicado%></span>
 												<p class="checkmillion">Facturado en ventas</p>
 											</div>
 											<!-- <div class="col-md-12">
@@ -308,70 +307,19 @@
 							<table class="table todas-licitaciones postulant-list">
 								<thead>
 									<td>Nombre</td>
-									<td>Fecha de Creación</td>
+									<td>Fecha de Publicación</td>
 									<!-- <td>Monto Adjudicado</td> -->
 									<td>Estado</td>
 									<td>Acción</td>
 								</thead>
 								<tbody id="liclist">
-									<!-- html 
-											<%for(var t= 0;t<data.extra.licitaciones.length; t++){%>
-									<tr id="lici" code=<%-t%>>
-										<td nombrelic=<%-t%>><%-data.extra.licitaciones[t].nombre%></td>
-										<% 	var creacion;
-											var temp2 = new Date(data.extra.licitaciones[t].fecha_creacion);
-											creacion = temp2.getDate()+'-'+(temp2.getMonth()+1)+'-'+temp2.getFullYear();
-											%>
-										<td datelic=<%-t%>><%-creacion%></td>
-										<% var estado;
-											if(data.extra.licitaciones[t].estado==5){
-												estado = "Publicada";
-											}
-											else if(data.extra.licitaciones[t].estado==6){
-												estado = "Cerrada";
-											}
-											else if(data.extra.licitaciones[t].estado==7){
-												estado = "Desierta";
-											}
-											else if(data.extra.licitaciones[t].estado==18){
-												estado = "Revocada";
-											}
-											else if(data.extra.licitaciones[t].estado==19){
-												estado = "Suspendida";
-											}
-											else if(data.extra.licitaciones[t].estado==8){
-												estado = "Adjudicada";
-											}
-											else{
-												estado = "Sin Estado"
-											}
-										%>
-
-										<td estadolic=<%-t%>><%-estado%></td>
-										<td id="linklic"><a linklic=<%-t%> href=<%-"/file?type=licitacion&code="+data.extra.licitaciones[t].codigo%>>Ver ficha <i class="fa fa-arrow-circle-right"></i></a></td>
-									</tr>
-									<%}%>
-									comment -->
-									
-									
-									
-									
+																		
 								</tbody>
 							</table>
 						</div>
-						<!--<div class="col-sm-12">
-							<div class="pull-left">
-								<p class="pagination-text">
-								<%var jj=10;
-									if (jj>data.extra.n_licitaciones)
-										jj=data.extra.n_licitaciones;%>
-								Viendo <span id="gat"><%-jj%></span> de <span><%-data.extra.n_licitaciones%></span> resultados
-								</p>
-							</div>
 							
-						</div>-->
 					</div>
-					<!-- <div id="licpag"></div> -->
+					
 					
 				</div>
 

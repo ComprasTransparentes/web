@@ -636,8 +636,21 @@ router.get('/file', function(req, res) {
 
 			}else if(type=="organismo"){
 				json2=null;
+				var top_lic = [];
 
-				res.render('application.ejs', { content: cont,
+				api.getLicTopOrg(code, function(lics){
+					top_lic = lics;
+
+					json.extra = {};
+					json.extra.top_licitaciones = [];
+					json.extra.top_proveedores = [];
+					json.extra.top_licitaciones = top_lic;
+
+					api.getProTopOrg(code,function(provs){
+
+						json.extra.top_proveedores = provs;
+
+						res.render('application.ejs', { content: cont,
 		  									data: json,
 		  									special: 'false',
 		  									NumeroRegistros : 0,
@@ -647,6 +660,12 @@ router.get('/file', function(req, res) {
 		  									code: code,
 		  									type: type,
 		  									item: json2 });
+
+					});
+
+					
+				});
+				
 			}
 		}
 		else
