@@ -844,10 +844,6 @@ body {
 	&.dark-body {
 		background-color: #{$blue};
 
-		@media screen and (max-width: 359px) {
-			background-color: pink;			
-		}
-
 		#site-wrapper {
 			>.container {
 				margin-top: 66px;
@@ -1601,11 +1597,12 @@ body {
 			display: block;
 
 			.searchbar-asdf {
+				float: none;
 				margin-bottom: 15px;
 			    border-radius: 4px !important;
 			    height: 44px;
-			    padding-top: 16px;
-			    padding-bottom: 16px;
+			    padding-top: 0px;
+			    padding-bottom: 0px;
 			    padding-left: 36px;
 			    background-size: 36px;
 			    font-size: 12px;
@@ -1614,13 +1611,17 @@ body {
 			.searchbar-btn {
 				width: 100%;
 				border-radius: 4px;
-				padding-top: 9px;
+				padding: 0;
 				height: 44px;
 				margin-bottom: 15px;
 			}
 
 			.toggler-thing {
 				display: none;
+			}
+
+			.input-group-btn {
+				float: none;
 			}
 		}
 	}
@@ -1634,7 +1635,7 @@ body {
 	.btn-hidden {
 		width: 100%;
 		border-radius: 4px;
-		padding-top: 9px !important;
+		padding: 0 !important;
 		height: 44px;
 		margin-bottom: 15px;
 		display: none;
@@ -1693,19 +1694,6 @@ body {
     	margin-top: 40px;
     	padding-top: 30%;
     }
-
-	.searchbar-asdf {
-		padding-left: 66px;
-		padding-top: 32px;
-		padding-bottom: 32px;
-		font-size: 18px;
-		background-image: url("../images/lupita.png");
-		background-repeat: no-repeat;
-		background-position: left center;
-		background-size: initial;
-		font-weight: 300;
-
-	}
 
 	.searchbar-btn {
 		padding: 60px;
@@ -1970,8 +1958,9 @@ body {
 
 .searchbar-asdf {
 	padding-left: 66px;
-	padding-top: 32px;
-	padding-bottom: 32px;
+	padding-top: 0px;
+	padding-bottom: 0px;
+	height: 66px;
 	font-size: 18px;
 	background-image: url("../images/lupita.png");
 	background-repeat: no-repeat;
@@ -1985,6 +1974,7 @@ body {
 }
 
 .searchbar-btn {
+	height: 66px;
 	padding: 40px;
     font-size: 18px;
     padding-top: 20px;
