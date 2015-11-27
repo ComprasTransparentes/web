@@ -259,8 +259,6 @@ $(function(){
 			type : "GET",
 			success : function(r)
 			{
-				
-				console.log(r);
 
 				$(".winning").each(function(i,obj){
 					$(this).removeClass("winning");
@@ -269,9 +267,9 @@ $(function(){
 				if(r.min1 != null && r.min2 != null)
 				{
 
-					$("#ministerio_option_1").text(r.min1.ministerio_nombre);
-					$("#categoria_comparador").text(r.min1.categoria_nombre);
-					$("#ministerio_option_2").text(r.min2.ministerio_nombre);
+					$("#ministerio_option_1").text(r.min1.ministerio.nombre);
+					$("#categoria_comparador").text(r.min1.categoria.nombre);
+					$("#ministerio_option_2").text(r.min2.ministerio.nombre);
 
 					//Dinero Total
 					if(r.min1.monto_total == 0 && r.min2.monto_total == 0)

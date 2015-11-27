@@ -68,7 +68,11 @@ function minMinGetCat(){
 
 	var min1 = $('.min-1 option:selected').val();
 	var min2 = $('.min-2 option:selected').val();
-	var call = ""
+	var call = "";
+
+	$("#add_min1").val(min1).trigger("change");
+	$("#add_min2").val(min2).trigger("change");
+
 	call = call.concat(CONST.API,"/ministerio/categoria?ministerio=",min1,"&ministerio=",min2);
 
 	$(".cat-step-2").select2("destroy");

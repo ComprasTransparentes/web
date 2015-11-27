@@ -124,12 +124,12 @@
 									<!-- Cantidad de licitaciones -->
 									<form id="org_1">
 									<div class="monto" style="margin-bottom: 15px;">
-										<input type="number" class="form-control required cant-lic-org-cant-desde" placeholder="Cantidad desde">
-										<input type="number" class="form-control required cant-lic-org-cant-hasta" placeholder="Cantidad hasta">
+										<input type="number" class="form-control required cant-lic-org-cant-desde" name="cant-lic-org-cant-desde" placeholder="Cantidad desde">
+										<input type="number" class="form-control required cant-lic-org-cant-hasta" name="cant-lic-org-cant-hasta" placeholder="Cantidad hasta">
 									</div>
 									
 									<!-- Estado Licitaciones -->
-									<select class="selector flat no-search required full-width cant-lic-org-estado-lic" style="margin-bottom: 15px;" placeholder="Estado de Licitación">
+									<select class="selector flat no-search required full-width cant-lic-org-estado-lic" name="cant-lic-org-estado-lic" style="margin-bottom: 15px;" placeholder="Estado de Licitación">
 										<option>Seleccione ...</option>
 										<option data-alias="Publicada" disabled="disabled">Licitaciones Publicadas</option>
 										<option data-alias="Adjudicada" >Licitaciones Adjudicadas</option>
@@ -140,7 +140,7 @@
 									<div class="datepicker-group">
 										<div class="form-group">
 							                <div class='input-group date' id='picker3'>
-							                    <input type='text' class="form-control required cant-lic-org-fecha-desde" placeholder="Fecha desde">
+							                    <input type='text' class="form-control required cant-lic-org-fecha-desde" name="cant-lic-org-fecha-desde" placeholder="Fecha desde">
 							                    <span class="input-group-addon">
 							                        <span class="fa fa-calendar"></span>
 							                    </span>
@@ -148,7 +148,7 @@
 							            </div>
 										<div class="form-group">
 							                <div class='input-group date' id='picker4'>
-							                    <input type='text' class="form-control required cant-lic-org-fecha-hasta" placeholder="Fecha hasta"/>
+							                    <input type='text' class="form-control required cant-lic-org-fecha-hasta" name="cant-lic-org-fecha-hasta" placeholder="Fecha hasta"/>
 							                    <span class="input-group-addon">
 							                        <span class="fa fa-calendar"></span>
 							                    </span>
@@ -163,15 +163,15 @@
 									<form id="org_2">
 									<!-- Monto de licitaciones -->
 									<div class="monto" style="margin-bottom: 15px;">
-										<input type="number" class="form-control required cant-lic-org-2-monto-desde" placeholder="Monto desde">
-										<input type="number" class="form-control required cant-lic-org-2-monto-hasta" placeholder="Monto hasta">
+										<input type="number" class="form-control required cant-lic-org-2-monto-desde" name="cant-lic-org-2-monto-desde" placeholder="Monto desde">
+										<input type="number" class="form-control required cant-lic-org-2-monto-hasta" name="cant-lic-org-2-monto-hasta" placeholder="Monto hasta">
 									</div>
 									
 									<!-- Fechas Licitaciones -->
 									<div class="datepicker-group">
 										<div class="form-group">
 							                <div class='input-group date' id='picker5'>
-							                    <input type='text' class="form-control required cant-lic-org-2-fecha-hasta" placeholder="Fecha desde">
+							                    <input type='text' class="form-control required cant-lic-org-2-fecha-hasta" name="cant-lic-org-2-fecha-hasta" placeholder="Fecha desde">
 							                    <span class="input-group-addon">
 							                        <span class="fa fa-calendar"></span>
 							                    </span>
@@ -179,7 +179,7 @@
 							            </div>
 										<div class="form-group">
 							                <div class='input-group date' id='picker6'>
-							                    <input type='text' class="form-control required cant-lic-org-2-fecha-desde" placeholder="Fecha hasta"/>
+							                    <input type='text' class="form-control required cant-lic-org-2-fecha-desde" name="cant-lic-org-2-fecha-desde" placeholder="Fecha hasta"/>
 							                    <span class="input-group-addon">
 							                        <span class="fa fa-calendar"></span>
 							                    </span>
@@ -252,15 +252,15 @@
 								<div class="filter-module follow-up hidden" id="cant_licitacion">
 									<form id="pro_1">									<!-- Cantidad de licitaciones -->
 									<div class="monto" style="margin-bottom: 15px;">
-										<input type="number" class="form-control required pro-cant-lic-desde" placeholder="Cantidad desde">
-										<input type="number" class="form-control required pro-cant-lic-hasta" placeholder="Cantidad hasta">
+										<input type="number" class="form-control required pro-cant-lic-desde" name="pro-cant-lic-desde" placeholder="Cantidad desde">
+										<input type="number" class="form-control required pro-cant-lic-hasta" name="pro-cant-lic-hasta" placeholder="Cantidad hasta">
 									</div>
 
 									<!-- Fechas Licitaciones -->
 									<div class="datepicker-group">
 										<div class="form-group">
 							                <div class='input-group date' id='picker7'>
-							                    <input type='text' class="form-control required pro-fecha-lic-desde" placeholder="Fecha desde">
+							                    <input type='text' class="form-control required pro-fecha-lic-desde" name="pro-fecha-lic-desde" placeholder="Fecha desde">
 							                    <span class="input-group-addon">
 							                        <span class="fa fa-calendar"></span>
 							                    </span>
@@ -268,7 +268,7 @@
 							            </div>
 										<div class="form-group">
 							                <div class='input-group date' id='picker8'>
-							                    <input type='text' class="form-control required pro-fecha-lic-hasta" placeholder="Fecha hasta"/>
+							                    <input type='text' class="form-control required pro-fecha-lic-hasta" name="pro-fecha-lic-hasta" placeholder="Fecha hasta"/>
 							                    <span class="input-group-addon">
 							                        <span class="fa fa-calendar"></span>
 							                    </span>
@@ -284,15 +284,15 @@
 									<form id="pro_2">
 									<!-- Monto de licitaciones -->
 									<div class="monto" style="margin-bottom: 15px;">
-										<input type="number" class="form-control required pro-monto-lic-desde" placeholder="Monto desde">
-										<input type="number" class="form-control required pro-monto-lic-hasta" placeholder="Monto hasta">
+										<input type="number" class="form-control required pro-monto-lic-desde" name="pro-monto-lic-desde" placeholder="Monto desde">
+										<input type="number" class="form-control required pro-monto-lic-hasta" name="pro-monto-lic-hasta" placeholder="Monto hasta">
 									</div>
 
 									<!-- Fechas Licitaciones -->
 									<div class="datepicker-group">
 										<div class="form-group">
 							                <div class='input-group date' id='picker9'>
-							                    <input type='text' class="form-control required pro-monto-lic-fecha-desde" placeholder="Fecha desde">
+							                    <input type='text' class="form-control required pro-monto-lic-fecha-desde" name="pro-monto-lic-fecha-desde" placeholder="Fecha desde">
 							                    <span class="input-group-addon">
 							                        <span class="fa fa-calendar"></span>
 							                    </span>
@@ -300,7 +300,7 @@
 							            </div>
 										<div class="form-group">
 							                <div class='input-group date' id='picker10'>
-							                    <input type='text' class="form-control required pro-monto-lic-fecha-hasta" placeholder="Fecha hasta"/>
+							                    <input type='text' class="form-control required pro-monto-lic-fecha-hasta" name="pro-monto-lic-fecha-hasta" placeholder="Fecha hasta"/>
 							                    <span class="input-group-addon">
 							                        <span class="fa fa-calendar"></span>
 							                    </span>
@@ -565,10 +565,13 @@
 		$(document).on("click", ".btn-filtros", function()
 		{
 			
+
 			switch(parseInt($("#lookfor option:selected").val(),10))
 			{
+				
 				case 1 :
 					var tipo_filtro = parseInt($(".filtro-licitacion option:selected").attr("data-id"), 10);
+
 
 					switch(tipo_filtro)
 					{
@@ -580,6 +583,7 @@
 						
 							filtro_licitacion.categoria_producto = $(".categoria-licitacion").val();
 							$(".filtro-licitacion option:selected").attr("disabled", "disabled");
+							$(".daslafito").hide();
 						}
 						
 
@@ -593,6 +597,7 @@
 
 							filtro_licitacion.estado_pub = $(".filtro-licitacion option:selected").attr("data-id-estado");
 							$(".filtro-licitacion option:selected").attr("disabled", "disabled");
+							$(".daslafito").hide();
 
 						}
 
@@ -607,6 +612,7 @@
 
 							filtro_licitacion.estado_adj = $(".filtro-licitacion option:selected").attr("data-id-estado");
 							$(".filtro-licitacion option:selected").attr("disabled", "disabled");
+							$(".daslafito").hide();
 						}
 						break;
 						//Licitaciones Revocadas
@@ -617,6 +623,7 @@
 
 							filtro_licitacion.estado_rev = $(".filtro-licitacion option:selected").attr("data-id-estado");
 							$(".filtro-licitacion option:selected").attr("disabled", "disabled");
+							$(".daslafito").hide();
 						}
 						break;
 						//Licitaciones Suspendidas
@@ -627,6 +634,7 @@
 
 							filtro_licitacion.estado_sus = $(".filtro-licitacion option:selected").attr("data-id-estado");
 							$(".filtro-licitacion option:selected").attr("disabled", "disabled");
+							$(".daslafito").hide();
 						}
 						break;
 						//Monto
@@ -640,6 +648,7 @@
 
 										filtro_licitacion.monto = $(".filtro-licitacion-monto-desde").val() + "|" + $(".filtro-licitacion-monto-hasta").val();
 										$(".filtro-licitacion option:selected").attr("disabled", "disabled");
+										$(".daslafito").hide();
 										
 								}
 								else
@@ -661,6 +670,7 @@
 
 							filtro_licitacion.fecha_publicacion = $(".filtro-licitacion-fecha-desde").val() + "|" + $(".filtro-licitacion-fecha-hasta").val();
 							$(".filtro-licitacion option:selected").attr("disabled", "disabled");
+							$(".daslafito").hide();
 							}
 							else
 							{
@@ -683,6 +693,7 @@
 							filtro_licitacion.fecha_adjudicacion = $(".filtro-licitacion-fecha-desde").val() + "|" + $(".filtro-licitacion-fecha-hasta").val();
 
 							$(".filtro-licitacion option:selected").attr("disabled", "disabled");
+							$(".daslafito").hide();
 							}
 							else
 							{
@@ -702,6 +713,7 @@
 
 							filtro_licitacion.fecha_cierre = $(".filtro-licitacion-fecha-desde").val() + "|" + $(".filtro-licitacion-fecha-hasta").val();
 							$(".filtro-licitacion option:selected").attr("disabled", "disabled");
+							$(".daslafito").hide();
 							}
 							else
 							{
@@ -733,6 +745,7 @@
 								 	filtro_organismos.filtros.push(aux_filter);
 								 	console.log(filtro_organismos.filtros);
 								 	index_org++;
+								 	$(".daslafito").hide();
 							}
 							else
 							{
@@ -749,6 +762,7 @@
 							 	aux_filter.monto_adjudicado  =  $(".cant-lic-org-2-monto-desde").val() + "|" + $(".cant-lic-org-2-monto-hasta").val();
 							 	aux_filter.fecha_adjudicacion = $(".cant-lic-org-fecha-desde").val() + "|" + $(".cant-lic-org-fecha-hasta").val();
 
+							 	$(".daslafito").hide();
 							 	filtro_organismos.filtros.push(aux_filter);
 							 	index_org++;
 						 	}
@@ -778,6 +792,7 @@
 
 						 	filtro_proveedores.filtros.push(aux_filter);
 						 	index_pro++;
+						 	$(".daslafito").hide();
 					}
 					else{
 						pro_1.focusInvalid();
@@ -796,6 +811,7 @@
 
 					 	filtro_proveedores.filtros.push(aux_filter);
 					 	index_pro++;
+					 	$(".daslafito").hide();
 					 	}
 					else{
 						pro_2.focusInvalid();
@@ -1110,13 +1126,55 @@
 				case 1:
 				 	delete filtro_licitacion[$(this).attr("data-attr")]; 
 				 	$(".filtro-licitacion option[value='"+$(this).attr('data-option-select')+"']").attr("disabled", false);
+
+				 	if($(".filtro-licitacion option[disabled='disabled']").length == 0)
+				 	{
+
+				 		$(".daslafito").show();
+				 	}
+
 				break;
 				case 2:
+
 					delete filtro_organismos.filtros[$(this).attr("data-attr")];
+
+					var aux = 0;
+
+					for(var i = 0; i < filtro_organismos.length; i++)
+					{
+						if(filtro_organismos[i] != "undefined")
+						{
+							aux++;
+						}
+
+					}
+
+					if(0 == aux)
+					{
+						$(".daslafito").show();
+					}
+
 				break;
 				case 3:
+
 					delete filtro_proveedores.filtros[$(this).attr("data-attr")];
 					
+					var aux = 0;
+
+					for(var i = 0; i < filtro_proveedores.length; i++)
+					{
+						if(filtro_proveedores[i] != "undefined")
+						{
+							aux++;
+						}
+
+					}
+
+					if(0 == aux)
+					{
+						$(".daslafito").show();
+					}
+
 				break;
 
 			}
