@@ -76,7 +76,18 @@
                 }
             };
 
-            console.log(CONST);
+              jQuery.validator.addMethod("greaterThan", 
+              function(value, element, params) {
+
+                  if (!/Invalid|NaN/.test(new Date(value))) {
+                      return new Date(value) > new Date($(params).val());
+                  }
+
+
+
+                  return isNaN(value) && isNaN($(params).val()) 
+                      || (Number(value) > Number($(params).val())); 
+              },'La fecha fin no puede ser menor que la de inicio.');
   </script>
   
 </head>

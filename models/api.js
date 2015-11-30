@@ -50,7 +50,7 @@ module.exports.getApiCode = function (type, code, pag, callback){
 			callback(json);
 		});
 	}else{
-		console.log(host+'/'+type+'/'+code+ '/embed');
+		
 		request(host+'/'+type+'/'+code + '/embed', function (error, response, body) {
 		
 			if (!error && (response.statusCode == 200 || response.statusCode == 201)) {
@@ -78,7 +78,7 @@ module.exports.getStats = function (callback){
 };
 
 module.exports.getTopLic = function (callback){
-	console.log("perro muerto");
+
 
 	request(host+'/stats/top/licitaciones', function (error, response, body) {
 		if (!error && (response.statusCode == 200 || response.statusCode == 201)) {
@@ -116,7 +116,7 @@ module.exports.getTopCat = function (callback){
 
 module.exports.getApiStats = function (callback){
 
-	console.log(host+'/stats');
+
 	request(host+'/stats', function (error, response, body) {
 		if (!error && (response.statusCode == 200 || response.statusCode == 201)) {
 			json = JSON.parse(body);		
@@ -154,10 +154,10 @@ module.exports.getApiGeneral = function (name, callback){
 
 module.exports.getApiLic = function (name, pag, callback){
 
-	var encodeQueryString = URI.serialize(URI.parse(host+'/licitacion/?q='+name+'&pagina='+pag));
+	var encodeQueryString = URI.serialize(URI.parse(host+'/licitacion/?q='+name+'&orden=-fecha_publicacion&pagina='+pag));
 	
 	request(encodeQueryString, function (error, response, body) {
-		//console.log(response);
+	
 		if (!error && (response.statusCode == 200 || response.statusCode == 201)) {
 			json = JSON.parse(body);		
 		}
@@ -224,6 +224,20 @@ module.exports.getCategorias = function(callback){
 		if (err) throw err;
   		var obj = JSON.parse(data);
   		callback(obj);
+	});
+};
+
+module.exports.getAllProduct = function(callback)
+{
+	request(host+'/producto/', function (error, response, body) {
+		var json;
+		if (!error && (response.statusCode == 200 || response.statusCode == 201)) {
+			json = JSON.parse(body);		
+		}
+		else
+			json = null;
+
+		callback(json);
 	});
 };
 

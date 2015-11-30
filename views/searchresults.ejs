@@ -11,7 +11,7 @@
   var montoi =<%-JSON.stringify(montoi)%>;
   var montoe =<%-JSON.stringify(montoe)%>;
 
-  console.log(n_lic);
+ 
 </script>
 
 <section class="container">
@@ -151,13 +151,34 @@
 	$(function(){
 
 		var TipoBusqueda = <%- JSON.stringify(TipoBusqueda)%>,
+			categoria_aux =  <%- JSON.stringify((categoria_aux != null && categoria_aux != 0 ?  categoria_aux : null ))%>, 
 			AliasBusqueda = "";
 
 		$("#lookfor").val(TipoBusqueda).trigger("change");
 		
 		
 		$(".searchbar-asdf").val(ele);
+
+	
+
+		//Activa Search desde ranking
+		if(categoria_aux != null)
+		{
+
+			$(".se-pre-con").show();
+			
+			$(".filtro-licitacion").val(1).trigger("change");
+
+			setTimeout(function(){
+				$(".categoria-licitacion").val(categoria_aux).trigger("change");
+				$(".btn-filtros").trigger("click");
+				$(".btn-compras-transparentes").trigger("click");
+			}, 2000);
+			
+			$(".se-pre-con").hide();
+
+		}
 	});
 
-	//$("html, body").animate({scrollTop: $('#search-results-panel').offset().top }, 1000);
+	
 </script>

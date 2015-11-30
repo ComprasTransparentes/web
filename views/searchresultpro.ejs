@@ -10,44 +10,7 @@ if(pro.proveedores.length == 0) {
 } else {
 
 %> 
-	<!--
-	<div class="results-filter">
-
-	<form action="filter" method="get">	
-	<input type="hidden" value=<%-element%> id="q">
-
-		<h5>Filtrar resultados</h5>	
-		<div class="row narrow">
-			<div class="col col-xs-12 col-sm-4">
-			<select class="selector standard flat full-width" id="pro">
-				<option selected="" value="">Todos los productos</option>	
-				<% for (var s=0; s<min.item.length; s++ ){%>
-				<option value=<%-min.item[s].code%>><%-min.item[s].name%></option>
-				<%}%>
-			</select>
-			</div>	
-			<div class="col col-xs-12 col-sm-4">
-				<select class="selector standard flat full-width" id="sel">
-					<option selected="" value="">Todos los Estados</option>
-					<option value="5">Publicada</option>
-					<option value="6">Cerrada</option>
-					<option value="8">Adjudicada</option>
-					<option value="18">Revocada</option>
-					<option value="19">Suspendida</option>
-				</select>
-			</div>
-			<div class="col col-xs-12 col-sm-4">
-				<input type="text" class="form-control" placeholder="alala" />
-			</div>
-		</div>
-		<div class="row narrow">
-			<div class="col col-md-12">
-				<button class="btn btn-compras-transparentes pull-right">Filtrar</button>
-			</div>	
-		</div>
-		</form>
-	</div>
-	-->
+	
 <%
 	for(var w=0; w<pro.proveedores.length; w++) { 
 

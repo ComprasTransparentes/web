@@ -53,8 +53,8 @@
 							<!-- Select agregado -->
 							<div class="filter-module follow-up hidden" id="otro_select">
 								<select class="selector categoria-licitacion flat standard full-width" placeholder="Selecciona una categoría">
-									<% for(var i = 0 ; i < min.item.length; i++){ %>
-										<option value="<%- min.item[i].code %>"><%- min.item[i].name %></option>
+									<% for(var i = 0 ; i < categorias.length; i++){ %>
+										<option value="<%- categorias[i].id %>"><%- categorias[i].nombre %></option>
 									<% }%>
 								</select>
 							</div>
@@ -65,7 +65,7 @@
 									<div class="datepicker-group">
 									<div class="form-group">
 						                <div class='input-group date' name="p1" id='picker1'>
-						                    <input type='text' class="form-control required filtro-licitacion-fecha-desde" name="filtro-licitacion-fecha-desde" placeholder="Fecha desde">
+						                    <input type='text' class="form-control required filtro-licitacion-fecha-desde" name="filtro-licitacion-fecha-desde" id="filtro-licitacion-fecha-desde" placeholder="Fecha desde">
 						                    <span class="input-group-addon">
 						                        <span class="fa fa-calendar"></span>
 						                    </span>
@@ -73,7 +73,7 @@
 						            </div>
 									<div class="form-group">
 						                <div class='input-group date' name="p2" id='picker2'>
-						                    <input type='text' class="form-control required filtro-licitacion-fecha-hasta" name="filtro-licitacion-fecha-hasta" placeholder="Fecha hasta"/>
+						                    <input type='text' class="form-control required filtro-licitacion-fecha-hasta" name="filtro-licitacion-fecha-hasta" id="filtro-licitacion-fecha-hasta" placeholder="Fecha hasta"/>
 						                    <span class="input-group-addon">
 						                        <span class="fa fa-calendar"></span>
 						                    </span>
@@ -140,7 +140,7 @@
 									<div class="datepicker-group">
 										<div class="form-group">
 							                <div class='input-group date' id='picker3'>
-							                    <input type='text' class="form-control required cant-lic-org-fecha-desde" name="cant-lic-org-fecha-desde" placeholder="Fecha desde">
+							                    <input type='text' class="form-control required cant-lic-org-fecha-desde" name="cant-lic-org-fecha-desde" id="cant-lic-org-fecha-desde" placeholder="Fecha desde">
 							                    <span class="input-group-addon">
 							                        <span class="fa fa-calendar"></span>
 							                    </span>
@@ -148,7 +148,7 @@
 							            </div>
 										<div class="form-group">
 							                <div class='input-group date' id='picker4'>
-							                    <input type='text' class="form-control required cant-lic-org-fecha-hasta" name="cant-lic-org-fecha-hasta" placeholder="Fecha hasta"/>
+							                    <input type='text' class="form-control required cant-lic-org-fecha-hasta" name="cant-lic-org-fecha-hasta" id="cant-lic-org-fecha-hasta" placeholder="Fecha hasta"/>
 							                    <span class="input-group-addon">
 							                        <span class="fa fa-calendar"></span>
 							                    </span>
@@ -171,7 +171,7 @@
 									<div class="datepicker-group">
 										<div class="form-group">
 							                <div class='input-group date' id='picker5'>
-							                    <input type='text' class="form-control required cant-lic-org-2-fecha-hasta" name="cant-lic-org-2-fecha-hasta" placeholder="Fecha desde">
+							                    <input type='text' class="form-control required cant-lic-org-2-fecha-hasta" id="cant-lic-org-2-fecha-desde" name="cant-lic-org-2-fecha-hasta" placeholder="Fecha desde">
 							                    <span class="input-group-addon">
 							                        <span class="fa fa-calendar"></span>
 							                    </span>
@@ -179,7 +179,7 @@
 							            </div>
 										<div class="form-group">
 							                <div class='input-group date' id='picker6'>
-							                    <input type='text' class="form-control required cant-lic-org-2-fecha-desde" name="cant-lic-org-2-fecha-desde" placeholder="Fecha hasta"/>
+							                    <input type='text' class="form-control required cant-lic-org-2-fecha-hasta" id="cant-lic-org-2-fecha-hasta" name="cant-lic-org-2-fecha-hasta" placeholder="Fecha hasta"/>
 							                    <span class="input-group-addon">
 							                        <span class="fa fa-calendar"></span>
 							                    </span>
@@ -260,7 +260,7 @@
 									<div class="datepicker-group">
 										<div class="form-group">
 							                <div class='input-group date' id='picker7'>
-							                    <input type='text' class="form-control required pro-fecha-lic-desde" name="pro-fecha-lic-desde" placeholder="Fecha desde">
+							                    <input type='text' class="form-control required pro-fecha-lic-desde" name="pro-fecha-lic-desde" id="pro-fecha-lic-desde" placeholder="Fecha desde">
 							                    <span class="input-group-addon">
 							                        <span class="fa fa-calendar"></span>
 							                    </span>
@@ -268,7 +268,7 @@
 							            </div>
 										<div class="form-group">
 							                <div class='input-group date' id='picker8'>
-							                    <input type='text' class="form-control required pro-fecha-lic-hasta" name="pro-fecha-lic-hasta" placeholder="Fecha hasta"/>
+							                    <input type='text' class="form-control required pro-fecha-lic-hasta" name="pro-fecha-lic-hasta" id="pro-fecha-lic-hasta" placeholder="Fecha hasta"/>
 							                    <span class="input-group-addon">
 							                        <span class="fa fa-calendar"></span>
 							                    </span>
@@ -292,7 +292,7 @@
 									<div class="datepicker-group">
 										<div class="form-group">
 							                <div class='input-group date' id='picker9'>
-							                    <input type='text' class="form-control required pro-monto-lic-fecha-desde" name="pro-monto-lic-fecha-desde" placeholder="Fecha desde">
+							                    <input type='text' class="form-control required pro-monto-lic-fecha-desde" name="pro-monto-lic-fecha-desde" id="pro-monto-lic-fecha-desde" placeholder="Fecha desde">
 							                    <span class="input-group-addon">
 							                        <span class="fa fa-calendar"></span>
 							                    </span>
@@ -300,7 +300,7 @@
 							            </div>
 										<div class="form-group">
 							                <div class='input-group date' id='picker10'>
-							                    <input type='text' class="form-control required pro-monto-lic-fecha-hasta" name="pro-monto-lic-fecha-hasta" placeholder="Fecha hasta"/>
+							                    <input type='text' class="form-control required pro-monto-lic-fecha-hasta" name="pro-monto-lic-fecha-hasta" id="pro-monto-lic-fecha-hasta" placeholder="Fecha hasta"/>
 							                    <span class="input-group-addon">
 							                        <span class="fa fa-calendar"></span>
 							                    </span>
@@ -529,18 +529,64 @@
 </div>
 
 <script type="text/javascript">
+
 	var filtro_licitacion = {},
 		filtro_organismos = {},
 		index_org = 0,
 		index_pro = 0,
 		filtro_proveedores = {};
 
-		var lic_fechas = $("#lic-fecha-picks").validate({}),
+		var lic_fechas = $("#lic-fecha-picks").validate({
+			rules : 
+			{
+				"filtro-licitacion-fecha-hasta" : 
+				{
+					greaterThan : "#filtro-licitacion-fecha-desde"
+				}
+
+			}
+		}),
 		 	lic_montos = $("#lic-monto").validate({}),
-		 	org_1 = $("#org_1").validate({}),
-		 	org_2 = $("#org_2").validate({}),
-		 	pro_1 = $("#pro_1").validate({}),
-		 	pro_2 = $("#pro_2").validate({});
+		 	org_1 = $("#org_1").validate({
+		 		rules : 
+				{
+					"cant-lic-org-fecha-hasta" : 
+					{
+						greaterThan : "#cant-lic-org-fecha-desde"
+					}
+
+				}
+		 	}),
+		 	org_2 = $("#org_2").validate({
+		 		rules : 
+				{
+					"cant-lic-org-2-fecha-hasta" : 
+					{
+						greaterThan : "#cant-lic-org-2-fecha-desde"
+					}
+
+				}
+		 	}),
+		 	pro_1 = $("#pro_1").validate({
+		 		rules : 
+				{
+					"pro-fecha-lic-hasta" : 
+					{
+						greaterThan : "#pro-fecha-lic-desde"
+					}
+
+				}
+		 	}),
+		 	pro_2 = $("#pro_2").validate({
+		 		rules : 
+				{
+					"pro-monto-lic-fecha-hasta" : 
+					{
+						greaterThan : "#pro-monto-lic-fecha-desde"
+					}
+
+				}
+		 	});
 
 
 		filtro_proveedores.filtros = [];
@@ -562,6 +608,8 @@
 			index_pro = 0;
 		});
 
+			
+
 		$(document).on("click", ".btn-filtros", function()
 		{
 			
@@ -577,11 +625,11 @@
 					{
 						//Categoria producto
 						case 1:
-						if(typeof(filtro_licitacion.categoria_producto) == "undefined" )
+						if(typeof(filtro_licitacion.producto) == "undefined" )
 						{
-							$(".filters-list-container").append('<div class="filter-list-item"><p><i class="fa fa-industry"></i>Categoría de producto</p><ul class="list-unstyled list-inline querystring"><li class="static-string">Licitaciones en la categoría</li><li> '+ $(".categoria-licitacion").find("option:selected").text() +'</li></ul><span class="close-thing" data-tipo-filtro="1" data-attr="categoria_producto" data-option-select="'+$(".filtro-licitacion option:selected").val()+'"><i class="fa fa-times"></i></span></div>');
+							$(".filters-list-container").append('<div class="filter-list-item"><p><i class="fa fa-industry"></i>Categoría de producto</p><ul class="list-unstyled list-inline querystring"><li class="static-string">Licitaciones en la categoría</li><li> '+ $(".categoria-licitacion").find("option:selected").text() +'</li></ul><span class="close-thing" data-tipo-filtro="1" data-attr="producto" data-option-select="'+$(".filtro-licitacion option:selected").val()+'"><i class="fa fa-times"></i></span></div>');
 						
-							filtro_licitacion.categoria_producto = $(".categoria-licitacion").val();
+							filtro_licitacion.producto = $(".categoria-licitacion").val();
 							$(".filtro-licitacion option:selected").attr("disabled", "disabled");
 							$(".daslafito").hide();
 						}
@@ -743,7 +791,7 @@
 								 	aux_filter.fecha_adjudicacion = $(".cant-lic-org-fecha-desde").val() + "|" + $(".cant-lic-org-fecha-hasta").val();
 
 								 	filtro_organismos.filtros.push(aux_filter);
-								 	console.log(filtro_organismos.filtros);
+								 
 								 	index_org++;
 								 	$(".daslafito").hide();
 							}
@@ -857,6 +905,8 @@
 					}
 
 					//filtro_licitacion.estado = JSON.stringify(filtro_licitacion.estado);
+
+					filtro_licitacion.orden = "-fecha_publicacion";
 					
 					$(".se-pre-con").show();
 					$.ajax({
@@ -866,9 +916,17 @@
 						"traditional" : true,
 						"dataType" : "JSON",
 						"success" : function(r){
-							console.log(r);
+							
+							if(filtro_licitacion.q != "" )
+							{
+								$($(".search-result-description li span")[1]).text(filtro_licitacion.q);
+							}
+							else
+							{
+								$($(".search-result-description li span")[1]).text("En todas las licitaciones");
+							}
+
           					
-          					$($(".search-result-description li span")[1]).text(filtro_licitacion.q);
 
 							if(r.licitaciones.length > 0)
 							{
@@ -902,7 +960,7 @@
 							                filtro_licitacion.pagina = newPage;
 							                
 							                $.getJSON( url, filtro_licitacion ,function( data ) {
-							                	console.log(data);
+							                	
 							                    $('#tipo1').find("[type='lic']").attr("style","display: none");
 												for(var b=0; b< data.licitaciones.length;b++){
 							                        $('#tipo1').find("[code='"+b+"']").filter("[type='lic']").attr("style","display: block");
@@ -958,7 +1016,15 @@
 						"success" : function(r){
 							          					
           					$("#tipo1").html("");
-          					$($(".search-result-description li span")[1]).text(palabra);
+
+          					if(palabra != "")
+          					{
+          						$($(".search-result-description li span")[1]).text(palabra);
+          					}
+          					else
+          					{
+          						$($(".search-result-description li span")[1]).text("En todos los organismos");
+          					}
 
 
           					if(r.organismos.length > 0)
@@ -992,7 +1058,7 @@
 													 "contentType": "application/json",
 													"dataType" : "JSON",
 													"success" : function( data ) {
-								                    console.log(data);
+								                  
 								                    //$('#tipo1').find("[type='org']").attr("style","display: none");
 								                    for(var b=0; b< data.organismos.length;b++){
 								                        $('#tipo1').find("[code='"+b+"']").filter("[type='org']").attr("style","display: block");
@@ -1047,7 +1113,15 @@
 						"success" : function(r){
 					        
 					       	$("#tipo1").html("");
-          					$($(".search-result-description li span")[1]).text(palabra);
+					       	
+          					if(palabra != "")
+          					{
+          						$($(".search-result-description li span")[1]).text(palabra);
+          					}
+          					else
+          					{
+          						$($(".search-result-description li span")[1]).text("En todos los proveedores");
+          					}
 
           					if(r.proveedores.length > 0)
           					{
@@ -1181,5 +1255,11 @@
 			
 			$(this).closest('.filter-list-item').remove();
 		});
+
+		$(document).keypress(function(e) {
+			    if(e.which == 13) {
+			        $(".btn-compras-transparentes").trigger("click");
+			    }
+			});
 	});
 </script>

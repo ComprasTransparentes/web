@@ -42,7 +42,7 @@ function numberPoint(num){
 			ret = ret.concat(".");
 		}
 	}
-	console.log(ret);
+	
 	return ret;
 };
 
@@ -184,7 +184,7 @@ $(document).ready(function() {
 
 	var col = $(".long-text");
 	for(var i=0; i<col.length; i++) {
-		console.log(i);
+	
 		if(!checkOverflow(col[i])) {
 			$(col[i]).siblings('.more-text').toggleClass('hidden');
 		}
@@ -296,7 +296,7 @@ $(document).ready(function() {
 			$("#fechaapertura").addClass('invisible');
 			$("#fechacierre").addClass('invisible');
 			$("#fechaadjudicacion").addClass('invisible');
-			console.log("Malilla");
+		
 		}
 
 		$( fecha + option).toggleClass('invisible');
@@ -442,7 +442,7 @@ $(document).ready(function() {
 
 	$('.btn-filtros').on('click', function(){
 		var asdf = $(this).closest('.filters-container-panel').attr('id');
-		console.log(asdf);
+
 		if ( asdf == "filters_search_licitacion") {
 			$("#filters_list_licitacion").find('.daslafito').hide();
 		}
@@ -473,7 +473,6 @@ $(document).ready(function() {
 
 	function magia(el) {
 
-		console.log(data.extra.top_licitaciones[el.id]);
 
 		$('#code_lic').text(data.extra.top_licitaciones[el.id].codigo);
 		$('#nombre_lic').text(data.extra.top_licitaciones[el.id].nombre);
@@ -548,7 +547,7 @@ $(document).ready(function() {
 		$('#rank_cat').text(index);
 		$('#name_cate').text(cat.categorias[el.id].nombre);
 		$('#cash_cat').text(cat.categorias[el.id].monto.formatNumber(0, ",", "."));
-		$('#link_cat').attr("href","/search?cat=0&TipoBusqueda=1&q="+cat.categorias[el.id].id);
+		$('#link_cat').attr("href","/search?categoria="+ cat.categorias[el.id].id +"&TipoBusqueda=1&q= ");
 		
 
 	}
@@ -658,7 +657,7 @@ $(document).ready(function() {
 			var rows = [];
 			//tabla.fnClearTable();
 			
-			console.log(data.licitaciones.length);
+			
 			if(data.licitaciones.length > 0)
 			{
 

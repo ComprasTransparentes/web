@@ -45,5 +45,5 @@ app.use(express.static(path.join(__dirname, 'assets')));
 app.use('/', routes);
 
 app.listen(port, function(){
-	console.log("Tu no eres un perro salchicha");
+	
 });

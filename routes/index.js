@@ -94,9 +94,11 @@ router.get('/searchbar',function(req, res){
 	var min,
 		categorias;
 
-	api.getCategorias(function(categorias){
+
+
+	api.getAllProduct(function(categorias){
 		categorias = categorias;
-		console.log(categorias);
+		
 
 		api.getMins(function(min){
 		min = min;
@@ -108,6 +110,7 @@ router.get('/searchbar',function(req, res){
 							  									pro: [],
 							  									org: [],
 							  									NumeroRegistros : 0,
+							  									categoria_aux : null,
 							  									TipoBusqueda : 1,
 							  									categorias : categorias,
 					  											special: 'true',
@@ -137,9 +140,11 @@ router.get('/searchbar',function(req, res){
 router.get('/search', function(req, res) {
 	//var type = 'licitacion';
 	var element = req.query.q,
-	TipoBusqueda = parseInt(req.query.TipoBusqueda, 10);
-	console.log (req.query.q);
+	TipoBusqueda = parseInt(req.query.TipoBusqueda, 10),
+	categoria_aux = (req.query.categoria != null ? req.query.categoria : 0 )	; //Categoría desde ranking para búsqueda
 	console.log(req.query);
+
+
 	var cat = req.query.cat;
 	if(cat!= undefined){
 		api.getCatSearch(element,function(json){
@@ -210,8 +215,8 @@ router.get('/search', function(req, res) {
 
 			
 
-			api.getCategorias(function(categorias){
-				categorias = categorias.categorias;
+			api.getAllProduct(function(categorias){
+				categorias = categorias.productos;
 
 				/*
 				TipoBusqueda => 1 => Licitacion
@@ -227,17 +232,12 @@ router.get('/search', function(req, res) {
 						if(lic != null)
 						{
 
-							api.getMins(function(mins){
-								min = mins;
-
-
-
-								if(min!=null){
-											res.render('application.ejs', { content: 'searchresults',
+							res.render('application.ejs', { content: 'searchresults',
 																	element: element,
 								  									lic: lic,
 								  									pro: pro,
 								  									org: org,
+								  									categoria_aux : categoria_aux,
 								  									categorias : categorias,
 								  									NumeroRegistros : lic.n_licitaciones,
 								  									TipoBusqueda : TipoBusqueda,
@@ -255,12 +255,10 @@ router.get('/search', function(req, res) {
 						  											montoi: '',
 						  											montoe: '',
 						  											na: 'search' });
-
-										}else{
-											res.render('404.ejs');
-
-										}
-							});
+						}
+						else
+						{
+							res.render('404.ejs');
 						}
 					});
 					break;
@@ -281,6 +279,7 @@ router.get('/search', function(req, res) {
 								  									pro: pro,
 								  									org: org,
 								  									categorias : categorias,
+								  									categoria_aux : null,
 								  									TipoBusqueda : TipoBusqueda,
 								  									NumeroRegistros : org.n_organismos,
 								  									active_nav : "/searchbar",
@@ -324,6 +323,7 @@ router.get('/search', function(req, res) {
 								  									org: org,
 								  									TipoBusqueda : TipoBusqueda,
 								  									categorias : categorias,
+								  									categoria_aux : null,
 								  									NumeroRegistros : pro.n_proveedores,
 								  									active_nav : "/searchbar",
 						  											special: 'true',
@@ -602,7 +602,7 @@ router.get('/file', function(req, res) {
 				api.getAllTenderP(json.id, function(retorno)
 				{
 					
-					console.log(json);
+			
 					json.extra.top_licitaciones = retorno;
 
 					json2 = null;
@@ -625,7 +625,7 @@ router.get('/file', function(req, res) {
 			else if(type=="licitacion"){
 				api.getItemLic(code, function(json2){
 					json2 = json2;
-					console.log(json);
+					
 					res.render('application.ejs', { content: cont,
 	  									data: json,
 	  									special: 'false',
@@ -698,7 +698,7 @@ router.get('/comparador', function(req, res) {
 		api.getMins(function(min) {
 		min = min;
 
-		console.log(categorias);
+		
 		res.render('application.ejs', { 	content: 'comparador',
 											categorias : categorias, 
 		 									special: 'true',
@@ -719,7 +719,7 @@ router.get('/comparador', function(req, res) {
 
 router.get('/comparar_mins', function(req,res){
 
-	console.log(req.query);
+	
 
 	var min1 = req.query.min1,
 		min2 = req.query.min2,
@@ -730,11 +730,11 @@ router.get('/comparar_mins', function(req,res){
 
 	api.getMinStats(min1,item,function(info_min1){
 		info_min1 = info_min1;
-		console.log(info_min1);
+		
 
 		api.getMinStats(min2,item, function(info_min2){
 			info_min2 = info_min2;
-			console.log(info_min2);
+			
 			res.send({"respuesta" : "1", "min1" : info_min1, "min2" : info_min2});
 		});
 	});
