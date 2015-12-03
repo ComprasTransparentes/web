@@ -53,8 +53,8 @@
 							<!-- Select agregado -->
 							<div class="filter-module follow-up hidden" id="otro_select">
 								<select class="selector categoria-licitacion flat standard full-width" placeholder="Selecciona una categoría">
-									<% for(var i = 0 ; i < categorias.length; i++){ %>
-										<option value="<%- categorias[i].id %>"><%- categorias[i].nombre %></option>
+									<% for(var i = 0 ; i < categorias.productos.length; i++){ %>
+										<option value="<%- categorias.productos[i].id %>"><%- categorias.productos[i].nombre %></option>
 									<% }%>
 								</select>
 							</div>
