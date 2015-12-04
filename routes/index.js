@@ -216,7 +216,7 @@ router.get('/search', function(req, res) {
 			
 
 			api.getAllProduct(function(categorias){
-				categorias = categorias.productos;
+				categorias = categorias;
 
 				/*
 				TipoBusqueda => 1 => Licitacion
