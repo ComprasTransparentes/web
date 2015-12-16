@@ -44,7 +44,7 @@ var arc = d3.svg.arc()
 
 // Use d3.text and d3.csv.parseRows so that we do not need to have a header
 // row, and can receive the csv as an array of arrays.
-d3.text("http://hacklab.errdd.com:8000/stats/1", function(text) {
+d3.text("http://api.comprastransparentes.cl/stats/1", function(text) {
   //console.log(text JSON2CSV);
   var csv = d3.csv.parseRows(text);
   var json = buildHierarchy(csv);
